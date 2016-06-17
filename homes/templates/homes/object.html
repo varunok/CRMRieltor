@@ -1,0 +1,937 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Объекты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="static/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="static/css/select2.min.css">
+    <link rel="stylesheet" href="static/css/magnific-popup.css">
+    <script src="static/js/jquery-2.2.4.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/select2.min.js"></script>
+    <script src="static/js/jquery.magnific-popup.min.js"></script>
+</head>
+
+<body>
+    <section class="header">
+        <div class="main-panel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="logo">
+                            <a href="#"><span>GEK</span>.OD.UA</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="main-panel_search">
+                            <input type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="nav-panel_date">
+                            <div class="calendar">
+                                <div class="day">10</div>
+                                <div class="month">май</div>
+                            </div>
+                            <div class="time">13:35</div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-8">
+                        <ul class="nav-panel_notification">
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="notifi notifi-red">1</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">CООБЩЕНИЯ</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> <span class="notifi notifi-green">2</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">КТО ОНЛАЙН</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич <i class="fa fa-circle user-status"></i></span>
+                                            <span class="message-user-date">в сети</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="nav-panel_user">
+                            <div class="logo-user">
+                                <img src="images/logo-user-panel.jpg" alt="">
+                            </div>
+                            <div class="user-name">Вячеслав Рекечинский</div>
+                            <div class="user-logout"><a href="#">выйти <i class="fa fa-sign-out"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <div class="container">
+                <div class="row">
+                    <ul>
+                        <li><a href="{% url "homes" %}"><i class="fa fa-home"></i><p>Главная</p></a></li>
+                        <li><a href="{% url "object" %}"><i class="fa fa-university"></i><p>Объекты</p></a></li>
+                        <li><a href="#"><i class="fa fa-user"></i><p>Арендаторы</p></a></li>
+                        <li><a href="#"><i class="fa fa-male"></i><p>Покупатели</p></a></li>
+                        <li><a href="#"><i class="fa fa-briefcase"></i><p>Маклера</p></a></li>
+                        <li><a href="#"><i class="fa fa-repeat"></i><p>Сервисы</p></a></li>
+                        <li><a href="#"><i class="fa fa-list-alt"></i><p>Задачи</p></a></li>
+                        <li><a href="#"><i class="fa fa-eye"></i><p>Показы</p></a></li>
+                        <li><a href="#"><i class="fa fa-cogs"></i><p>Настройки</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Главная</a></li>
+                        <li class="active">Объекты</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="row section-search">
+                <div class="col-md-12">
+                    <h1 class="section-head">Поиск <span>объектов</span></h1>
+                    <div class="section-sort">
+                        <a href="#" class="extend-block">
+                            <i class="fa fa-filter"></i> Расширеный поиск
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 substrate">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="typeobj">Тип объекта</label>
+                                    <select class="multiple" multiple="multiple" placeholder="-----">
+                                        <option>Дом</option>
+                                        <option>Квартира</option>
+                                        <option>Комната</option>
+                                        <option>Участок</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="price">Цена</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" placeholder="От">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" placeholder="До">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="" id="" style="min-width: 100%">
+                                                <option value="">$</option>
+                                                <option value="">грн.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="actual">Актуальность</label>
+                                    <select>
+                                        <option selected="selected">-----</option>
+                                        <option>Активно сдаем</option>
+                                        <option>Уточнить данные</option>
+                                        <option>Неинтересно</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="tarea">Район</label>
+                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="tarea">
+                                        <option>Духовец</option>
+                                        <option>Курский</option>
+                                        <option>Центральный</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="price">Площадь</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="От">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="До">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="stat">Состояние</label>
+                                    <select>
+                                        <option selected="selected">-----</option>
+                                        <option>Ищем</option>
+                                        <option>Незвонить</option>
+                                        <option>Занят арендатором</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="idobj">ID Объекта</label>
+                                    <input type="text" placeholder="-----">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="phone">Телефон</label>
+                                    <input type="text" placeholder="-----">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="phone">Пересмотр <i class="fa fa-calendar"></i></label>
+                                    <input id="peresmotr" type="text" placeholder="-----">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="extended-search" style="height: 0px">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="typeobj">Этажность</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="От">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="До">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="typeobj">Комнаты</label>
+                                        <select class="multiple" multiple="multiple" placeholder="-----">
+                                            <option>Смежные</option>
+                                            <option>Раздельные</option>
+                                            <option>Смежно-раздельные</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="street">Улица</label>
+                                        <select>
+                                            <option selected="selected">-----</option>
+                                            <option>ул.Полуботка</option>
+                                            <option>ул. Шевченка</option>
+                                            <option>ул. Щорса</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Этаж</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="От">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="До">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Комнат</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="От">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="До">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="stat">Номер дома</label>
+                                        <input type="text" placeholder="-----">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Контактное лицо</label>
+                                        <input type="text" placeholder="-----">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="phone">Кухня</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="От">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" placeholder="До">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Тип строения</label>
+                                        <select>
+                                            <option selected="selected">-----</option>
+                                            <option>Малосемейка</option>
+                                            <option>Панельный</option>
+                                            <option>Новострой</option>
+                                            <option>Малосемейка</option>
+                                            <option>VIP</option>
+                                            <option>Грущевка</option>
+                                            <option>Чешка</option>
+                                            <option>Гостинка</option>
+                                            <option>Сталинка</option>
+                                            <option>Сотовая</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Комментарий</label>
+                                        <input type="text" placeholder="-----">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="search-item">
+                                                <label for="price">VIP <i class="fa fa-star"></i></label>
+                                                <input type="checkbox">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="search-item">
+                                                <label for="price">На сайте <i class="fa fa-globe"></i></label>
+                                                <input type="checkbox">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 btn-search">
+                                <a href="#" class="btn btn-red">Очистить</a>
+                                <a href="#" class="btn btn-blue">Применить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row search-object">
+                <div class="col-md-12">
+                    <h1 class="section-head">Ваши <span>объекты </span> <i class="label label-default">15</i></h1>
+                    <div class="section-sort">
+                        <a href="#" class="btn btn-green">Добавить</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="tabs">
+                        <ul class="main-tabs">
+                            <li class="tabs-active"><a href="#">Все <span class="label label-default">10</span></a></li>
+                            <li><a href="#">Продам <span class="label label-default">10</span></a></li>
+                            <li><a href="#">Сдам <span class="label label-default">10</span></a></li>
+                        </ul>
+                        <ul class="object-filter">
+                            <li><a href="#">Артикул</a></li>
+                            <li><a href="#">Цена</a></li>
+                            <li><a href="#">Адрес</a></li>
+                            <li><a href="#">Кол. изображений</a></li>
+                            <li><a href="#">Состояние</a></li>
+                            <li><a href="#">Добавлен</a></li>
+                            <li><a href="#">Активность</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="wrap-obj">
+                    <div class="col-md-12">
+                        <div class="col-md-12 object-card">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 object-img popup-gallery">
+                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
+                                        <a href="images/00848294_n1.jpg"></a>
+                                        <a href="images/63004198.jpg"></a>
+                                        <span class="label label-default img-count">2</span>
+                                    </div>
+                                    <div class="col-md-9 object-info">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h2 class="object-id">
+                                                    <a href="#">ID 322</a>
+                                                    <i class="fa fa-globe"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <span class="object-price-buy">90 000$</span>
+                                                    <span class="object-price-arend">2 000$</span>
+                                                </h2>
+                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
+                                                <p class="object-more-info">
+                                                    <i class="fa fa-building"></i> 3
+                                                    <i class="fa fa-building-o"></i> 5 / 5
+                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+
+                                                </p>
+                                                <p class="object-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+
+                                                </p>
+                                                <p class="object-comment">
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="object-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="object-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="object-data-call">
+                                                    Дата звонка<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-commission">
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="object-edit">
+                                                <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                                    <a href="#"><i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="object-stat">
+                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                </p>
+                                                <p class="object-data-view">
+                                                   Дата пересмотра<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-data-update">
+                                                   Дата обновления<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-obj">
+                    <div class="col-md-12">
+                        <div class="col-md-12 object-card">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 object-img popup-gallery">
+                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
+                                        <a href="images/00848294_n1.jpg"></a>
+                                        <a href="images/63004198.jpg"></a>
+                                        <span class="label label-default img-count">2</span>
+                                    </div>
+                                    <div class="col-md-9 object-info">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h2 class="object-id">
+                                                    <a href="#">ID 322</a>
+                                                    <i class="fa fa-globe"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <span class="object-price-buy">90 000$</span>
+                                                    <span class="object-price-arend">2 000$</span>
+                                                </h2>
+                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
+                                                <p class="object-more-info">
+                                                    <i class="fa fa-building"></i> 3
+                                                    <i class="fa fa-building-o"></i> 5 / 5
+                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+
+                                                </p>
+                                                <p class="object-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+
+                                                </p>
+                                                <p class="object-comment">
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="object-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="object-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="object-data-call">
+                                                    Дата звонка<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-commission">
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="object-edit">
+                                                <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                                    <a href="#"><i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="object-stat">
+                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                </p>
+                                                <p class="object-data-view">
+                                                   Дата пересмотра<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-data-update">
+                                                   Дата обновления<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-obj">
+                    <div class="col-md-12">
+                        <div class="col-md-12 object-card">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 object-img popup-gallery">
+                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
+                                        <a href="images/00848294_n1.jpg"></a>
+                                        <a href="images/63004198.jpg"></a>
+                                        <span class="label label-default img-count">2</span>
+                                    </div>
+                                    <div class="col-md-9 object-info">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h2 class="object-id">
+                                                    <a href="#">ID 322</a>
+                                                    <i class="fa fa-globe"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <span class="object-price-buy">90 000$</span>
+                                                    <span class="object-price-arend">2 000$</span>
+                                                </h2>
+                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
+                                                <p class="object-more-info">
+                                                    <i class="fa fa-building"></i> 3
+                                                    <i class="fa fa-building-o"></i> 5 / 5
+                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+
+                                                </p>
+                                                <p class="object-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+
+                                                </p>
+                                                <p class="object-comment">
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="object-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="object-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="object-data-call">
+                                                    Дата звонка<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-commission">
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="object-edit">
+                                                <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                                    <a href="#"><i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="object-stat">
+                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                </p>
+                                                <p class="object-data-view">
+                                                   Дата пересмотра<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-data-update">
+                                                   Дата обновления<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-obj">
+                    <div class="col-md-12">
+                        <div class="col-md-12 object-card">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 object-img popup-gallery">
+                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
+                                        <a href="images/00848294_n1.jpg"></a>
+                                        <a href="images/63004198.jpg"></a>
+                                        <span class="label label-default img-count">2</span>
+                                    </div>
+                                    <div class="col-md-9 object-info">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h2 class="object-id">
+                                                    <a href="#">ID 322</a>
+                                                    <i class="fa fa-globe"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <span class="object-price-buy">90 000$</span>
+                                                    <span class="object-price-arend">2 000$</span>
+                                                </h2>
+                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
+                                                <p class="object-more-info">
+                                                    <i class="fa fa-building"></i> 3
+                                                    <i class="fa fa-building-o"></i> 5 / 5
+                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+
+                                                </p>
+                                                <p class="object-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+
+                                                </p>
+                                                <p class="object-comment">
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="object-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="object-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="object-data-call">
+                                                    Дата звонка<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-commission">
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="object-edit">
+                                                <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                                    <a href="#"><i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="object-stat">
+                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                </p>
+                                                <p class="object-data-view">
+                                                   Дата пересмотра<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-data-update">
+                                                   Дата обновления<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-obj">
+                    <div class="col-md-12">
+                        <div class="col-md-12 object-card">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3 object-img popup-gallery">
+                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
+                                        <a href="images/00848294_n1.jpg"></a>
+                                        <a href="images/63004198.jpg"></a>
+                                        <span class="label label-default img-count">2</span>
+                                    </div>
+                                    <div class="col-md-9 object-info">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h2 class="object-id">
+                                                    <a href="#">ID 322</a>
+                                                    <i class="fa fa-globe"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <span class="object-price-buy">90 000$</span>
+                                                    <span class="object-price-arend">2 000$</span>
+                                                </h2>
+                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
+                                                <p class="object-more-info">
+                                                    <i class="fa fa-building"></i> 3
+                                                    <i class="fa fa-building-o"></i> 5 / 5
+                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+
+                                                </p>
+                                                <p class="object-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+
+                                                </p>
+                                                <p class="object-comment">
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="object-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="object-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="object-data-call">
+                                                    Дата звонка<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-commission">
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="object-edit">
+                                                    <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="#"><i class="fa fa-eye"></i> </a>
+                                                    <a href="#"><i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="object-stat">
+                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                </p>
+                                                <p class="object-data-view">
+                                                   Дата пересмотра<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                                <p class="object-data-update">
+                                                   Дата обновления<br>
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 section-pagination">
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="logo">
+                        <a href="#"><span>GEK</span>.OD.UA</a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="callback-message">
+                                <span>Написать сообщение</span>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <a href="#" class="btn btn-green">Отправить</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="admin-photo">
+                                <img src="images/admin-photo.jpg" alt="">
+                            </div>
+                            <div class="admin-name">
+                                Вячеслав Рекечинский
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="admin-contact">
+                                <span>Всегда на связи</span>
+                                <ul>
+                                    <li><i class="fa fa-mobile"></i> +380932377318</li>
+                                    <li><i class="fa fa-envelope-o"></i> dmirty.primak@gmail.com</li>
+                                    <li><i class="fa fa-skype"></i> dima_primachok</li>
+                                    <li><i class="fa fa-vk"></i> Група Вконтакте</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">© RIELTORY.BIZ CRM 2016</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    $(function() {
+        $("#typeobj").selectmenu();
+        $(".tarea-multiple").select2();
+        $("#idobj").selectmenu();
+        $("#actual").selectmenu();
+        $("#stat").selectmenu();
+        $("#stat").selectmenu();
+        $("#street").selectmenu();
+        $("#typebuild").selectmenu();
+        $("#peresmotr").datepicker();
+        $(".multiple").select2();
+        $(".extend-block").click(function() {
+            var x = $(".extended-search").css('height');
+            console.log(x);
+            if (x == '0px') {
+                $(".extended-search").css('height', '');
+            } else {
+                $(".extended-search").css('height', '0px');
+            }
+
+        });
+
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+    $('.popup-gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        },
+        image: {
+            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+        }
+    });
+});
+    </script>
+</body>
+
+</html>
