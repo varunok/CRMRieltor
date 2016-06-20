@@ -18,9 +18,23 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from homes import views
+from notes.views import note_add, note_del, note_edit
 
 urlpatterns = [
+    # site
     url(r'^$', views.views, name='homes'),
     url(r'^object$', views.object, name='object'),
+    url(r'^buyers$', views.buyers, name='buyers'),
+    # end site
+
+    # admin
     url(r'^admin/', admin.site.urls),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # endadmin
+
+    # request notes
+    url(r'^note_add$', note_add),
+    url(r'^note_del$', note_del),
+    url(r'^note_edit$', note_edit),
+    # end request notes
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,142 +1,6 @@
-{% load static from staticfiles %}
-
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" href="static/css/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="static/css/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="static/css/magnific-popup.css">
-    <script src="{% static "js/jquery-2.2.4.min.js" %}"></script>
-    <script src="static/js/jquery-ui.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/masonry.min.js"></script>
-    <script src="static/js/jquery.magnific-popup.min.js"></script>
-</head>
-
-<body>
-    <section class="header">
-        <div class="main-panel">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="logo">
-                            <a href="#"><span>GEK</span>.OD.UA</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="main-panel_search">
-                            <input type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
-                        </div>
-                        <div class="nav-panel_date">
-                            <div class="calendar">
-                                <div class="day">10</div>
-                                <div class="month">май</div>
-                            </div>
-                            <div class="time">13:35</div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-8">
-                        <ul class="nav-panel_notification">
-                            <li class="btn-group">
-                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="notifi notifi-red">1</span></a>
-                                <ul class="dropdown-menu dropmessage">
-                                    <div class="head-dropmessage">CООБЩЕНИЯ</div>
-                                    <li>
-                                        <a href="#"><img src="static/images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="static/images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="btn-group">
-                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> <span class="notifi notifi-green">2</span></a>
-                                <ul class="dropdown-menu dropmessage">
-                                    <div class="head-dropmessage">КТО ОНЛАЙН</div>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span class="message-user-date">был в сети 15мин назад</span>
-                                            <a class="message-send" href="#">написать</a></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span class="message-user-date">был в сети 15мин назад</span>
-                                            <a class="message-send" href="#">написать</a></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич</span>
-                                            <span class="message-user-date">был в сети 15мин назад</span>
-                                            <a class="message-send" href="#">написать</a></a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
-                                            <span class="message-user-name">Дмитрий Игоревич <i class="fa fa-circle user-status"></i></span>
-                                            <span class="message-user-date">в сети</span>
-                                            <a class="message-send" href="#">написать</a></a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="nav-panel_user">
-                            <div class="logo-user">
-                                <img src="images/logo-user-panel.jpg" alt="">
-                            </div>
-                            <div class="user-name">Вячеслав Рекечинский</div>
-                            <div class="user-logout"><a href="#">выйти <i class="fa fa-sign-out"></i></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-menu">
-            <div class="container">
-                <div class="row">
-                    <ul>
-                        <li><a href="{% url "homes" %}"><i class="fa fa-home"></i><p>Главная</p></a></li>
-                        <li><a href="{% url "object" %}"><i class="fa fa-university"></i><p>Объекты</p></a></li>
-                        <li><a href="#"><i class="fa fa-user"></i><p>Арендаторы</p></a></li>
-                        <li><a href="#"><i class="fa fa-male"></i><p>Покупатели</p></a></li>
-                        <li><a href="#"><i class="fa fa-briefcase"></i><p>Маклера</p></a></li>
-                        <li><a href="#"><i class="fa fa-repeat"></i><p>Сервисы</p></a></li>
-                        <li><a href="#"><i class="fa fa-list-alt"></i><p>Задачи</p></a></li>
-                        <li><a href="#"><i class="fa fa-eye"></i><p>Показы</p></a></li>
-                        <li><a href="#"><i class="fa fa-cogs"></i><p>Настройки</p></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="content">
+{% extends "homes/base.html" %}
+{% block content %}
+<section class="content">
         <div class="container">
             <div class="row meet-task">
                 <div class="col-md-12">
@@ -345,176 +209,57 @@
                     <div class="section-sort">
 
                         <div class="delivery-pre ">
-                                        <a href="#test-popup" class="btn btn-green" data-effect="mfp-zoom-in"><i class="fa fa-plus"></i> Добавить</a>
-                                        </div>
+                            <a href="#test-popup" class="btn btn-green" data-effect="mfp-zoom-in"><i class="fa fa-plus"></i> Добавить</a>
+                        </div>
+                        <div class="delivery-pre-two" style="display:none;">
+                            <a href="#test-popup" class="btn btn-green" data-effect="mfp-zoom-in"><i class="fa fa-plus"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
 
                 <div class="grid">
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta et facilis dolorum perferendis odio dolorem atque dolore quas. Quo necessitatibus et quisquam, sed voluptatibus eligendi nulla sapiente ad beatae cumque?
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, corporis.
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos suscipit expedita, quidem in dicta laborum, voluptates consequuntur hic cumque nemo a provident commodi. Labore, natus.
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel laborum quibusdam aliquam, nulla doloremque molestias cumque, natus quas nemo quae voluptatem suscipit maxime hic aperiam harum, eaque nam libero! Blanditiis.
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium laboriosam, corporis culpa molestias ipsa est quod tenetur reprehenderit vitae. At provident laudantium laboriosam aliquam debitis eveniet, aliquid porro quae consequuntur necessitatibus animi commodi totam sequi, error odio quaerat sapiente perspiciatis quisquam molestiae, adipisci autem quam. Ad dolores modi, voluptates quaerat aspernatur deleniti dolor nesciunt ea, obcaecati enim et iste facilis alias! Alias sequi, nostrum, dolore quae officia a, corporis laboriosam modi sed fugit quos necessitatibus?
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum sapiente odit quasi natus sunt magnam nesciunt ab ducimus adipisci enim.
-                	        </div>
-                	    </div>
-                	</div>
-                	<div class="col-md-6 grid-item">
-                	    <div class="panel panel-default">
-                	        <div class="panel-heading">
-                	            <h3 class="panel-title">Название панели</h3>
-                	            <div class="panel-edit">
-                	            	<a href="#"><i class="fa fa-pencil"></i></a>
-                	            	<a href="#"><i class="fa fa-times"></i></a>
-                	            </div>
-                	        </div>
-                	        <div class="panel-body">
-                	            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, alias consequatur debitis autem possimus, vitae!
-                	        </div>
-                	    </div>
-                	</div>
+                {% for note in notes reversed %}
+                    <div id="note-{{ note.id }}" class="col-md-6 grid-item">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ note.name }}</h3>
+                                <div class="panel-edit delivery-pre-two">
+                                    <a class="note_edit" href="#test-popup" data-effect="mfp-zoom-in"><i class="fa fa-pencil"></i></a>
+                                    <a class="note_del note-{{ note.id }}" href="#"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                {{ note.text }}
+                            </div>
+                            <div class="date">
+                                <i class="fa fa-clock-o"></i> {{ note.date }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
                 </div>
             </div>
         </div>
     </section>
-    <section class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="logo">
-                        <a href="#"><span>GEK</span>.OD.UA</a>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="callback-message">
-                                <span>Написать сообщение</span>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <a href="#" class="btn btn-green">Отправить</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="admin-photo">
-                                <img src="images/admin-photo.jpg" alt="">
-                            </div>
-                            <div class="admin-name">
-                                Вячеслав Рекечинский
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="admin-contact">
-                                <span>Всегда на связи</span>
-                                <ul>
-                                    <li><i class="fa fa-mobile"></i> +380932377318</li>
-                                    <li><i class="fa fa-envelope-o"></i> dmirty.primak@gmail.com</li>
-                                    <li><i class="fa fa-skype"></i> dima_primachok</li>
-                                    <li><i class="fa fa-vk"></i> Група Вконтакте</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="copyright">© RIELTORY.BIZ CRM 2016</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">
-        <h3>ДОБАВИТЬ ЗАМЕТКУ</h3>
-        <p><textarea name="" id="" cols="30" rows="4"></textarea></p>
-        <p><a class="btn btn-green" href="#">Добавить</a></p>
-    </div>
+{% endblock content %}
+{% block extra_js %}
+
+<script src="static/js/masonry.min.js"></script>
+<script src="static/js/notes.js"></script>
+
+
     <script>
     $(function() {
         $("#speed").selectmenu();
         $("#dateto").datepicker();
         $("#datefrom").datepicker();
-        $('.grid').masonry({
-		  columnWidth: 0,
-		  itemSelector: '.grid-item'
-		});
+        var $grid = $('.grid').masonry({
+          columnWidth: 0,
+          itemSelector: '.grid-item',
+          initLayout: true,
+        });
     });
     </script>
     <script>
@@ -532,6 +277,4 @@
 });
     });
     </script>
-</body>
-
-</html>
+{% endblock extra_js %}
