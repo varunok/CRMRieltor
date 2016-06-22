@@ -25,9 +25,15 @@ from notes.views import note_add, note_del, note_edit
 
 urlpatterns = [
     # site
-    url(r'^$', views.views, name='homes'),
-    url(r'^object$', views.object, name='object'),
-    url(r'^buyers$', views.buyers, name='buyers'),
+    url(r'^$', views.homes, name='homes'),
+    url(r'^objects$', views.object_list, name='objects'),
+    url(r'^buyers$', views.buyers_list, name='buyers'),
+    url(r'^maklers$', views.maklers_list, name='maklers'),
+    url(r'^arendators$', views.arendators_list, name='arendators'),
+    url(r'^add_buyer$', views.add_buyer, name='add_buyer'),
+    url(r'^add_arendator$', views.add_arendator, name='add_arendator'),
+    url(r'^tasking$', views.tasking, name='tasking'),
+    url(r'^setting$', views.setting, name='setting'),
     # end site
 
     # admin

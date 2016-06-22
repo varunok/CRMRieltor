@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Арендаторы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="stylesheets/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="stylesheets/select2.min.css">
+    <link rel="stylesheet" href="stylesheets/magnific-popup.css">
+    <script src="javascripts/jquery-2.2.4.min.js"></script>
+    <script src="javascripts/jquery-ui.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/select2.min.js"></script>
+    <script src="javascripts/jquery.magnific-popup.min.js"></script>
+</head>
+
+<body>
+    <section class="header">
+        <div class="main-panel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="logo">
+                            <a href="#"><span>GEK</span>.OD.UA</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="main-panel_search">
+                            <input type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="nav-panel_date">
+                            <div class="calendar">
+                                <div class="day">10</div>
+                                <div class="month">май</div>
+                            </div>
+                            <div class="time">13:35</div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-8">
+                        <ul class="nav-panel_notification">
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="notifi notifi-red">1</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">CООБЩЕНИЯ</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> <span class="notifi notifi-green">2</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">КТО ОНЛАЙН</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич <i class="fa fa-circle user-status"></i></span>
+                                            <span class="message-user-date">в сети</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="nav-panel_user">
+                            <div class="logo-user">
+                                <img src="images/logo-user-panel.jpg" alt="">
+                            </div>
+                            <div class="user-name">Вячеслав Рекечинский</div>
+                            <div class="user-logout"><a href="#">выйти <i class="fa fa-sign-out"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <div class="container">
+                <div class="row">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-home"></i><p>Главная</p></a></li>
+                        <li><a href="#"><i class="fa fa-university"></i><p>Объекты</p></a></li>
+                        <li><a href="#"><i class="fa fa-user"></i><p>Арендаторы</p></a></li>
+                        <li><a href="#"><i class="fa fa-male"></i><p>Покупатели</p></a></li>
+                        <li><a href="#"><i class="fa fa-briefcase"></i><p>Маклера</p></a></li>
+                        <li><a href="#"><i class="fa fa-repeat"></i><p>Сервисы</p></a></li>
+                        <li><a href="#"><i class="fa fa-list-alt"></i><p>Задачи</p></a></li>
+                        <li><a href="#"><i class="fa fa-eye"></i><p>Показы</p></a></li>
+                        <li><a href="#"><i class="fa fa-cogs"></i><p>Настройки</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Арендаторы</a></li>
+                        <li class="active">ID 269</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="row search-object">
+                
+                <div class="wrap-buyers">
+                    <div class="col-md-12">
+                        <div class="col-md-12 buyers-card">
+                            <div class="row">
+                                <div class="row">
+                                    
+                                    <div class="col-md-12 buyers-info">
+                                            <div class="col-md-8">
+                                                <h2 class="buyers-id">
+                                                    <a href="#">ID 322</a> 
+                                                    
+                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
+                                                </h2>
+                                                <p class="buyers-more-info">
+                                                    <i class="fa fa-building"></i> от 1 до 3 
+                                                    <i class="fa fa-building-o"></i> 5 / 5 
+                                                    <i class="fa fa-male"></i> Пара 
+                                                    <i class="fa fa-universal-access"></i> Средний 
+
+                                                </p>
+                                                <p class="buyers-local">
+                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span> 
+                                                    
+                                                </p>
+                                                <p class="buyers-comment">
+                                                    <span>E-mail:</span>
+                                                    dmirty.primak@gmail.com<br>
+                                                    <span>Этап:</span> Подбор объекта<br>
+                                                    <span>Комментарий:</span>
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 prop">
+                                                <p class="buyers-prop">
+                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                </p>
+                                                <p class="buyers-prop-phone">
+                                                    0932377318
+                                                </p>
+                                                <p class="buyers-data-call">
+                                                    Дата звонка
+                                                    <br>
+                                                    <input id="call-phone" type="text">
+                                                </p>
+                                                <p class="buyers-commission">
+                                                    <i class="fa fa-user"></i> Вячеслав<br>
+                                                    Комиссия: <span>640$</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6 edit">
+                                                <p class="buyers-edit">
+                                                    <a href="#"> <i class="fa fa-pencil"></i> </a>
+                                                    
+                                                    <a href="#"> <i class="fa fa-times"></i> </a>
+                                                </p>
+                                                <p class="buyers-stat">
+                                                   <select>
+                                                        <option selected="selected">Активный</option>
+                                                        <option>Уточнить данные</option>
+                                                        <option>Неинтересен</option>
+                                                    </select>
+                                                </p>
+                                                <p class="buyers-data-view">
+                                                   Сроки
+                                                    <br>
+                                                    <input id="peresmotr" type="text">
+                                                </p>
+                                                <p class="buyers-data-update">
+                                                   Дата обновления<br> 
+                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                </p>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="tabs">
+                        <ul class="main-tabs">
+                            <li class="tabs-active"><a href="#">Комментарии <span class="label label-default">10</span></a></li>
+                            
+                            <li><a href="#">Подобрать объект</a></li>
+                            
+                            <li><a href="#">Встречи <span class="label label-default">10</span></a></li>
+                            <li><a href="#">Задачи <span class="label label-default">10</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Комментарии-->
+                <div class="col-md-12">
+                    <div class="comments">
+                        <h3 class="comments-head">Комментарии</h3>
+                        <div class="row">
+                            <div class="comments-item">
+                                <div class="col-md-1">
+                                    <div class="comments-avatar">
+                                        <img src="images/comment-avatar.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-11">
+                                    <h4 class="comments-name">Вячеслав Рекечинский</h4>
+                                    <p class="comments-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
+                                    </p>
+                                    <div class="comments-edit">
+                                        <a href="#"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <div class="comments-time">
+                                        <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comments-item last-comments">
+                                <div class="col-md-1">
+                                    <div class="comments-avatar">
+                                        <img src="images/comment-avatar.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-11">
+                                    <h4 class="comments-name">Вячеслав Рекечинский</h4>
+                                    <p class="comments-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
+                                    </p>
+                                    <div class="comments-edit">
+                                        <a href="#"><i class="fa fa-times"></i></a>
+                                    </div>
+                                    <div class="comments-time">
+                                        <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comments-area">
+                                <div class="col-md-12">
+                                    <textarea name="" id=""></textarea>
+                                    <div class="comments-add">
+                                        <a href="#" class="btn btn-green">Добавить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Арендаторы -->
+                <div class="col-md-12">
+                    <div class="object-arendator">
+                        <h3 class="arendator-head">Подобрать объект</h3>
+                        <div class="row">
+                            <div class="col-md-12 arendator-sort">
+                                <input type="text" placeholder="ID">
+                                <a href="#" class="btn btn-green">Добавить по ID</a>
+                                <select name="" id="">
+                                    <option value="">пункт 1</option>
+                                    <option value="">пункт 2</option>
+                                    <option value="">пункт 3</option>
+                                </select>
+                                <a href="#" class="btn btn-green">автоматически</a>
+                                <a href="#" class="btn btn-red">Очистить</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12 delivery">
+                            <div class="delivery-head">
+                                <h3>Рассылка</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="E-mail">
+                                        <a href="#" class="btn btn-green">рассылка</a>
+                                        <input type="text" placeholder="Телефон">
+                                        <a href="#" class="btn btn-green">рассылка</a>
+                                        <div class="delivery-pre">
+                                        <a href="#test-popup" data-effect="mfp-zoom-in"><i class="fa fa-question-circle-o"></i> Препросмотр</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table table-striped table-bordered table-hover default">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Адрес</th>
+                                                <th>Показ</th>
+                                                <th>Контактное лицо</th>
+                                                <th>Выкуп</th>
+                                                <th>Комнат</th>
+                                                <th>Тип</th>
+                                                <th>Состояние</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tr class="success">
+                                            <td>32</td>
+                                            <td class="f-clr-grey">
+                                                Сеймский<br>
+                                                ул. Энгельса 90
+                                            </td>
+                                            <td class="f-clr-grey edit">
+                                                <select name="" id="">
+                                                    <option value="">Предлагали</option>
+                                                    <option value="">Не предлагали</option>
+                                                    <option value="">Ok</option>
+                                                </select>
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Наталья<br>
+                                                +380932377318
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                205000
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                1-4
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Квартира
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Ищем
+                                            </td>
+                                            <td class="edit">
+                                                <input type="checkbox">
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr class="danger">
+                                            <td>32</td>
+                                            <td class="f-clr-grey">
+                                                Сеймский<br>
+                                                ул. Энгельса 90
+                                            </td>
+                                            <td class="f-clr-grey edit">
+                                                <select name="" id="">
+                                                    <option value="">Предлагали</option>
+                                                    <option value="">Не предлагали</option>
+                                                    <option value="">Ok</option>
+                                                </select>
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Наталья<br>
+                                                +380932377318
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                205000
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                1-1
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Квартира
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Ищем
+                                            </td>
+                                            <td class="edit">
+                                                <input type="checkbox">
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr class="warning">
+                                            <td>32</td>
+                                            <td class="f-clr-grey">
+                                                Сеймский<br>
+                                                ул. Энгельса 90
+                                            </td>
+                                            <td class="f-clr-grey edit">
+                                                <select name="" id="">
+                                                    <option value="">Предлагали</option>
+                                                    <option value="">Не предлагали</option>
+                                                    <option value="">Ok</option>
+                                                </select>
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Наталья<br>
+                                                +380932377318
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                205000
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                1-2
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Квартира
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                Ищем
+                                            </td>
+                                            <td class="edit">
+                                                <input type="checkbox">
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="comments">
+                                <h3 class="comments-head">Комментарии</h3>
+                                <div class="row">
+                                    <div class="comments-item">
+                                        <div class="col-md-1">
+                                            <div class="comments-avatar">
+                                                <img src="images/comment-avatar.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <h4 class="comments-name">Вячеслав Рекечинский</h4>
+                                            <p class="comments-text">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
+                                            </p>
+                                            <div class="comments-edit">
+                                                <a href="#"><i class="fa fa-times"></i></a>
+                                            </div>
+                                            <div class="comments-time">
+                                                <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comments-item last-comments">
+                                        <div class="col-md-1">
+                                            <div class="comments-avatar">
+                                                <img src="images/comment-avatar.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <h4 class="comments-name">Вячеслав Рекечинский</h4>
+                                            <p class="comments-text">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
+                                            </p>
+                                            <div class="comments-edit">
+                                                <a href="#"><i class="fa fa-times"></i></a>
+                                            </div>
+                                            <div class="comments-time">
+                                                <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comments-area">
+                                        <div class="col-md-12">
+                                            <textarea name="" id=""></textarea>
+                                            <div class="comments-add">
+                                                <a href="#" class="btn btn-green">Добавить</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="meeting">
+                                <div class="row">
+                                    <h1 class="section-head">Встречи</h1>
+                                    <div class="section-sort">
+                                        <a href="#" class="btn btn-green">Добавить</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="tabs">
+                                                <ul class="main-tabs">
+                                                    <li class="tabs-active"><a href="#">Все <span class="label label-default">10</span></a></li>
+                                                    <li><a href="#">Активные <span class="label label-default">10</span></a></li>
+                                                    <li><a href="#">Архив <span class="label label-default">10</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table table-striped table-bordered table-hover meet">
+                                        <thead>
+                                            <tr>
+                                                <th>Комментарий</th>
+                                                <th>Дата</th>
+                                                <th>ID Клиента</th>
+                                                <th>ID Объекта</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td>
+                                                K12
+                                            </td>
+                                            <td>
+                                                O75
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td>
+                                                K12
+                                            </td>
+                                            <td>
+                                                O75
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td>
+                                                K12
+                                            </td>
+                                            <td>
+                                                O75
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td>
+                                                K12
+                                            </td>
+                                            <td>
+                                                O75
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td>
+                                                K12
+                                            </td>
+                                            <td>
+                                                O75
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="tasking">
+                                <div class="row">
+                                    <h1 class="section-head">Задачи</h1>
+                                    <div class="section-sort">
+                                        <a href="#" class="btn btn-green">Добавить</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="tabs">
+                                                <ul class="main-tabs">
+                                                    <li class="tabs-active"><a href="#">Все <span class="label label-default">10</span></a></li>
+                                                    <li><a href="#">Активные <span class="label label-default">10</span></a></li>
+                                                    <li><a href="#">Архив <span class="label label-default">10</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table table-striped table-bordered table-hover task">
+                                        <thead>
+                                            <tr>
+                                                <th>Комментарий</th>
+                                                <th>Дата</th>
+                                                <th>Сложность</th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td class="edit">
+                                                <span class="status-label sl-grey">ПРОСТАЯ</span>
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td class="edit">
+                                                <span class="status-label sl-grey">ПРОСТАЯ</span>
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td class="edit">
+                                                <span class="status-label sl-red">СЛОЖНАЯ</span>
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td class="edit">
+                                                <span class="status-label sl-orange">СРЕДНЯЯ</span>
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                            </td>
+                                            <td>
+                                                <div class="rieltor">
+                                                    <i class="fa fa-user"></i> Вячеслав
+                                                </div>
+                                                <div class="date">
+                                                    <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
+                                                </div>
+                                            </td>
+                                            <td class="edit">
+                                                <span class="status-label sl-orange">СРЕДНЯЯ</span>
+                                            </td>
+                                            <td class="edit">
+                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="logo">
+                        <a href="#"><span>GEK</span>.OD.UA</a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="callback-message">
+                                <span>Написать сообщение</span>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <a href="#" class="btn btn-green">Отправить</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="admin-photo">
+                                <img src="images/admin-photo.jpg" alt="">
+                            </div>
+                            <div class="admin-name">
+                                Вячеслав Рекечинский
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="admin-contact">
+                                <span>Всегда на связи</span>
+                                <ul>
+                                    <li><i class="fa fa-mobile"></i> +380932377318</li>
+                                    <li><i class="fa fa-envelope-o"></i> dmirty.primak@gmail.com</li>
+                                    <li><i class="fa fa-skype"></i> dima_primachok</li>
+                                    <li><i class="fa fa-vk"></i> Група Вконтакте</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">© RIELTORY.BIZ CRM 2016</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam minima nisi ab dolorem iste optio officia. Maxime ab corporis incidunt inventore explicabo qui velit, ipsa sapiente unde numquam accusamus, earum commodi voluptatibus, odit nemo at eum nulla amet iste pariatur. Voluptatum natus aspernatur quae explicabo, inventore magni, vel quia quos quo itaque adipisci ipsam. At culpa, provident non quos blanditiis nesciunt, eligendi dolor ea, quas est delectus doloribus quaerat dolorem temporibus soluta! Praesentium maxime ut aperiam, iusto natus vitae quod!</div>
+    <script>
+    $(function() {
+        $("#typeobj").selectmenu();
+        $(".tarea-multiple").select2();
+        $("#idobj").selectmenu();
+        $("#actual").selectmenu();
+        $("#stat").selectmenu();
+        $("#speed").selectmenu();
+        $("#street").selectmenu();
+        $("#typebuild").selectmenu();
+        $("#peresmotr").datepicker();
+        $("#call-phone").datepicker();
+        $(".multiple").select2();
+        $(".extend-block").click(function() {
+            var x = $(".extended-search").css('height');
+            console.log(x);
+            if (x == '0px') {
+                $(".extended-search").css('height', '');
+            } else {
+                $(".extended-search").css('height', '0px');
+            }
+
+        });
+
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1]
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+            }
+        });
+
+        $('.delivery-pre').magnificPopup({
+  delegate: 'a',
+  removalDelay: 500, //delay removal by X to allow out-animation
+  callbacks: {
+    beforeOpen: function() {
+       this.st.mainClass = this.st.el.attr('data-effect');
+    }
+  },
+  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+});
+    });
+    </script>
+
+</body>
+
+</html>
