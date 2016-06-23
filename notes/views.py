@@ -41,14 +41,16 @@ def note_del(request):
     if result.get('del'):
         result = result.get('del')
         result = result.split('-')[-1]
-        if Notes.objects.filter(id=int(result)).delete():
-            result = {'status': 1, 'id': int(result)}
-            json = JsonResponse(result)
-            return HttpResponse(json)
-        else:
-            result = {'status': 0}
-            json = JsonResponse(result)
-            return HttpResponse(json)
+        Notes.objects.filter(id=int(result)).delete()
+        # print(Notes.objects.filter(id=int(result)))
+        # if Notes.objects.filter(id=int(result))==[]:
+        result = {'status': 1, 'id': int(result)}
+        json = JsonResponse(result)
+        return HttpResponse(json)
+        # else:
+        #     result = {'status': 0}
+        #     json = JsonResponse(result)
+        #     return HttpResponse(json)
     else:
         result = {'status': 0}
         json = JsonResponse(result)
