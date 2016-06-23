@@ -1,0 +1,549 @@
+{% extends "homes/base.html" %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+
+<body>
+    <section class="header">
+        <div class="main-panel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="logo">
+                            <a href="#"><span>GEK</span>.OD.UA</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="main-panel_search">
+                            <input type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="nav-panel_date">
+                            <div class="calendar">
+                                <div class="day">10</div>
+                                <div class="month">май</div>
+                            </div>
+                            <div class="time">13:35</div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-8">
+                        <ul class="nav-panel_notification">
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="notifi notifi-red">1</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">CООБЩЕНИЯ</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, deleniti qui ab illo sequi adipisci.</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="btn-group">
+                                <a href="#" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> <span class="notifi notifi-green">2</span></a>
+                                <ul class="dropdown-menu dropmessage">
+                                    <div class="head-dropmessage">КТО ОНЛАЙН</div>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич</span>
+                                            <span class="message-user-date">был в сети 15мин назад</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#"><img src="images/logo-user-message.jpg" alt="">
+                                            <span class="message-user-name">Дмитрий Игоревич <i class="fa fa-circle user-status"></i></span>
+                                            <span class="message-user-date">в сети</span>
+                                            <a class="message-send" href="#">написать</a></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="nav-panel_user">
+                            <div class="logo-user">
+                                <img src="images/logo-user-panel.jpg" alt="">
+                            </div>
+                            <div class="user-name">Вячеслав Рекечинский</div>
+                            <div class="user-logout"><a href="#">выйти <i class="fa fa-sign-out"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <div class="container">
+                <div class="row">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-home"></i><p>Главная</p></a></li>
+                        <li><a href="#"><i class="fa fa-university"></i><p>Объекты</p></a></li>
+                        <li><a href="#"><i class="fa fa-user"></i><p>Арендаторы</p></a></li>
+                        <li><a href="#"><i class="fa fa-male"></i><p>Покупатели</p></a></li>
+                        <li><a href="#"><i class="fa fa-briefcase"></i><p>Маклера</p></a></li>
+                        <li><a href="#"><i class="fa fa-repeat"></i><p>Сервисы</p></a></li>
+                        <li><a href="#"><i class="fa fa-list-alt"></i><p>Задачи</p></a></li>
+                        <li><a href="#"><i class="fa fa-eye"></i><p>Показы</p></a></li>
+                        <li><a href="#"><i class="fa fa-cogs"></i><p>Настройки</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Главная</a></li>
+                        <li class="active">Встречи</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+
+              <div class="row section-search">
+
+                <div class="col-md-12">
+                    <div class="col-md-12 substrate">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="typeobj">Риэлтор</label>
+                                    <select class="multiple" multiple="multiple" placeholder="-----">
+                                        <option>Сергей</option>
+                                        <option>Дмитрий</option>
+                                        <option>Вячеслав</option>
+                                        <option>Богдан</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="price">Период</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input id="meet-data-to" type="text" placeholder="От">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input id="meet-data-from" type="text" placeholder="До">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="actual">Статус</label>
+                                    <select>
+                                        <option selected="selected">-----</option>
+                                        <option>Перенесена</option>
+                                        <option>Неназначено</option>
+                                        <option>Подтверждена</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12 btn-search">
+                                <a href="#" class="btn btn-blue">Поиск</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+
+
+
+
+                            <div class="col-md-12">
+                                <div class="meeting">
+                                    <div class="row">
+                                        <h1 class="section-head">Встречи</h1>
+                                        <div class="section-sort">
+                                            <a href="#" class="btn btn-green">Добавить</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="tabs">
+                                                    <ul class="main-tabs">
+                                                        <li><a href="#">Активные <span class="label label-default">10</span></a></li>
+                                                        <li><a href="#">Архив <span class="label label-default">10</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="table-responsive">
+                                        <table class="table table table-striped table-bordered table-hover meet table-in">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Комментарий</th>
+                                                    <th>Статус встречи</th>
+                                                    <th>Клиент</th>
+                                                    <th>Риэлтор</th>
+                                                    <th>Хозяин</th>
+                                                    <th> </th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                 <td class="f-clr-grey">
+                                                    32
+                                                </td>
+                                                <td class="comment f-clr-grey">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <select name="" id="">
+                                                        <option value="">Перенесена</option>
+                                                        <option value="">Состоится</option>
+                                                        <option value="">Неоговорена</option>
+                                                    </select>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    K75
+
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Вячеслав<br>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    10 мая 16:30
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-local"></i>
+                                                    ул. Энгельская 90<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    O75
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a href="#"> <i class="fa fa-play"></i></a>
+                                                    <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                 <td class="f-clr-grey">
+                                                    32
+                                                </td>
+                                                <td class="comment f-clr-grey">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <select name="" id="">
+                                                        <option value="">Перенесена</option>
+                                                        <option value="">Состоится</option>
+                                                        <option value="">Неоговорена</option>
+                                                    </select>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    K75
+
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Вячеслав<br>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    10 мая 16:30
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-local"></i>
+                                                    ул. Энгельская 90<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    O75
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a href="#"> <i class="fa fa-play"></i></a>
+                                                    <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                 <td class="f-clr-grey">
+                                                    32
+                                                </td>
+                                                <td class="comment f-clr-grey">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <select name="" id="">
+                                                        <option value="">Перенесена</option>
+                                                        <option value="">Состоится</option>
+                                                        <option value="">Неоговорена</option>
+                                                    </select>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    K75
+
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Вячеслав<br>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    10 мая 16:30
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-local"></i>
+                                                    ул. Энгельская 90<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    O75
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a href="#"> <i class="fa fa-play"></i></a>
+                                                    <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                 <td class="f-clr-grey">
+                                                    32
+                                                </td>
+                                                <td class="comment f-clr-grey">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <select name="" id="">
+                                                        <option value="">Перенесена</option>
+                                                        <option value="">Состоится</option>
+                                                        <option value="">Неоговорена</option>
+                                                    </select>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    K75
+
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Вячеслав<br>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    10 мая 16:30
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-local"></i>
+                                                    ул. Энгельская 90<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    O75
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a href="#"> <i class="fa fa-play"></i></a>
+                                                    <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                 <td class="f-clr-grey">
+                                                    32
+                                                </td>
+                                                <td class="comment f-clr-grey">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid nam sapiente cumque dolore hic voluptate impedit pariatur mollitia officiis id!
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <select name="" id="">
+                                                        <option value="">Перенесена</option>
+                                                        <option value="">Состоится</option>
+                                                        <option value="">Неоговорена</option>
+                                                    </select>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    K75
+
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Вячеслав<br>
+                                                    <i class="fa fa-clock-o"></i>
+                                                    10 мая 16:30
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    Сергей Петров<br>
+                                                    <i class="fa fa-phone"></i>
+                                                    +380932377318<br>
+                                                    <i class="fa fa-local"></i>
+                                                    ул. Энгельская 90<br>
+                                                    <i class="fa fa-hashtag"></i>
+                                                    O75
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a href="#"> <i class="fa fa-play"></i></a>
+                                                    <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="col-md-12 section-pagination">
+                    <ul class="pagination">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="logo">
+                        <a href="#"><span>GEK</span>.OD.UA</a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="callback-message">
+                                <span>Написать сообщение</span>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <a href="#" class="btn btn-green">Отправить</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="admin-photo">
+                                <img src="images/admin-photo.jpg" alt="">
+                            </div>
+                            <div class="admin-name">
+                                Вячеслав Рекечинский
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="admin-contact">
+                                <span>Всегда на связи</span>
+                                <ul>
+                                    <li><i class="fa fa-mobile"></i> +380932377318</li>
+                                    <li><i class="fa fa-envelope-o"></i> dmirty.primak@gmail.com</li>
+                                    <li><i class="fa fa-skype"></i> dima_primachok</li>
+                                    <li><i class="fa fa-vk"></i> Група Вконтакте</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">© RIELTORY.BIZ CRM 2016</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    $(function() {
+        $("#typeobj").selectmenu();
+        $(".tarea-multiple").select2();
+        $("#idobj").selectmenu();
+        $("#actual").selectmenu();
+        $("#stat").selectmenu();
+        $("#speed").selectmenu();
+        $("#street").selectmenu();
+        $("#typebuild").selectmenu();
+        $("#peresmotr").datepicker();
+        $("#call-phone").datepicker();
+        $("#meet-data-from").datepicker();
+        $("#meet-data-to").datepicker();
+        $(".multiple").select2();
+        $(".extend-block").click(function() {
+            var x = $(".extended-search").css('height');
+            console.log(x);
+            if (x == '0px') {
+                $(".extended-search").css('height', '');
+            } else {
+                $(".extended-search").css('height', '0px');
+            }
+
+        });
+
+    });
+    </script>
+
+</body>
+
+</html>
