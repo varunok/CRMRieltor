@@ -36,6 +36,9 @@ def add_buyer(request):
 def add_arendator(request):
     return render(request, 'homes/add_arendator.html', {})
 
+def add_object(request):
+    return render(request, 'homes/add_object.html', {})
+
 
 def tasking(request):
     return render(request, 'homes/tasking.html', {})
@@ -43,3 +46,6 @@ def tasking(request):
 
 def setting(request):
     return render(request, 'homes/setting.html', {})
+
+def meeting(request):
+    return render(request, 'homes/meeting.html', {})

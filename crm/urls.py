@@ -32,8 +32,10 @@ urlpatterns = [
     url(r'^arendators$', views.arendators_list, name='arendators'),
     url(r'^add_buyer$', views.add_buyer, name='add_buyer'),
     url(r'^add_arendator$', views.add_arendator, name='add_arendator'),
+    url(r'^add_object$', views.add_object, name='add_object'),
     url(r'^tasking$', views.tasking, name='tasking'),
     url(r'^setting$', views.setting, name='setting'),
+    url(r'^meeting$', views.meeting, name='meeting'),
     # end site
 
     # admin
