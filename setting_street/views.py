@@ -2,6 +2,7 @@
 
 
 from django.shortcuts import render
+from django.utils import timezone, dateformat
 from django.http import HttpResponse, JsonResponse
 from setting_street.models import TypesStreet, Street
 
@@ -11,7 +12,7 @@ def street_list(request):
     type_street = TypesStreet.objects.all()
     list_street = Street.objects.all()
     return render(request,
-                  'setting_street/setting_street.html', {'type_street':type_street, 'list_street': list_street})
+                  'setting_street/setting_street.html', {'type_street':type_street, 'list_street': list_street, 'time': timezone.now()})
 
 
 def add_street(request):
