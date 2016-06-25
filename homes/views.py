@@ -2,9 +2,9 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse
 
 from notes.models import Notes
+from setting_street.models import Street
 
 
 # Create your views here.
@@ -36,8 +36,11 @@ def add_buyer(request):
 def add_arendator(request):
     return render(request, 'homes/add_arendator.html', {})
 
+
 def add_object(request):
-    return render(request, 'homes/add_object.html', {})
+    street_list = Street.objects.all()
+    return render(request,
+                  'homes/add_object.html', {'street_list': street_list})
 
 
 def tasking(request):
@@ -46,6 +49,7 @@ def tasking(request):
 
 def setting(request):
     return render(request, 'homes/setting.html', {})
+
 
 def meeting(request):
     return render(request, 'homes/meeting.html', {})

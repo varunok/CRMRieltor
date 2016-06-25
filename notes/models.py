@@ -23,5 +23,5 @@ class Notes(models.Model):
                                 null=True,
                                 verbose_name=u'Дата створення')
 
-    def __str__(self):
+    def __unicode__(self):
         return '%s' % (self.name)

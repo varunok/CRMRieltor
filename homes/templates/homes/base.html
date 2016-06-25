@@ -7,19 +7,21 @@
     <title>Главная</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" href="static/css/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="static/css/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="static/css/select2.min.css">
-    <link rel="stylesheet" href="static/css/magnific-popup.css">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.structure.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.theme.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/select2.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
     {% block extra_css %}{% endblock extra_css %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="{% static "js/jquery-2.2.4.min.js" %}"></script>
-    <script src="static/js/jquery-ui.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="{% static "js/jquery-ui.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/select2.min.js" %}"></script>
-    <script src="static/js/jquery.magnific-popup.min.js"></script>
-    <script src="static/js/masonry.min.js"></script>
+    <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+    <script src="{% static "js/masonry.min.js" %}"></script>
 </head>
 
 

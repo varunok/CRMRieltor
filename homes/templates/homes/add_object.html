@@ -54,11 +54,11 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="actual">Улица</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Название улицы</option>
-                                        <option>Название улицы</option>
-                                        <option>Название улицы</option>
+                                    <select class="js-example-basic-single">
+                                        <option selected="selected"></option>
+                                        {% for street in street_list %}
+                                            <option>{{ street.type_street_group.short_name}} {{street.street}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -94,8 +94,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Тип операции</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
+                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="type operation">
                                         <option>Операция 1</option>
                                         <option>Операция 2</option>
                                         <option>Операция 3</option>
@@ -614,6 +613,8 @@
                 tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
             }
         });
+        $(".js-example-basic-single").select2();
+        $.fn.select2.defaults.set("theme", "classic");
     });
     </script>
 {% endblock extra_js %}
