@@ -73,6 +73,14 @@
 },
 {
     "fields": {
+        "expire_date": "2016-07-10T02:46:03",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "2lh4lw6jwdzctzgt6iyud5uxgun0crq1"
+},
+{
+    "fields": {
         "expire_date": "2016-07-08T03:17:58",
         "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
     },
@@ -81,11 +89,75 @@
 },
 {
     "fields": {
-        "expire_date": "2016-07-09T00:33:12",
+        "expire_date": "2016-07-10T02:12:02",
         "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
     },
     "model": "sessions.session",
-    "pk": "8t0g6cps9uusfohxxd5din470r84dzxr"
+    "pk": "5pepcxug44w0s9w97s5aoxdwgx9w8fs8"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T02:06:07",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "aklnj8jd2yco7d1hejg5o4vy3pw6kbqv"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T02:17:32",
+        "session_data": "OWRhZjIyZDdlZDM2MmVjMTIwMTk2NzhmNDJhMGQ3NDc4MjQ1ODE4Njp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0="
+    },
+    "model": "sessions.session",
+    "pk": "che7cetr38iugx41dd7f491v0ajgkipd"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T01:52:41",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "dafvb3ja0rfq0dyp9nwyogbln6506wq1"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T02:26:38",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "dd0n21egmpash40rztavcurbphaniuuc"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T05:16:51",
+        "session_data": "OWRhZjIyZDdlZDM2MmVjMTIwMTk2NzhmNDJhMGQ3NDc4MjQ1ODE4Njp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0="
+    },
+    "model": "sessions.session",
+    "pk": "ldgxm7emhpdgpses4g9u5ggr8dm83dod"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T02:10:31",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "pbdq05pmw79i0bc8136uqqqqqvffgcr5"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T01:52:28",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "r3ob6g7iavq3ggaeh7qojaqtr4a0pqe8"
+},
+{
+    "fields": {
+        "expire_date": "2016-07-10T01:55:13",
+        "session_data": "ODhlNDgwNDI3YjM4ZTcxMWM4ODhlNjZiN2I0MTJiNzBlZTk5NzU5Zjp7Il9hdXRoX3VzZXJfaGFzaCI6Ijc4MjJjYTkxZTE3ZWViNzhkNjI0ZGQ1NGU1ODJiODlhY2UwODk2YTMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "z9jebxv0mjx985pe4wm1n5xtfzqebdrw"
 },
 {
     "fields": {
@@ -104,6 +176,15 @@
     },
     "model": "notes.notes",
     "pk": 2
+},
+{
+    "fields": {
+        "date": "2016-06-26T05:19:14",
+        "text": "thhtr\u0456\u0456\u0456\u0456",
+        "name": "thhtr\u0456\u0456\u0456\u0456"
+    },
+    "model": "notes.notes",
+    "pk": 3
 },
 {
     "fields": {
@@ -240,6 +321,14 @@
     },
     "model": "setting_street.street",
     "pk": 36
+},
+{
+    "fields": {
+        "street": "\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456\u0456",
+        "type_street_group": 1
+    },
+    "model": "setting_street.street",
+    "pk": 37
 },
 {
     "fields": {
@@ -487,12 +576,12 @@
 {
     "fields": {
         "username": "varunok",
-        "first_name": "",
-        "last_name": "",
+        "first_name": "\u0410\u043d\u0434\u0440\u0456\u0439",
+        "last_name": "\u0412\u0430\u0440\u0443\u043d\u043e\u043a",
         "is_active": true,
         "is_superuser": true,
         "is_staff": true,
-        "last_login": "2016-06-25T00:33:11",
+        "last_login": "2016-06-26T05:16:51",
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$20000$gi99e4pzrQaq$AmCTtSHBEdoIli0g6p0YwIx79EyvRZI9qGwvcUPh+MQ=",
@@ -501,6 +590,24 @@
     },
     "model": "auth.user",
     "pk": 1
+},
+{
+    "fields": {
+        "username": "admin",
+        "first_name": "\u0412\u044f\u0447\u0435\u0441\u043b\u0430\u0432",
+        "last_name": "\u0420\u0435\u043a\u0435\u0447\u0438\u043d\u0441\u043a\u0438\u0439",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": null,
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$KUpHmfPzMngF$y9qPI9mIa0j+LCL1mOqlyAnxasBFM0nOFtEYXusnpww=",
+        "email": "image2007@bk.ru",
+        "date_joined": "2016-06-26T05:04:09"
+    },
+    "model": "auth.user",
+    "pk": 2
 },
 {
     "fields": {
@@ -722,5 +829,57 @@
     },
     "model": "admin.logentry",
     "pk": 17
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-06-26T05:04:09",
+        "object_repr": "admin",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 18
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-06-26T05:06:16",
+        "object_repr": "admin",
+        "object_id": "2",
+        "change_message": "\u0417\u043c\u0456\u043d\u0435\u043d\u043e first_name, last_name, email, is_staff \u0442\u0430 is_superuser.",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 19
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-06-26T05:06:36",
+        "object_repr": "varunok",
+        "object_id": "1",
+        "change_message": "\u0417\u043c\u0456\u043d\u0435\u043d\u043e first_name.",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 20
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-06-26T05:06:52",
+        "object_repr": "varunok",
+        "object_id": "1",
+        "change_message": "\u0417\u043c\u0456\u043d\u0435\u043d\u043e first_name \u0442\u0430 last_name.",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 21
 }
 ]
