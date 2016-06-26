@@ -2,6 +2,7 @@
 
 
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 from django.utils import timezone, dateformat
@@ -14,6 +15,7 @@ from .models import Notes
 formatted_date = dateformat.format(datetime.now(), "d E Y H:i")
 
 
+@login_required
 def note_add(request):
     results = request.GET
     if results.get('notes'):
@@ -36,6 +38,7 @@ def note_add(request):
         return HttpResponse(json)
 
 
+@login_required
 def note_del(request):
     result = request.GET
     if result.get('del'):
@@ -57,6 +60,7 @@ def note_del(request):
         return HttpResponse(json)
 
 
+@login_required
 def note_edit(request):
     result = request.GET
     if result.get('edit'):

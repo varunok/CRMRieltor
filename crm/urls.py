@@ -16,15 +16,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+import django.contrib.auth.urls
 from homes import views
 from notes.views import note_add, note_del, note_edit
 from setting_street.views import street_list, add_street, delete_street
+from extuser.views import user_list, LoginFormView, LogoutView
 
 urlpatterns = [
+    url('^', include('django.contrib.auth.urls')),
+    url('^accounts/login/$', LoginFormView.as_view(), name='login'),
+    url('^accounts/logout/$', LogoutView.as_view(), name='logout'),
     # site
     url(r'^$', views.homes, name='homes'),
     url(r'^objects$', views.object_list, name='objects'),
@@ -40,6 +45,7 @@ urlpatterns = [
     # end site
     # start settings urls
     url(r'^setting/setting_street$', street_list, name='setting_street'),
+    url(r'^setting/setting_user$', user_list, name='setting_user'),
     # end settings urls
 
     # admin

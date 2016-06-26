@@ -3,11 +3,13 @@
 
 from django.shortcuts import render
 from django.utils import timezone, dateformat
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from setting_street.models import TypesStreet, Street
 
 
 # Create your views here.
+@login_required
 def street_list(request):
     type_street = TypesStreet.objects.all()
     list_street = Street.objects.all()
@@ -15,6 +17,7 @@ def street_list(request):
                   'setting_street/setting_street.html', {'type_street':type_street, 'list_street': list_street, 'time': timezone.now()})
 
 
+@login_required
 def add_street(request):
     results = request.GET
     try:
@@ -30,6 +33,8 @@ def add_street(request):
         json = JsonResponse(response_street)
         return HttpResponse(json)
 
+
+@login_required
 def delete_street(request):
     results = request.GET
     result = results.get('id_street')

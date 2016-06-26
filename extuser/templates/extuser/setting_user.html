@@ -1,0 +1,65 @@
+{% extends "homes/base.html" %}
+{% load static from staticfiles %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url "homes" %}">Главная</a></li>
+                        <li class=""><a href="{% url "setting" %}">Настройки</a></li>
+                        <li class="active">Пользователи</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+                    <h1 class="section-head"><span>Пользователи </span> <i class="label label-default">{{exuser|length}}</i></h1>
+                    <div class="section-sort" style="float:right;">
+                        <a href="#" class="btn btn-green">Добавить</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                             <tr>
+                                 <th>#</th>
+                                 <th>Фото</th>
+                                 <th>Имя</th>
+                                 <th>Почта(логин)</th>
+                                 <th>дата регистрации</th>
+                                 <th></th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for exu in exuser %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td><img src="" alt="" width="50px"></td>
+                                    <td>{{exu.first_name}} {{exu.last_name}}</td>
+                                    <td>{{exu.email}}({{exu.username}})</td>
+                                    <td>{{exu.date_joined}}</td>
+                                    <td class="col-md-1"><i value="37" class="fa fa-times fa-2x setting_street"></i></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block extra_js %}
+    <script>
+    $(function() {
+
+    });
+    </script>
+{% endblock extra_js %}
