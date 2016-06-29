@@ -24,12 +24,15 @@ import django.contrib.auth.urls
 from homes import views
 from notes.views import note_add, note_del, note_edit
 from setting_street.views import street_list, add_street, delete_street
-from extuser.views import user_list, LoginFormView, LogoutView
+from extuser.views import user_list, LoginFormView, LogoutView, register, add_user
+from .settings import MEDIA_ROOT
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url('^', include('django.contrib.auth.urls')),
-    url('^accounts/login/$', LoginFormView.as_view(), name='login'),
-    url('^accounts/logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^', include('django.contrib.auth.urls')),
+    url(r'^accounts/login/$', LoginFormView.as_view(), name='login'),
+    url(r'^accounts/logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^register$', register, name='register'),
     # site
     url(r'^$', views.homes, name='homes'),
     url(r'^objects$', views.object_list, name='objects'),
@@ -58,9 +61,14 @@ urlpatterns = [
     url(r'^note_edit$', note_edit),
     # end request notes
 
+    url(r'^add_user$', add_user, name='add_user'), # add user
+
     # start request street
     url(r'^setting/add_street$', add_street),
     url(r'^setting/delete_street$', delete_street),
     # end request street
+    # url(r'^media/avatar/[1-9a-zA-Z.]+$', 'django.views.static.serve', {'document_root': MEDIA_ROOT})
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()

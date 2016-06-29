@@ -12,6 +12,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone, dateformat
 from django.contrib.auth.models import User
+from extuser.models import UsersGroupExtUser
 
 
 
@@ -41,9 +42,9 @@ class RegisterFormView(FormView):
     form_class = UserCreationForm
     # Ссылка, на которую будет перенаправляться пользователь в случае успешной регистрации.
     # В данном случае указана ссылка на страницу входа для зарегистрированных пользователей.
-    success_url = "/login/"
+    success_url = "/"
     # Шаблон, который будет использоваться при отображении представления.
-    template_name = "register.html"
+    template_name = "extuser/register.html"
     def form_valid(self, form):
         # Создаём пользователя, если данные в форму были введены корректно.
         form.save()
@@ -51,6 +52,19 @@ class RegisterFormView(FormView):
         return super(RegisterFormView, self).form_valid(form)
 
 
+def register(request):
+    type_user = UsersGroupExtUser.objects.all()
+    return render(request, 'extuser/register.html', { 'time': timezone.now(), 'type_user': type_user})
+
+
+def add_user(request):
+    if request.method == 'POST':
+        result = request.POST
+        print(result)
+        us = User(first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
+        return user_list(request)
+
+
 def user_list(request):
-        exuser = User.objects.all()
-        return render(request, 'extuser/setting_user.html', { 'time': timezone.now(), "exuser": exuser})
+    exuser = User.objects.all()
+    return render(request, 'extuser/setting_user.html', { 'time': timezone.now(), "exuser": exuser})
