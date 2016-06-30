@@ -244,6 +244,11 @@
             </div>
         </div>
     </section>
+    <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">
+        <h3>ДОБАВИТЬ ЗАМЕТКУ</h3>
+        <p><textarea name="" id="" cols="30" rows="4"></textarea></p>
+        <p><a class="btn btn-green" href="#">Добавить</a></p>
+    </div>
 {% endblock content %}
 {% block extra_js %}
 <script src="static/js/notes.js"></script>
@@ -263,15 +268,15 @@
     $(document).ready(function() {
 
         $('.delivery-pre').magnificPopup({
-  delegate: 'a',
-  removalDelay: 500, //delay removal by X to allow out-animation
-  callbacks: {
-    beforeOpen: function() {
-       this.st.mainClass = this.st.el.attr('data-effect');
-    }
-  },
-  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-});
+          delegate: 'a',
+          removalDelay: 500, //delay removal by X to allow out-animation
+          callbacks: {
+            beforeOpen: function() {
+               this.st.mainClass = this.st.el.attr('data-effect');
+            }
+          },
+          midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+        });
     });
     </script>
 {% endblock extra_js %}

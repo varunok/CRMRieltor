@@ -21,9 +21,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="section-head"><span>Пользователи </span> <i class="label label-default">{{exuser|length}}</i></h1>
+                    <h1 class="section-head"><span>Пользователи </span> <i class="count_user label label-default">{{exuser|length}}</i></h1>
                     <div class="section-sort" style="float:right;">
-                        <a href="{% url "register" %}" class="btn btn-green">Добавить</a>
+                        {% if user.is_superuser %}
+                            <a href="{% url "register" %}" class="btn btn-green">Добавить</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -40,14 +42,18 @@
                         </thead>
                         <tbody>
                             {% for exu in exuser %}
-                                <tr>
-                                    <td>{{forloop.counter}}</td>
-                                    <td><img class="img-circle" src="{{exu.myuser.image.url}}" alt="" width="50px" height="50px"></td>
-                                    <td>{{exu.first_name}} {{exu.last_name}}</td>
-                                    <td>{{exu.email}}({{exu.username}})</td>
-                                    <td>{{exu.date_joined}}</td>
-                                    <td class="col-md-1 up_div"><i id="del_user" value="{{ exu.id }}" class="fa fa-times fa-2x setting_street"></i></td>
-                                </tr>
+                                {% if exu.is_active %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td><img class="img-circle" src="{{exu.myuser.image.url}}" alt="" width="50px" height="50px"></td>
+                                        <td>{{exu.first_name}} {{exu.last_name}}</td>
+                                        <td>{{exu.email}}({{exu.username}})</td>
+                                        <td>{{exu.date_joined}}</td>
+                                        {% if user.is_superuser %}
+                                            <td class="col-md-1 up_div"><i id="del_user" value="{{ exu.id }}" class="fa fa-times fa-2x setting_street"></i></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
                         </tbody>
                     </table>
@@ -59,13 +65,16 @@
 {% block extra_js %}
     <script>
     $(function() {
-        $('.up_div').on('click', '#del_user', function () {
-            $(this).parents('tr').toggle('slow');
-            var id_user = $(this).attr('value');
-            $.get('setting_user/delete_user', {"id_user":id_user}, function (data) {
-
-            })
-        })
+        {% if user.is_superuser %}
+            $('.up_div').on('click', '#del_user', function () {
+                $(this).parents('tr').toggle('slow');
+                var id_user = $(this).attr('value');
+                $.get('setting_user/delete_user', {"id_user":id_user}, function (data) {
+                    var data = jQuery.parseJSON(data);
+                    $('.count_user').text(data.count_user)
+                })
+            });
+        {% endif %}
     });
     </script>
 {% endblock extra_js %}

@@ -22,14 +22,14 @@
             <div class="col-md-6 col-md-offset-3">
             <div class="log-in-container">
                 <div class="logo">
-                            <a href="{% url "login" %}"><span>GEK</span>.OD.UA</a>
+                            <a href="{% url "logining" %}"><span>GEK</span>.OD.UA</a>
                         </div>
                         <br>
                     <div class="log-in-form">
                         {% if form.errors %}
                             <p>Your username and password didn't match. Please try again.</p>
                         {% endif %}
-                    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                    <form method="post" action="{% url 'logining' %}">
                         {% csrf_token %}
                         <h2>Авторизация</h2>
                         <div class="login">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-md-12 log-in-btn">
                             {# <a href="#" class="btn btn-green"> Войти </a> #}
-                            <input type="submit" class="btn btn-green" value="Войти" />
+                            <input name="login" type="submit" class="btn btn-green" value="Войти" />
                             {# <input type="hidden" name="next" value="/" /> #}
                         </div>
                         </form>

@@ -133,7 +133,7 @@
                                 {% endif %}
                             </div>
                             <div class="user-name">{{user.first_name}} {{user.last_name}}</div>
-                            <div class="user-logout"><a id="logout" href="{% url "login" %}">выйти <i class="fa fa-sign-out"></i></a></div>
+                            <div class="user-logout"><a     id="logout" href="{% url "login" %}">выйти <i class="fa fa-sign-out"></i></a></div>
                         </div>
                     </div>
                 </div>
@@ -205,11 +205,6 @@
             </div>
         </div>
     </section>
-    <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">
-        <h3>ДОБАВИТЬ ЗАМЕТКУ</h3>
-        <p><textarea name="" id="" cols="30" rows="4"></textarea></p>
-        <p><a class="btn btn-green" href="#">Добавить</a></p>
-    </div>
  {% block extra_js %}{% endblock extra_js %}
    <script type="text/javascript">
     $(document).ready(function() {
