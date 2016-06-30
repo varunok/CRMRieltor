@@ -126,7 +126,11 @@
                         </ul>
                         <div class="nav-panel_user">
                             <div class="logo-user">
-                                <img src="images/logo-user-panel.jpg" alt="">
+                                {% if user.myuser.image %}
+                                    <img class="img-circle" src= {{ user.myuser.image.url }} alt="" width="50px" height="50px">
+                                {% else %}
+                                    <img src= {% static "images/logo-user-message.jpg" %} alt="" >
+                                {% endif %}
                             </div>
                             <div class="user-name">{{user.first_name}} {{user.last_name}}</div>
                             <div class="user-logout"><a id="logout" href="{% url "login" %}">выйти <i class="fa fa-sign-out"></i></a></div>

@@ -2,6 +2,7 @@
 
 
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.contrib.auth import login
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import AuthenticationForm
@@ -13,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone, dateformat
 from django.contrib.auth.models import User
 from extuser.models import UsersGroupExtUser
+from extuser.models import MyUser
 
 
 
@@ -59,12 +61,26 @@ def register(request):
 
 def add_user(request):
     if request.method == 'POST':
-        result = request.POST
-        print(result)
-        us = User(first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
-        return user_list(request)
+        if request.POST.get('add_user') is not None:
+            result = request.POST
+            print(result)
+            new_user = User(username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
+            new_user.set_password(result.get('password'))
+            new_user.save()
+            add_img = MyUser(image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
+            add_img.save()
+            print()
+            return user_list(request)
 
 
 def user_list(request):
     exuser = User.objects.all()
     return render(request, 'extuser/setting_user.html', { 'time': timezone.now(), "exuser": exuser})
+
+
+def delete_user(request):
+    results = request.GET
+    result = results.get('id_user')
+    MyUser.objects.filter(user_id=int(result)).delete()
+    User.objects.filter(id=int(result)).delete()
+    return HttpResponse("object delete")

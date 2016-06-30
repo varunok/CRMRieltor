@@ -46,7 +46,7 @@
                                     <td>{{exu.first_name}} {{exu.last_name}}</td>
                                     <td>{{exu.email}}({{exu.username}})</td>
                                     <td>{{exu.date_joined}}</td>
-                                    <td class="col-md-1"><i value="37" class="fa fa-times fa-2x setting_street"></i></td>
+                                    <td class="col-md-1 up_div"><i id="del_user" value="{{ exu.id }}" class="fa fa-times fa-2x setting_street"></i></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -59,7 +59,13 @@
 {% block extra_js %}
     <script>
     $(function() {
+        $('.up_div').on('click', '#del_user', function () {
+            $(this).parents('tr').toggle('slow');
+            var id_user = $(this).attr('value');
+            $.get('setting_user/delete_user', {"id_user":id_user}, function (data) {
 
+            })
+        })
     });
     </script>
 {% endblock extra_js %}

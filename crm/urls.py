@@ -24,8 +24,7 @@ import django.contrib.auth.urls
 from homes import views
 from notes.views import note_add, note_del, note_edit
 from setting_street.views import street_list, add_street, delete_street
-from extuser.views import user_list, LoginFormView, LogoutView, register, add_user
-from .settings import MEDIA_ROOT
+from extuser.views import user_list, LoginFormView, LogoutView, register, add_user, delete_user
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
@@ -62,6 +61,7 @@ urlpatterns = [
     # end request notes
 
     url(r'^add_user$', add_user, name='add_user'), # add user
+    url(r'^setting/setting_user/delete_user$', delete_user, name='delete_user'), # add user
 
     # start request street
     url(r'^setting/add_street$', add_street),
