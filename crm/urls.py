@@ -25,12 +25,14 @@ import setting_street.urls
 import extuser.urls
 import homes.urls
 import notes.urls
+import facility.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
     url(r'^', include(extuser.urls)),
     url(r'^', include(homes.urls)),
     url(r'^', include(notes.urls)),
+    url(r'^', include(facility.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

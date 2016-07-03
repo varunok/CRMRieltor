@@ -1,5 +1,7 @@
 {% extends "homes/base.html" %}
 
+{% load static from staticfiles %}
+
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
@@ -302,393 +304,92 @@
                     </div>
 
                 </div>
-                <div class="wrap-obj">
-                    <div class="col-md-12">
-                        <div class="col-md-12 object-card">
-                            <div class="row">
+                {% for addres_facility_data in addres_facility_data_list %}
+                    <div class="wrap-obj">
+                        <div class="col-md-12">
+                            <div class="col-md-12 object-card">
                                 <div class="row">
-                                    <div class="col-md-3 object-img popup-gallery">
-                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
-                                        <a href="images/00848294_n1.jpg"></a>
-                                        <a href="images/63004198.jpg"></a>
-                                        <span class="label label-default img-count">2</span>
-                                    </div>
-                                    <div class="col-md-9 object-info">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h2 class="object-id">
-                                                    <a href="#">ID 322</a>
-                                                    <i class="fa fa-globe"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <span class="object-price-buy">90 000$</span>
-                                                    <span class="object-price-arend">2 000$</span>
-                                                </h2>
-                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
-                                                <p class="object-more-info">
-                                                    <i class="fa fa-building"></i> 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
-
-                                                </p>
-                                                <p class="object-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="object-comment">
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="object-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="object-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="object-data-call">
-                                                    Дата звонка<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-commission">
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="object-edit">
-                                                <a href="#"><i class="fa fa-link"></i> </a>
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="object-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="object-data-view">
-                                                   Дата пересмотра<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-3 object-img popup-gallery">
+                                            <a href="{% static "images/object-photo.jpg" %}"><img src="{% static "images/object-photo.jpg" %}" alt=""></a>
+                                            <a href="{% static "images/00848294_n1.jpg" %}"></a>
+                                            <a href="{% static "images/63004198.jpg" %}"></a>
+                                            <span class="label label-default img-count">2</span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-obj">
-                    <div class="col-md-12">
-                        <div class="col-md-12 object-card">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-md-3 object-img popup-gallery">
-                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
-                                        <a href="images/00848294_n1.jpg"></a>
-                                        <a href="images/63004198.jpg"></a>
-                                        <span class="label label-default img-count">2</span>
-                                    </div>
-                                    <div class="col-md-9 object-info">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h2 class="object-id">
-                                                    <a href="#">ID 322</a>
-                                                    <i class="fa fa-globe"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <span class="object-price-buy">90 000$</span>
-                                                    <span class="object-price-arend">2 000$</span>
-                                                </h2>
-                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
-                                                <p class="object-more-info">
-                                                    <i class="fa fa-building"></i> 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+                                        <div class="col-md-9 object-info">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h2 class="object-id">
+                                                        <a href="#">ID {{ addres_facility_data.id }}</a>
+                                                        <i class="fa fa-globe"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <span class="object-price-buy">{{ addres_facility_data.price_bay }}$</span>
+                                                        {% for foo in contact_owner %}
 
-                                                </p>
-                                                <p class="object-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+                                                            {% if foo.id == addres_facility_data.id %}
+                                                                {{ foo.contact_owner}}
+                                                            {% endif %}
+                                                        {% endfor %}
 
-                                                </p>
-                                                <p class="object-comment">
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="object-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="object-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="object-data-call">
-                                                    Дата звонка<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-commission">
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="object-edit">
-                                                <a href="#"><i class="fa fa-link"></i> </a>
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="object-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="object-data-view">
-                                                   Дата пересмотра<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-obj">
-                    <div class="col-md-12">
-                        <div class="col-md-12 object-card">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-md-3 object-img popup-gallery">
-                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
-                                        <a href="images/00848294_n1.jpg"></a>
-                                        <a href="images/63004198.jpg"></a>
-                                        <span class="label label-default img-count">2</span>
-                                    </div>
-                                    <div class="col-md-9 object-info">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h2 class="object-id">
-                                                    <a href="#">ID 322</a>
-                                                    <i class="fa fa-globe"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <span class="object-price-buy">90 000$</span>
-                                                    <span class="object-price-arend">2 000$</span>
-                                                </h2>
-                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
-                                                <p class="object-more-info">
-                                                    <i class="fa fa-building"></i> 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
 
-                                                </p>
-                                                <p class="object-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
 
-                                                </p>
-                                                <p class="object-comment">
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="object-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="object-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="object-data-call">
-                                                    Дата звонка<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-commission">
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="object-edit">
-                                                <a href="#"><i class="fa fa-link"></i> </a>
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="object-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="object-data-view">
-                                                   Дата пересмотра<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-obj">
-                    <div class="col-md-12">
-                        <div class="col-md-12 object-card">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-md-3 object-img popup-gallery">
-                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
-                                        <a href="images/00848294_n1.jpg"></a>
-                                        <a href="images/63004198.jpg"></a>
-                                        <span class="label label-default img-count">2</span>
-                                    </div>
-                                    <div class="col-md-9 object-info">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h2 class="object-id">
-                                                    <a href="#">ID 322</a>
-                                                    <i class="fa fa-globe"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <span class="object-price-buy">90 000$</span>
-                                                    <span class="object-price-arend">2 000$</span>
-                                                </h2>
-                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
-                                                <p class="object-more-info">
-                                                    <i class="fa fa-building"></i> 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
+                                                        <span class="object-price-arend">{{ addres_facility_data.price_month }}$</span>
+                                                    </h2>
+                                                    <p class="object-type">{{ addres_facility_data.type_facilit }} / Раздельно / Евроремонт</p>
+                                                    {% for foo in addres_facility_data.list_operations.all %}
+                                                        {{ foo }}
+                                                    {% endfor %}
+{#                                                    {{ addres_facility_data.list_operations.all }}#}
+                                                    <p class="object-more-info">
+                                                        <i class="fa fa-building"></i> 3
+                                                        <i class="fa fa-building-o"></i> 5 / 5
+                                                        <i class="fa fa-expand"></i> 90 / 58 / 15
+                                                        <i class="fa fa-shopping-basket"></i> 15 кв.
 
-                                                </p>
-                                                <p class="object-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
+                                                    </p>
+                                                    <p class="object-local">
+                                                        <i class="fa fa-map-marker"></i> {{ addres_facility_data.street_obj }}, <span>г. Киев, {{ addres_facility_data.district_obj }} район</span>
 
-                                                </p>
-                                                <p class="object-comment">
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="object-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="object-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="object-data-call">
-                                                    Дата звонка<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-commission">
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="object-edit">
-                                                <a href="#"><i class="fa fa-link"></i> </a>
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="object-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="object-data-view">
-                                                   Дата пересмотра<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-obj">
-                    <div class="col-md-12">
-                        <div class="col-md-12 object-card">
-                            <div class="row">
-                                <div class="row">
-                                    <div class="col-md-3 object-img popup-gallery">
-                                        <a href="images/object-photo.jpg"><img src="images/object-photo.jpg" alt=""></a>
-                                        <a href="images/00848294_n1.jpg"></a>
-                                        <a href="images/63004198.jpg"></a>
-                                        <span class="label label-default img-count">2</span>
-                                    </div>
-                                    <div class="col-md-9 object-info">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h2 class="object-id">
-                                                    <a href="#">ID 322</a>
-                                                    <i class="fa fa-globe"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <span class="object-price-buy">90 000$</span>
-                                                    <span class="object-price-arend">2 000$</span>
-                                                </h2>
-                                                <p class="object-type">Квартира / Раздельно / Евроремонт</p>
-                                                <p class="object-more-info">
-                                                    <i class="fa fa-building"></i> 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                    <i class="fa fa-shopping-basket"></i> 15 кв.
-
-                                                </p>
-                                                <p class="object-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="object-comment">
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="object-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="object-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="object-data-call">
-                                                    Дата звонка<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-commission">
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="object-edit">
+                                                    </p>
+                                                    <p class="object-comment">
+                                                        <span>Комментарий:</span>
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-2 col-sm-6 prop">
+                                                    <p class="object-prop">
+                                                        <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                    </p>
+                                                    <p class="object-prop-phone">
+                                                        0932377318
+                                                    </p>
+                                                    <p class="object-data-call">
+                                                        Дата звонка<br>
+                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                    </p>
+                                                    <p class="object-commission">
+                                                        Комиссия: <span>640$</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-2 col-sm-6 edit">
+                                                    <p class="object-edit">
                                                     <a href="#"><i class="fa fa-link"></i> </a>
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                    <a href="#"><i class="fa fa-eye"></i> </a>
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="object-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="object-data-view">
-                                                   Дата пересмотра<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="object-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
+                                                        <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                        <a href="#"><i class="fa fa-eye"></i> </a>
+                                                        <a href="#"><i class="fa fa-times"></i> </a>
+                                                    </p>
+                                                    <p class="object-stat">
+                                                       <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
+                                                    </p>
+                                                    <p class="object-data-view">
+                                                       Дата пересмотра<br>
+                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                    </p>
+                                                    <p class="object-data-update">
+                                                       Дата обновления<br>
+                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -696,7 +397,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
                 <div class="col-md-12 section-pagination">
                     <ul class="pagination">
                         <li><a href="#">&laquo;</a></li>

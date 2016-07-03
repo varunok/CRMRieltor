@@ -26,7 +26,8 @@ def add_street(request):
     except Exception, e:
         add_type_street = TypesStreet.objects.filter(id=results.get("id_short"))
         add_street = Street(street=results.get('name_street'),
-                            type_street_group=add_type_street[0])
+                            type_street_group=add_type_street[0],
+                            full_street=''.join((unicode(add_type_street[0]), results.get('name_street'))))
         add_street.save()
         response_street = {"type_street": add_type_street[0].short_name,
                            "name_street": add_street.street}

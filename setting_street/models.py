@@ -18,7 +18,7 @@ class TypesStreet(models.Model):
                                   verbose_name=u'Короткое название')
 
     def __unicode__(self):
-        return '%s' % (self.type_street)
+        return '%s' % (self.short_name)
 
 
 class Street(models.Model):
@@ -28,7 +28,13 @@ class Street(models.Model):
         verbose_name_plural = u"Улицы"
 
     street = models.CharField(max_length=50,
+                              unique=True,
                               verbose_name=u'Улица')
+
+    full_street = models.CharField(max_length=80,
+                                   unique=True,
+                                   null=True,
+                                   verbose_name=u'Улица(полн.)')
 
     type_street_group = models.ForeignKey('TypesStreet',
                                           verbose_name=u"Тип улицы",
@@ -37,7 +43,7 @@ class Street(models.Model):
                                           on_delete=models.PROTECT)
 
     def __unicode__(self):
-        return '%s' % (self.street)
+        return '%s' % (self.full_street)
 
 
 class District(models.Model):
