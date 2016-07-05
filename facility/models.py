@@ -51,6 +51,35 @@ class TypeContactOwner(models.Model):
         return self.type_contact_owner
 
 
+class TypeBuilding(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип строения'
+        verbose_name_plural = u'Типы строений'
+
+    type_building = models.CharField(max_length=50,
+                                     unique=True,
+                                     blank=False,
+                                     null=True,
+                                     verbose_name=u'Тип строения')
+
+    def __unicode__(self):
+        return self.type_building
+
+
+class TypeRepairs(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип ремонта'
+        verbose_name_plural = u'Типы ремонта'
+
+    type_repairs = models.CharField(max_length=50,
+                                    unique=True,
+                                    blank=False,
+                                    null=True,
+                                    verbose_name=u'Тип ремонта')
+
+    def __unicode__(self):
+        return self.type_repairs
+
 
 class AddressFacilityData(models.Model):
     class Meta(object):
@@ -105,15 +134,169 @@ class AddressFacilityData(models.Model):
                                              verbose_name=u'Тип операции',
                                              blank=True)
 
+    type_building_data = models.ForeignKey(TypeBuilding,
+                                           to_field='type_building',
+                                           verbose_name=u'Строение',
+                                           blank=True,
+                                           null=True,
+                                           on_delete=models.PROTECT)
+
+    # поле ремонт
+    repairs = models.ForeignKey(TypeRepairs,
+                                to_field='type_repairs',
+                                verbose_name=u'Ремонт',
+                                blank=True,
+                                null=True,
+                                on_delete=models.PROTECT)
+    # Ориентир
+    landmark = models.CharField(max_length=500,
+                                verbose_name=u'Ориентир',
+                                blank=True,
+                                null=True)
+
+    number_of_floors = models.CharField(max_length=10,
+                                verbose_name=u'Этажность от',
+                                blank=True,
+                                null=True)
+
+    floors_up = models.CharField(max_length=10,
+                                        verbose_name=u'Этажность до',
+                                        blank=True,
+                                        null=True)
+    # Етаж первий
+    first_floor = models.BooleanField(verbose_name='Первый')
+    # Етаж последний
+    last_floor = models.BooleanField(verbose_name='Последний')
+
+    floor = models.CharField(max_length=10,
+                                 verbose_name=u'Этаж',
+                                 blank=True,
+                                 null=True)
+
+    area_badroom = models.CharField(max_length=10,
+                                 verbose_name=u'Спальня площадь',
+                                 blank=True,
+                                 null=True)
+
+    area_kitchen = models.CharField(max_length=10,
+                                    verbose_name=u'Кухня площадь',
+                                    blank=True,
+                                    null=True)
+
+    area_living_room = models.CharField(max_length=10,
+                                    verbose_name=u'Гостинная площадь',
+                                    blank=True,
+                                    null=True)
+
+    area_extra_room = models.CharField(max_length=10,
+                                        verbose_name=u'Доп.комната площадь',
+                                        blank=True,
+                                        null=True)
+
+    total_area = models.CharField(max_length=10,
+                                        verbose_name=u'Общая площадь',
+                                        blank=True,
+                                        null=True)
+
+    payments = models.CharField(max_length=100,
+                                        verbose_name=u'Платежи',
+                                        blank=True,
+                                        null=True)
+
+    rooms = models.CharField(max_length=10,
+                               verbose_name=u'Комнат',
+                               blank=True,
+                               null=True)
+
+    comment = models.TextField(verbose_name=u'Комментарий',
+                               blank=True,
+                               null=True)
+
     def __unicode__(self):
         return '%s' % (self.id)
+
 
 class ContactOwner(AddressFacilityData):
     class Meta(object):
         verbose_name = u'Контакты владельца'
-        verbose_name_plural = u'Контакты владельца'
+        verbose_name_plural = u'Контакты владельцев'
 
     contact_owner = models.ForeignKey(TypeContactOwner,
                                       blank=False,
                                       null=False,
                                       on_delete=models.PROTECT)
+
+    agency = models.CharField(max_length=250,
+                              verbose_name=u'Агенство',
+                              blank=True)
+
+    name_owner = models.CharField(max_length=250,
+                                  verbose_name=u'Имя владельца',
+                                  blank=True)
+
+    review_date = models.DateField(verbose_name=u'Пересмотр Дата',
+                                   null=True)
+
+    review_time = models.TimeField(verbose_name=u'Пересмотр Время',
+                                   null=True,
+                                   auto_now_add=True)
+
+    call_date = models.DateField(verbose_name=u'Звонок Дата',
+                                 null=True)
+
+    call_time = models.TimeField(verbose_name=u'Звонок Время',
+                                 null=True,
+                                 auto_now_add=True)
+
+    email_owner = models.EmailField(max_length=150,
+                                    null=True,
+                                    blank=True,
+                                    verbose_name=u'E-mail владельца')
+
+    vip_owner = models.BooleanField(verbose_name='Vip')
+
+    phone_owner = models.CharField(verbose_name=u'Телефон',
+                                   blank=True,
+                                   null=True,
+                                   max_length=16)
+
+    phone_owner_plus = models.CharField(verbose_name=u'Допол. Телефон',
+                                        blank=True,
+                                        null=True,
+                                        max_length=16)
+
+    def __unicode__(self):
+        return 'O%s %s' % (self.id, self.name_owner)
+
+
+class PhoneOwner(models.Model):
+    class Meta(object):
+        verbose_name = u'Телефони владельца'
+        verbose_name_plural = u'Телефони владельцев'
+
+    phone = models.ForeignKey(ContactOwner,
+                              blank=True,
+                              null=True,
+                              on_delete=models.PROTECT)
+
+    def __unicode__(self):
+        return '%s' % (self.phone.phone_owner)
+
+
+class DatabasePhoneOwner(models.Model):
+    class Meta(object):
+        verbose_name = u'Телефони владельца'
+        verbose_name_plural = u'Телефони владельцев'
+
+    db_id_owner = models.CharField(verbose_name=u'ID',
+                                   blank=True,
+                                   null=True,
+                                   max_length=16)
+
+    db_phone_owner = models.CharField(verbose_name=u'Телефон',
+                                      blank=True,
+                                      null=True,
+                                      max_length=16)
+
+    def __unicode__(self):
+        return '%s => %s' % (self.db_id_owner, self.db_phone_owner)

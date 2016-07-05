@@ -280,7 +280,7 @@
             </div>
             <div class="row search-object">
                 <div class="col-md-12">
-                    <h1 class="section-head">Ваши <span>объекты </span> <i class="label label-default">15</i></h1>
+                    <h1 class="section-head">Ваши <span>объекты </span> <i class="label label-default">{{ contact_owner|length }}</i></h1>
                     <div class="section-sort">
                         <a href="{% url "add_object" %}" class="btn btn-green">Добавить</a>
                     </div>
@@ -288,7 +288,7 @@
                 <div class="col-md-12">
                     <div class="tabs">
                         <ul class="main-tabs">
-                            <li class="tabs-active"><a href="#">Все <span class="label label-default">10</span></a></li>
+                            <li class="tabs-active"><a href="#">Все <span class="label label-default">{{ contact_owner|length }}</span></a></li>
                             <li><a href="#">Продам <span class="label label-default">10</span></a></li>
                             <li><a href="#">Сдам <span class="label label-default">10</span></a></li>
                         </ul>
@@ -304,42 +304,54 @@
                     </div>
 
                 </div>
-                {% for addres_facility_data in addres_facility_data_list %}
+                {% for object_data in contact_owner %}
                     <div class="wrap-obj">
                         <div class="col-md-12">
                             <div class="col-md-12 object-card">
                                 <div class="row">
                                     <div class="row">
-                                        <div class="col-md-3 object-img popup-gallery">
+                                        <div class="col-md-3 object-img popup-gallery-{{ object_data.id }}">
                                             <a href="{% static "images/object-photo.jpg" %}"><img src="{% static "images/object-photo.jpg" %}" alt=""></a>
                                             <a href="{% static "images/00848294_n1.jpg" %}"></a>
                                             <a href="{% static "images/63004198.jpg" %}"></a>
                                             <span class="label label-default img-count">2</span>
                                         </div>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('.popup-gallery-{{ object_data.id }}').magnificPopup({
+                                                delegate: 'a',
+                                                type: 'image',
+                                                tLoading: 'Loading image #%curr%...',
+                                                mainClass: 'mfp-img-mobile',
+                                                gallery: {
+                                                    enabled: true,
+                                                    navigateByImgClick: true,
+                                                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                                                },
+                                                image: {
+                                                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+                                                }
+                                            });
+                                        });
+                                    </script>
                                         <div class="col-md-9 object-info">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <h2 class="object-id">
-                                                        <a href="#">ID {{ addres_facility_data.id }}</a>
+                                                        <a href="#">ID {{ object_data.id }}</a>{# id object #}
                                                         <i class="fa fa-globe"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <span class="object-price-buy">{{ addres_facility_data.price_bay }}$</span>
-                                                        {% for foo in contact_owner %}
-
-                                                            {% if foo.id == addres_facility_data.id %}
-                                                                {{ foo.contact_owner}}
-                                                            {% endif %}
-                                                        {% endfor %}
-
-
-
-                                                        <span class="object-price-arend">{{ addres_facility_data.price_month }}$</span>
+                                                        {% if object_data.vip_owner %}
+                                                            <i class="fa fa-star"></i>
+                                                        {% endif %}
+                                                        <span class="object-price-buy">{{ object_data.price_bay }}$</span>
+{#                                                        {{ object_data.contact_owner}}#}
+                                                        <span class="object-price-arend">{{ object_data.price_month }}$</span>
                                                     </h2>
-                                                    <p class="object-type">{{ addres_facility_data.type_facilit }} / Раздельно / Евроремонт</p>
-                                                    {% for foo in addres_facility_data.list_operations.all %}
+                                                    <p class="object-type">{{ object_data.type_facilit }} / Раздельно / {{ object_data.repairs }}</p>
+                                                    {% for foo in object_data.list_operations.all %}
                                                         {{ foo }}
                                                     {% endfor %}
-{#                                                    {{ addres_facility_data.list_operations.all }}#}
+{#                                                    {{ object_data.list_operations.all }}#}
                                                     <p class="object-more-info">
                                                         <i class="fa fa-building"></i> 3
                                                         <i class="fa fa-building-o"></i> 5 / 5
@@ -348,24 +360,26 @@
 
                                                     </p>
                                                     <p class="object-local">
-                                                        <i class="fa fa-map-marker"></i> {{ addres_facility_data.street_obj }}, <span>г. Киев, {{ addres_facility_data.district_obj }} район</span>
+                                                        <i class="fa fa-map-marker"></i> {{ object_data.street_obj }}, <span>г. Киев, {{ object_data.district_obj }} район</span>
 
                                                     </p>
                                                     <p class="object-comment">
                                                         <span>Комментарий:</span>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quasi ex doloremque quo et quisquam, quod vero voluptatibus a at unde, optio velit voluptates tempore?
+                                                        {{ object_data.comment }}
                                                     </p>
                                                 </div>
                                                 <div class="col-md-2 col-sm-6 prop">
                                                     <p class="object-prop">
-                                                        <i class="fa fa-user"></i> Орлова Елена Викторовна
+                                                        <i class="fa fa-user"></i>
+                                                        {{ object_data.name_owner }}
                                                     </p>
                                                     <p class="object-prop-phone">
-                                                        0932377318
+                                                        {{ object_data.phone_owner }}
                                                     </p>
                                                     <p class="object-data-call">
                                                         Дата звонка<br>
-                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                        <i class="fa fa-calendar"></i>
+                                                        {{ object_data.call_date|date:'d E Y' }} {{ object_data.call_time }}
                                                     </p>
                                                     <p class="object-commission">
                                                         Комиссия: <span>640$</span>
@@ -383,7 +397,8 @@
                                                     </p>
                                                     <p class="object-data-view">
                                                        Дата пересмотра<br>
-                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                        <i class="fa fa-calendar"></i>
+                                                        {{ object_data.review_date|date:'d E Y' }} {{ object_data.review_time }}
                                                     </p>
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
@@ -441,21 +456,21 @@
     </script>
     <script>
         $(document).ready(function() {
-    $('.popup-gallery').magnificPopup({
-        delegate: 'a',
-        type: 'image',
-        tLoading: 'Loading image #%curr%...',
-        mainClass: 'mfp-img-mobile',
-        gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-        },
-        image: {
-            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-        }
-    });
-});
+            $('.popup-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+                }
+            });
+        });
     </script>
 {% endblock extra_js %}
 

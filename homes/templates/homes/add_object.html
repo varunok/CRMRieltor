@@ -114,17 +114,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="typeobj">Тип</label>
+                                        <label for="typeobj">Тип
+                                            {% if form.data.contact_owner == None %}
+                                                <i style="color:#f1300a">&nbsp;{{ form.contact_owner.errors }}</i>
+                                            {% endif %}
+                                        </label>
                                         <div class="row">
-{#                                            <form action="">#}
-{#                                                <div class="col-md-6">#}
-{#                                                    <input type="radio" name="type" value="a1"> Хозяин#}
-{#                                                </div>#}
-{#                                                <div class="col-md-6">#}
-{#                                                    <input type="radio" name="type" value="a2"> Посредник#}
-{#                                                </div>#}
-{#                                            </form>#}
-{#                                            {{ form.contact_owner }}#}
                                                 {% for radio in form.contact_owner %}
                                                     {% if forloop.counter0 %}
                                                         <div class="col-md-6">
@@ -138,13 +133,17 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="price">Агенство</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.agency }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="phone">Пересмотр <i class="fa fa-calendar"></i></label>
-                                        <input id="peresmotr" type="text" placeholder="-----">
+                                        <label for="phone">Пересмотр <i class="fa fa-calendar"></i>&ensp;
+                                            {% if form.review_date.value == '' %}
+                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>
+                                            {% endif %}
+                                        </label>
+                                        {{ form.review_date }}
                                     </div>
                                 </div>
                             </div>
@@ -152,19 +151,25 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Имя</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.name_owner }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Телефон</label>
-                                        <input type="text" placeholder="-----">
+{#                                        <input type="text" placeholder="-----">#}
+                                        {{ form.phone_owner }}
+                                        <div class="owner_respon" id="id_owner_respon"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="tarea">Доп. телефон</label>
-                                        <input type="text" placeholder="-----">
+                                        <label for="phone">Дата звонка <i class="fa fa-calendar"></i>&ensp;
+                                            {% if form.review_date.value == '' %}
+                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>
+                                            {% endif %}
+                                        </label>
+                                        {{ form.call_date }}
                                     </div>
                                 </div>
                             </div>
@@ -172,14 +177,22 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="idobj">E-mail</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.email_owner }}
                                     </div>
                                     <br>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
+                                        <label for="tarea">Доп. телефон</label>
+{#                                        <input type="text" placeholder="-----">#}
+                                        {{ form.phone_owner_plus }}
+                                        <div class="owner_respon" id="id_owner_respon_plus"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
                                         <label for="idobj"><i class="fa fa-star"></i> VIP</label>
-                                        <input type="checkbox" placeholder="-----">
+                                        {{ form.vip_owner }}
                                     </div>
                                     <br>
                                 </div>
@@ -195,23 +208,13 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="typeobj">Строение</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Хрущевка</option>
-                                            <option>Новостройка</option>
-                                            <option>Сталинка</option>
-                                            <option>Чешка</option>
-                                            <option>VIP</option>
-                                        </select>
+                                        {{ form.type_building_data }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="price">Ремонт</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Евро</option>
-                                            <option>Жилой</option>
-                                            <option>Под ремонт</option>
-                                        </select>
+                                        {{ form.repairs }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -219,10 +222,10 @@
                                         <label for="price">Этажность</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                {{ form.number_of_floors }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                {{ form.floors_up }}
                                             </div>
                                         </div>
                                     </div>
@@ -232,18 +235,18 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Ориентир</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.landmark }}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="price">Номер</label>
+                                        <label for="price">Первый \ Последний</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Дом">
+                                                {{ form.first_floor }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Квартира">
+                                                {{ form.last_floor }}
                                             </div>
                                         </div>
                                     </div>
@@ -251,7 +254,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="stat">Этаж</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.floor }}
                                     </div>
                                 </div>
                             </div>
@@ -261,10 +264,10 @@
                                         <label for="price">Площадб(м2)</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Спальня">
+                                                {{ form.area_badroom }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Кухня">
+                                                {{ form.area_kitchen }}
                                             </div>
                                         </div>
                                     </div>
@@ -274,10 +277,10 @@
                                         <label for="price">Площадб(м2)</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Гостинная">
+                                                {{ form.area_living_room }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="Доп. комната">
+                                                {{ form.area_extra_room }}
                                             </div>
                                         </div>
                                     </div>
@@ -285,22 +288,21 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="phone">Общая площадь</label>
-                                        <input type="text" placeholder="-----">
+                                        {{ form.total_area }}
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                            <label for="price">Платежи</label>
-
-                                                    <input type="text" placeholder="(комунальные)">
-                                            </div>
+                                        <label for="price">Платежи</label>
+                                        {{ form.payments }}
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="search-item">
                                                 <label for="price">Комнат</label>
-                                                <input type="text" placeholder="-----">
+                                                {{ form.rooms }}
                                             </div>
                                         </div>
                                     </div>
@@ -309,8 +311,7 @@
                                 <div class="col-md-8">
                                     <div class="search-item">
                                         <label for="price">Комментарий</label>
-                                        <textarea name="" id="" rows="4"></textarea>
-
+                                        {{ form.comment }}
                                     </div>
                                     <br>
 
@@ -582,14 +583,24 @@
         $("#idobj").selectmenu();
         $("#actual").selectmenu();
         $("#stat").selectmenu();
-        $("#stat").selectmenu();
         $("#street").selectmenu();
         $("#typebuild").selectmenu();
-        $("#peresmotr").datepicker();
+        $("#id_review_date").datepicker({
+             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель',
+            'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+            'Октябрь', 'Ноябрь', 'Декабрь'],
+             dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+             firstDay: 1,
+             defaultDate: '+6m'}).datepicker();
+        $("#id_call_date").datepicker({
+             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель',
+            'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+            'Октябрь', 'Ноябрь', 'Декабрь'],
+             dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+             firstDay: 1}).datepicker();
         $(".multiple").select2();
         $(".extend-block").click(function() {
             var x = $(".extended-search").css('height');
-            console.log(x);
             if (x == '0px') {
                 $(".extended-search").css('height', '');
             } else {
@@ -618,6 +629,55 @@
         });
         $(".js-example-basic-single").select2();
         $.fn.select2.defaults.set("theme", "classic");
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#id_phone_owner').on('keyup', function () {
+            if ($(this).val()){
+                $.get('check_phone', {'check': $(this).val()}, function (data) {
+                    var data = jQuery.parseJSON(data);
+                    $('#id_owner_respon').html('');
+                    for (i in data){
+                        $('#id_owner_respon').append('<p style="margin:0px;">'+'ID '+i+' ----- тел.: '+data[i]+'</p>');
+                    }
+                    if ($('#id_owner_respon').text()){
+                        $('#id_owner_respon').css('display', 'block');
+                    }
+                    $('#id_phone_owner').on('focusout', function () {
+                        $('#id_owner_respon').css('display', 'none');
+                    })
+                })
+            }
+        });
+        $(document).on('focus', '#id_phone_owner_plus', function () {
+            if ($('#id_owner_respon_plus').children('p').html()){
+                $('#id_owner_respon_plus').css('display', 'block');
+            }
+        });
+
+                $('#id_phone_owner_plus').on('keyup', function () {
+            if ($(this).val()){
+                $.get('check_phone', {'check': $(this).val()}, function (data) {
+                    var data = jQuery.parseJSON(data);
+                    $('#id_owner_respon_plus').html('');
+                    for (i in data){
+                        $('#id_owner_respon_plus').append('<p style="margin:0px;">'+'ID '+i+' ----- тел.: '+data[i]+'</p>');
+                    }
+                    if ($('#id_owner_respon_plus').text()){
+                        $('#id_owner_respon_plus').css('display', 'block');
+                    }
+                    $('#id_phone_owner_plus').on('focusout', function () {
+                        $('#id_owner_respon_plus').css('display', 'none');
+                    })
+                })
+            }
+        });
+        $(document).on('focus', '#id_phone_owner', function () {
+            if ($('#id_owner_respon').children('p').html()){
+                $('#id_owner_respon').css('display', 'block');
+            }
+        });
     });
     </script>
 {% endblock extra_js %}

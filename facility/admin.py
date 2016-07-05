@@ -1,8 +1,12 @@
 from django.contrib import admin
-from facility.models import TypeFacility, AddressFacilityData, TypeOperations, TypeContactOwner
+import facility.models
 # Register your models here.
 
-admin.site.register(TypeFacility)
-admin.site.register(AddressFacilityData)
-admin.site.register(TypeOperations)
-admin.site.register(TypeContactOwner)
+admin.site.register(facility.models.TypeFacility)
+admin.site.register(facility.models.AddressFacilityData)
+admin.site.register(facility.models.TypeOperations)
+admin.site.register(facility.models.TypeContactOwner)
+admin.site.register(facility.models.ContactOwner)
+admin.site.register(facility.models.PhoneOwner)
+admin.site.register(facility.models.TypeBuilding)
+admin.site.register(facility.models.TypeRepairs)

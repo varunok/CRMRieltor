@@ -6470,11 +6470,32 @@ body {
   min-width: 0px;
 }
 input[type="password"], textarea {
-    background-color: #fff;
-    border: 1px solid #dde0e1;
-    color: #767676;
-    border-radius: 2px;
-    padding: 5px 10px;
-    display: inline-block;
-    vertical-align: top;
+  background-color: #fff;
+  border: 1px solid #dde0e1;
+  color: #767676;
+  border-radius: 2px;
+  padding: 5px 10px;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+input[type="number"] {
+  border-radius: 0px;
+  border: 1px solid rgb(221, 224, 225);
+  height: 34px;
+}
+input[type="email"] {
+  border-radius: 0px;
+  border: 1px solid rgb(221, 224, 225);
+  height: 34px;
+}
+.owner_respon {
+    display: none;
     width: 100%;
+    height:auto;
+    background-color: #FFFFFF;
+    padding: 5px;
+    box-shadow: 1px 1px 10px 1px #000;
+    position: absolute;
+    z-index: 1000
+}
