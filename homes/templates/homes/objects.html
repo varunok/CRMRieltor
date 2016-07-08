@@ -302,116 +302,13 @@
                             <li><a href="#">Активность</a></li>
                         </ul>
                     </div>
-
                 </div>
                 {% for object_data in contact_owner %}
-                    <div class="wrap-obj">
-                        <div class="col-md-12">
-                            <div class="col-md-12 object-card">
-                                <div class="row">
-                                    <div class="row">
-                                        <div class="col-md-3 object-img popup-gallery-{{ object_data.id }}">
-                                            <a href="{% static "images/object-photo.jpg" %}"><img src="{% static "images/object-photo.jpg" %}" alt=""></a>
-                                            <a href="{% static "images/00848294_n1.jpg" %}"></a>
-                                            <a href="{% static "images/63004198.jpg" %}"></a>
-                                            <span class="label label-default img-count">2</span>
-                                        </div>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('.popup-gallery-{{ object_data.id }}').magnificPopup({
-                                                delegate: 'a',
-                                                type: 'image',
-                                                tLoading: 'Loading image #%curr%...',
-                                                mainClass: 'mfp-img-mobile',
-                                                gallery: {
-                                                    enabled: true,
-                                                    navigateByImgClick: true,
-                                                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                                                },
-                                                image: {
-                                                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-                                                }
-                                            });
-                                        });
-                                    </script>
-                                        <div class="col-md-9 object-info">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <h2 class="object-id">
-                                                        <a href="#">ID {{ object_data.id }}</a>{# id object #}
-                                                        <i class="fa fa-globe"></i>
-                                                        {% if object_data.vip_owner %}
-                                                            <i class="fa fa-star"></i>
-                                                        {% endif %}
-                                                        <span class="object-price-buy">{{ object_data.price_bay }}$</span>
-{#                                                        {{ object_data.contact_owner}}#}
-                                                        <span class="object-price-arend">{{ object_data.price_month }}$</span>
-                                                    </h2>
-                                                    <p class="object-type">{{ object_data.type_facilit }} / Раздельно / {{ object_data.repairs }}</p>
-                                                    {% for foo in object_data.list_operations.all %}
-                                                        {{ foo }}
-                                                    {% endfor %}
-{#                                                    {{ object_data.list_operations.all }}#}
-                                                    <p class="object-more-info">
-                                                        <i class="fa fa-building"></i> 3
-                                                        <i class="fa fa-building-o"></i> 5 / 5
-                                                        <i class="fa fa-expand"></i> 90 / 58 / 15
-                                                        <i class="fa fa-shopping-basket"></i> 15 кв.
-
-                                                    </p>
-                                                    <p class="object-local">
-                                                        <i class="fa fa-map-marker"></i> {{ object_data.street_obj }}, <span>г. Киев, {{ object_data.district_obj }} район</span>
-
-                                                    </p>
-                                                    <p class="object-comment">
-                                                        <span>Комментарий:</span>
-                                                        {{ object_data.comment }}
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-2 col-sm-6 prop">
-                                                    <p class="object-prop">
-                                                        <i class="fa fa-user"></i>
-                                                        {{ object_data.name_owner }}
-                                                    </p>
-                                                    <p class="object-prop-phone">
-                                                        {{ object_data.phone_owner }}
-                                                    </p>
-                                                    <p class="object-data-call">
-                                                        Дата звонка<br>
-                                                        <i class="fa fa-calendar"></i>
-                                                        {{ object_data.call_date|date:'d E Y' }} {{ object_data.call_time }}
-                                                    </p>
-                                                    <p class="object-commission">
-                                                        Комиссия: <span>640$</span>
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-2 col-sm-6 edit">
-                                                    <p class="object-edit">
-                                                    <a href="#"><i class="fa fa-link"></i> </a>
-                                                        <a href="#"><i class="fa fa-pencil"></i> </a>
-                                                        <a href="#"><i class="fa fa-eye"></i> </a>
-                                                        <a href="#"><i class="fa fa-times"></i> </a>
-                                                    </p>
-                                                    <p class="object-stat">
-                                                       <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                    </p>
-                                                    <p class="object-data-view">
-                                                       Дата пересмотра<br>
-                                                        <i class="fa fa-calendar"></i>
-                                                        {{ object_data.review_date|date:'d E Y' }} {{ object_data.review_time }}
-                                                    </p>
-                                                    <p class="object-data-update">
-                                                       Дата обновления<br>
-                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% if object_data.loyality.get.id == '' %}
+                        {% include 'homes/obj_facility.html' %}
+                    {% elif object_data.loyality.get.id == user.id or user.is_superuser %}
+                        {% include 'homes/obj_facility.html' %}
+                    {% endif %}
                 {% endfor %}
                 <div class="col-md-12 section-pagination">
                     <ul class="pagination">

@@ -3,9 +3,19 @@
 
 from django.db import models
 from setting_street.models import Street, District, Subway
+from django.contrib.auth.models import User
+from extuser.models import MyUser
+from setting_globall.models import NationalCarrency
 
 
 # Create your models here.
+
+class UserFullName(User):
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        return self.get_full_name()
 
 
 class TypeFacility(models.Model):
@@ -81,6 +91,36 @@ class TypeRepairs(models.Model):
         return self.type_repairs
 
 
+class TypeActuality(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип актуальности'
+        verbose_name_plural = u'Типы актуальности'
+
+    type_actuality = models.CharField(max_length=50,
+                                      unique=True,
+                                      blank=False,
+                                      null=True,
+                                      verbose_name=u'Тип актуальности')
+
+    def __unicode__(self):
+        return self.type_actuality
+
+
+class TypeCondition(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип состояния'
+        verbose_name_plural = u'Типы состояния'
+
+    type_condition = models.CharField(max_length=50,
+                                      unique=True,
+                                      blank=False,
+                                      null=True,
+                                      verbose_name=u'Тип состояния')
+
+    def __unicode__(self):
+        return self.type_condition
+
+
 class AddressFacilityData(models.Model):
     class Meta(object):
         verbose_name = u'Адресс обекта'
@@ -103,7 +143,7 @@ class AddressFacilityData(models.Model):
     district_obj = models.ForeignKey(District,
                                      to_field='district',
                                      verbose_name=u'Район',
-                                     blank=False,
+                                     blank=True,
                                      null=True,
                                      on_delete=models.PROTECT)
 
@@ -132,8 +172,8 @@ class AddressFacilityData(models.Model):
 
     list_operations = models.ManyToManyField(TypeOperations,
                                              verbose_name=u'Тип операции',
-                                             blank=True)
-
+                                             blank=False)
+    # start Описание объекта
     type_building_data = models.ForeignKey(TypeBuilding,
                                            to_field='type_building',
                                            verbose_name=u'Строение',
@@ -155,28 +195,28 @@ class AddressFacilityData(models.Model):
                                 null=True)
 
     number_of_floors = models.CharField(max_length=10,
-                                verbose_name=u'Этажность от',
-                                blank=True,
-                                null=True)
-
-    floors_up = models.CharField(max_length=10,
-                                        verbose_name=u'Этажность до',
+                                        verbose_name=u'Этажность от',
                                         blank=True,
                                         null=True)
+
+    floors_up = models.CharField(max_length=10,
+                                 verbose_name=u'Этажность до',
+                                 blank=True,
+                                 null=True)
     # Етаж первий
     first_floor = models.BooleanField(verbose_name='Первый')
     # Етаж последний
     last_floor = models.BooleanField(verbose_name='Последний')
 
     floor = models.CharField(max_length=10,
-                                 verbose_name=u'Этаж',
-                                 blank=True,
-                                 null=True)
+                             verbose_name=u'Этаж',
+                             blank=True,
+                             null=True)
 
     area_badroom = models.CharField(max_length=10,
-                                 verbose_name=u'Спальня площадь',
-                                 blank=True,
-                                 null=True)
+                                    verbose_name=u'Спальня площадь',
+                                    blank=True,
+                                    null=True)
 
     area_kitchen = models.CharField(max_length=10,
                                     verbose_name=u'Кухня площадь',
@@ -184,33 +224,70 @@ class AddressFacilityData(models.Model):
                                     null=True)
 
     area_living_room = models.CharField(max_length=10,
-                                    verbose_name=u'Гостинная площадь',
-                                    blank=True,
-                                    null=True)
+                                        verbose_name=u'Гостинная площадь',
+                                        blank=True,
+                                        null=True)
 
     area_extra_room = models.CharField(max_length=10,
-                                        verbose_name=u'Доп.комната площадь',
-                                        blank=True,
-                                        null=True)
+                                       verbose_name=u'Доп.комната площадь',
+                                       blank=True,
+                                       null=True)
 
     total_area = models.CharField(max_length=10,
-                                        verbose_name=u'Общая площадь',
-                                        blank=True,
-                                        null=True)
+                                  verbose_name=u'Общая площадь',
+                                  blank=True,
+                                  null=True)
 
     payments = models.CharField(max_length=100,
-                                        verbose_name=u'Платежи',
-                                        blank=True,
-                                        null=True)
+                                verbose_name=u'Платежи',
+                                blank=True,
+                                null=True)
 
     rooms = models.CharField(max_length=10,
-                               verbose_name=u'Комнат',
-                               blank=True,
-                               null=True)
+                             verbose_name=u'Комнат',
+                             blank=True,
+                             null=True)
 
     comment = models.TextField(verbose_name=u'Комментарий',
-                               blank=True,
+                               blank=False,
                                null=True)
+
+    # end Описание объекта
+    # start Состояние объекта
+    rieltor = models.ManyToManyField(UserFullName,
+                                     blank=True,
+                                     verbose_name=u'Риелтор')
+
+    loyality = models.ManyToManyField(UserFullName,
+                                      blank=True,
+                                      verbose_name=u'Лояльность',
+                                      related_name='loyal')
+
+    actuality = models.ForeignKey(TypeActuality,
+                                  blank=True,
+                                  null=True,
+                                  on_delete=models.PROTECT,
+                                  verbose_name=u'Актуальность')
+
+    condition = models.ForeignKey(TypeCondition,
+                                  blank=True,
+                                  null=True,
+                                  on_delete=models.PROTECT,
+                                  verbose_name=u'Состояние')
+
+    commission = models.CharField(max_length=10,
+                                  verbose_name=u'Комиссия',
+                                  blank=True,
+                                  null=True)
+
+    currency = models.ForeignKey(NationalCarrency,
+                                 blank=True,
+                                 null=True,
+                                 on_delete=models.PROTECT,
+                                 verbose_name=u'Валюта',
+                                 default=2)
+
+    # end Состояние объекта
 
     def __unicode__(self):
         return '%s' % (self.id)
@@ -222,9 +299,10 @@ class ContactOwner(AddressFacilityData):
         verbose_name_plural = u'Контакты владельцев'
 
     contact_owner = models.ForeignKey(TypeContactOwner,
-                                      blank=False,
-                                      null=False,
-                                      on_delete=models.PROTECT)
+                                      blank=True,
+                                      null=True,
+                                      on_delete=models.PROTECT,
+                                      verbose_name=u'Тип контакта владельца')
 
     agency = models.CharField(max_length=250,
                               verbose_name=u'Агенство',
@@ -235,6 +313,7 @@ class ContactOwner(AddressFacilityData):
                                   blank=True)
 
     review_date = models.DateField(verbose_name=u'Пересмотр Дата',
+                                   blank=True,
                                    null=True)
 
     review_time = models.TimeField(verbose_name=u'Пересмотр Время',
@@ -242,6 +321,7 @@ class ContactOwner(AddressFacilityData):
                                    auto_now_add=True)
 
     call_date = models.DateField(verbose_name=u'Звонок Дата',
+                                 blank=True,
                                  null=True)
 
     call_time = models.TimeField(verbose_name=u'Звонок Время',
@@ -256,7 +336,7 @@ class ContactOwner(AddressFacilityData):
     vip_owner = models.BooleanField(verbose_name='Vip')
 
     phone_owner = models.CharField(verbose_name=u'Телефон',
-                                   blank=True,
+                                   blank=False,
                                    null=True,
                                    max_length=16)
 

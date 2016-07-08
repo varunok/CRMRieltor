@@ -43,11 +43,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="price">Район &ensp;
-                                            {% if form.district_obj.value == '' %}
-                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.district_obj.errors }}</i>
-                                            {% endif %}
-                                        </label>
+                                        <label for="price">Район</label>
                                         {{ form.district_obj }}
                                     </div>
                                 </div>
@@ -92,7 +88,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="tarea">Тип операции</label>
+                                        <label for="tarea">Тип операции
+                                            {% if form.list_operations.data %}
+                                            {% else %}
+                                                <i style="color:#f1300a">&nbsp;{{ form.list_operations.errors }}</i>
+                                            {% endif %}
+                                        </label>
                                         {{ form.list_operations }}
                                     </div>
                                 </div>
@@ -114,11 +115,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="typeobj">Тип
-                                            {% if form.data.contact_owner == None %}
-                                                <i style="color:#f1300a">&nbsp;{{ form.contact_owner.errors }}</i>
-                                            {% endif %}
-                                        </label>
+                                        <label for="typeobj">Тип</label>
                                         <div class="row">
                                                 {% for radio in form.contact_owner %}
                                                     {% if forloop.counter0 %}
@@ -139,9 +136,9 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="phone">Пересмотр <i class="fa fa-calendar"></i>&ensp;
-                                            {% if form.review_date.value == '' %}
-                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>
-                                            {% endif %}
+{#                                            {% if form.review_date.value == '' %}#}
+{#                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>#}
+{#                                            {% endif %}#}
                                         </label>
                                         {{ form.review_date }}
                                     </div>
@@ -156,8 +153,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="tarea">Телефон</label>
-{#                                        <input type="text" placeholder="-----">#}
+                                        <label for="tarea">Телефон
+                                        {% if form.phone_owner.value == '' %}
+                                            <i style="color:#f1300a">&bull; &nbsp;{{ form.phone_owner.errors }}</i>
+                                        {% endif %}
+                                        </label>
                                         {{ form.phone_owner }}
                                         <div class="owner_respon" id="id_owner_respon"></div>
                                     </div>
@@ -165,9 +165,9 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="phone">Дата звонка <i class="fa fa-calendar"></i>&ensp;
-                                            {% if form.review_date.value == '' %}
-                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>
-                                            {% endif %}
+{#                                            {% if form.review_date.value == '' %}#}
+{#                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>#}
+{#                                            {% endif %}#}
                                         </label>
                                         {{ form.call_date }}
                                     </div>
@@ -176,7 +176,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="idobj">E-mail</label>
+                                        <label for="idobj">E-mail
+{#                                        {% if form.email_owner %}#}
+                                                <i style="color:#f1300a">{{ form.email_owner.errors }}</i>
+{#                                            {% endif %}#}
+                                        </label>
+
                                         {{ form.email_owner }}
                                     </div>
                                     <br>
@@ -184,7 +189,6 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Доп. телефон</label>
-{#                                        <input type="text" placeholder="-----">#}
                                         {{ form.phone_owner_plus }}
                                         <div class="owner_respon" id="id_owner_respon_plus"></div>
                                     </div>
@@ -310,7 +314,11 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="search-item">
-                                        <label for="price">Комментарий</label>
+                                        <label for="price">Комментарий
+                                        {% if form.comment.value == '' %}
+                                            <i style="color:#f1300a">&bull; &nbsp;{{ form.comment.errors }}</i>
+                                        {% endif %}
+                                        </label>
                                         {{ form.comment }}
                                     </div>
                                     <br>
@@ -330,33 +338,19 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="typeobj">Риелтор</label>
-                                    <select class="multiple" multiple="multiple" placeholder="-----">
-                                        <option>Вячеслав</option>
-                                        <option>Дмитрий</option>
-                                        <option>Сергей</option>
-                                        <option>Богдан</option>
-                                    </select>
+                                    {{ form.rieltor }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="price">Лояльность</label>
-                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="tarea">
-                                        <option>пункт 1</option>
-                                        <option>пункт 1</option>
-                                        <option>пункт 1</option>
-                                    </select>
+                                    {{ form.loyality }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="actual">Актуальность</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Активно сдаем</option>
-                                        <option>Удочнить данные</option>
-                                        <option>Неинтересно</option>
-                                    </select>
+                                    {{ form.actuality }}
                                 </div>
                             </div>
                         </div>
@@ -364,11 +358,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Состояние</label>
-                                    <select>
-                                        <option>Ищем</option>
-                                        <option>Нашли</option>
-                                        <option>Не нашли</option>
-                                    </select>
+                                    {{ form.condition }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -376,14 +366,10 @@
                                     <label for="price">Комиссия</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="Цена">
+                                           {{ form.commission }}
                                         </div>
                                         <div class="col-md-6">
-                                            <select class="add">
-                                                <option>$</option>
-                                                <option>грн</option>
-                                            </select>
-
+                                            {{ form.currency|default:'$'}}
                                         </div>
                                     </div>
                                 </div>
@@ -428,22 +414,15 @@
                                 <div class="col-md-8">
                                     <div class="search-item">
                                         <label for="price">Изображение</label>
-                                        <a href="#" class="btn btn-green">
-                                        <i class="fa fa-cloud-download"></i>
-                                        Загрузить изображение</a>
+                                        <div class="btn btn-green grn_upload_file">
+                                            <input class="upload_file" type="file" multiple="multiple" accept=".txt,image/*">
+                                            <i class="fa fa-cloud-download"></i>
+                                        Загрузить изображение</div>
 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8">
                                             <div class="row load-img-wrap">
-                                                <div class="col-md-3 load-img">
-                                                    <img src="images/load-img.jpg" alt="">
-                                                    <a href="#"><i class="fa fa-times load-img-del"></i></a>
-                                                </div>
-                                                <div class="col-md-3 load-img">
-                                                    <img src="images/load-img.jpg" alt="">
-                                                    <a href="#"><i class="fa fa-times load-img-del"></i></a>
-                                                </div>
                                                 <div class="col-md-3 load-img">
                                                     <img src="images/load-img.jpg" alt="">
                                                     <a href="#"><i class="fa fa-times load-img-del"></i></a>
@@ -677,6 +656,25 @@
             if ($('#id_owner_respon').children('p').html()){
                 $('#id_owner_respon').css('display', 'block');
             }
+        });
+
+        var files;
+        $('input[type=file]').change(function(){
+            files = this.files;
+            var data = new FormData();
+            $.each( files, function( key, value ){
+                data.append( key, value );
+            });
+            $.ajax({
+                url: 'add_img',
+                type: 'POST',
+                data: data,
+                cache: false,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function(data){}
+            })
         });
     });
     </script>

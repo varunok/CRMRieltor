@@ -18,6 +18,7 @@ def homes(request):
     notes = Notes.objects.all()
     return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now()})
 
+
 @login_required
 def object_list(request):
     addres_facility_data_list = AddressFacilityData.objects.all()

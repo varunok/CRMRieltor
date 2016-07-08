@@ -21,6 +21,7 @@
     <script src="{% static "js/select2.min.js" %}"></script>
     <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
     <script src="{% static "js/masonry.min.js" %}"></script>
+    <script src="{% static "js/jquery.cookie.js" %}"></script>
     <script type="text/javascript">
             function showTime() {
                 var dat = new Date();
@@ -209,10 +210,25 @@
    <script type="text/javascript">
     $(document).ready(function() {
         $('#logout').on('click', function() {
-            // event.preventDefault();
-            $.get('accounts/logout/', function(data) {
-                /*optional stuff to do after success */
-            });
+            $.get('accounts/logout/', function(data) {});
+        });
+        var csrftoken = $.cookie('csrftoken');
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        function sameOrigin(url) {
+            var host = document.location.host; // host + port
+            var protocol = document.location.protocol;
+            var sr_origin = '//' + host;
+            var origin = protocol + sr_origin;
+            return (url == origin || url.slice(0, origin.length + 1) == origin + '/') || (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') || !(/^(\/\/|http:|https:).*/.test(url));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
         });
     })
     </script>

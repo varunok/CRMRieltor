@@ -26,6 +26,7 @@ import extuser.urls
 import homes.urls
 import notes.urls
 import facility.urls
+import setting_globall.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^', include(homes.urls)),
     url(r'^', include(notes.urls)),
     url(r'^', include(facility.urls)),
+    url(r'^', include(setting_globall.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

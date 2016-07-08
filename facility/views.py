@@ -16,6 +16,9 @@ from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner
 def add_facility(request):
     if request.method == 'POST':
         form = AddressFacilityForm(request.POST)
+        # for i in form.data:
+        #     print (i)
+        print (form.errors)
         if form.is_valid():
             form.save()
             phone_numb = ContactOwner.objects.last()
@@ -38,5 +41,19 @@ def check_phone(request):
         dict_obj = dict()
         for elem in seek_obj:
             dict_obj[str(elem.db_id_owner)] = str(elem.db_phone_owner)
-            print (dict_obj)
     return HttpResponse(JsonResponse(dict_obj))
+
+def add_img(request):
+    if request.method == 'POST':
+        img_list = handle_uploaded_file(request.FILES)
+        print(img_list)
+    return HttpResponse(JsonResponse(img_list))
+
+def handle_uploaded_file(f):
+    list_img = {}
+    for ele in f:
+        with open('media/tmpimg/'+f[ele].name, 'wb+') as destination:
+            for chunk in f[ele].chunks():
+                destination.write(chunk)
+                list_img[ele] = ('media/tmpimg/'+f[ele].name)
+    return list_img

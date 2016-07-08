@@ -6499,3 +6499,31 @@ input[type="email"] {
     position: absolute;
     z-index: 1000
 }
+.messageServer{
+    float:right;
+    display: none;
+    padding: 10px;
+    background-color: #5bc0de;
+    position: relative;
+    color: #FFFFFF;
+    font-family: "Calibri", "Trebuchet MS", "Helvetica", sans-serif;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.upload_file{
+    position: absolute;
+    overflow: hidden;
+    margin-left: -25px;
+    float: left;
+    padding-left: 0px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.grn_upload_file{
+    max-width: 300px;
+    max-height: 50px;
+    position: relative;
+    cursor: pointer;
+}

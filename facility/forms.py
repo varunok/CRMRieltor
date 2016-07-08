@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-from django.forms.models import modelformset_factory
 from facility.models import AddressFacilityData, ContactOwner
 from django.forms import ModelForm, Select, Textarea, TextInput, SelectMultiple, RadioSelect, CheckboxInput
+
 
 
 class AddressFacilityForm(ModelForm):
@@ -14,14 +14,18 @@ class AddressFacilityForm(ModelForm):
             'price_month', 'list_operations', 'contact_owner', 'agency', 'name_owner', 'review_date', 'call_date',
             'email_owner', 'vip_owner', 'phone_owner', 'phone_owner_plus', 'type_building_data', 'repairs', 'landmark',
             'number_of_floors', 'floors_up', 'first_floor', 'last_floor', 'floor', 'area_badroom', 'area_extra_room',
-            'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment')
+            'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment', 'rieltor', 'loyality',
+            'actuality', 'condition', 'commission', 'currency')
         widgets = {
             'street_obj': Select(attrs={'class': 'js-example-basic-single'}),
+            'currency': Select(attrs={'class': 'add'}),
             'district_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'subway_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'number_home': TextInput(attrs={'placeholder': 'Дом'}),
             'number_apartment': TextInput(attrs={'placeholder': 'Квартира'}),
             'list_operations': SelectMultiple(attrs={'class': 'tarea-multiple', 'multiple': 'multiple'}),
+            'rieltor': SelectMultiple(attrs={'class': 'tarea-multiple', 'multiple': 'multiple'}),
+            'loyality': SelectMultiple(attrs={'class': 'tarea-multiple', 'multiple': 'multiple'}),
             'contact_owner': RadioSelect(attrs={'class': 'col-md-6'}),
             'vip_owner': CheckboxInput(),
             # 'first_floor': CheckboxInput(attrs={'checked': 'unchecked'}),
@@ -39,3 +43,4 @@ class AddressFacilityForm(ModelForm):
             'rooms': TextInput(attrs={'placeholder': '-----'}),
             'total_area': TextInput(attrs={'placeholder': '-----'}),
         }
+
