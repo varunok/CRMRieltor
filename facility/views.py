@@ -32,8 +32,9 @@ def add_facility(request):
             db_phone.save()
             return object_list(request)
         else:
-             form = change_form_text(form)
+            form = change_form_text(form)
         return add_object(request, form)
+
 
 def check_phone(request):
     if request.method == 'GET':
@@ -43,11 +44,13 @@ def check_phone(request):
             dict_obj[str(elem.db_id_owner)] = str(elem.db_phone_owner)
     return HttpResponse(JsonResponse(dict_obj))
 
+
 def add_img(request):
     if request.method == 'POST':
         img_list = handle_uploaded_file(request.FILES)
         print(img_list)
     return HttpResponse(JsonResponse(img_list))
+
 
 def handle_uploaded_file(f):
     list_img = {}

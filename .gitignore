@@ -1,5 +1,5 @@
 settings.py
 *.pyc
 .idea/
-extuser/migrations/
-setting_street/migrations/
+#extuser/migrations/
+#setting_street/migrations/
