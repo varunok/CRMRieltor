@@ -57,6 +57,17 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='ImagesAlbum',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('image', models.ImageField(upload_to=b'img_obj', max_length=255, verbose_name='\u0424\u043e\u0442\u043e')),
+            ],
+            options={
+                'verbose_name': '\u0424\u043e\u0442\u043e \u043e\u0431\u0435\u043a\u0442\u0430',
+                'verbose_name_plural': '\u0424\u043e\u0442\u043e \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432',
+            },
+        ),
+        migrations.CreateModel(
             name='PhoneOwner',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -196,6 +207,11 @@ class Migration(migrations.Migration):
             model_name='addressfacilitydata',
             name='district_obj',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0420\u0430\u0439\u043e\u043d', to_field=b'district', blank=True, to='setting_street.District', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='image',
+            field=models.ForeignKey(related_name='photo', on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0424\u043e\u0442\u043e', to='facility.ImagesAlbum'),
         ),
         migrations.AddField(
             model_name='addressfacilitydata',

@@ -18,7 +18,7 @@
     </section>
     <section class="content">
         <div class="container">
-            <form action="add_facility" method="post">
+            <form action="add_facility" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row section-search">
                     <div class="col-md-12">
@@ -420,8 +420,9 @@
                                         Загрузить изображение</div>
 
                                     </div>
+                                    {{ form.image }}
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-12">
                                             <div class="row load-img-wrap">
                                                 <div class="add_imges_row"></div>
                                             </div>
@@ -671,8 +672,8 @@
                 processData: false,
                 contentType: false,
                 success: function(data){
-                    var data = jQuery.parseJSON(data);
-                    $('.add_imges_row').append('<div class="col-md-3 load-img"><img src="'+data.0+'" alt=""><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
+{#                    var data = jQuery.parseJSON(data);#}
+                    $('.add_imges_row').append('<div class="col-md-2 load-img" style="margin-top:5px;"><img src="'+data['0']+'" alt="" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
                 }
             })
         });

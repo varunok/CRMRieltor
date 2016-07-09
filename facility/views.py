@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+
+import os
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django import forms
@@ -9,17 +11,18 @@ from django.utils import timezone, dateformat
 from facility.forms import AddressFacilityForm
 from homes.views import object_list, add_object
 from change_form import change_form_text
+from save_photo import save_photo
 from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
 
 def add_facility(request):
     if request.method == 'POST':
-        form = AddressFacilityForm(request.POST)
-        # for i in form.data:
-        #     print (i)
-        print (form.errors)
+        form = AddressFacilityForm(request.POST, request.FILES)
         if form.is_valid():
+            # print (request.FILES)
             form.save()
             phone_numb = ContactOwner.objects.last()
             phone_owner = PhoneOwner(phone=phone_numb)
@@ -30,6 +33,7 @@ def add_facility(request):
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
                                           db_phone_owner=phone_numb.phone_owner_plus)
             db_phone.save()
+            save_photo(request, phone_numb.id)
             return object_list(request)
         else:
             form = change_form_text(form)
@@ -48,7 +52,6 @@ def check_phone(request):
 def add_img(request):
     if request.method == 'POST':
         img_list = handle_uploaded_file(request.FILES)
-        print(img_list)
     return HttpResponse(JsonResponse(img_list))
 
 
@@ -58,5 +61,5 @@ def handle_uploaded_file(f):
         with open('media/tmpimg/'+f[ele].name, 'wb+') as destination:
             for chunk in f[ele].chunks():
                 destination.write(chunk)
-                list_img[ele] = ('media/tmpimg/'+f[ele].name)
+                list_img[ele] = ('/media/tmpimg/'+f[ele].name)
     return list_img

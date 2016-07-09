@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
+from django import forms
 from facility.models import AddressFacilityData, ContactOwner
-from django.forms import ModelForm, Select, Textarea, TextInput, SelectMultiple, RadioSelect, CheckboxInput
-
+from django.forms import ModelForm, Select, Textarea, TextInput, SelectMultiple, RadioSelect, CheckboxInput, ClearableFileInput
 
 
 class AddressFacilityForm(ModelForm):
+    image = forms.CharField(widget=ClearableFileInput())
+    image.widget.attrs['multiple'] = 'true'
     class Meta(object):
         model = ContactOwner
         fields = (
@@ -42,5 +44,6 @@ class AddressFacilityForm(ModelForm):
             'payments': TextInput(attrs={'placeholder': '(комунальные)'}),
             'rooms': TextInput(attrs={'placeholder': '-----'}),
             'total_area': TextInput(attrs={'placeholder': '-----'}),
+            # 'image': ClearableFileInput(attrs={'multiple': 'multiple'}),
         }
 

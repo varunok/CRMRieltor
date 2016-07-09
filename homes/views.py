@@ -9,7 +9,7 @@ from django.utils import timezone, dateformat
 from notes.models import Notes
 from setting_street.models import Street, District, Subway
 from facility.forms import AddressFacilityForm
-from facility.models import AddressFacilityData, ContactOwner
+from facility.models import AddressFacilityData, ContactOwner, ImagesFacility
 
 
 # Create your views here.
@@ -23,9 +23,11 @@ def homes(request):
 def object_list(request):
     addres_facility_data_list = AddressFacilityData.objects.all()
     contact_owner = ContactOwner.objects.all()
+    images = ImagesFacility.objects.all()
     return render(request, 'homes/objects.html', {'time': timezone.now(),
                                                   'addres_facility_data_list': addres_facility_data_list,
-                                                  'contact_owner': contact_owner})
+                                                  'contact_owner': contact_owner,
+                                                  'images': images})
 
 @login_required
 def buyers_list(request):

@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 
 
 class MyUser(models.Model):
+
     user = models.OneToOneField(User)
+
     image = models.ImageField(
         verbose_name='Аватарка',
         max_length=255,

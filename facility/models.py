@@ -18,6 +18,21 @@ class UserFullName(User):
         return self.get_full_name()
 
 
+class ImagesFacility(models.Model):
+    class Meta(object):
+        verbose_name = u'Фото обекта'
+        verbose_name_plural = u'Фото объектов'
+
+    album = models.ForeignKey('AddressFacilityData',
+                                verbose_name=u'Альбом',
+                                on_delete=models.PROTECT,
+                                related_name='photos')
+
+    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj')
+
+    def __unicode__(self):
+        return self.album
+
 class TypeFacility(models.Model):
     class Meta(object):
         verbose_name = u'Тип обекта'
@@ -286,6 +301,8 @@ class AddressFacilityData(models.Model):
                                  on_delete=models.PROTECT,
                                  verbose_name=u'Валюта',
                                  default=2)
+
+    images_count = models.IntegerField(verbose_name=u'Количество фото', editable=False, default=0)
 
     # end Состояние объекта
 

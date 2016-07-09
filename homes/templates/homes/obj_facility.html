@@ -5,10 +5,21 @@
                                 <div class="row">
                                     <div class="row">
                                         <div class="col-md-3 object-img popup-gallery-{{ object_data.id }}">
-                                            <a href="{% static "images/object-photo.jpg" %}"><img src="{% static "images/object-photo.jpg" %}" alt=""></a>
-                                            <a href="{% static "images/00848294_n1.jpg" %}"></a>
-                                            <a href="{% static "images/63004198.jpg" %}"></a>
-                                            <span class="label label-default img-count">2</span>
+                                            {% for image in images %}
+                                                {% if forloop.counter %}
+                                                    {{ forloop.counter }}
+                                                    {% if object_data.id == image.album_id %}
+                                                        <a href="{{ MEDIA_URL }}{{ image.image }}"><img src="{{ MEDIA_URL }}{{ image.image }}" alt=""></a>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if object_data.id == image.album_id %}
+                                                        <a href="{{ MEDIA_URL }}{{ image.image }}"></a>
+                                                    {% endif %}
+                                                {% endif %}
+                                                <span class="label label-default img-count">{{ forloop.counter }}</span>
+                                            {% empty %}
+                                                NO PHOTO
+                                            {% endfor %}
                                         </div>
                                     <script>
                                         $(document).ready(function() {

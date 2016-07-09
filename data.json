@@ -1,0 +1,3013 @@
+[
+{
+    "fields": {
+        "model": "logentry",
+        "app_label": "admin"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 1
+},
+{
+    "fields": {
+        "model": "permission",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 2
+},
+{
+    "fields": {
+        "model": "group",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 3
+},
+{
+    "fields": {
+        "model": "user",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 4
+},
+{
+    "fields": {
+        "model": "contenttype",
+        "app_label": "contenttypes"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 5
+},
+{
+    "fields": {
+        "model": "session",
+        "app_label": "sessions"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 6
+},
+{
+    "fields": {
+        "model": "notes",
+        "app_label": "notes"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 7
+},
+{
+    "fields": {
+        "model": "typesstreet",
+        "app_label": "setting_street"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 8
+},
+{
+    "fields": {
+        "model": "street",
+        "app_label": "setting_street"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 9
+},
+{
+    "fields": {
+        "model": "district",
+        "app_label": "setting_street"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 10
+},
+{
+    "fields": {
+        "model": "subway",
+        "app_label": "setting_street"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 11
+},
+{
+    "fields": {
+        "model": "myuser",
+        "app_label": "extuser"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 12
+},
+{
+    "fields": {
+        "model": "usersgroupextuser",
+        "app_label": "extuser"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 13
+},
+{
+    "fields": {
+        "model": "typecontactowner",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 16
+},
+{
+    "fields": {
+        "model": "typebuilding",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 17
+},
+{
+    "fields": {
+        "model": "typerepairs",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 18
+},
+{
+    "fields": {
+        "model": "typeactuality",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 20
+},
+{
+    "fields": {
+        "model": "typecondition",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 21
+},
+{
+    "fields": {
+        "model": "addressfacilitydata",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 22
+},
+{
+    "fields": {
+        "model": "contactowner",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 23
+},
+{
+    "fields": {
+        "model": "phoneowner",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 24
+},
+{
+    "fields": {
+        "model": "databasephoneowner",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 25
+},
+{
+    "fields": {
+        "model": "userfullname",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 26
+},
+{
+    "fields": {
+        "model": "nationalcarrency",
+        "app_label": "setting_globall"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 27
+},
+{
+    "fields": {
+        "model": "imagesalbum",
+        "app_label": "facility"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 30
+},
+{
+    "fields": {
+        "expire_date": "2016-07-22T04:37:08.936",
+        "session_data": "NTFiOGM1YjZjM2E5Y2NhZTA3ZGFmNTk2NjQzZmJmODM5YzI1NjBkYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjYzMmM3ZjNkODQ3YmYzOTgzMTM1MzM3MTE0MGYzOGUyMDYwNGQ1ZDkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
+    },
+    "model": "sessions.session",
+    "pk": "x62mxcaa309rxwnbja0tztok1aop71zu"
+},
+{
+    "fields": {
+        "type_street": "\u0423\u043b\u0438\u0446\u0430",
+        "short_name": "\u0443\u043b."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_street": "\u0411\u0443\u043b\u044c\u0432\u0430\u0440",
+        "short_name": "\u0431\u0443\u043b."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_street": "\u041d\u0430\u0431\u0435\u0440\u0435\u0436\u043d\u0430\u044f",
+        "short_name": "\u043d\u0430\u0431."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_street": "\u0410\u043b\u043b\u0435\u044f",
+        "short_name": "\u0430\u043b\u043b\u0435\u044f."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 4
+},
+{
+    "fields": {
+        "type_street": "\u0414\u043e\u0440\u043e\u0433\u0430",
+        "short_name": "\u0434\u043e\u0440."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 5
+},
+{
+    "fields": {
+        "type_street": "\u041c\u0430\u0433\u0438\u0441\u0442\u0440\u0430\u043b\u044c",
+        "short_name": "\u043c\u0430\u0433."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 6
+},
+{
+    "fields": {
+        "type_street": "\u041f\u0435\u0440\u0435\u0443\u043b\u043e\u043a",
+        "short_name": "\u043f\u0435\u0440."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 7
+},
+{
+    "fields": {
+        "type_street": "\u041f\u043b\u043e\u0449\u0430\u0434\u044c",
+        "short_name": "\u043f\u043b."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 8
+},
+{
+    "fields": {
+        "type_street": "\u041f\u0440\u043e\u0441\u043f\u0435\u043a\u0442",
+        "short_name": "\u043f\u0440\u043e\u0441\u043f."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 9
+},
+{
+    "fields": {
+        "type_street": "\u0422\u0443\u043f\u0438\u043a",
+        "short_name": "\u0442\u0443\u043f."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 10
+},
+{
+    "fields": {
+        "type_street": "\u0428\u043e\u0441\u0441\u0435",
+        "short_name": "\u0448."
+    },
+    "model": "setting_street.typesstreet",
+    "pk": 12
+},
+{
+    "fields": {
+        "street": "\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "full_street": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "type_street_group": 1
+    },
+    "model": "setting_street.street",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_facility": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430"
+    },
+    "model": "facility.typefacility",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_facility": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430"
+    },
+    "model": "facility.typefacility",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_facility": "\u0414\u043e\u043c"
+    },
+    "model": "facility.typefacility",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_facility": "\u0423\u0447\u0430\u0441\u0442\u043e\u043a"
+    },
+    "model": "facility.typefacility",
+    "pk": 4
+},
+{
+    "fields": {
+        "type_operations": "\u041e\u0431\u043c\u0435\u043d"
+    },
+    "model": "facility.typeoperations",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_operations": "\u0410\u0440\u0435\u043d\u0434\u0430"
+    },
+    "model": "facility.typeoperations",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_operations": "\u041f\u043e\u0441\u0443\u0442\u043e\u0447\u043d\u0430"
+    },
+    "model": "facility.typeoperations",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_operations": "\u041f\u0440\u043e\u0434\u0430\u0436\u0430"
+    },
+    "model": "facility.typeoperations",
+    "pk": 4
+},
+{
+    "fields": {
+        "type_contact_owner": "\u041f\u043e\u0441\u0440\u0435\u0434\u043d\u0438\u043a"
+    },
+    "model": "facility.typecontactowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_contact_owner": "\u0425\u043e\u0437\u044f\u0438\u043d"
+    },
+    "model": "facility.typecontactowner",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_building": "VIP- \u043d\u043e\u0432\u043e\u0441\u0442\u0440\u043e\u0439"
+    },
+    "model": "facility.typebuilding",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_building": "\u0413\u043e\u0441\u0442\u0438\u043d\u043a\u0430"
+    },
+    "model": "facility.typebuilding",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_building": "\u041c\u0430\u043b\u043e\u0441\u0435\u043c\u0435\u0439\u043a\u0430"
+    },
+    "model": "facility.typebuilding",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_building": "\u041d\u043e\u0432\u043e\u0441\u0442\u0440\u043e\u0439"
+    },
+    "model": "facility.typebuilding",
+    "pk": 4
+},
+{
+    "fields": {
+        "type_building": "\u041f\u0430\u043d\u0435\u043b\u044c\u043d\u044b\u0439"
+    },
+    "model": "facility.typebuilding",
+    "pk": 5
+},
+{
+    "fields": {
+        "type_building": "\u0421\u043e\u0442\u043e\u0432\u0430\u044f"
+    },
+    "model": "facility.typebuilding",
+    "pk": 6
+},
+{
+    "fields": {
+        "type_building": "\u0421\u0442\u0430\u043b\u0438\u043d\u043a\u0430"
+    },
+    "model": "facility.typebuilding",
+    "pk": 7
+},
+{
+    "fields": {
+        "type_building": "\u0425\u0440\u0443\u0449\u0435\u0432\u043a\u0430"
+    },
+    "model": "facility.typebuilding",
+    "pk": 8
+},
+{
+    "fields": {
+        "type_building": "\u0427\u0435\u0448\u043a\u0430"
+    },
+    "model": "facility.typebuilding",
+    "pk": 9
+},
+{
+    "fields": {
+        "type_repairs": "\u0415\u0432\u0440\u043e"
+    },
+    "model": "facility.typerepairs",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_repairs": "\u0416\u0438\u043b\u043e\u0435"
+    },
+    "model": "facility.typerepairs",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_repairs": "\u041f\u043e\u0434 \u0440\u0435\u043c\u043e\u043d\u0442"
+    },
+    "model": "facility.typerepairs",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_actuality": "\u0410\u043a\u0442\u0438\u0432\u043d\u043e \u0441\u0434\u0430\u0435\u043c"
+    },
+    "model": "facility.typeactuality",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_actuality": "\u0423\u0442\u043e\u0447\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435"
+    },
+    "model": "facility.typeactuality",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_actuality": "\u043d\u0435 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e"
+    },
+    "model": "facility.typeactuality",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_condition": "\u0418\u0449\u0435\u043c"
+    },
+    "model": "facility.typecondition",
+    "pk": 1
+},
+{
+    "fields": {
+        "type_condition": "\u043d\u0435 \u0437\u0432\u043e\u043d\u0438\u0442\u044c"
+    },
+    "model": "facility.typecondition",
+    "pk": 2
+},
+{
+    "fields": {
+        "type_condition": "\u0417\u0430\u043d\u044f\u0442 \u0430\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u043e\u043c"
+    },
+    "model": "facility.typecondition",
+    "pk": 3
+},
+{
+    "fields": {
+        "type_condition": "\u041d\u0443\u0436\u043d\u043e \u0443\u0437\u043d\u0430\u0442\u044c"
+    },
+    "model": "facility.typecondition",
+    "pk": 4
+},
+{
+    "fields": {
+        "phone": 1
+    },
+    "model": "facility.phoneowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "phone": 2
+    },
+    "model": "facility.phoneowner",
+    "pk": 2
+},
+{
+    "fields": {
+        "phone": 3
+    },
+    "model": "facility.phoneowner",
+    "pk": 3
+},
+{
+    "fields": {
+        "phone": 4
+    },
+    "model": "facility.phoneowner",
+    "pk": 4
+},
+{
+    "fields": {
+        "phone": 5
+    },
+    "model": "facility.phoneowner",
+    "pk": 5
+},
+{
+    "fields": {
+        "phone": 6
+    },
+    "model": "facility.phoneowner",
+    "pk": 6
+},
+{
+    "fields": {
+        "phone": 7
+    },
+    "model": "facility.phoneowner",
+    "pk": 7
+},
+{
+    "fields": {
+        "phone": 8
+    },
+    "model": "facility.phoneowner",
+    "pk": 8
+},
+{
+    "fields": {
+        "phone": 9
+    },
+    "model": "facility.phoneowner",
+    "pk": 9
+},
+{
+    "fields": {
+        "phone": 10
+    },
+    "model": "facility.phoneowner",
+    "pk": 10
+},
+{
+    "fields": {
+        "phone": 11
+    },
+    "model": "facility.phoneowner",
+    "pk": 11
+},
+{
+    "fields": {
+        "phone": 12
+    },
+    "model": "facility.phoneowner",
+    "pk": 12
+},
+{
+    "fields": {
+        "phone": 13
+    },
+    "model": "facility.phoneowner",
+    "pk": 13
+},
+{
+    "fields": {
+        "db_id_owner": "1",
+        "db_phone_owner": "2343424234"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "db_id_owner": "1",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 2
+},
+{
+    "fields": {
+        "db_id_owner": "2",
+        "db_phone_owner": "4354355"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 3
+},
+{
+    "fields": {
+        "db_id_owner": "2",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 4
+},
+{
+    "fields": {
+        "db_id_owner": "3",
+        "db_phone_owner": "2343424234"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 5
+},
+{
+    "fields": {
+        "db_id_owner": "3",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 6
+},
+{
+    "fields": {
+        "db_id_owner": "4",
+        "db_phone_owner": "2343424234"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 7
+},
+{
+    "fields": {
+        "db_id_owner": "4",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 8
+},
+{
+    "fields": {
+        "db_id_owner": "5",
+        "db_phone_owner": "2343424234"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 9
+},
+{
+    "fields": {
+        "db_id_owner": "5",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 10
+},
+{
+    "fields": {
+        "db_id_owner": "6",
+        "db_phone_owner": "23423442434"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 11
+},
+{
+    "fields": {
+        "db_id_owner": "6",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 12
+},
+{
+    "fields": {
+        "db_id_owner": "7",
+        "db_phone_owner": "44342342343"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 13
+},
+{
+    "fields": {
+        "db_id_owner": "7",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 14
+},
+{
+    "fields": {
+        "db_id_owner": "8",
+        "db_phone_owner": "24324242"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 15
+},
+{
+    "fields": {
+        "db_id_owner": "8",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 16
+},
+{
+    "fields": {
+        "db_id_owner": "9",
+        "db_phone_owner": "234234244"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 17
+},
+{
+    "fields": {
+        "db_id_owner": "9",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 18
+},
+{
+    "fields": {
+        "db_id_owner": "10",
+        "db_phone_owner": "4353545"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 19
+},
+{
+    "fields": {
+        "db_id_owner": "10",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 20
+},
+{
+    "fields": {
+        "db_id_owner": "11",
+        "db_phone_owner": "34232455345"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 21
+},
+{
+    "fields": {
+        "db_id_owner": "11",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 22
+},
+{
+    "fields": {
+        "db_id_owner": "12",
+        "db_phone_owner": "23424"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 23
+},
+{
+    "fields": {
+        "db_id_owner": "12",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 24
+},
+{
+    "fields": {
+        "db_id_owner": "13",
+        "db_phone_owner": "234234234"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 25
+},
+{
+    "fields": {
+        "db_id_owner": "13",
+        "db_phone_owner": ""
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 26
+},
+{
+    "fields": {
+        "currency": "\u0433\u0440\u043d."
+    },
+    "model": "setting_globall.nationalcarrency",
+    "pk": 1
+},
+{
+    "fields": {
+        "currency": "$"
+    },
+    "model": "setting_globall.nationalcarrency",
+    "pk": 2
+},
+{
+    "fields": {
+        "codename": "add_logentry",
+        "name": "Can add log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 1
+},
+{
+    "fields": {
+        "codename": "change_logentry",
+        "name": "Can change log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 2
+},
+{
+    "fields": {
+        "codename": "delete_logentry",
+        "name": "Can delete log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 3
+},
+{
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 4
+},
+{
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 5
+},
+{
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 6
+},
+{
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 7
+},
+{
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 8
+},
+{
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 9
+},
+{
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 10
+},
+{
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 11
+},
+{
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 12
+},
+{
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 13
+},
+{
+    "fields": {
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 14
+},
+{
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 15
+},
+{
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 16
+},
+{
+    "fields": {
+        "codename": "change_session",
+        "name": "Can change session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 17
+},
+{
+    "fields": {
+        "codename": "delete_session",
+        "name": "Can delete session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 18
+},
+{
+    "fields": {
+        "codename": "add_notes",
+        "name": "Can add \u041d\u043e\u0442\u0430\u0442\u043a\u0430",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 19
+},
+{
+    "fields": {
+        "codename": "change_notes",
+        "name": "Can change \u041d\u043e\u0442\u0430\u0442\u043a\u0430",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 20
+},
+{
+    "fields": {
+        "codename": "delete_notes",
+        "name": "Can delete \u041d\u043e\u0442\u0430\u0442\u043a\u0430",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 21
+},
+{
+    "fields": {
+        "codename": "add_typesstreet",
+        "name": "Can add \u0422\u0438\u043f \u0443\u043b\u0438\u0446\u044b",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 22
+},
+{
+    "fields": {
+        "codename": "change_typesstreet",
+        "name": "Can change \u0422\u0438\u043f \u0443\u043b\u0438\u0446\u044b",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 23
+},
+{
+    "fields": {
+        "codename": "delete_typesstreet",
+        "name": "Can delete \u0422\u0438\u043f \u0443\u043b\u0438\u0446\u044b",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 24
+},
+{
+    "fields": {
+        "codename": "add_street",
+        "name": "Can add \u0423\u043b\u0438\u0446\u0430",
+        "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 25
+},
+{
+    "fields": {
+        "codename": "change_street",
+        "name": "Can change \u0423\u043b\u0438\u0446\u0430",
+        "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 26
+},
+{
+    "fields": {
+        "codename": "delete_street",
+        "name": "Can delete \u0423\u043b\u0438\u0446\u0430",
+        "content_type": 9
+    },
+    "model": "auth.permission",
+    "pk": 27
+},
+{
+    "fields": {
+        "codename": "add_district",
+        "name": "Can add \u0420\u0430\u0439\u043e\u043d",
+        "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 28
+},
+{
+    "fields": {
+        "codename": "change_district",
+        "name": "Can change \u0420\u0430\u0439\u043e\u043d",
+        "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 29
+},
+{
+    "fields": {
+        "codename": "delete_district",
+        "name": "Can delete \u0420\u0430\u0439\u043e\u043d",
+        "content_type": 10
+    },
+    "model": "auth.permission",
+    "pk": 30
+},
+{
+    "fields": {
+        "codename": "add_subway",
+        "name": "Can add \u041c\u0435\u0442\u0440\u043e",
+        "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 31
+},
+{
+    "fields": {
+        "codename": "change_subway",
+        "name": "Can change \u041c\u0435\u0442\u0440\u043e",
+        "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 32
+},
+{
+    "fields": {
+        "codename": "delete_subway",
+        "name": "Can delete \u041c\u0435\u0442\u0440\u043e",
+        "content_type": 11
+    },
+    "model": "auth.permission",
+    "pk": 33
+},
+{
+    "fields": {
+        "codename": "add_myuser",
+        "name": "Can add my user",
+        "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 34
+},
+{
+    "fields": {
+        "codename": "change_myuser",
+        "name": "Can change my user",
+        "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 35
+},
+{
+    "fields": {
+        "codename": "delete_myuser",
+        "name": "Can delete my user",
+        "content_type": 12
+    },
+    "model": "auth.permission",
+    "pk": 36
+},
+{
+    "fields": {
+        "codename": "add_usersgroupextuser",
+        "name": "Can add \u0422\u0438\u043f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+        "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 37
+},
+{
+    "fields": {
+        "codename": "change_usersgroupextuser",
+        "name": "Can change \u0422\u0438\u043f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+        "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 38
+},
+{
+    "fields": {
+        "codename": "delete_usersgroupextuser",
+        "name": "Can delete \u0422\u0438\u043f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+        "content_type": 13
+    },
+    "model": "auth.permission",
+    "pk": 39
+},
+{
+    "fields": {
+        "codename": "add_typefacility",
+        "name": "Can add \u0422\u0438\u043f \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 40
+},
+{
+    "fields": {
+        "codename": "change_typefacility",
+        "name": "Can change \u0422\u0438\u043f \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 41
+},
+{
+    "fields": {
+        "codename": "delete_typefacility",
+        "name": "Can delete \u0422\u0438\u043f \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 14
+    },
+    "model": "auth.permission",
+    "pk": 42
+},
+{
+    "fields": {
+        "codename": "add_typeoperations",
+        "name": "Can add \u0422\u0438\u043f \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438",
+        "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 43
+},
+{
+    "fields": {
+        "codename": "change_typeoperations",
+        "name": "Can change \u0422\u0438\u043f \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438",
+        "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 44
+},
+{
+    "fields": {
+        "codename": "delete_typeoperations",
+        "name": "Can delete \u0422\u0438\u043f \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u0438",
+        "content_type": 15
+    },
+    "model": "auth.permission",
+    "pk": 45
+},
+{
+    "fields": {
+        "codename": "add_typecontactowner",
+        "name": "Can add \u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 46
+},
+{
+    "fields": {
+        "codename": "change_typecontactowner",
+        "name": "Can change \u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 47
+},
+{
+    "fields": {
+        "codename": "delete_typecontactowner",
+        "name": "Can delete \u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 16
+    },
+    "model": "auth.permission",
+    "pk": 48
+},
+{
+    "fields": {
+        "codename": "add_typebuilding",
+        "name": "Can add \u0422\u0438\u043f \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f",
+        "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 49
+},
+{
+    "fields": {
+        "codename": "change_typebuilding",
+        "name": "Can change \u0422\u0438\u043f \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f",
+        "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 50
+},
+{
+    "fields": {
+        "codename": "delete_typebuilding",
+        "name": "Can delete \u0422\u0438\u043f \u0441\u0442\u0440\u043e\u0435\u043d\u0438\u044f",
+        "content_type": 17
+    },
+    "model": "auth.permission",
+    "pk": 51
+},
+{
+    "fields": {
+        "codename": "add_typerepairs",
+        "name": "Can add \u0422\u0438\u043f \u0440\u0435\u043c\u043e\u043d\u0442\u0430",
+        "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 52
+},
+{
+    "fields": {
+        "codename": "change_typerepairs",
+        "name": "Can change \u0422\u0438\u043f \u0440\u0435\u043c\u043e\u043d\u0442\u0430",
+        "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 53
+},
+{
+    "fields": {
+        "codename": "delete_typerepairs",
+        "name": "Can delete \u0422\u0438\u043f \u0440\u0435\u043c\u043e\u043d\u0442\u0430",
+        "content_type": 18
+    },
+    "model": "auth.permission",
+    "pk": 54
+},
+{
+    "fields": {
+        "codename": "add_typeactuality",
+        "name": "Can add \u0422\u0438\u043f \u0430\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438",
+        "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 58
+},
+{
+    "fields": {
+        "codename": "change_typeactuality",
+        "name": "Can change \u0422\u0438\u043f \u0430\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438",
+        "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 59
+},
+{
+    "fields": {
+        "codename": "delete_typeactuality",
+        "name": "Can delete \u0422\u0438\u043f \u0430\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438",
+        "content_type": 20
+    },
+    "model": "auth.permission",
+    "pk": 60
+},
+{
+    "fields": {
+        "codename": "add_typecondition",
+        "name": "Can add \u0422\u0438\u043f \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f",
+        "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 61
+},
+{
+    "fields": {
+        "codename": "change_typecondition",
+        "name": "Can change \u0422\u0438\u043f \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f",
+        "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 62
+},
+{
+    "fields": {
+        "codename": "delete_typecondition",
+        "name": "Can delete \u0422\u0438\u043f \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f",
+        "content_type": 21
+    },
+    "model": "auth.permission",
+    "pk": 63
+},
+{
+    "fields": {
+        "codename": "add_addressfacilitydata",
+        "name": "Can add \u0410\u0434\u0440\u0435\u0441\u0441 \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 64
+},
+{
+    "fields": {
+        "codename": "change_addressfacilitydata",
+        "name": "Can change \u0410\u0434\u0440\u0435\u0441\u0441 \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 65
+},
+{
+    "fields": {
+        "codename": "delete_addressfacilitydata",
+        "name": "Can delete \u0410\u0434\u0440\u0435\u0441\u0441 \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 22
+    },
+    "model": "auth.permission",
+    "pk": 66
+},
+{
+    "fields": {
+        "codename": "add_contactowner",
+        "name": "Can add \u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 23
+    },
+    "model": "auth.permission",
+    "pk": 67
+},
+{
+    "fields": {
+        "codename": "change_contactowner",
+        "name": "Can change \u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 23
+    },
+    "model": "auth.permission",
+    "pk": 68
+},
+{
+    "fields": {
+        "codename": "delete_contactowner",
+        "name": "Can delete \u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 23
+    },
+    "model": "auth.permission",
+    "pk": 69
+},
+{
+    "fields": {
+        "codename": "add_phoneowner",
+        "name": "Can add \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 24
+    },
+    "model": "auth.permission",
+    "pk": 70
+},
+{
+    "fields": {
+        "codename": "change_phoneowner",
+        "name": "Can change \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 24
+    },
+    "model": "auth.permission",
+    "pk": 71
+},
+{
+    "fields": {
+        "codename": "delete_phoneowner",
+        "name": "Can delete \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 24
+    },
+    "model": "auth.permission",
+    "pk": 72
+},
+{
+    "fields": {
+        "codename": "add_databasephoneowner",
+        "name": "Can add \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 25
+    },
+    "model": "auth.permission",
+    "pk": 73
+},
+{
+    "fields": {
+        "codename": "change_databasephoneowner",
+        "name": "Can change \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 25
+    },
+    "model": "auth.permission",
+    "pk": 74
+},
+{
+    "fields": {
+        "codename": "delete_databasephoneowner",
+        "name": "Can delete \u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430",
+        "content_type": 25
+    },
+    "model": "auth.permission",
+    "pk": 75
+},
+{
+    "fields": {
+        "codename": "add_userfullname",
+        "name": "Can add user full name",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 76
+},
+{
+    "fields": {
+        "codename": "change_userfullname",
+        "name": "Can change user full name",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 77
+},
+{
+    "fields": {
+        "codename": "delete_userfullname",
+        "name": "Can delete user full name",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 78
+},
+{
+    "fields": {
+        "codename": "add_nationalcarrency",
+        "name": "Can add \u0422\u0438\u043f \u043d\u0430\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0432\u0430\u043b\u044e\u0442\u044b",
+        "content_type": 27
+    },
+    "model": "auth.permission",
+    "pk": 79
+},
+{
+    "fields": {
+        "codename": "change_nationalcarrency",
+        "name": "Can change \u0422\u0438\u043f \u043d\u0430\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0432\u0430\u043b\u044e\u0442\u044b",
+        "content_type": 27
+    },
+    "model": "auth.permission",
+    "pk": 80
+},
+{
+    "fields": {
+        "codename": "delete_nationalcarrency",
+        "name": "Can delete \u0422\u0438\u043f \u043d\u0430\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u0432\u0430\u043b\u044e\u0442\u044b",
+        "content_type": 27
+    },
+    "model": "auth.permission",
+    "pk": 81
+},
+{
+    "fields": {
+        "codename": "add_imagesalbum",
+        "name": "Can add \u0424\u043e\u0442\u043e \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 30
+    },
+    "model": "auth.permission",
+    "pk": 88
+},
+{
+    "fields": {
+        "codename": "change_imagesalbum",
+        "name": "Can change \u0424\u043e\u0442\u043e \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 30
+    },
+    "model": "auth.permission",
+    "pk": 89
+},
+{
+    "fields": {
+        "codename": "delete_imagesalbum",
+        "name": "Can delete \u0424\u043e\u0442\u043e \u043e\u0431\u0435\u043a\u0442\u0430",
+        "content_type": 30
+    },
+    "model": "auth.permission",
+    "pk": 90
+},
+{
+    "fields": {
+        "username": "varunok",
+        "first_name": "\u0410\u043d\u0434\u0440\u0456\u0439",
+        "last_name": "\u0412\u0430\u0440\u0443\u043d\u043e\u043a",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2016-07-08T04:37:08.852",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$iOSpXG1niiBV$WvStRV2PDBzK/srDdZLUC+fZ32r0k83pOS1/pdfJDEE=",
+        "email": "varunok13@gmail.com",
+        "date_joined": "2016-07-07T04:09:47"
+    },
+    "model": "auth.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "username": "test",
+        "first_name": "test1",
+        "last_name": "test2",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2016-07-08T04:36:10.497",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$20000$rmrMx7mXMZK3$/1si+jr9laNhgwHMrmtJUr3g3PExQVNmdXu20E5Z7vM=",
+        "email": "varunok@ggg.uu",
+        "date_joined": "2016-07-07T04:52:41"
+    },
+    "model": "auth.user",
+    "pk": 2
+},
+{
+    "fields": {
+        "comment": "awwdad",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u0414\u043e\u043c",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 1
+},
+{
+    "fields": {
+        "comment": "rdtdtdtt",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            2
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 2
+},
+{
+    "fields": {
+        "comment": "awwdad",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u0414\u043e\u043c",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 3
+},
+{
+    "fields": {
+        "comment": "awwdad",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u0414\u043e\u043c",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 4
+},
+{
+    "fields": {
+        "comment": "awwdad",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u0414\u043e\u043c",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 5
+},
+{
+    "fields": {
+        "comment": "trgrhrhhr",
+        "area_badroom": "111",
+        "floors_up": "5",
+        "image": 1,
+        "total_area": "555",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "444",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "333",
+        "floor": "4",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "222",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            3
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "1",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 6
+},
+{
+    "fields": {
+        "comment": " afada adadada adadwadw awd awdaww wad wad awd awd ",
+        "area_badroom": "34",
+        "floors_up": "9",
+        "image": 1,
+        "total_area": "343",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "23",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "67",
+        "floor": "7",
+        "commission": "250",
+        "condition": null,
+        "actuality": 2,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 34000,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "65",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            3
+        ],
+        "price_month": 600,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "5",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 7
+},
+{
+    "fields": {
+        "comment": "effssfefesfsff",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": null,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 8
+},
+{
+    "fields": {
+        "comment": "afadfade",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": 2,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            3
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 9
+},
+{
+    "fields": {
+        "comment": "sfsfsf",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": 1,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 10
+},
+{
+    "fields": {
+        "comment": "fefefefff",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": 2,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u0414\u043e\u043c",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 11
+},
+{
+    "fields": {
+        "comment": "efsefsefs",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": 2,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [
+            2
+        ],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 12
+},
+{
+    "fields": {
+        "comment": "ffesff",
+        "area_badroom": "",
+        "floors_up": "",
+        "image": 1,
+        "total_area": "",
+        "street_obj": "\u0443\u043b.\u041a\u043e\u0446\u044e\u0431\u0438\u043d\u0441\u043a\u043e\u0433\u043e",
+        "currency": 2,
+        "rooms": "",
+        "area_extra_room": "",
+        "subway_obj": null,
+        "repairs": null,
+        "area_living_room": "",
+        "floor": "",
+        "commission": "",
+        "condition": null,
+        "actuality": null,
+        "rieltor": [],
+        "loyality": [
+            1
+        ],
+        "number_apartment": "",
+        "price_bay": 0,
+        "type_building_data": null,
+        "last_floor": false,
+        "district_obj": null,
+        "area_kitchen": "",
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "list_operations": [
+            1
+        ],
+        "price_month": 0,
+        "number_home": "",
+        "first_floor": false,
+        "number_of_floors": "",
+        "payments": "",
+        "landmark": ""
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 13
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": "2016-07-08",
+        "agency": "",
+        "review_date": "2017-01-08",
+        "name_owner": "",
+        "contact_owner": 1,
+        "call_time": "00:34:36.446",
+        "review_time": "00:34:36.445",
+        "email_owner": "adad@eerr.uui",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "2343424234",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "00:40:48.399",
+        "review_time": "00:40:48.399",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            2
+        ],
+        "phone_owner": "4354355",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 2
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": "2016-07-08",
+        "agency": "",
+        "review_date": "2017-01-08",
+        "name_owner": "",
+        "contact_owner": 1,
+        "call_time": "00:42:28.730",
+        "review_time": "00:42:28.730",
+        "email_owner": "adad@eerr.uui",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "2343424234",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 3
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": "2016-07-08",
+        "agency": "",
+        "review_date": "2017-01-08",
+        "name_owner": "",
+        "contact_owner": 1,
+        "call_time": "00:44:54.412",
+        "review_time": "00:44:54.412",
+        "email_owner": "adad@eerr.uui",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "2343424234",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 4
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": "2016-07-08",
+        "agency": "",
+        "review_date": "2017-01-08",
+        "name_owner": "",
+        "contact_owner": 1,
+        "call_time": "00:45:25.090",
+        "review_time": "00:45:25.090",
+        "email_owner": "adad@eerr.uui",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "2343424234",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 5
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "00:51:30.481",
+        "review_time": "00:51:30.481",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            3
+        ],
+        "phone_owner": "23423442434",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 6
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": "2016-07-08",
+        "agency": "",
+        "review_date": "2017-01-08",
+        "name_owner": "Jon Snow",
+        "contact_owner": 1,
+        "call_time": "01:13:19.521",
+        "review_time": "01:13:19.521",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            3
+        ],
+        "phone_owner": "44342342343",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 7
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "03:08:49.343",
+        "review_time": "03:08:49.343",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "24324242",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 8
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "03:09:52.815",
+        "review_time": "03:09:52.815",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            3
+        ],
+        "phone_owner": "234234244",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 9
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "03:17:07.266",
+        "review_time": "03:17:07.266",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "4353545",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 10
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "03:35:14.495",
+        "review_time": "03:35:14.495",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "34232455345",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 11
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [
+            2
+        ],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "03:36:34.887",
+        "review_time": "03:36:34.887",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "23424",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 12
+},
+{
+    "fields": {
+        "rieltor": [],
+        "loyality": [
+            1
+        ],
+        "call_date": null,
+        "agency": "",
+        "review_date": null,
+        "name_owner": "",
+        "contact_owner": null,
+        "call_time": "04:21:14.028",
+        "review_time": "04:21:14.028",
+        "email_owner": "",
+        "vip_owner": false,
+        "list_operations": [
+            1
+        ],
+        "phone_owner": "234234234",
+        "phone_owner_plus": ""
+    },
+    "model": "facility.contactowner",
+    "pk": 13
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-07-07T04:10:36.264",
+        "object_repr": "varunok",
+        "object_id": "1",
+        "change_message": "\u0417\u043c\u0456\u043d\u0435\u043d\u043e first_name \u0442\u0430 last_name.",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 1
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T04:52:41.802",
+        "object_repr": "test",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 2
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-07-07T04:53:01.701",
+        "object_repr": "test",
+        "object_id": "2",
+        "change_message": "\u0417\u043c\u0456\u043d\u0435\u043d\u043e first_name, last_name \u0442\u0430 email.",
+        "user": 1,
+        "content_type": 4
+    },
+    "model": "admin.logentry",
+    "pk": 3
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:14:32.941",
+        "object_repr": "\u041f\u043e\u0441\u0440\u0435\u0434\u043d\u0438\u043a",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 16
+    },
+    "model": "admin.logentry",
+    "pk": 4
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:14:36.923",
+        "object_repr": "\u0425\u043e\u0437\u044f\u0438\u043d",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 16
+    },
+    "model": "admin.logentry",
+    "pk": 5
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:14:54.618",
+        "object_repr": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 14
+    },
+    "model": "admin.logentry",
+    "pk": 6
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:14:57.949",
+        "object_repr": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 14
+    },
+    "model": "admin.logentry",
+    "pk": 7
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:01.247",
+        "object_repr": "\u0414\u043e\u043c",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 14
+    },
+    "model": "admin.logentry",
+    "pk": 8
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:05.187",
+        "object_repr": "\u0423\u0447\u0430\u0441\u0442\u043e\u043a",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 14
+    },
+    "model": "admin.logentry",
+    "pk": 9
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:16.252",
+        "object_repr": "\u041e\u0431\u043c\u0435\u043d",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 15
+    },
+    "model": "admin.logentry",
+    "pk": 10
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:19.225",
+        "object_repr": "\u0410\u0440\u0435\u043d\u0434\u0430",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 15
+    },
+    "model": "admin.logentry",
+    "pk": 11
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:22.620",
+        "object_repr": "\u041f\u043e\u0441\u0443\u0442\u043e\u0447\u043d\u0430",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 15
+    },
+    "model": "admin.logentry",
+    "pk": 12
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:26.135",
+        "object_repr": "\u041f\u0440\u043e\u0434\u0430\u0436\u0430",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 15
+    },
+    "model": "admin.logentry",
+    "pk": 13
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:38.929",
+        "object_repr": "\u0415\u0432\u0440\u043e",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 18
+    },
+    "model": "admin.logentry",
+    "pk": 14
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:42.388",
+        "object_repr": "\u0416\u0438\u043b\u043e\u0435",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 18
+    },
+    "model": "admin.logentry",
+    "pk": 15
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:45.522",
+        "object_repr": "\u041f\u043e\u0434 \u0440\u0435\u043c\u043e\u043d\u0442",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 18
+    },
+    "model": "admin.logentry",
+    "pk": 16
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:56.448",
+        "object_repr": "VIP- \u043d\u043e\u0432\u043e\u0441\u0442\u0440\u043e\u0439",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 17
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:15:59.260",
+        "object_repr": "\u0413\u043e\u0441\u0442\u0438\u043d\u043a\u0430",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 18
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:03.555",
+        "object_repr": "\u041c\u0430\u043b\u043e\u0441\u0435\u043c\u0435\u0439\u043a\u0430",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 19
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:06.916",
+        "object_repr": "\u041d\u043e\u0432\u043e\u0441\u0442\u0440\u043e\u0439",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 20
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:10.041",
+        "object_repr": "\u041f\u0430\u043d\u0435\u043b\u044c\u043d\u044b\u0439",
+        "object_id": "5",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 21
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:13.380",
+        "object_repr": "\u0421\u043e\u0442\u043e\u0432\u0430\u044f",
+        "object_id": "6",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 22
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:17.825",
+        "object_repr": "\u0421\u0442\u0430\u043b\u0438\u043d\u043a\u0430",
+        "object_id": "7",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 23
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:24.844",
+        "object_repr": "\u0425\u0440\u0443\u0449\u0435\u0432\u043a\u0430",
+        "object_id": "8",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 24
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:28.604",
+        "object_repr": "\u0427\u0435\u0448\u043a\u0430",
+        "object_id": "9",
+        "change_message": "",
+        "user": 1,
+        "content_type": 17
+    },
+    "model": "admin.logentry",
+    "pk": 25
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:16:56.563",
+        "object_repr": "\u0443\u043b.",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 26
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:02.187",
+        "object_repr": "\u0431\u0443\u043b.",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 27
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:08.625",
+        "object_repr": "\u043d\u0430\u0431.",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 28
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:15.703",
+        "object_repr": "\u0430\u043b\u043b\u0435\u044f.",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 29
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:22.206",
+        "object_repr": "\u0434\u043e\u0440.",
+        "object_id": "5",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 30
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:29.588",
+        "object_repr": "\u043c\u0430\u0433.",
+        "object_id": "6",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 31
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:37.109",
+        "object_repr": "\u043f\u0435\u0440.",
+        "object_id": "7",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 32
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:45.742",
+        "object_repr": "\u043f\u043b.",
+        "object_id": "8",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 33
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:52.486",
+        "object_repr": "\u043f\u0440\u043e\u0441\u043f.",
+        "object_id": "9",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 34
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:17:58.864",
+        "object_repr": "\u0442\u0443\u043f.",
+        "object_id": "10",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 35
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:18:07.943",
+        "object_repr": "\u0442\u0443\u043f.",
+        "object_id": "11",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 36
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:18:24.782",
+        "object_repr": "\u0448.",
+        "object_id": "12",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 37
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:18:36.872",
+        "object_repr": "\u043f\u0440\u043e\u0441\u043f.",
+        "object_id": "13",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 38
+},
+{
+    "fields": {
+        "action_flag": 3,
+        "action_time": "2016-07-07T05:19:01.496",
+        "object_repr": "\u043f\u0440\u043e\u0441\u043f.",
+        "object_id": "13",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 39
+},
+{
+    "fields": {
+        "action_flag": 3,
+        "action_time": "2016-07-07T05:19:01.533",
+        "object_repr": "\u0442\u0443\u043f.",
+        "object_id": "11",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 40
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:31:55.037",
+        "object_repr": "\u0410\u043a\u0442\u0438\u0432\u043d\u043e \u0441\u0434\u0430\u0435\u043c",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 20
+    },
+    "model": "admin.logentry",
+    "pk": 41
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:32:12.189",
+        "object_repr": "\u0423\u0442\u043e\u0447\u043d\u0438\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0435",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 20
+    },
+    "model": "admin.logentry",
+    "pk": 42
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:32:24.714",
+        "object_repr": "\u043d\u0435 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 20
+    },
+    "model": "admin.logentry",
+    "pk": 43
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:32:49.122",
+        "object_repr": "\u0418\u0449\u0435\u043c",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 21
+    },
+    "model": "admin.logentry",
+    "pk": 44
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:33:01.643",
+        "object_repr": "\u043d\u0435 \u0437\u0432\u043e\u043d\u0438\u0442\u044c",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 21
+    },
+    "model": "admin.logentry",
+    "pk": 45
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:33:10.952",
+        "object_repr": "\u0417\u0430\u043d\u044f\u0442 \u0430\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u043e\u043c",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 21
+    },
+    "model": "admin.logentry",
+    "pk": 46
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-07-07T05:33:24.262",
+        "object_repr": "\u041d\u0443\u0436\u043d\u043e \u0443\u0437\u043d\u0430\u0442\u044c",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 21
+    },
+    "model": "admin.logentry",
+    "pk": 47
+}
+]
