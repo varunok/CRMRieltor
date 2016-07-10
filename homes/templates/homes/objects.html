@@ -280,7 +280,7 @@
             </div>
             <div class="row search-object">
                 <div class="col-md-12">
-                    <h1 class="section-head">Ваши <span>объекты </span> <i class="label label-default">{{ contact_owner|length }}</i></h1>
+                    <h1 class="section-head">Ваши <span>объекты </span> <i class="label label-default">{{ all_contact_owner|length }}</i></h1>
                     <div class="section-sort">
                         <a href="{% url "add_object" %}" class="btn btn-green">Добавить</a>
                     </div>
@@ -288,9 +288,9 @@
                 <div class="col-md-12">
                     <div class="tabs">
                         <ul class="main-tabs">
-                            <li class="tabs-active"><a href="#">Все <span class="label label-default">{{ contact_owner|length }}</span></a></li>
-                            <li><a href="#">Продам <span class="label label-default">10</span></a></li>
-                            <li><a href="#">Сдам <span class="label label-default">10</span></a></li>
+                            <li {% if '/objects' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'objects' %}">Все <span class="label label-default">{{ all_contact_owner|length }}</span></a></li>
+                            <li {% if '/selling' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'selling' %}">Продам <span class="label label-default">{{ all_contact_owner_se|length }}</span></a></li>
+                            <li {% if '/arend' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'arend' %}">Сдам <span class="label label-default">{{ all_contact_owner_ad|length }}</span></a></li>
                         </ul>
                         <ul class="object-filter">
                             <li><a href="#">Артикул</a></li>
@@ -310,17 +310,19 @@
                         {% include 'homes/obj_facility.html' %}
                     {% endif %}
                 {% endfor %}
-                <div class="col-md-12 section-pagination">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
+                {% if contact_owner.has_other_pages %}
+                    <div class="col-md-12 section-pagination">
+                        <ul class="pagination">
+                            <li><a href="{% url request.path|cut:'/' %}?page=1">&laquo;</a></li>
+                            {% for p in contact_owner.paginator.page_range %}
+                                <li {% if contact_owner.number == p %}class="active"{% endif %}>
+                                    <a href="{% url request.path|cut:'/' %}?page={{ p }}">{{ p }}</a>
+                                </li>
+                            {% endfor %}
+                            <li><a href="{% url request.path|cut:'/' %}?page={{ contact_owner.paginator.num_pages}}">&raquo;</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -367,6 +369,10 @@
                     tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
                 }
             });
+{#            $('#selling').on('click', function (event) {#}
+{#                event.preventDefault();#}
+{#                $.get('objects', {"selling":"selling"})#}
+{#            })#}
         });
     </script>
 {% endblock extra_js %}

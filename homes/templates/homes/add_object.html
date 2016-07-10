@@ -415,12 +415,12 @@
                                     <div class="search-item">
                                         <label for="price">Изображение</label>
                                         <div class="btn btn-green grn_upload_file">
-                                            <input class="upload_file" type="file" multiple="multiple" accept=".txt,image/*">
+{#                                            <input class="upload_file" type="file" multiple="multiple" accept=".txt,image/*">#}
+                                            {{ form.image }}
                                             <i class="fa fa-cloud-download"></i>
                                         Загрузить изображение</div>
-
                                     </div>
-                                    {{ form.image }}
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="row load-img-wrap">
@@ -446,28 +446,19 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="typeobj">Количество человек</label>
-                                    <select >
-                                        <option>1 человек</option>
-                                        <option>Пара</option>
-                                        <option>Больше 4х</option>
-                                        <option>Пара с ребенком</option>
-                                    </select>
+                                    {{ form.number_of_persons }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="price">Участок</label>
-                                    <input type="text" placeholder="кол-ство соток">
+                                    {{ form.lot }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="actual">Окна</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Деревянные</option>
-                                        <option>Метало-пластиковые</option>
-                                    </select>
+                                    {{ form.windows }}
                                 </div>
                             </div>
                         </div>
@@ -475,11 +466,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Техника</label>
-                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="tarea">
-                                        <option>Холодильник</option>
-                                        <option>Телевизор</option>
-                                        <option>Стиральная машинка</option>
-                                    </select>
+                                    {{ form.equipment }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -487,14 +474,10 @@
                                     <label for="price">Спальные места</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="Количество">
+                                            {{ form.sleeps }}
                                         </div>
                                         <div class="col-md-6">
-                                            <select class="add">
-                                                <option>Кровать</option>
-                                                <option>Диван</option>
-                                            </select>
-
+                                            {{ form.where_to_stay }}
                                         </div>
                                     </div>
                                 </div>
@@ -502,12 +485,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="stat">Отопление</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Котел</option>
-                                        <option>Печтка</option>
-                                        <option>Батареи</option>
-                                    </select>
+                                    {{ form.heating }}
                                 </div>
                             </div>
                         </div>
@@ -515,27 +493,28 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="idobj">Вода</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Горячая</option>
-                                        <option>Холодная</option>
-                                    </select>
+                                    {{ form.the_presence_of_hot_water }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Предоплата</label>
-                                    <input type="text" placeholder="кол-ство месяцев">
+                                    {{ form.prepayment }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="idobj">Санузел</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>В доме</option>
-                                        <option>На улице</option>
-                                    </select>
+                                    <label for="idobj">Санузел &nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мебель</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form.lavatory }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form.furniture }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <br>
                             </div>
@@ -544,7 +523,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="text-align: center; margin: 15px 0">
-                            <a href="#" class="btn btn-green">Добавить</a>
+                            <input name="add_facility" type="submit" class="btn btn-green" value=" Добавить">
                         </div>
                     </div>
                 </div>
@@ -672,11 +651,23 @@
                 processData: false,
                 contentType: false,
                 success: function(data){
-{#                    var data = jQuery.parseJSON(data);#}
-                    $('.add_imges_row').append('<div class="col-md-2 load-img" style="margin-top:5px;"><img src="'+data['0']+'" alt="" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
+                    $('.add_imges_row').html('')
+                    for (img in data){
+                        $('.add_imges_row').append('<div class="col-md-2 load-img" style="margin-top:5px;"><img src="'+data[img]+'" alt="" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
+                    }
                 }
             })
         });
+        $('.add_imges_row').on('click', '.load-img-del', function (event) {
+            event.preventDefault();
+            data = $(this).parents('.load-img').children('img').attr('src');
+            $(this).parents('.load-img').fadeOut()
+            $.get('del_img', data, deleteImg);
+            function deleteImg() {
+                $(this).parents('.load-img').hide()
+                console.log("ok")
+            }
+        })
     });
     </script>
 {% endblock extra_js %}

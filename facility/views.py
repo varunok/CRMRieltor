@@ -13,6 +13,7 @@ from homes.views import object_list, add_object
 from change_form import change_form_text
 from save_photo import save_photo
 from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner
+from django.contrib.auth.models import User
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def add_facility(request):
     if request.method == 'POST':
         form = AddressFacilityForm(request.POST, request.FILES)
+        print (form.errors)
         if form.is_valid():
-            # print (request.FILES)
             form.save()
             phone_numb = ContactOwner.objects.last()
             phone_owner = PhoneOwner(phone=phone_numb)
@@ -55,7 +56,21 @@ def add_img(request):
     return HttpResponse(JsonResponse(img_list))
 
 
+def del_img(request):
+    try:
+        os.remove(str(request).split('?')[-1][1:-2])
+        return HttpResponse('delete image')
+    except:
+        return HttpResponse('wrong delete')
+
+
 def handle_uploaded_file(f):
+    try:
+        list_tmp_img = os.listdir('media/tmpimg/')
+        for ele in list_tmp_img:
+            os.remove(''.join(('media/tmpimg/', ele)))
+    except:
+        pass
     list_img = {}
     for ele in f:
         with open('media/tmpimg/'+f[ele].name, 'wb+') as destination:

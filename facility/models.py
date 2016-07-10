@@ -24,14 +24,17 @@ class ImagesFacility(models.Model):
         verbose_name_plural = u'Фото объектов'
 
     album = models.ForeignKey('AddressFacilityData',
-                                verbose_name=u'Альбом',
-                                on_delete=models.PROTECT,
-                                related_name='photos')
+                              verbose_name=u'Альбом',
+                              on_delete=models.CASCADE,
+                              related_name='photos')
 
     image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj')
 
+    cover = models.BooleanField(verbose_name=u'Обложка', default=0)
+
     def __unicode__(self):
         return self.album
+
 
 class TypeFacility(models.Model):
     class Meta(object):
@@ -134,6 +137,141 @@ class TypeCondition(models.Model):
 
     def __unicode__(self):
         return self.type_condition
+
+
+class TypeNumberOfPerson(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип количество человек'
+        verbose_name_plural = u'Типы количество человек'
+
+    type_number_of_persons = models.CharField(max_length=50,
+                                              unique=True,
+                                              blank=False,
+                                              null=True,
+                                              verbose_name=u'Тип количество человек')
+
+    def __unicode__(self):
+        return self.type_number_of_persons
+
+
+class TypeEquipment(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип техники'
+        verbose_name_plural = u'Типы техник'
+
+    type_equipment = models.CharField(max_length=50,
+                                      unique=True,
+                                      blank=False,
+                                      null=True,
+                                      verbose_name=u'Тип техники')
+
+    def __unicode__(self):
+        return self.type_equipment
+
+
+class TypeWhereToStay(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Где спать?'
+        verbose_name_plural = u'Типы Где спать?'
+
+    type_where_to_stay = models.CharField(max_length=50,
+                                          unique=True,
+                                          blank=False,
+                                          null=True,
+                                          verbose_name=u'Тип Где спать?')
+
+    def __unicode__(self):
+        return self.type_where_to_stay
+
+
+class TypeThePresenceOfHotWater(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Наличие горячей воды'
+        verbose_name_plural = u'Типы Наличие горячей воды'
+
+    type_the_presence_of_hot_water = models.CharField(max_length=50,
+                                                      unique=True,
+                                                      blank=False,
+                                                      null=True,
+                                                      verbose_name=u'Тип Наличие горячей воды')
+
+    def __unicode__(self):
+        return self.type_the_presence_of_hot_water
+
+
+class TypePrepayment(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Предоплаты'
+        verbose_name_plural = u'Типы Предоплат'
+
+    type_prepayment = models.CharField(max_length=50,
+                                       unique=True,
+                                       blank=False,
+                                       null=True,
+                                       verbose_name=u'Тип Предоплаты')
+
+    def __unicode__(self):
+        return self.type_prepayment
+
+
+class TypeWindows(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Окна'
+        verbose_name_plural = u'Типы Окон'
+
+    type_windows = models.CharField(max_length=50,
+                                    unique=True,
+                                    blank=False,
+                                    null=True,
+                                    verbose_name=u'Тип Окна')
+
+    def __unicode__(self):
+        return self.type_windows
+
+
+class TypeHeating(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Отопления'
+        verbose_name_plural = u'Типы Отоплений'
+
+    type_heating = models.CharField(max_length=50,
+                                    unique=True,
+                                    blank=False,
+                                    null=True,
+                                    verbose_name=u'Тип Отопления')
+
+    def __unicode__(self):
+        return self.type_heating
+
+
+class TypeLavatory(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Санузла'
+        verbose_name_plural = u'Типы Санузлов'
+
+    type_lavatory = models.CharField(max_length=50,
+                                     unique=True,
+                                     blank=False,
+                                     null=True,
+                                     verbose_name=u'Тип Санузла')
+
+    def __unicode__(self):
+        return self.type_lavatory
+
+
+class TypeFurniture(models.Model):
+    class Meta(object):
+        verbose_name = u'Тип Мебели'
+        verbose_name_plural = u'Типы Мебели'
+
+    type_furniture = models.CharField(max_length=50,
+                                      unique=True,
+                                      blank=False,
+                                      null=True,
+                                      verbose_name=u'Тип Мебели')
+
+    def __unicode__(self):
+        return self.type_furniture
 
 
 class AddressFacilityData(models.Model):
@@ -294,7 +432,8 @@ class AddressFacilityData(models.Model):
                                   verbose_name=u'Комиссия',
                                   blank=True,
                                   null=True)
-
+    # end Состояние объекта
+    # start Реклама объекта
     currency = models.ForeignKey(NationalCarrency,
                                  blank=True,
                                  null=True,
@@ -304,7 +443,80 @@ class AddressFacilityData(models.Model):
 
     images_count = models.IntegerField(verbose_name=u'Количество фото', editable=False, default=0)
 
-    # end Состояние объекта
+    title = models.CharField(max_length=250,
+                             verbose_name=u'Заголовок',
+                             blank=True,
+                             null=True)
+
+    youtube = models.CharField(max_length=250,
+                               verbose_name=u'YouTube',
+                               blank=True,
+                               null=True)
+
+    panorama = models.CharField(max_length=250,
+                                verbose_name=u'Панорама',
+                                blank=True,
+                                null=True)
+    # end Реклама объекта
+
+    # start Дополнительные параметры
+    number_of_persons = models.ManyToManyField(TypeNumberOfPerson,
+                                               blank=True,
+                                               verbose_name=u'Количество человек')
+
+    equipment = models.ManyToManyField(TypeEquipment,
+                                       blank=True,
+                                       verbose_name=u'Техника')
+
+    the_presence_of_hot_water = models.ForeignKey(TypeThePresenceOfHotWater,
+                                                  blank=True,
+                                                  null=True,
+                                                  on_delete=models.PROTECT,
+                                                  verbose_name=u'Состояние')
+
+    lot = models.IntegerField(verbose_name=u'Участок', blank=True, null=True)
+
+    sleeps = models.IntegerField(verbose_name=u'Спальных мест', blank=True, null=True)
+
+    where_to_stay = models.ManyToManyField(TypeWhereToStay,
+                                           blank=True,
+                                           verbose_name=u'Где спать ?')
+
+    prepayment = models.ForeignKey(TypePrepayment,
+                                   blank=True,
+                                   null=True,
+                                   on_delete=models.PROTECT,
+                                   verbose_name=u'Предоплата')
+
+    windows = models.ForeignKey(TypeWindows,
+                                blank=True,
+                                null=True,
+                                on_delete=models.PROTECT,
+                                verbose_name=u'Окна')
+
+    heating = models.ForeignKey(TypeHeating,
+                                blank=True,
+                                null=True,
+                                on_delete=models.PROTECT,
+                                verbose_name=u'Отопление')
+
+    lavatory = models.ForeignKey(TypeLavatory,
+                                 blank=True,
+                                 null=True,
+                                 on_delete=models.PROTECT,
+                                 verbose_name=u'Санузел')
+
+    furniture = models.ForeignKey(TypeFurniture,
+                                  blank=True,
+                                  null=True,
+                                  on_delete=models.PROTECT,
+                                  verbose_name=u'Мебель')
+
+    date_of_renovation = models.DateTimeField(verbose_name=u'Дата обновления', auto_now=True)
+
+    date_added = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)
+
+    public = models.BooleanField(verbose_name=u'Публикуеться', default=0)
 
     def __unicode__(self):
         return '%s' % (self.id)

@@ -6,17 +6,13 @@
                                     <div class="row">
                                         <div class="col-md-3 object-img popup-gallery-{{ object_data.id }}">
                                             {% for image in images %}
-                                                {% if forloop.counter %}
-                                                    {{ forloop.counter }}
-                                                    {% if object_data.id == image.album_id %}
-                                                        <a href="{{ MEDIA_URL }}{{ image.image }}"><img src="{{ MEDIA_URL }}{{ image.image }}" alt=""></a>
+                                                {% if object_data.id == image.album_id %}
+                                                        <a href="{{ MEDIA_URL }}{{ image.image }}">
+                                                            {% if image.cover %}
+                                                                <img src="{{ MEDIA_URL }}{{ image.image }}" alt=""></a>
+                                                            {% endif %}
                                                     {% endif %}
-                                                {% else %}
-                                                    {% if object_data.id == image.album_id %}
-                                                        <a href="{{ MEDIA_URL }}{{ image.image }}"></a>
-                                                    {% endif %}
-                                                {% endif %}
-                                                <span class="label label-default img-count">{{ forloop.counter }}</span>
+                                                <span class="label label-default img-count">{{ object_data.images_count }}</span>
                                             {% empty %}
                                                 NO PHOTO
                                             {% endfor %}
@@ -43,8 +39,10 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <h2 class="object-id">
-                                                        <a href="#">ID {{ object_data.id }}</a>{# id object #}
-                                                        <i class="fa fa-globe"></i>
+                                                        <a href="#">ID {{ object_data.id }}</a>
+                                                        {% if object_data.public %}
+                                                            <i class="fa fa-globe"></i>
+                                                        {% endif %}
                                                         {% if object_data.vip_owner %}
                                                             <i class="fa fa-star"></i>
                                                         {% endif %}
@@ -156,7 +154,8 @@
                                                     </p>
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
-                                                        <i class="fa fa-calendar"></i>  10 мая 2016 18:53
+                                                        <i class="fa fa-calendar"></i>
+                                                        {{ object_data.date_of_renovation }}
                                                     </p>
                                                 </div>
                                             </div>

@@ -3,3 +3,4 @@ settings.py
 .idea/
 #extuser/migrations/
 #setting_street/migrations/
+media/

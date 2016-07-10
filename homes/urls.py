@@ -7,7 +7,9 @@ from homes import views
 urlpatterns = [
     # site pages menu
     url(r'^$', views.homes, name='homes'),
-    url(r'^objects$', views.object_list, name='objects'),
+    url(r'^objects/$', views.object_list, name='objects'),
+    url(r'^selling/$', views.object_list, {'arg': 'selling'}, name='selling'),
+    url(r'^arend/$', views.object_list, {'arg': 'arend'}, name='arend'),
     url(r'^buyers$', views.buyers_list, name='buyers'),
     url(r'^maklers$', views.maklers_list, name='maklers'),
     url(r'^arendators$', views.arendators_list, name='arendators'),
