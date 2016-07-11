@@ -6049,6 +6049,7 @@ body {
 .content .object-card .object-info .object-commission,
 .content .object-card .object-info .object-edit,
 .content .object-card .object-info .object-stat,
+.content .object-card .object-info .object-ut-data,
 .content .object-card .object-info .object-data-view,
 .content .object-card .object-info .object-data-update {
   font-size: 12px;
@@ -6093,7 +6094,11 @@ body {
 .content .object-card .object-info .object-stat {
   color: #40d3b7;
 }
-.content .object-card .object-info .object-stat select {
+.content .object-card .object-info .object-ut-data {
+  color: #fffa90;
+}
+.content .object-card .object-info .object-stat select,
+.content .object-card .object-info .object-ut-data select {
   width: 90%;
   min-width: 80px;
 }
@@ -6457,7 +6462,8 @@ body {
   .object-edit,
   .object-stat,
   .object-data-view,
-  .object-data-update {
+  .object-data-update,
+  .object-ut-data{
     font-size: 16px !important;
   }
 }

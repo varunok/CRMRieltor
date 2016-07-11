@@ -10,7 +10,8 @@ from itertools import chain
 from notes.models import Notes
 from setting_street.models import Street, District, Subway
 from facility.forms import AddressFacilityForm
-from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeOperations
+from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeOperations, TypeFacility, TypeActuality
+from setting_globall.models import NationalCarrency
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -32,6 +33,13 @@ def object_list(request, arg='objects'):
         contact_owner = ContactOwner.objects.filter(list_operations__in=[2,3])
     else:
         contact_owner = ContactOwner.objects.all()
+
+    order_by = request.GET.get('order_by', '')
+    if order_by in ('id', 'price_bay', 'price_month', 'total_area', 'date_of_renovation', 'review_date'):
+        contact_owner = contact_owner.order_by(order_by)
+    if request.GET.get('reverse', '') == '1':
+        contact_owner = contact_owner.reverse()
+
     paginator = Paginator(contact_owner, 10)
     page = request.GET.get('page')
     try:
@@ -42,13 +50,23 @@ def object_list(request, arg='objects'):
         contact_owner = paginator.page(paginator.num_pages)
     addres_facility_data_list = AddressFacilityData.objects.all()
     images = ImagesFacility.objects.all()
+    nac_carrency = NationalCarrency.objects.get(id=1)
+    type_facility = TypeFacility.objects.all()
+    list_carrency = NationalCarrency.objects.all()
+    type_actuality = TypeActuality.objects.all()
+    list_district = District.objects.all()
     return render(request, 'homes/objects.html', {'time': timezone.now(),
                                                   'addres_facility_data_list': addres_facility_data_list,
                                                   'contact_owner': contact_owner,
                                                   'images': images,
+                                                  'nac_carrency': nac_carrency,
                                                   'all_contact_owner_se': all_contact_owner_se,
                                                   'all_contact_owner_ad': all_contact_owner_ad,
-                                                  'all_contact_owner': all_contact_owner})
+                                                  'all_contact_owner': all_contact_owner,
+                                                  'type_facility': type_facility,
+                                                  'list_carrency': list_carrency,
+                                                  'type_actuality': type_actuality,
+                                                  'list_district': list_district})
 
 @login_required
 def buyers_list(request):

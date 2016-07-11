@@ -39,20 +39,20 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <h2 class="object-id">
-                                                        <a href="#">ID {{ object_data.id }}</a>
-                                                        {% if object_data.public %}
+                                                        <a href="#">ID {{ object_data.id }}</a> {# id object #}
+                                                        {% if object_data.public %} {# if object public show glob #}
                                                             <i class="fa fa-globe"></i>
                                                         {% endif %}
-                                                        {% if object_data.vip_owner %}
+                                                        {% if object_data.vip_owner %} {# if object vip show star#}
                                                             <i class="fa fa-star"></i>
                                                         {% endif %}
-                                                        <span class="object-price-buy">
-                                                            {{ object_data.price_bay }}
-                                                            {{ object_data.currency }}
+                                                        <span class="object-price-buy"> {# object price #}
+                                                            {{ object_data.price_bay }}$
+                                                            {#{{ object_data.currency }}#}
                                                         </span>
                                                         <span class="object-price-arend">
-                                                            {{ object_data.price_month }}
-                                                            {{ object_data.currency }}
+                                                            {{ object_data.price_month }} {# object price arend #}
+                                                            {{ nac_carrency }}
                                                         </span>
                                                     </h2>
                                                     <p class="object-type">
@@ -141,17 +141,29 @@
                                                         <a href="#"><i class="fa fa-eye"></i> </a>
                                                         <a href="#"><i class="fa fa-times"></i> </a>
                                                     </p>
-                                                    <p class="object-stat">
-                                                       <i class="fa fa-check-circle-o"></i>
-                                                        {% if object_data.actuality %}
+                                                    {% if object_data.actuality.id == 3 %} {# актуальність обєкту #}
+                                                        <p class="object-ut-data">
+                                                            <i class="fa fa-question-circle-o"></i>
                                                             {{ object_data.actuality|upper }}
-                                                        {% endif %}
+                                                        </p>
+                                                    {% elif object_data.actuality.id == 1 %}
+                                                        <p class="object-stat">
+                                                            <i class="fa fa-check-circle-o"></i>
+                                                            {{ object_data.actuality|upper }}
+                                                        </p>
+                                                    {% elif object_data.actuality.id == 2 %}
+                                                        <p class="object-no-interes">
+                                                            <i class="fa fa-minus-circle"></i>
+                                                            {{ object_data.actuality|upper }}
+                                                        </p>
+                                                    {% endif %}
+{#                                                    {%   if object_data.review_date >= time %}#}
+                                                        <p class="object-data-view">
+                                                            Дата пересмотра<br>
+                                                            <i class="fa fa-calendar"></i>
+                                                        {{ object_data.review_date|timeuntil:time }}
                                                     </p>
-                                                    <p class="object-data-view">
-                                                       Дата пересмотра<br>
-                                                        <i class="fa fa-calendar"></i>
-                                                        {{ object_data.review_date|date:'d E Y' }} {{ object_data.review_time }}
-                                                    </p>
+{#                                                    {% endif %}#}
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
                                                         <i class="fa fa-calendar"></i>

@@ -4,7 +4,7 @@
 
 import os
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django import forms
 from facility.models import TypeFacility
 from django.utils import timezone, dateformat
@@ -19,10 +19,10 @@ from django.contrib.auth.models import User
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
 
+
 def add_facility(request):
     if request.method == 'POST':
         form = AddressFacilityForm(request.POST, request.FILES)
-        print (form.errors)
         if form.is_valid():
             form.save()
             phone_numb = ContactOwner.objects.last()
@@ -35,7 +35,7 @@ def add_facility(request):
                                           db_phone_owner=phone_numb.phone_owner_plus)
             db_phone.save()
             save_photo(request, phone_numb.id)
-            return object_list(request)
+            return HttpResponseRedirect('/objects/')
         else:
             form = change_form_text(form)
         return add_object(request, form)

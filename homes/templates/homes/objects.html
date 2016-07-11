@@ -35,11 +35,10 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="typeobj">Тип объекта</label>
-                                    <select class="multiple" multiple="multiple" placeholder="-----">
-                                        <option>Дом</option>
-                                        <option>Квартира</option>
-                                        <option>Комната</option>
-                                        <option>Участок</option>
+                                    <select id="type_facility" class="multiple" multiple="multiple" placeholder="-----">
+                                        {% for facility in type_facility %}
+                                            <option value="{{ facility.id }}">{{ facility.type_facility }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -50,17 +49,18 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input type="text" placeholder="От">
+                                                    <input id="price_on" type="text" placeholder="От">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" placeholder="До">
+                                                    <input id="price_for" type="text" placeholder="До">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <select name="" id="" style="min-width: 100%">
-                                                <option value="">$</option>
-                                                <option value="">грн.</option>
+                                            <select name="" id="currency" style="min-width: 100%">
+                                                {% for carrency in list_carrency %}
+                                                    <option value="{{ carrency.currency.id }}">{{ carrency.currency }}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
@@ -69,11 +69,11 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="actual">Актуальность</label>
-                                    <select>
+                                    <select id="actuality">
                                         <option selected="selected">-----</option>
-                                        <option>Активно сдаем</option>
-                                        <option>Уточнить данные</option>
-                                        <option>Неинтересно</option>
+                                        {% for actuality in type_actuality %}
+                                            <option value="{{ actuality.type_actuality.id }}">{{ actuality.type_actuality }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -82,10 +82,10 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Район</label>
-                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="tarea">
-                                        <option>Духовец</option>
-                                        <option>Курский</option>
-                                        <option>Центральный</option>
+                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="district">
+                                        {% for district in list_district %}
+                                            <option value="{{ district.district.id }}">{{ district.district }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -271,8 +271,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 btn-search">
-                                <a href="#" class="btn btn-red">Очистить</a>
-                                <a href="#" class="btn btn-blue">Применить</a>
+                                <a href="{% url request.path|cut:'/' %}" class="btn btn-red">Очистить</a>
+                                <a id="search_obj" href="#" class="btn btn-blue">Применить</a>
                             </div>
                         </div>
                     </div>
@@ -293,13 +293,50 @@
                             <li {% if '/arend' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'arend' %}">Сдам <span class="label label-default">{{ all_contact_owner_ad|length }}</span></a></li>
                         </ul>
                         <ul class="object-filter">
-                            <li><a href="#">Артикул</a></li>
-                            <li><a href="#">Цена</a></li>
-                            <li><a href="#">Адрес</a></li>
-                            <li><a href="#">Кол. изображений</a></li>
-                            <li><a href="#">Состояние</a></li>
-                            <li><a href="#">Добавлен</a></li>
-                            <li><a href="#">Активность</a></li>
+                            {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'id' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'id' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Артикул
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=price_bay{% if order_by == 'price_bay' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'price_bay' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'price_bay' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Цена продажи
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=price_month{% if order_by == 'price_month' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'price_month' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'price_month' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Цена аренди
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=total_area{% if order_by == 'total_area' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'total_area' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'total_area' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Метраж
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=date_of_renovation{% if order_by == 'date_of_renovation' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'date_of_renovation' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'date_of_renovation' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Дата обновления
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=review_date{% if order_by == 'review_date' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'review_date' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'review_date' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Дата пересмотра
+                                </a></li>
+                            {% endwith %}
                         </ul>
                     </div>
                 </div>
@@ -311,17 +348,19 @@
                     {% endif %}
                 {% endfor %}
                 {% if contact_owner.has_other_pages %}
-                    <div class="col-md-12 section-pagination">
-                        <ul class="pagination">
-                            <li><a href="{% url request.path|cut:'/' %}?page=1">&laquo;</a></li>
-                            {% for p in contact_owner.paginator.page_range %}
-                                <li {% if contact_owner.number == p %}class="active"{% endif %}>
-                                    <a href="{% url request.path|cut:'/' %}?page={{ p }}">{{ p }}</a>
-                                </li>
-                            {% endfor %}
-                            <li><a href="{% url request.path|cut:'/' %}?page={{ contact_owner.paginator.num_pages}}">&raquo;</a></li>
-                        </ul>
-                    </div>
+                    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+                        <div class="col-md-12 section-pagination">
+                            <ul class="pagination">
+                                <li><a href="{% url request.path|cut:'/' %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a></li>
+                                {% for p in contact_owner.paginator.page_range %}
+                                    <li {% if contact_owner.number == p %}class="active"{% endif %}>
+                                        <a href="{% url request.path|cut:'/' %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li><a href="{% url request.path|cut:'/' %}?page={{ contact_owner.paginator.num_pages}}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    {% endwith %}
                 {% endif %}
             </div>
         </div>
@@ -369,10 +408,24 @@
                     tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
                 }
             });
-{#            $('#selling').on('click', function (event) {#}
-{#                event.preventDefault();#}
-{#                $.get('objects', {"selling":"selling"})#}
-{#            })#}
+            $('#search_obj').on('click', function (event) {
+                event.preventDefault();
+                var type_facility = $('#type_facility').val();
+                var price_on = $('#price_on').val();
+                var price_for = $('#price_for').val();
+                var currency = $('#currency').val();
+                var actuality = $('#actuality').val();
+                var district = $('#district').val();
+                var list_data = {
+                    "type_facility": type_facility,
+                    "price_on": price_on,
+                    "price_for": price_for,
+                    "carrency": currency,
+                    "actuality": actuality,
+                    "district": district
+                };
+                $.get('search_obj', list_data)
+            })
         });
     </script>
 {% endblock extra_js %}

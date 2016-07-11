@@ -2,15 +2,13 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponseRedirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.utils import timezone, dateformat
 from django.contrib.auth.models import User
-from extuser.models import UsersGroupExtUser
-from extuser.models import MyUser
+from extuser.models import UsersGroupExtUser, MyUser
 from django.contrib.auth.decorators import login_required
 
 
@@ -31,7 +29,7 @@ def login_user(request):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect('/')
 
 @login_required
 def logout_user(request):
