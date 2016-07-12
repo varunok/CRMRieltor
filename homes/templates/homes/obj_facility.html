@@ -109,10 +109,10 @@
                                                     </p>
                                                     <p class="object-comment">
                                                         <span>Комментарий:</span>
-                                                        {{ object_data.comment }}
+                                                        {{ object_data.comment }} {# коментарі до обєкту #}
                                                     </p>
                                                 </div>
-                                                <div class="col-md-2 col-sm-6 prop">
+                                                <div class="col-md-2 col-sm-6 prop" style="padding: 0;">
                                                     <p class="object-prop">
                                                         <i class="fa fa-user"></i>
                                                         {{ object_data.name_owner }}
@@ -123,7 +123,7 @@
                                                     <p class="object-data-call">
                                                         Дата звонка<br>
                                                         <i class="fa fa-calendar"></i>
-                                                        {{ object_data.call_date|date:'d E Y' }} {{ object_data.call_time }}
+                                                        {{ object_data.call_date|date:'d E Y' }} {{ object_data.call_time|time:'H:i' }}
                                                     </p>
                                                     <p class="object-commission">
                                                         Комиссия: <span>
@@ -134,7 +134,7 @@
                                                         </span>
                                                     </p>
                                                 </div>
-                                                <div class="col-md-2 col-sm-6 edit">
+                                                <div class="col-md-2 col-sm-6 edit" style="padding-left: 0;">
                                                     <p class="object-edit">
                                                     <a href="#"><i class="fa fa-link"></i> </a>
                                                         <a href="#"><i class="fa fa-pencil"></i> </a>
@@ -167,7 +167,7 @@
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
                                                         <i class="fa fa-calendar"></i>
-                                                        {{ object_data.date_of_renovation }}
+                                                        {{ object_data.date_of_renovation|date:'d E Y H:i' }}
                                                     </p>
                                                 </div>
                                             </div>

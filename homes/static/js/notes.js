@@ -53,5 +53,4 @@ $(document).ready(function() {
                 th.next('.date').html('<i class="fa fa-clock-o"></i>'+data.date)
             });
         });
-
 })

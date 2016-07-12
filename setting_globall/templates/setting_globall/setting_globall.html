@@ -30,9 +30,16 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" placeholder="нац. валюта" id="nat_currency">
+{#                            <input type="text" placeholder="нац. валюта" >#}
+                            <select name="" id="nat_currency" style="min-width: 100%;">
+                                {% for cur in list_currency  %}
+                                    <option {% if cur.currency_glob == nat_curr.currency %} selected="selected" {% endif %} value="{{ cur }}">{{ cur.currency_glob }}</option>
+
+                                {% endfor %}
+
+                            </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="btn_nat_currency" type="button" value="Сохранить" class="btn btn-green">
                         </div>
                     </div>

@@ -59,7 +59,7 @@
                                         <div class="col-md-4">
                                             <select name="" id="currency" style="min-width: 100%">
                                                 {% for carrency in list_carrency %}
-                                                    <option value="{{ carrency.currency.id }}">{{ carrency.currency }}</option>
+                                                    <option value="{{ carrency.id }}">{{ carrency.currency }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -72,7 +72,7 @@
                                     <select id="actuality">
                                         <option selected="selected">-----</option>
                                         {% for actuality in type_actuality %}
-                                            <option value="{{ actuality.type_actuality.id }}">{{ actuality.type_actuality }}</option>
+                                            <option value="{{ actuality.id }}">{{ actuality.type_actuality }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -84,7 +84,7 @@
                                     <label for="tarea">Район</label>
                                     <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="district">
                                         {% for district in list_district %}
-                                            <option value="{{ district.district.id }}">{{ district.district }}</option>
+                                            <option value="{{ district }}">{{ district.district }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -94,10 +94,10 @@
                                     <label for="price">Площадь</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="От">
+                                            <input id="area_for" type="text" placeholder="От">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="До">
+                                            <input id="area_to" type="text" placeholder="До">
                                         </div>
                                     </div>
                                 </div>
@@ -105,11 +105,11 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="stat">Состояние</label>
-                                    <select>
+                                    <select id="condition">
                                         <option selected="selected">-----</option>
-                                        <option>Ищем</option>
-                                        <option>Незвонить</option>
-                                        <option>Занят арендатором</option>
+                                        {% for condition in list_conditions %}
+                                            <option value="{{ condition.id }}">{{ condition }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -118,19 +118,19 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="idobj">ID Объекта</label>
-                                    <input type="text" placeholder="-----">
+                                    <input type="text" placeholder="-----" id="id_obj">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Телефон</label>
-                                    <input type="text" placeholder="-----">
+                                    <input type="text" placeholder="-----" id="phone_obj">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Пересмотр <i class="fa fa-calendar"></i></label>
-                                    <input id="peresmotr" type="text" placeholder="-----">
+                                    <input id="peresmotr" type="text" placeholder="-----" >
                                 </div>
                             </div>
                         </div>
@@ -271,7 +271,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 btn-search">
-                                <a href="{% url request.path|cut:'/' %}" class="btn btn-red">Очистить</a>
+                                <a id="clean_list" href="#" class="btn btn-red">Очистить</a>
                                 <a id="search_obj" href="#" class="btn btn-blue">Применить</a>
                             </div>
                         </div>
@@ -416,16 +416,40 @@
                 var currency = $('#currency').val();
                 var actuality = $('#actuality').val();
                 var district = $('#district').val();
+                var area_for = $('#area_for').val();
+                var area_to = $('#area_to').val();
+                var condition = $('#condition').val();
+                var id_obj = $('#id_obj').val();
+                var phone_obj = $('#phone_obj').val();
+                var peresmotr = $('#peresmotr').val();
                 var list_data = {
+                    "search": true,
                     "type_facility": type_facility,
                     "price_on": price_on,
                     "price_for": price_for,
                     "carrency": currency,
                     "actuality": actuality,
-                    "district": district
+                    "district": district,
+                    "area_for": area_for,
+                    "area_to": area_to,
+                    "condition": condition,
+                    "id_obj": id_obj,
+                    "phone_obj": phone_obj,
+                    "peresmotr": peresmotr
                 };
-                $.get('search_obj', list_data)
+                $.get('', list_data, function (data) {
+                    $('.search-object').html(data)
+                })
+            });
+
+            $('#clean_list').on('click', function (event) {
+                event.preventDefault();
+                $.get('', {'back_res':true}, function (data) {
+                    console.log(data);
+                    $('.search-object').html(data).fadeIn()
+                })
             })
+
         });
     </script>
 {% endblock extra_js %}

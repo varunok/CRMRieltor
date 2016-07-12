@@ -6038,6 +6038,7 @@ body {
 }
 .content .object-card .object-info .object-comment {
   border-top: 1px solid #eee;
+  word-break: break-all;
 }
 .content .object-card .object-info .object-comment span {
   font-weight: bold;
@@ -6521,6 +6522,7 @@ input[type="email"] {
     font-family: "Calibri", "Trebuchet MS", "Helvetica", sans-serif;
     font-size: 1.3em;
     text-align: center;
+    opacity: 0.7;
 }
 
 .upload_file{

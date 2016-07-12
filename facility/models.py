@@ -386,17 +386,16 @@ class AddressFacilityData(models.Model):
                                        blank=True,
                                        null=True)
 
-    total_area = models.CharField(max_length=10,
-                                  verbose_name=u'Общая площадь',
-                                  blank=True,
-                                  null=True)
+    total_area = models.IntegerField(verbose_name=u'Общая площадь',
+                                     blank=True,
+                                     null=True)
 
     payments = models.CharField(max_length=100,
                                 verbose_name=u'Платежи',
                                 blank=True,
                                 null=True)
 
-    rooms = models.CharField(max_length=10,
+    rooms = models.CharField(max_length=11,
                              verbose_name=u'Комнат',
                              blank=True,
                              null=True)
