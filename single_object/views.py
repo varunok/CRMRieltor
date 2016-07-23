@@ -117,3 +117,9 @@ def get_tasks(request):
 def get_comment(request):
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so'])
     return render(request, 'single_object/comments.html', {"single_obj_comments": data_comment})
+
+
+class DatabasesPrevious(SingleObjectView):
+    slug_url_kwarg = 'poid'
+    slug_field = 'id'
+    template_name = 'single_object/previous.html'

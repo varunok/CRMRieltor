@@ -75,7 +75,7 @@
                                                                     --
                                                                 {% endif %}
                                                                 / {{ object_data.floor }}
-                                                                
+
                                                             {% endif %}
                                                         {% endif %}
                                                         <i class="fa fa-expand"></i>
@@ -142,7 +142,7 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-6 edit" style="padding-left: 0;">
                                                     <p class="object-edit">
-                                                    <a href="#"><i class="fa fa-link"></i> </a>
+                                                    <a href="{% url "databases" object_data.id %}" target="_blank"><i class="fa fa-link"></i> </a>
                                                         <a href="#"><i class="fa fa-pencil"></i> </a>
                                                         <a href="#"><i class="fa fa-eye"></i> </a>
                                                         <a href="#"><i id-obj="{{ object_data.id }}" class="fa fa-times"></i> </a>

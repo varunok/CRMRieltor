@@ -38,6 +38,15 @@ class Migration(migrations.Migration):
                 ('rooms', models.CharField(max_length=10, null=True, verbose_name='\u041a\u043e\u043c\u043d\u0430\u0442', blank=True)),
                 ('comment', models.TextField(null=True, verbose_name='\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439')),
                 ('commission', models.CharField(max_length=10, null=True, verbose_name='\u041a\u043e\u043c\u0438\u0441\u0441\u0438\u044f', blank=True)),
+                ('images_count', models.IntegerField(default=0, verbose_name='\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0444\u043e\u0442\u043e', editable=False)),
+                ('title', models.CharField(max_length=250, null=True, verbose_name='\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a', blank=True)),
+                ('youtube', models.CharField(max_length=250, null=True, verbose_name='YouTube', blank=True)),
+                ('panorama', models.CharField(max_length=250, null=True, verbose_name='\u041f\u0430\u043d\u043e\u0440\u0430\u043c\u0430', blank=True)),
+                ('lot', models.IntegerField(null=True, verbose_name='\u0423\u0447\u0430\u0441\u0442\u043e\u043a', blank=True)),
+                ('sleeps', models.IntegerField(null=True, verbose_name='\u0421\u043f\u0430\u043b\u044c\u043d\u044b\u0445 \u043c\u0435\u0441\u0442', blank=True)),
+                ('date_of_renovation', models.DateTimeField(auto_now=True, verbose_name='\u0414\u0430\u0442\u0430 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f')),
+                ('date_added', models.DateTimeField(auto_now_add=True, verbose_name='\u0414\u0430\u0442\u0430 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f')),
+                ('public', models.BooleanField(default=0, verbose_name='\u041f\u0443\u0431\u043b\u0438\u043a\u0443\u0435\u0442\u044c\u0441\u044f')),
             ],
             options={
                 'verbose_name': '\u0410\u0434\u0440\u0435\u0441\u0441 \u043e\u0431\u0435\u043a\u0442\u0430',
@@ -57,10 +66,11 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='ImagesAlbum',
+            name='ImagesFacility',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('image', models.ImageField(upload_to=b'img_obj', max_length=255, verbose_name='\u0424\u043e\u0442\u043e')),
+                ('image', models.ImageField(upload_to=b'img_obj', verbose_name='\u0424\u043e\u0442\u043e')),
+                ('cover', models.BooleanField(default=0, verbose_name='\u041e\u0431\u043b\u043e\u0436\u043a\u0430')),
             ],
             options={
                 'verbose_name': '\u0424\u043e\u0442\u043e \u043e\u0431\u0435\u043a\u0442\u0430',
@@ -122,6 +132,17 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='TypeEquipment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_equipment', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u0442\u0435\u0445\u043d\u0438\u043a\u0438')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u0442\u0435\u0445\u043d\u0438\u043a\u0438',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u0442\u0435\u0445\u043d\u0438\u043a',
+            },
+        ),
+        migrations.CreateModel(
             name='TypeFacility',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -130,6 +151,50 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': '\u0422\u0438\u043f \u043e\u0431\u0435\u043a\u0442\u0430',
                 'verbose_name_plural': '\u0422\u0438\u043f\u044b \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeFurniture',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_furniture', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041c\u0435\u0431\u0435\u043b\u0438')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041c\u0435\u0431\u0435\u043b\u0438',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041c\u0435\u0431\u0435\u043b\u0438',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeHeating',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_heating', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041e\u0442\u043e\u043f\u043b\u0435\u043d\u0438\u044f')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041e\u0442\u043e\u043f\u043b\u0435\u043d\u0438\u044f',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041e\u0442\u043e\u043f\u043b\u0435\u043d\u0438\u0439',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeLavatory',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_lavatory', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u0421\u0430\u043d\u0443\u0437\u043b\u0430')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u0421\u0430\u043d\u0443\u0437\u043b\u0430',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u0421\u0430\u043d\u0443\u0437\u043b\u043e\u0432',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeNumberOfPerson',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_number_of_persons', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a',
             },
         ),
         migrations.CreateModel(
@@ -144,6 +209,17 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='TypePrepayment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_prepayment', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u044b')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u044b',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442',
+            },
+        ),
+        migrations.CreateModel(
             name='TypeRepairs',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -152,6 +228,39 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': '\u0422\u0438\u043f \u0440\u0435\u043c\u043e\u043d\u0442\u0430',
                 'verbose_name_plural': '\u0422\u0438\u043f\u044b \u0440\u0435\u043c\u043e\u043d\u0442\u0430',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeThePresenceOfHotWater',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_the_presence_of_hot_water', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0433\u043e\u0440\u044f\u0447\u0435\u0439 \u0432\u043e\u0434\u044b')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0433\u043e\u0440\u044f\u0447\u0435\u0439 \u0432\u043e\u0434\u044b',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041d\u0430\u043b\u0438\u0447\u0438\u0435 \u0433\u043e\u0440\u044f\u0447\u0435\u0439 \u0432\u043e\u0434\u044b',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeWhereToStay',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_where_to_stay', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u0413\u0434\u0435 \u0441\u043f\u0430\u0442\u044c?')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u0413\u0434\u0435 \u0441\u043f\u0430\u0442\u044c?',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u0413\u0434\u0435 \u0441\u043f\u0430\u0442\u044c?',
+            },
+        ),
+        migrations.CreateModel(
+            name='TypeWindows',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_windows', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041e\u043a\u043d\u0430')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041e\u043a\u043d\u0430',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041e\u043a\u043e\u043d',
             },
         ),
         migrations.CreateModel(
@@ -189,6 +298,11 @@ class Migration(migrations.Migration):
             bases=('facility.addressfacilitydata',),
         ),
         migrations.AddField(
+            model_name='imagesfacility',
+            name='album',
+            field=models.ForeignKey(related_name='photos', verbose_name='\u0410\u043b\u044c\u0431\u043e\u043c', to='facility.AddressFacilityData'),
+        ),
+        migrations.AddField(
             model_name='addressfacilitydata',
             name='actuality',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0410\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u044c', blank=True, to='facility.TypeActuality', null=True),
@@ -210,8 +324,23 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='addressfacilitydata',
-            name='image',
-            field=models.ForeignKey(related_name='photo', on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0424\u043e\u0442\u043e', to='facility.ImagesAlbum'),
+            name='equipment',
+            field=models.ManyToManyField(to='facility.TypeEquipment', verbose_name='\u0422\u0435\u0445\u043d\u0438\u043a\u0430', blank=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='furniture',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041c\u0435\u0431\u0435\u043b\u044c', blank=True, to='facility.TypeFurniture', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='heating',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041e\u0442\u043e\u043f\u043b\u0435\u043d\u0438\u0435', blank=True, to='facility.TypeHeating', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='lavatory',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0421\u0430\u043d\u0443\u0437\u0435\u043b', blank=True, to='facility.TypeLavatory', null=True),
         ),
         migrations.AddField(
             model_name='addressfacilitydata',
@@ -222,6 +351,16 @@ class Migration(migrations.Migration):
             model_name='addressfacilitydata',
             name='loyality',
             field=models.ManyToManyField(related_name='loyal', verbose_name='\u041b\u043e\u044f\u043b\u044c\u043d\u043e\u0441\u0442\u044c', to='facility.UserFullName', blank=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='number_of_persons',
+            field=models.ManyToManyField(to='facility.TypeNumberOfPerson', verbose_name='\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a', blank=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='prepayment',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041f\u0440\u0435\u0434\u043e\u043f\u043b\u0430\u0442\u0430', blank=True, to='facility.TypePrepayment', null=True),
         ),
         migrations.AddField(
             model_name='addressfacilitydata',
@@ -245,6 +384,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='addressfacilitydata',
+            name='the_presence_of_hot_water',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0421\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435', blank=True, to='facility.TypeThePresenceOfHotWater', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
             name='type_building_data',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0421\u0442\u0440\u043e\u0435\u043d\u0438\u0435', to_field=b'type_building', blank=True, to='facility.TypeBuilding', null=True),
         ),
@@ -252,6 +396,16 @@ class Migration(migrations.Migration):
             model_name='addressfacilitydata',
             name='type_facilit',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0422\u0438\u043f \u043e\u0431\u0435\u043a\u0442\u0430', to_field=b'type_facility', to='facility.TypeFacility', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='where_to_stay',
+            field=models.ManyToManyField(to='facility.TypeWhereToStay', verbose_name='\u0413\u0434\u0435 \u0441\u043f\u0430\u0442\u044c ?', blank=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
+            name='windows',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041e\u043a\u043d\u0430', blank=True, to='facility.TypeWindows', null=True),
         ),
         migrations.AddField(
             model_name='phoneowner',

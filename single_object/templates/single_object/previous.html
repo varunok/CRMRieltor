@@ -1,0 +1,463 @@
+{% load static from staticfiles %}
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Title</title>
+
+    <link href="{% static "css/reset.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/slider.js" %}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+    <script>
+        function mn(obj) {
+        x=document.getElementById(obj);
+        if(x.style.display == "none") x.style.display = "block";
+        else x.style.display = "none"
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+    <div class="contacts-info">
+        <div class="inner">
+            <div class="address-info">Украина, Одесса, Коблевская, 32</div>
+            <div class="email-info">ofis@gek.od.ua</div>
+            <div class="tell-info">+3 (097) 244-37-90,  +3 (093) 82-555-97</div>
+        </div>
+    </div>
+        <div class="inner">
+            <div class="header-main">
+                <div class="logo">
+                    <a href="/"><img src="img/logo.png" alt="logo"><br></a>
+                    <span>Usatba-krm.dn.ua</span><br>
+                    <i>Краматорск</i>
+                </div>
+                <div class="site-name">
+                    <p>Вся коммерческая недвижимость Одессы только у нас!</p>
+                </div>
+                <div class="phones">
+                    <a href="#" class="call_me flat-green">Оставить заявку</a>
+                    <a href="#" class="add_advert flat-orange">Добавить объявление</a>
+                </div>
+            </div>
+            <nav>
+                <div><a href="/" onClick="mn('mn2'); return false;">МЕНЮ<i class="menu-mob"></i></a></div>
+                <ul class="main-nav" id="mn2">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Недвижимость</a>
+                        <ul class="submenu">
+                            <li><a href="#">Офисы и магазины</a></li>
+                            <li><a href="#">Квартиры и дома</a></li>
+                            <li><a href="#">Бизнес-центры</a></li>
+                            <li><a href="#">Посуточно</a></li>
+                            <li><a href="#">Новострои</a></li>
+                            <li><a href="#">Зарубежная недвижимость</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Статьи</a></li>
+                    <li><a href="#">Доверие</a></li>
+                    <li><a href="#">Расчет коммунальных</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="breadcrumbs-back">
+        <div class="breadcrumbs">
+                <a href="#">На главную</a> / <a href="#">Недвижимость</a> / <a href="#">Бизнес-центры</a>
+            </div>
+            <div class="go-back">
+                <a href="#">Вернуться в поиск</a>
+            </div>
+    </section>
+
+    <section id="all-offers">
+        <div class="bc-title-inner vip-title bc-vip-title"><span>Аренда магазина, Одесса, Одесская обл.</span> <img src="img/vip.png"></div>
+
+
+            <section id="content">
+                <h1 class="desc-inner-arend">Аренда магазина на ул. Терешковой <span class="price-green">5500 грн ($ 400)</span><a href="#" class="osmotr-btn">Заказать осмотр</a></h1>
+                <div class="bc-slider-wrapp">
+                    <div class="fotorama" data-nav="thumbs" style="width:1000px;">
+                    <a href="3.jpg"><img src="img/slide/8-arenda-konferents-zala-peregovornaya-komnata.JPG"></a>
+                      <a href="1.jpg"><img src="img/slide/05.jpg"></a>
+                      <a href="2.jpg"><img src="img/slide/316_2.jpg"></a>
+                      <a href="4.jpg"><img src="img/slide/i1874222-img_8456s.jpg"></a>
+                    </div>
+                    <table class="arend-info">
+                        <tr>
+                            <td>
+                            <h2>Информация</h2>
+                                <ul>
+                                    <li><b>Тип:</b> Офис</li>
+                                    <li><b>Площадь:</b> 107 кв.м.</li>
+                                    <li><b>Расположение:</b> <span class="b-hover">Бизнес-центр "Шевченковский"
+                                    <div class="buisnes-center-card">
+                                        <h1>Шевченковский</h1>
+                                        <div><img src="img/bc-card-photo.JPG" width="240" alt=""></div>
+                                        <h2>Базарная 60</h2>
+                                        <ul>
+                                            <li><b>Район:</b>   Центр</li>
+                                            <li><b>Сдаваемых помещений:</b> 4</li>
+                                            <li><b>Общая площадь:</b>   907 м2</li>
+                                            <li><b>Цена за м2:</b>  12 грн</li>
+                                            <li><b>Телефон:</b> Не указан</li>
+                                            <li><b>Email:</b> ofis@gek.od.ua</li>
+                                        </ul>
+                                            <a href="">Подробнее...</a>
+
+                                    </div>
+                                    </span></li>
+                                    <li><b>Этаж:</b> 1 Этаж</li>
+                                    <li><b>ID:</b> 81</li>
+                                    <li><b>Тех. план:</b> <a href="#tplan">Посмотреть</a></li>
+
+                                </ul>
+                            </td>
+                            <td>
+                                <h2>Контакты</h2>
+                                <ul>
+                                    <li><b>Телефон:</b> <span class="text_contact">+38092377318</span></li>
+                                    <li><b>Имя:</b> <span class="text_contact">Вячеслав</span></li>
+                                    <li class="social_icon"><b>Поделиться с друзьями:</b><br><div class="social">
+                        <script type="text/javascript">(function() {
+                          if (window.pluso)if (typeof window.pluso.start == "function") return;
+                          if (window.ifpluso==undefined) { window.ifpluso = 1;
+                            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                            s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+                            s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+                            var h=d[g]('body')[0];
+                            h.appendChild(s);
+                          }})();</script>
+                        <div class="pluso" data-background="transparent" data-options="small,square,line,horizontal,nocounter,theme=04" data-services="google,twitter,vkontakte,facebook,odnoklassniki,moimir,email"></div>
+                        </div></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h2>Описание объекта</h2>
+                                <p>Фасад внутри комплекса ЖК Звездный Городок 1 (год сдачи 2010 , 647 квартир) Нежилой фонд. Свободная планировка. Высокие потолки ( 4,2 метра ) , панорамное остекление трехкамерный профиль КВЕ. Предусмотрено кондиционирование,вытяжная вентиляция, установлены пожарная и охранная сигнализации, система дымоудаления. ,подвал,наземный и подземный паркинг,облагороженная территория. Прекрасно подойдет под офис , детский сад , фитнесс центр, стоматологию , медицинский центр и.т.д.</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="wrap-osmotr">
+                        <a href="#" class="osmotr-btn">Заказать осмотр</a>
+                    </div>
+                </div>
+
+                <div class="bc-map">
+                    <h4>Карта</h4>
+                    <div class="ya-map">
+                        <script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=G2Ve-vjE1NXxpBCHxj7qb3Q2nxWQu_Hz&width=490&height=335&lang=ru_UA&sourceType=constructor"></script>
+                    </div>
+                    <div class="goog-pan">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sru!2sua!4v1435592990554!6m8!1m7!1s-20QEwJgRbom0qhEx2PsJA!2m2!1d46.449449!2d30.745827!3f339.595546202186!4f14.127417764475013!5f0.7820865974627469" width="490" height="335" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+
+                <div class="off-video">
+                    <h4>Видео</h4>
+                    <iframe height="375" src="http://www.youtube.com/embed/Vy0-RsLv0Jg" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="tplan" class="off-plan">
+                    <h4>Технический план</h4>
+                    <img src="img/plan.jpg" height="455" width="919" alt="">
+                    <div class="wrap-osmotr">
+                        <a href="#" class="osmotr-btn">Заказать осмотр</a>
+                    </div>
+                </div>
+
+                <section id="banners">
+        <img src="img/tmp_banner.jpg" alt="banner">
+    </section>
+
+                <section id="services">
+        <h1>Услуги агентства недвижимости</h1>
+        <div class="wrapper-inner">
+            <ul class="list-service">
+                <li>
+                    <div class="description">
+                        <h2>Риелторские услуги</h2>
+                        <p>пр-т. Глушко. Дом сдан и заселен! Большая кухня студия. Отличная планировка. Состояние после строителей: чистовая стяжка пола, стены: шпатлевка, окна МП, дверь входная бронированная, радиаторы, счетчики на воду и электричество.</p>
+                    </div>
+                    <div class="image">
+                        <img src="img/tmp_service.jpg" alt="service">
+                    </div>
+                </li>
+                <li>
+                    <div class="description">
+                        <h2>Недвижимость в кредит</h2>
+                        <p>пр-т. Глушко. Дом сдан и заселен! Большая кухня студия. Отличная планировка. Состояние после строителей: чистовая стяжка пола, стены: шпатлевка, окна МП, дверь входная бронированная, радиаторы, счетчики на воду и электричество.</p>
+                    </div>
+                    <div class="image">
+                        <img src="img/tmp_service1.jpg" alt="service">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+                <div class="list-articles">
+                    <h4>Похожие объекты</h4>
+                    <section id="content">
+                <div class="list-articles">
+                    <ul class="list-objects list-arend">
+                        <li>
+                            <div class="arend-title arend-vip"><p>6 000 грн.  <span class="vip-price">($428)</span><span class="vip-area">45 м.кв.</span></p><img src="img/vip.png" alt="vip"></div>
+                            <div class="image"><a href="#"><img src="img/tmp_arend.jpg" alt="tmp_arend"></a></div>
+                            <table>
+                                <tr>
+                                    <td>Аренда магазина (фасад)</td>
+                                    <td>ID: <span>1340</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="street">Нежинская 73</td>
+                                    <td>Район: <span>центр</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="btn-wrapp"><a href="#" class="btn-green orn osmotr">Заказать осмотр</a><a href="#" class="btn-green">Подробнее</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="reviews">
+                                        <span class="views">15</span>
+                                        <span class="add-date">10.09.2014</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li>
+                            <div class="arend-title arend-vip blue-vip"><p>6 000 грн.  <span class="vip-price">($428)</span><span class="vip-area">45 м.кв.</span></p></div>
+                            <div class="image"><a href="#"><img src="img/tmp_arend.jpg" alt="tmp_arend"></a></div>
+                            <table>
+                                <tr>
+                                    <td>Аренда магазина (фасад)</td>
+                                    <td>ID: <span>1340</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="street">Нежинская 73</td>
+                                    <td>Район: <span>центр</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="btn-wrapp"><a href="#" class="btn-green orn osmotr">Заказать осмотр</a><a href="#" class="btn-green">Подробнее</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="reviews">
+                                        <span class="views">15</span>
+                                        <span class="add-date">10.09.2014</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li>
+                            <div class="arend-title arend-vip blue-vip"><p>6 000 грн.  <span class="vip-price">($428)</span><span class="vip-area">45 м.кв.</span></p></div>
+                            <div class="image"><a href="#"><img src="img/tmp_arend.jpg" alt="tmp_arend"></a></div>
+                            <table>
+                                <tr>
+                                    <td>Аренда магазина (фасад)</td>
+                                    <td>ID: <span>1340</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="street">Нежинская 73</td>
+                                    <td>Район: <span>центр</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="btn-wrapp"><a href="#" class="btn-green orn osmotr">Заказать осмотр</a><a href="#" class="btn-green">Подробнее</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="reviews">
+                                        <span class="views">15</span>
+                                        <span class="add-date">10.09.2014</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </section>
+                </div>
+            </section>
+    </section>
+
+    <div class="clear"></div>
+
+    <section id="banners">
+        <img src="img/tmp_banner.jpg" alt="banner">
+    </section>
+
+    <section id="vip-section">
+        <h5>VIP <img src="img/vip.png" alt="vip"></h5>
+        <div class="slider">
+            <div class="slide-list">
+                <div class="slide-wrap slide-wrap2">
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="img/tmp_vip.jpg" alt="tmp_vip">
+                        <p>Одесса, Таирово<br>Площадь: 235 м.кв.<br>Цена: 5000 у.е.</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="navy prev-slide prev2"></div>
+            <div class="navy next-slide next2"></div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="contacts-from">
+            <div class="header">Свяжитесь с нашим специалистом</div>
+            <div class="form">
+                <form>
+                    <p>Ваше имя <i>*</i></p>
+                    <input type="text" name="name">
+                    <p>Ваш телефон <i>*</i></p>
+                    <input type="text" name="phone">
+                    <p>Ваш E-mail</p>
+                    <input type="email" name="email">
+                    <p>Сообщение</p>
+                    <textarea name="massage" placeholder="Введите ваше сообщение"></textarea>
+                    <input type="submit" value="Отправить">
+                    <span><i>*</i> Поля обязательные для заполнения</span>
+                </form>
+            </div>
+        </div>
+        <div class="list-contacts">
+            <img src="img/tmp_vk_group.jpg" alt="vk">
+        </div>
+        <div class="widget">
+            <img src="img/messenger.jpg" alt="messenger">
+            <p>Рекечинский Вячеслав</p>
+            <span>Менеджер</span>
+            <ul class="l-cont">
+                <li>г. Одесса,<br>ул. Греческая, 15, оф. 13</li>
+                <li>+38 (093) 036-32-24</li>
+                <li><a href="mailto:rieltor@gek.od.ua">rieltor@gek.od.ua</a></li>
+                <li>rieltor_v</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="footer">
+        <div class="inner">
+            <div class="logo">
+                <a href="/"><img src="img/logo.png" alt="logo"><br></a>
+                <span>Usatba-krm.dn.ua</span><br>
+                <i>Краматорск</i>
+            </div>
+            <div class="foot-menu">
+                <h3>Аренда/Продажа</h3>
+                <div class="foot-menu-partone">
+                    <p><a href="#">Продажа квартир в Черновцах</a></p>
+                    <p><a href="#">Аренда квартир в Черновцах</a></p>
+                    <p><a href="#">Продажа домов Черновцах</a></p>
+                    <p><a href="#">Lorem ipsum dolor sit amet</a></p>
+                </div>
+                <div class="foot-menu-parttwo">
+                    <p><a href="#">Продажа квартир в Черновцах</a></p>
+                    <p><a href="#">Аренда квартир в Черновцах</a></p>
+                    <p><a href="#">Продажа домов Черновцах</a></p>
+                    <p><a href="#">Lorem ipsum dolor sit amet</a></p>
+                </div>
+            </div>
+            <div class="statistics">
+                <img src="img/statistics.png" alt="statistics">
+            </div>
+        </div>
+    </section>
+
+
+    <div class="overlay" title="окно"></div>
+    <div class="popup call_popup">
+        <div class="close_order">x</div>
+        <h2>Оставить заявку</h2>
+        <div class="form">
+            <p>Ваше имя</p>
+            <input type="text" name="name">
+            <p>Ваш телефон</p>
+            <input type="text" name="phone">
+            <input type="submit" value="Отправить">
+        </div>
+    </div>
+    <div class="popup add_popup">
+        <div class="close_order">x</div>
+        <h2>Заполните заявку за 2 минуты и мы Вам приведем клиента с деньгами!</h2>
+        <div class="add_popup_content">
+            <h2>От хозяина недвижимости необходимы такие данные:</h2>
+            <p></p>
+            <ol>
+                <li>Опишите максимально подробно ваш объект в “Комментариях“ адрес, метраж по комнатам, преимущества.</li><br>
+                <li>По возможности  пришлите фотографии объекта на почту <a href="mailto:image2007@bk.ru">image2007@bk.ru</a></li>
+            </ol>
+        </div>
+        <div class="form">
+            <p>Ваше имя</p>
+            <input type="text" name="name" placeholder="Вячеслав">
+            <p>Ваш телефон</p>
+            <input type="text" name="phone">
+            <p>Адрес объекта</p>
+            <input type="text" name="adres">
+            <p>Цена</p>
+            <input type="text" name="price">
+            <p>Описание</p>
+            <textarea name="description"></textarea>
+            <input type="submit" value="Добавить">
+        </div>
+    </div>
+
+    <div class="popup ordered_inspection">
+        <div class="close_order">x</div>
+        <h2>Вы хотите осмотреть объект ID 1340</h2>
+        <div class="form">
+            <p>Ваше имя</p>
+            <input type="text" name="name">
+            <p>Ваш телефон</p>
+            <input type="text" name="phone">
+            <input type="submit" value="Отправить">
+        </div>
+    </div>
+
+    <div class="popup osmotr_inner">
+        <div class="close_order">x</div>
+        <h2>Вы хотите осмотреть объект ID 81</h2>
+        <div class="form">
+            <p>Ваше имя</p>
+            <input type="text" name="name">
+            <p>Ваш телефон</p>
+            <input type="text" name="phone">
+            <input type="submit" value="Отправить">
+        </div>
+    </div>
+</body>
+</html>

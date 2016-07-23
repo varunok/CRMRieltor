@@ -4,7 +4,7 @@
 from django.conf.urls import url
 from single_object.views import SingleObjectView, change_call_date, change_review_date, change_actuality, \
     add_obj_comment, del_comment, get_arendator, get_comment, get_buyer, get_publication, get_meetings, \
-    get_tasks
+    get_tasks, DatabasesPrevious
 
 urlpatterns = [
      url(r'^(?P<oid>[0-9]+)$', SingleObjectView.as_view(), name='single_obj'),
@@ -19,4 +19,5 @@ urlpatterns = [
      url(r'^get_publication$', get_publication, name='get_publication'),
      url(r'^get_meetings$', get_meetings, name='get_meetings'),
      url(r'^get_tasks$', get_tasks, name='get_tasks'),
+     url(r'^data/(?P<poid>[0-9]+)$', DatabasesPrevious.as_view(), name='databases'),
 ]
