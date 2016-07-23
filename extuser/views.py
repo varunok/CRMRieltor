@@ -66,7 +66,7 @@ def add_user(request):
             if request.user.is_superuser:
                 result = request.POST
                 print(result)
-                new_user = User.objects.create_user(username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
+                new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
                 new_user.save()
                 add_img = MyUser(image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
                 add_img.save()

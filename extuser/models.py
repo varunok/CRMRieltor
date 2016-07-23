@@ -19,10 +19,10 @@ class MyUser(models.Model):
     # type_user = models.IntegerField(verbose_name=u'Тип пользователя', null=True)
 
     type_user = models.ForeignKey('UsersGroupExtUser',
-        verbose_name=u"Тип пользователя",
-        blank=False,
-        null=True,
-        on_delete=models.PROTECT)
+                                  verbose_name=u"Тип пользователя",
+                                  blank=False,
+                                  null=True,
+                                  on_delete=models.PROTECT)
 
 
 class UsersGroupExtUser(models.Model):

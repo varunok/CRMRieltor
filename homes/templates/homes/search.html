@@ -14,42 +14,42 @@
                         </ul>
                         <ul class="object-filter">
                             {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'id' and reverse == '1' %}&darr;
                                     {% elif order_by == 'id' %}
                                             &uarr;
                                     {% endif %}
                                     Артикул
                                 </a></li>
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=price_bay{% if order_by == 'price_bay' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=price_bay{% if order_by == 'price_bay' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'price_bay' and reverse == '1' %}&darr;
                                     {% elif order_by == 'price_bay' %}
                                             &uarr;
                                     {% endif %}
                                     Цена продажи
                                 </a></li>
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=price_month{% if order_by == 'price_month' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=price_month{% if order_by == 'price_month' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'price_month' and reverse == '1' %}&darr;
                                     {% elif order_by == 'price_month' %}
                                             &uarr;
                                     {% endif %}
                                     Цена аренди
                                 </a></li>
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=total_area{% if order_by == 'total_area' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=total_area{% if order_by == 'total_area' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'total_area' and reverse == '1' %}&darr;
                                     {% elif order_by == 'total_area' %}
                                             &uarr;
                                     {% endif %}
                                     Метраж
                                 </a></li>
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=date_of_renovation{% if order_by == 'date_of_renovation' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=date_of_renovation{% if order_by == 'date_of_renovation' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'date_of_renovation' and reverse == '1' %}&darr;
                                     {% elif order_by == 'date_of_renovation' %}
                                             &uarr;
                                     {% endif %}
                                     Дата обновления
                                 </a></li>
-                                <li><a href="{% url request.path|cut:'/' %}?order_by=review_date{% if order_by == 'review_date' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                <li><a href="{% url request.path|cut:'/search_obj/'|cut:'/' %}?order_by=review_date{% if order_by == 'review_date' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                     {% if order_by == 'review_date' and reverse == '1' %}&darr;
                                     {% elif order_by == 'review_date' %}
                                             &uarr;
@@ -67,13 +67,13 @@
                         {% include 'homes/obj_facility.html' %}
                     {% endif %}
                 {% endfor %}
-                {% if contact_owner.has_other_pages %}
+                {% if paginator.num_pages > 1 %}
                     {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
                         <div class="col-md-12 section-pagination">
                             <ul class="pagination">
                                 <li><a id="page_one" href="#">&laquo;</a></li>
-                                {% for p in contact_owner.paginator.page_range %}
-                                    <li {% if contact_owner.number == p %}class="active"{% endif %}>
+                                {% for p in paginator.page_range %}
+                                    <li {% if request.GET.page|first == p|floatformat %}class="active"{% endif %}>
                                         <a class="pages" href="#">{{ p }}</a>
                                     </li>
                                 {% endfor %}
@@ -115,7 +115,7 @@
                     "phone_obj": phone_obj,
                     "peresmotr": peresmotr
                 };
-                $.get('', data, function (data) {
+                $.get('search_obj', data, function (data) {
                     $('.search-object').html(data)
                 })
             });
@@ -135,7 +135,7 @@
                 var peresmotr = $('#peresmotr').val();
                 data = {
                     "search":true,
-                    "page": {{ contact_owner.paginator.num_pages}},
+                    "page": {{ paginator.num_pages}},
                     "type_facility": type_facility,
                     "price_on": price_on,
                     "price_for": price_for,
@@ -149,7 +149,7 @@
                     "phone_obj": phone_obj,
                     "peresmotr": peresmotr
                 };
-                $.get('', data, function (data) {
+                $.get('search_obj', data, function (data) {
                     $('.search-object').html(data)
                 })
             });
@@ -184,7 +184,7 @@
                     "phone_obj": phone_obj,
                     "peresmotr": peresmotr
                 };
-                $.get('', data, function (data) {
+                $.get('search_obj', data, function (data) {
                     $('.search-object').html(data)
                 })
             });

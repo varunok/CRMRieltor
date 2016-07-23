@@ -6513,11 +6513,13 @@ input[type="email"] {
     z-index: 1000
 }
 .messageServer{
-    float:right;
+    float:left;
+    top: 11em;
+    right: 20%;
     display: none;
     padding: 10px;
     background-color: #5bc0de;
-    position: relative;
+    position: fixed;
     color: #FFFFFF;
     font-family: "Calibri", "Trebuchet MS", "Helvetica", sans-serif;
     font-size: 1.3em;
@@ -6540,4 +6542,26 @@ input[type="email"] {
     max-height: 50px;
     position: relative;
     cursor: pointer;
+}
+.label-trash{
+  border: 1px solid #FFF; 
+  box-shadow:3px 3px 6px 1px; 
+  background-color:#FFF;
+}
+#messege_warning{
+  position: fixed; 
+  left:40%; 
+  top: 40%; 
+  width:300px; 
+  height: 150px; 
+  background-color:#FFF; 
+  border:1px solid #E3E3E3; 
+  box-shadow:1px 1px 10px 3px; 
+  text-align: center; 
+  padding: 0px; 
+  border-radius: 10px; 
+  font-family: 'Comic Sans MS', cursive, sans-serif; 
+  font-size: 1.3em; 
+  z-index:10000; 
+  display: none;
 }

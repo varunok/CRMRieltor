@@ -39,7 +39,7 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <h2 class="object-id">
-                                                        <a href="#">ID {{ object_data.id }}</a> {# id object #}
+                                                        <a href="{% url "single_obj" object_data.id %}">ID {{ object_data.id }}</a> {# id object #}
                                                         {% if object_data.public %} {# if object public show glob #}
                                                             <i class="fa fa-globe"></i>
                                                         {% endif %}
@@ -57,7 +57,9 @@
                                                     </h2>
                                                     <p class="object-type">
                                                         {{ object_data.type_facilit }}
-                                                        / Раздельно
+                                                        {% if object_data.room %}
+                                                            / {{ object_data.room }}
+                                                        {% endif %}
                                                         {% if object_data.repairs %}
                                                             / {{ object_data.repairs }}
                                                         {% endif %}
@@ -69,7 +71,11 @@
                                                                 {{ object_data.floors_up }}
                                                             {% endif %}
                                                             {% if object_data.floor %}
+                                                                {% if object_data.floors_up == None %}
+                                                                    --
+                                                                {% endif %}
                                                                 / {{ object_data.floor }}
+                                                                
                                                             {% endif %}
                                                         {% endif %}
                                                         <i class="fa fa-expand"></i>
@@ -139,7 +145,7 @@
                                                     <a href="#"><i class="fa fa-link"></i> </a>
                                                         <a href="#"><i class="fa fa-pencil"></i> </a>
                                                         <a href="#"><i class="fa fa-eye"></i> </a>
-                                                        <a href="#"><i class="fa fa-times"></i> </a>
+                                                        <a href="#"><i id-obj="{{ object_data.id }}" class="fa fa-times"></i> </a>
                                                     </p>
                                                     {% if object_data.actuality.id == 3 %} {# актуальність обєкту #}
                                                         <p class="object-ut-data">

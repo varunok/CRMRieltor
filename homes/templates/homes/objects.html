@@ -37,7 +37,7 @@
                                     <label for="typeobj">Тип объекта</label>
                                     <select id="type_facility" class="multiple" multiple="multiple" placeholder="-----">
                                         {% for facility in type_facility %}
-                                            <option value="{{ facility.id }}">{{ facility.type_facility }}</option>
+                                            <option value="{{ facility }}">{{ facility.type_facility }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -141,10 +141,10 @@
                                         <label for="typeobj">Этажность</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input id="floor_for" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input id="floor_to" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -152,21 +152,22 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="typeobj">Комнаты</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Смежные</option>
-                                            <option>Раздельные</option>
-                                            <option>Смежно-раздельные</option>
+                                        <select id="list_rooms">
+                                            <option selected="selected">-----</option>
+                                            {% for rooms in list_rooms  %}
+                                                <option value="{{ rooms.id }}">{{ rooms }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="street">Улица</label>
-                                        <select>
+                                        <select id="street_obj">
                                             <option selected="selected">-----</option>
-                                            <option>ул.Полуботка</option>
-                                            <option>ул. Шевченка</option>
-                                            <option>ул. Щорса</option>
+                                            {% for street in list_street %}
+                                                <option value="{{ street }}">{{ street }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
@@ -177,10 +178,10 @@
                                         <label for="">Этаж</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input id="floor_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input id="floor_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -190,10 +191,10 @@
                                         <label for="">Комнат</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input id="rooms_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input id="rooms_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -201,7 +202,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="stat">Номер дома</label>
-                                        <input type="text" placeholder="-----">
+                                        <input id="number_home" type="text" placeholder="-----">
                                     </div>
                                 </div>
                             </div>
@@ -209,7 +210,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Контактное лицо</label>
-                                        <input type="text" placeholder="-----">
+                                        <input id="name_owner" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -217,10 +218,10 @@
                                         <label for="phone">Кухня</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input id="kitchen_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input id="kitchen_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -228,18 +229,11 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Тип строения</label>
-                                        <select>
+                                        <select id="type_building">
                                             <option selected="selected">-----</option>
-                                            <option>Малосемейка</option>
-                                            <option>Панельный</option>
-                                            <option>Новострой</option>
-                                            <option>Малосемейка</option>
-                                            <option>VIP</option>
-                                            <option>Грущевка</option>
-                                            <option>Чешка</option>
-                                            <option>Гостинка</option>
-                                            <option>Сталинка</option>
-                                            <option>Сотовая</option>
+                                            {% for type_building in type_building_list %}
+                                                <option value="{{type_building}}">{{ type_building }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
@@ -248,21 +242,24 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Комментарий</label>
-                                        <input type="text" placeholder="-----">
+                                        <input id="comments" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="search-item">
-                                                <label for="price">VIP <i class="fa fa-star"></i></label>
-                                                <input type="checkbox">
+                                                <label for="price">
+                                                    VIP 
+                                                    <i class="fa fa-star"></i>
+                                                </label>
+                                                <input id="vip_status" type="checkbox">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="search-item">
                                                 <label for="price">На сайте <i class="fa fa-globe"></i></label>
-                                                <input type="checkbox">
+                                                <input id="public_status" type="checkbox">
                                             </div>
                                         </div>
                                     </div>
@@ -341,23 +338,28 @@
                     </div>
                 </div>
                 {% for object_data in contact_owner %}
-                    {% if object_data.loyality.get.id == '' %}
-                        {% include 'homes/obj_facility.html' %}
-                    {% elif object_data.loyality.get.id == user.id or user.is_superuser %}
-                        {% include 'homes/obj_facility.html' %}
+                    {% if object_data.trash == 0 %}
+                        {% if object_data.loyality.get.id == '' %}
+                            {% include 'homes/obj_facility.html' %}
+                        {% elif object_data.loyality.get.id == user.id or user.is_superuser %}
+                            {% include 'homes/obj_facility.html' %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
-                {% if contact_owner.has_other_pages %}
+                {% if paginator.num_pages > 1 %}
                     {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
                         <div class="col-md-12 section-pagination">
                             <ul class="pagination">
                                 <li><a href="{% url request.path|cut:'/' %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a></li>
-                                {% for p in contact_owner.paginator.page_range %}
-                                    <li {% if contact_owner.number == p %}class="active"{% endif %}>
+                                {% for p in paginator.page_range %}
+                                    <li 
+                                        {% if request.GET.page|first == p|floatformat %}
+                                            class="active"
+                                        {% endif %}>
                                         <a href="{% url request.path|cut:'/' %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}</a>
                                     </li>
                                 {% endfor %}
-                                <li><a href="{% url request.path|cut:'/' %}?page={{ contact_owner.paginator.num_pages}}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?page={{ paginator.num_pages}}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a></li>
                             </ul>
                         </div>
                     {% endwith %}
@@ -365,6 +367,7 @@
             </div>
         </div>
     </section>
+    <div class="messageServer"></div>
 {% endblock content %}
 {% block extra_js %}
     <script>
@@ -422,6 +425,22 @@
                 var id_obj = $('#id_obj').val();
                 var phone_obj = $('#phone_obj').val();
                 var peresmotr = $('#peresmotr').val();
+                var floor_for = $('#floor_for').val();
+                var floor_to = $('#floor_to').val();
+                var list_rooms = $('#list_rooms').val();
+                var street_obj = $('#street_obj').val();
+                var floor_ot = $('#floor_ot').val();
+                var floor_do = $('#floor_do').val();
+                var rooms_ot = $('#rooms_ot').val();
+                var rooms_do = $('#rooms_do').val();
+                var number_home = $('#number_home').val();
+                var name_owner = $('#name_owner').val();
+                var kitchen_ot = $('#kitchen_ot').val();
+                var kitchen_do = $('#kitchen_do').val();
+                var type_building = $('#type_building').val();
+                var comments = $('#comments').val();
+                var vip_status = $('#vip_status').prop("checked");
+                var public_status = $('#public_status').prop("checked");
                 var list_data = {
                     "search": true,
                     "type_facility": type_facility,
@@ -435,9 +454,25 @@
                     "condition": condition,
                     "id_obj": id_obj,
                     "phone_obj": phone_obj,
-                    "peresmotr": peresmotr
+                    "peresmotr": peresmotr,
+                    "floor_for": floor_for,
+                    "floor_to" : floor_to,
+                    "list_rooms": list_rooms,
+                    "street_obj": street_obj,
+                    "floor_ot": floor_ot,
+                    "floor_do": floor_do,
+                    "rooms_ot": rooms_ot,
+                    "rooms_do": rooms_do,
+                    "number_home":number_home,
+                    "name_owner": name_owner,
+                    "kitchen_ot": kitchen_ot,
+                    "kitchen_do": kitchen_do,
+                    "type_building": type_building,
+                    "comments": comments,
+                    "vip_status": vip_status,
+                    "public_status": public_status
                 };
-                $.get('', list_data, function (data) {
+                $.get('search_obj', list_data, function (data) {
                     $('.search-object').html(data)
                 })
             });
@@ -449,7 +484,20 @@
                     $('.search-object').html(data).fadeIn()
                 })
             })
-
+            $('.object-edit').on('click', '.fa-times', function(event) {
+                event.preventDefault();
+                var idobj_trash = $(this).attr('id-obj');
+                $(this).parents('.wrap-obj').fadeOut('slow');
+                $.post('trash_obj', {"trash": idobj_trash, "iduser":{{ user.id }}}, messageServer);
+            });
+            function messageServer(data) {
+                if (data==='Ошибка'){
+                    $('.messageServer').css('backgroundColor', '#c9302c');
+                }else {
+                    $('.messageServer').css('backgroundColor', '#5bc0de');
+                }
+                $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
+            }
         });
     </script>
 {% endblock extra_js %}

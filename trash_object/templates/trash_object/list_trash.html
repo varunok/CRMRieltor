@@ -1,0 +1,39 @@
+{% extends "homes/base.html" %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url "homes" %}">Главная</a></li>
+                        <li><a href="{% url "setting" %}">Настройки</a></li>
+                        <li class="active">Корзина</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{% url "objects_trash" %}" class="btn btn-green">Обекти</a>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+{% endblock content %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function() {
+        })
+    </script>
+{% endblock extra_js %}

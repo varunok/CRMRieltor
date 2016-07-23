@@ -291,8 +291,20 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="phone">Общая площадь</label>
-                                        {{ form.total_area }}
+                                        <label for="phone">
+                                            <span>Общая площадь</span>
+                                            <span style="margin-left: 75px;">Комнаты</span>
+                                        </label>
+                                    </div>
+                                    <div class="search-item">
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form.total_area }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form.room }}
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -415,10 +427,10 @@
                                     <div class="search-item">
                                         <label for="price">Изображение</label>
                                         <div class="btn btn-green grn_upload_file">
-{#                                            <input class="upload_file" type="file" multiple="multiple" accept=".txt,image/*">#}
                                             {{ form.image }}
                                             <i class="fa fa-cloud-download"></i>
-                                        Загрузить изображение</div>
+                                            Загрузить изображение
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -504,9 +516,10 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="idobj">Санузел &nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мебель</label>
+                                    <label for="idobj">
+                                        <span>Санузел</span>
+                                        <span style="margin-left: 130px;">Мебель</span>
+                                    </label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             {{ form.lavatory }}

@@ -2,18 +2,19 @@
 
 
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone, dateformat
-from itertools import chain
+from django.utils.decorators import method_decorator
 
 from notes.models import Notes
 from setting_street.models import Street, District, Subway
 from facility.forms import AddressFacilityForm
-from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeOperations, TypeFacility, \
-    TypeActuality, TypeCondition
+from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeFacility, \
+    TypeActuality, TypeCondition, TypeRooms, TypeBuilding
 from setting_globall.models import NationalCarrency
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from search_home import searh
+from django.views.generic import ListView
 
 
 # Create your views here.
@@ -22,57 +23,62 @@ def homes(request):
     notes = Notes.objects.all()
     return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now()})
 
-@login_required
-def object_list(request, arg='objects'):
-    all_contact_owner = ContactOwner.objects.all()
-    all_contact_owner_se = ContactOwner.objects.filter(list_operations__in=[1, 4])
-    all_contact_owner_ad = ContactOwner.objects.filter(list_operations__in=[2, 3])
-    if arg == 'selling':
-        contact_owner = ContactOwner.objects.filter(list_operations__in=[1, 4])
-    elif arg == 'arend':
-        contact_owner = ContactOwner.objects.filter(list_operations__in=[2, 3])
-    else:
-        contact_owner = ContactOwner.objects.all()
-    order_by = request.GET.get('order_by', '')
-    if order_by in ('id', 'price_bay', 'price_month', 'total_area', 'date_of_renovation', 'review_date'):
-        contact_owner = contact_owner.order_by(order_by)
-    if request.GET.get('reverse', '') == '1':
-        contact_owner = contact_owner.reverse()
 
-    paginator = Paginator(contact_owner, 10)
-    page = request.GET.get('page')
-    try:
-        contact_owner = paginator.page(page)
-    except PageNotAnInteger:
-        contact_owner = paginator.page(1)
-    except EmptyPage:
-        contact_owner = paginator.page(paginator.num_pages)
-    addres_facility_data_list = AddressFacilityData.objects.all()
-    images = ImagesFacility.objects.all()
-    nac_carrency = NationalCarrency.objects.get(id=1)
-    type_facility = TypeFacility.objects.all()
-    list_carrency = NationalCarrency.objects.all()
-    type_actuality = TypeActuality.objects.all()
-    list_district = District.objects.all()
-    list_conditions = TypeCondition.objects.all()
-    list_var = {'time': timezone.now(),
-                'addres_facility_data_list': addres_facility_data_list,
-                'contact_owner': contact_owner,
-                'images': images,
-                'nac_carrency': nac_carrency,
-                'all_contact_owner_se': all_contact_owner_se,
-                'all_contact_owner_ad': all_contact_owner_ad,
-                'all_contact_owner': all_contact_owner,
-                'type_facility': type_facility,
-                'list_carrency': list_carrency,
-                'type_actuality': type_actuality,
-                'list_district': list_district,
-                'list_conditions': list_conditions}
-    if request.POST.get('back_res'):
-        return render(request, "homes/search.html", list_var)
-    if request.GET.get('search'):
-        return render(request, 'homes/search.html', searh(request, list_var))
-    return render(request, 'homes/objects.html', list_var)
+class ObjectList(ListView):
+    """docstring for ObjectList"""
+    model = ContactOwner
+    paginate_by = 10
+    context_object_name = 'contact_owner'
+    template_name = 'homes/objects.html'
+    qeryset = ContactOwner.objects.all().filter(trash=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(ObjectList, self).get_context_data(**kwargs)
+        self.context['time'] = timezone.now()
+        self.context['images'] = ImagesFacility.objects.all()
+        self.context['addres_facility_data_list'] = AddressFacilityData.objects.all()
+        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['all_contact_owner_se'] = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False)
+        self.context['all_contact_owner_ad'] = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False)
+        self.context['all_contact_owner'] = ContactOwner.objects.all().filter(trash=False)
+        self.context['type_facility'] = TypeFacility.objects.all()
+        self.context['list_carrency'] = NationalCarrency.objects.all()
+        self.context['type_actuality'] = TypeActuality.objects.all()
+        self.context['list_district'] = District.objects.all()
+        self.context['list_street'] = Street.objects.all()
+        self.context['list_conditions'] = TypeCondition.objects.all()
+        self.context['list_rooms'] = TypeRooms.objects.all()
+        self.context['list_rooms'] = TypeRooms.objects.all()
+        self.context['type_building_list'] = TypeBuilding.objects.all()
+        return self.context
+
+    def get_queryset(self):
+        order_by = self.request.GET.get('order_by', '')
+        if order_by in ('id', 'price_bay', 'price_month', 'total_area', 'date_of_renovation', 'review_date'):
+            self.qeryset = self.qeryset.order_by(order_by)
+        if self.request.GET.get('reverse', '') == '1':
+            self.qeryset = self.qeryset.reverse()
+        return self.qeryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ObjectList, self).dispatch(request, *args, **kwargs)
+
+
+class ObjectListSearch(ObjectList):
+    """docstring for ObjectListSearch"""
+    template_name = "homes/search.html"
+
+    def get_queryset(self):
+        return searh(self.request)
+
+
+class ObjectListSelling(ObjectList):
+    qeryset = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False)
+
+
+class ObjectListArend(ObjectList):
+    qeryset = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False)
 
 
 @login_required
@@ -126,3 +132,6 @@ def setting(request):
 @login_required
 def meeting(request):
     return render(request, 'homes/meeting.html', {'time': timezone.now()})
+
+
+

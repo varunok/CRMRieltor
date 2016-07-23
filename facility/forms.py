@@ -12,7 +12,7 @@ class AddressFacilityForm(ModelForm):
     image.widget.attrs['multiple'] = 'true'
     image.widget.attrs['class'] = 'upload_file'
     image.widget.attrs['accept'] = 'image/*'
-    image.required=False
+    image.required = False
 
     class Meta(object):
         model = ContactOwner
@@ -24,12 +24,13 @@ class AddressFacilityForm(ModelForm):
             'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment', 'rieltor', 'loyality',
             'actuality', 'condition', 'commission', 'currency', 'number_of_persons', 'equipment',
             'the_presence_of_hot_water', 'lot', 'sleeps', 'where_to_stay', 'prepayment', 'windows', 'heating',
-            'lavatory', 'furniture')
+            'lavatory', 'furniture', 'room')
         widgets = {
             'street_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'currency': Select(attrs={'class': 'add'}),
             'lavatory': Select(attrs={'class': 'add'}),
             'furniture': Select(attrs={'class': 'add'}),
+            'room': Select(attrs={'class': 'add'}),
             'district_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'subway_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'number_home': TextInput(attrs={'placeholder': 'Дом'}),

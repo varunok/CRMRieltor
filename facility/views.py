@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-
 import os
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from django import forms
-from facility.models import TypeFacility
+# from django import forms
 from django.utils import timezone, dateformat
 from facility.forms import AddressFacilityForm
-from homes.views import object_list, add_object
+from homes.views import add_object
 from change_form import change_form_text
 from save_photo import save_photo
 from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner
@@ -43,7 +41,7 @@ def add_facility(request):
 
 def check_phone(request):
     if request.method == 'GET':
-        seek_obj =  DatabasePhoneOwner.objects.filter(db_phone_owner__icontains = request.GET['check'])
+        seek_obj = DatabasePhoneOwner.objects.filter(db_phone_owner__icontains=request.GET['check'])
         dict_obj = dict()
         for elem in seek_obj:
             dict_obj[str(elem.db_id_owner)] = str(elem.db_phone_owner)
@@ -78,3 +76,17 @@ def handle_uploaded_file(f):
                 destination.write(chunk)
                 list_img[ele] = ('/media/tmpimg/'+f[ele].name)
     return list_img
+
+
+def trash_obj(request):
+    if request.method == 'POST':
+        id_obj = request.POST.get('trash')
+        trash_obj = ContactOwner.objects.get(id=id_obj)
+        user = User.objects.get(id=request.POST.get('iduser'))
+        trash_obj.trash = 1
+        trash_obj.time_trash = timezone.now()
+        trash_obj.name_user_trash = user.get_full_name()
+        trash_obj.save()
+        return HttpResponse("Обьект перемещен в корзину")
+    else:
+        return HttpResponse("Ошибка")

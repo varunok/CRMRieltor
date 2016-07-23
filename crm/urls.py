@@ -27,14 +27,22 @@ import homes.urls
 import notes.urls
 import facility.urls
 import setting_globall.urls
+import trash_object.urls
+import single_object.urls
+import who_online.urls
+import send_messege_user.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
     url(r'^', include(extuser.urls)),
     url(r'^', include(homes.urls)),
     url(r'^', include(notes.urls)),
-    url(r'^', include(facility.urls)),
+    url(r'^objects/', include(facility.urls)),
     url(r'^', include(setting_globall.urls)),
+    url(r'^', include(trash_object.urls)),
+    url(r'^objects/', include(single_object.urls)),
+    url(r'^', include(who_online.urls)),
+    url(r'^', include(send_messege_user.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin
