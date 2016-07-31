@@ -268,7 +268,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 btn-search">
-                                <a id="clean_list" href="#" class="btn btn-red">Очистить</a>
+                                <a id="" href="{% url 'objects' %}" class="btn btn-red">Очистить</a>
                                 <a id="search_obj" href="#" class="btn btn-blue">Применить</a>
                             </div>
                         </div>
@@ -480,7 +480,6 @@
             $('#clean_list').on('click', function (event) {
                 event.preventDefault();
                 $.get('', {'back_res':true}, function (data) {
-                    console.log(data);
                     $('.search-object').html(data).fadeIn()
                 })
             })

@@ -27,8 +27,10 @@ def last_login(date_arg):
         last_login = last_login.split(' ')
         if int(last_login[0]) in [1, 21, 31]:
             return u'был в сети %s день назад' % last_login[0]
-        if int(last_login[0]) in [2, 3, 4, 22, 23, 24]:
+        elif int(last_login[0]) in [2, 3, 4, 22, 23, 24]:
             return u'был в сети %s дня назад' % last_login[0]
-        if int(last_login[0]) > 31:
+        elif int(last_login[0]) > 31:
             return u'был в сети больше 1 месяца назад'
+        else:
+            return u'был в сети %s дней назад' % last_login[0]
     return last_login

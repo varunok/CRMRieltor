@@ -3,7 +3,7 @@
 
 from django.conf.urls import url
 from homes import views
-from homes.views import ObjectList, ObjectListSearch, ObjectListSelling, ObjectListArend
+from homes.views import ObjectList, ObjectListSearch, ObjectListSelling, ObjectListArend, ArendatorsList
 
 urlpatterns = [
     # site pages menu
@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^arend/$', ObjectListArend.as_view(), name='arend'),
     url(r'^buyers$', views.buyers_list, name='buyers'),
     url(r'^maklers$', views.maklers_list, name='maklers'),
-    url(r'^arendators$', views.arendators_list, name='arendators'),
+    url(r'^arendators$', ArendatorsList.as_view(), name='arendators'),
     url(r'^buyers/add_buyer$', views.add_buyer, name='add_buyer'),
     url(r'^arendators/add_arendator$', views.add_arendator, name='add_arendator'),
     url(r'^objects/add_object$', views.add_object, name='add_object'),

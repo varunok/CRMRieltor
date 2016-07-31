@@ -327,7 +327,7 @@ class AddressFacilityData(models.Model):
                                       null=True)
 
     number_apartment = models.CharField(max_length=10,
-                                        verbose_name=u'Номер квартиы',
+                                        verbose_name=u'Номер квартиры',
                                         blank=True,
                                         null=True)
 
@@ -600,7 +600,7 @@ class ContactOwner(AddressFacilityData):
                                        verbose_name='Кто удалил')
 
     def __unicode__(self):
-        return 'O%s %s' % (self.id, self.name_owner)
+        return '%s' % self.id
 
 
 class PhoneOwner(models.Model):
@@ -634,3 +634,4 @@ class DatabasePhoneOwner(models.Model):
 
     def __unicode__(self):
         return '%s => %s' % (self.db_id_owner, self.db_phone_owner)
+

@@ -19,23 +19,23 @@ class Migration(migrations.Migration):
             name='AddressFacilityData',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('number_home', models.CharField(max_length=10, null=True, verbose_name='\u041d\u043e\u043c\u0435\u0440 \u0434\u043e\u043c\u0430', blank=True)),
+                ('number_home', models.IntegerField(null=True, verbose_name='\u041d\u043e\u043c\u0435\u0440 \u0434\u043e\u043c\u0430', blank=True)),
                 ('number_apartment', models.CharField(max_length=10, null=True, verbose_name='\u041d\u043e\u043c\u0435\u0440 \u043a\u0432\u0430\u0440\u0442\u0438\u044b', blank=True)),
                 ('price_bay', models.IntegerField(default=0, verbose_name='\u0426\u0435\u043d\u0430(\u0432\u044b\u043a\u0443\u043f)')),
                 ('price_month', models.IntegerField(default=0, verbose_name='\u0426\u0435\u043d\u0430(\u043c\u0435\u0441\u044f\u0446)')),
                 ('landmark', models.CharField(max_length=500, null=True, verbose_name='\u041e\u0440\u0438\u0435\u043d\u0442\u0438\u0440', blank=True)),
-                ('number_of_floors', models.CharField(max_length=10, null=True, verbose_name='\u042d\u0442\u0430\u0436\u043d\u043e\u0441\u0442\u044c \u043e\u0442', blank=True)),
-                ('floors_up', models.CharField(max_length=10, null=True, verbose_name='\u042d\u0442\u0430\u0436\u043d\u043e\u0441\u0442\u044c \u0434\u043e', blank=True)),
+                ('number_of_floors', models.IntegerField(null=True, verbose_name='\u042d\u0442\u0430\u0436\u043d\u043e\u0441\u0442\u044c \u043e\u0442', blank=True)),
+                ('floors_up', models.IntegerField(null=True, verbose_name='\u042d\u0442\u0430\u0436\u043d\u043e\u0441\u0442\u044c \u0434\u043e', blank=True)),
                 ('first_floor', models.BooleanField(verbose_name=b'\xd0\x9f\xd0\xb5\xd1\x80\xd0\xb2\xd1\x8b\xd0\xb9')),
                 ('last_floor', models.BooleanField(verbose_name=b'\xd0\x9f\xd0\xbe\xd1\x81\xd0\xbb\xd0\xb5\xd0\xb4\xd0\xbd\xd0\xb8\xd0\xb9')),
-                ('floor', models.CharField(max_length=10, null=True, verbose_name='\u042d\u0442\u0430\u0436', blank=True)),
+                ('floor', models.IntegerField(null=True, verbose_name='\u042d\u0442\u0430\u0436', blank=True)),
                 ('area_badroom', models.CharField(max_length=10, null=True, verbose_name='\u0421\u043f\u0430\u043b\u044c\u043d\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
-                ('area_kitchen', models.CharField(max_length=10, null=True, verbose_name='\u041a\u0443\u0445\u043d\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
+                ('area_kitchen', models.IntegerField(null=True, verbose_name='\u041a\u0443\u0445\u043d\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
                 ('area_living_room', models.CharField(max_length=10, null=True, verbose_name='\u0413\u043e\u0441\u0442\u0438\u043d\u043d\u0430\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
                 ('area_extra_room', models.CharField(max_length=10, null=True, verbose_name='\u0414\u043e\u043f.\u043a\u043e\u043c\u043d\u0430\u0442\u0430 \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
-                ('total_area', models.CharField(max_length=10, null=True, verbose_name='\u041e\u0431\u0449\u0430\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
+                ('total_area', models.IntegerField(null=True, verbose_name='\u041e\u0431\u0449\u0430\u044f \u043f\u043b\u043e\u0449\u0430\u0434\u044c', blank=True)),
                 ('payments', models.CharField(max_length=100, null=True, verbose_name='\u041f\u043b\u0430\u0442\u0435\u0436\u0438', blank=True)),
-                ('rooms', models.CharField(max_length=10, null=True, verbose_name='\u041a\u043e\u043c\u043d\u0430\u0442', blank=True)),
+                ('rooms', models.IntegerField(null=True, verbose_name='\u041a\u043e\u043c\u043d\u0430\u0442', blank=True)),
                 ('comment', models.TextField(null=True, verbose_name='\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439')),
                 ('commission', models.CharField(max_length=10, null=True, verbose_name='\u041a\u043e\u043c\u0438\u0441\u0441\u0438\u044f', blank=True)),
                 ('images_count', models.IntegerField(default=0, verbose_name='\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0444\u043e\u0442\u043e', editable=False)),
@@ -231,6 +231,17 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='TypeRooms',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type_rooms', models.CharField(max_length=50, unique=True, null=True, verbose_name='\u0422\u0438\u043f \u041a\u043e\u043c\u043d\u0430\u0442\u044b')),
+            ],
+            options={
+                'verbose_name': '\u0422\u0438\u043f \u041a\u043e\u043c\u043d\u0430\u0442\u044b',
+                'verbose_name_plural': '\u0422\u0438\u043f\u044b \u041a\u043e\u043c\u043d\u0430\u0442',
+            },
+        ),
+        migrations.CreateModel(
             name='TypeThePresenceOfHotWater',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -289,6 +300,9 @@ class Migration(migrations.Migration):
                 ('vip_owner', models.BooleanField(verbose_name=b'Vip')),
                 ('phone_owner', models.CharField(max_length=16, null=True, verbose_name='\u0422\u0435\u043b\u0435\u0444\u043e\u043d')),
                 ('phone_owner_plus', models.CharField(max_length=16, null=True, verbose_name='\u0414\u043e\u043f\u043e\u043b. \u0422\u0435\u043b\u0435\u0444\u043e\u043d', blank=True)),
+                ('trash', models.BooleanField(default=False, verbose_name=b'\xd0\x9a\xd0\xbe\xd1\x80\xd0\xb7\xd0\xb8\xd0\xbd\xd0\xb0')),
+                ('time_trash', models.DateTimeField(null=True, verbose_name=b'\xd0\x92\xd1\x80\xd0\xb5\xd0\xbc\xd1\x8f \xd1\x83\xd0\xb4\xd0\xb0\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xb8\xd1\x8f', blank=True)),
+                ('name_user_trash', models.CharField(max_length=100, null=True, verbose_name=b'\xd0\x9a\xd1\x82\xd0\xbe \xd1\x83\xd0\xb4\xd0\xb0\xd0\xbb\xd0\xb8\xd0\xbb', blank=True)),
                 ('contact_owner', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430', blank=True, to='facility.TypeContactOwner', null=True)),
             ],
             options={
@@ -374,6 +388,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='addressfacilitydata',
+            name='room',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041a\u043e\u043c\u043d\u0430\u0442\u044b', blank=True, to='facility.TypeRooms', null=True),
+        ),
+        migrations.AddField(
+            model_name='addressfacilitydata',
             name='street_obj',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0423\u043b\u0438\u0446\u0430', to_field=b'full_street', to='setting_street.Street', null=True),
         ),
@@ -410,6 +429,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='phoneowner',
             name='phone',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, blank=True, to='facility.ContactOwner', null=True),
+            field=models.ForeignKey(blank=True, to='facility.ContactOwner', null=True),
         ),
     ]

@@ -13,8 +13,9 @@ from django.views.generic import DetailView
 
 from django.contrib.auth.models import User
 from facility.models import ContactOwner, ImagesFacility, NationalCarrency, TypeActuality
-from single_object.models import SingleObjComments
+from single_object.models import SingleObjComments, Tie, TypeShows, ShowsArendator
 from extuser.models import MyUser
+from arendator.models import Arendator
 
 
 class SingleObjectView(DetailView):
@@ -32,6 +33,7 @@ class SingleObjectView(DetailView):
         self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
         self.context['type_actuality'] = TypeActuality.objects.all()
         self.context['single_obj_comments'] = SingleObjComments.objects.filter(obj_comments=self.context['single_object'].id)
+        self.context['count_arendator'] = Tie.objects.get(tie_cont_owner=self.context['single_object'].id).tie_arenda.all().count()
         return self.context
 
 
@@ -95,7 +97,20 @@ def del_comment(request):
 
 
 def get_arendator(request):
-    return render(request, 'single_object/arendator.html', {})
+    ties = Tie.objects.all()
+    singl_obg = ContactOwner.objects.get(id=request.GET.get('id_so'))
+    count_arendator = Tie.objects.get(tie_cont_owner=singl_obg).tie_arenda.all().count()
+    type_shows = TypeShows.objects.all()
+    nac_carrency = NationalCarrency.objects.get(id=1)
+    shows = ShowsArendator.objects.all()
+    return render(request, 'single_object/arendator.html', {"ties": ties,
+                                                            "singl_obj": singl_obg,
+                                                            "display": True,
+                                                            "error": True,
+                                                            "type_shows": type_shows,
+                                                            "nac_carrency": nac_carrency,
+                                                            "shows_arendator": shows,
+                                                            "count_arendator": count_arendator})
 
 
 def get_buyer(request):
@@ -123,3 +138,57 @@ class DatabasesPrevious(SingleObjectView):
     slug_url_kwarg = 'poid'
     slug_field = 'id'
     template_name = 'single_object/previous.html'
+
+def add_arendator_to_tie(request):
+    return HttpResponse('ok')
+
+
+class AddArendatorToTie(DetailView):
+    model = Arendator
+    slug_url_kwarg = 'idu'
+    slug_field = 'id'
+    template_name = 'single_object/return_table/single_table.html'
+    context_object_name = 'arendator'
+
+    def get_context_data(self, **kwargs):
+        self.context = super(AddArendatorToTie, self).get_context_data(**kwargs)
+        self.context['type_shows'] = TypeShows.objects.all()
+        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['show_arendators'] = ShowsArendator.objects.all()
+        self.context['error'] = True
+        return self.context
+
+    def get(self, request, *args, **kwargs):
+        if Arendator.objects.filter(id=self.kwargs['idu'], trash=False).exists():
+            arendator = Arendator.objects.get(id=self.kwargs['idu'], trash=False)
+        else:
+            return HttpResponse(status=404)
+        cont_owner = ContactOwner.objects.get(id=self.request.GET.get('id'))
+        # self.context['count_arendator'] = Tie.objects.get(tie_cont_owner=cont_owner).tie_arenda.all().count()
+        tie, created = Tie.objects.get_or_create(tie_cont_owner=cont_owner)
+        if Tie.objects.filter(tie_arenda=arendator, tie_cont_owner=cont_owner).exists() == False:
+            tie.tie_arenda.add(arendator)
+        else:
+            return HttpResponse(status=404)
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+def change_shows(request, id_a):
+    try:
+        id_a, id_o, id_show = id_a.split('=')
+        id_a = id_a.split('-')[-1]
+        id_o = id_o.split('-')[-1]
+        id_show = id_show.split('-')[-1]
+        type_shows = TypeShows.objects.get(id=id_show)
+        arendator = Arendator.objects.get(id=id_a)
+        cont_owner = ContactOwner.objects.get(id=id_o)
+        show_ar, created = ShowsArendator.objects.get_or_create(array_arendator=arendator, array_cont_ower=cont_owner)
+        show_ar.type_shows_arendator = type_shows
+        show_ar.save()
+        return HttpResponse('ok')
+    except:
+        return HttpResponse('error')
+
+def automat_tie(request):
+    return HttpResponse('ok')

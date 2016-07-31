@@ -22,7 +22,8 @@
         <div class="container">
             <div class="row search-object">
                 <div class="col-md-12">
-                    <h1 class="section-head">Сдам <span>квартиру посуточно </span></h1>
+                    <h1 class="section-head">{{ single_object.list_operations.all|first }}<span></span></h1>
+{#                    <h1 class="section-head">Сдам <span>квартиру посуточно </span>{{ single_object.list_operations.all|first }}</h1>#}
                     <div class="section-sort">
                         <a href="#"><i class="fa fa-link"></i> Ссылка</a>
                         <input type="text" placeholder="E-mail">
@@ -45,7 +46,7 @@
                                                 <span class="label label-default img-count">{{ single_object.images_count }}</span>
                                             {% empty %}
                                                 NO PHOTO
-                                            {% endfor %}
+                                        {% endfor %}
                                         </div>
                                     <script>
                                         $(document).ready(function() {
@@ -69,7 +70,7 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <h2 class="object-id">
-                                                    <a href="#">ID {{ single_object.id }}</a>
+                                                    <a id="sisingle_obj_id" sisingle_obj_id="{{ single_object.id }}" href="#">ID {{ single_object.id }}</a>
                                                     {% if  single_object.public %}
                                                     	<i class="fa fa-globe"></i>
                                                     {% endif %}
@@ -208,8 +209,14 @@
                     <div class="tabs">
                         <ul class="main-tabs">
                             <li class="tabs-active"><a class="btna" id="get_comment" href="">Комментарии <span class="label label-default">{{ single_obj_comments|length }}</span></a></li>
-                            <li ><a class="btna" id="get_arendator" href="">Арендаторы <span class="label label-default">10</span></a></li>
-                            <li><a class="btna" id="get_buyer" href="">Покупатели <span class="label label-default">10</span></a></li>
+                            {% for type_operation in single_object.list_operations.all %}
+                                {% if type_operation.id == 2 or type_operation.id == 3 %}
+                                    <li ><a class="btna" id="get_arendator" href="">Арендаторы <span class="label label-default">{{ count_arendator }}</span></a></li>
+                                {% else %}
+                                    <li><a class="btna" id="get_buyer" href="">Покупатели <span class="label label-default">10</span></a></li>
+                                {% endif %}
+                            {% endfor %}
+
                             <li><a class="btna" id="get_publication" href="#">Публикации</a></li>
                             <li><a class="btna" id="get_meetings" href="">Встречи <span class="label label-default">10</span></a></li>
                             <li><a class="btna" id="get_tasks" href="">Задачи <span class="label label-default">10</span></a></li>
@@ -296,7 +303,7 @@
 		});
 		$('.tabs-rule').on('click', '#send_comment', function(event) {
 			event.preventDefault();
-			var text_comment = $('#text_comment').val()
+			var text_comment = $('#text_comment').val();
 			var data_comment = {
 				"text_comment": text_comment,
 				"id_user": {{ user.id }},
@@ -304,10 +311,10 @@
 			}
 			$.post('add_obj_comment', data_comment, function(data) {
 				var data = jQuery.parseJSON(data);
-				$('.comment_add').children().last().removeClass('last-comments')
-				$('.comment_add').append('<div class="comments-item last-comments"><div class="col-md-1"><div class="comments-avatar"><img src="/media/'+data.image+'" alt="" width="50px;"></div></div><div class="col-md-11"><h4 class="comments-name">'+data.author+'</h4><p class="comments-text">'+data.text+'</p><div class="comments-edit"><a href="#"><i class="fa fa-times"></i></a></div><div class="comments-time"><i class="fa fa-clock-o"></i>'+data.date+'</div></div></div>')
+				$('.comment_add').children().last().removeClass('last-comments');
+				$('.comment_add').prepend('<div class="comments-item last-comments"><div class="col-md-1"><div class="comments-avatar"><img src="/media/'+data.image+'" alt="" width="50px;"></div></div><div class="col-md-11"><h4 class="comments-name">'+data.author+'</h4><p class="comments-text">'+data.text+'</p><div class="comments-edit"><a href="#"><i class="fa fa-times"></i></a></div><div class="comments-time"><i class="fa fa-clock-o"></i>'+data.date+'</div></div></div>')
 			});
-			
+
 		});
 		$('.tabs-rule').on('click', '.a', function(event) {
 			event.preventDefault();
@@ -326,9 +333,13 @@
 					$(this).html('');
 					$(this).html(data);
 					$(this).fadeIn('200');
-				});;
+				});
 			});
 		});
+
+
+
     });
     </script>
+    <script src="{% static "js/single_obj.js" %}"></script>
 {% endblock extra_js %}

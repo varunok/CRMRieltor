@@ -31,6 +31,7 @@ import trash_object.urls
 import single_object.urls
 import who_online.urls
 import send_messege_user.urls
+import arendator.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -43,6 +44,7 @@ urlpatterns = [
     url(r'^objects/', include(single_object.urls)),
     url(r'^', include(who_online.urls)),
     url(r'^', include(send_messege_user.urls)),
+    url(r'^arendators/', include(arendator.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

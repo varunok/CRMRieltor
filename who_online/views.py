@@ -35,7 +35,6 @@ def who_online(request):
                     dict_users[user_r.id]["login"] = str(timezone.now()-date_old).split('.')[0]
                 elif int(dt[0]):
                     dict_users[user_r.id]["login"] = str(timezone.now()-date_old).split('.')[0]
-        print(dict_users)
         return HttpResponse(JsonResponse(dict_users))
     except:
         return HttpResponse('error')
