@@ -17,7 +17,7 @@
         </div>
     </section>
     <section class="content">
-        <div class="container">
+        <div class="container object-edit">
             <div class="row section-search">
                 <div class="col-md-12">
                     <h1 class="section-head">Поиск <span>покупателей</span></h1>
@@ -27,16 +27,17 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-12">
+               <div class="col-md-12">
                     <div class="col-md-12 substrate">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="typeobj">Риэлтор</label>
-                                    <select placeholder="-----">
-                                        <option>Вячеслав</option>
-                                        <option>Сергей</option>
-                                        <option>Дмитрий</option>
+                                    <select id="user_id" class="tarea-multiple" multiple="multiple" placeholder="-----">
+                                        <option>-----</option>
+                                        {% for user in user_list.all %}
+                                            <option value="{{ user.user.id }}">{{ user.user.get_full_name }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -45,10 +46,10 @@
                                     <label for="price">Цена</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="От">
+                                            <input class="allownumericwithoutdecimal" id="price_from" type="text" placeholder="От">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="До">
+                                            <input class="allownumericwithoutdecimal" id="price_to" type="text" placeholder="До">
                                         </div>
                                     </div>
                                 </div>
@@ -64,10 +65,10 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Район</label>
-                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="tarea">
-                                        <option>Духовец</option>
-                                        <option>Курский</option>
-                                        <option>Центральный</option>
+                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="district_name">
+                                        {% for district in list_district %}
+                                            <option value="{{ district.id }}">{{ district.district }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -76,10 +77,10 @@
                                     <label for="price">Площадь</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="От">
+                                            <input class="allownumericwithoutdecimal" id="area_from" type="text" placeholder="От">
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" placeholder="До">
+                                            <input class="allownumericwithoutdecimal" id="area_to" type="text" placeholder="До">
                                         </div>
                                     </div>
                                 </div>
@@ -87,11 +88,10 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="stat">Состояние</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Ищем</option>
-                                        <option>Незвонить</option>
-                                        <option>Занят арендатором</option>
+                                    <select id="state" class="tarea-multiple" multiple="multiple">
+                                        {% for state in list_state %}
+                                            <option value="{{ state.id }}">{{ state }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -100,13 +100,21 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="idobj">Дата звонка</label>
-                                    <input id="call-date" type="text" placeholder="-----">
+                                    {# <input id="call-date" type="text" placeholder="-----"> #}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input id="call_date_from" type="text" placeholder="От">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input id="call_date_to" type="text" placeholder="До">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Телефон</label>
-                                    <input type="text" placeholder="-----">
+                                    <input class="allownumericwithoutdecimal" id="phone_n" type="text" placeholder="-----">
                                 </div>
                             </div>
 
@@ -116,32 +124,30 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="typeobj">Тип объекта</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Квартира</option>
-                                            <option>Дом</option>
-                                            <option>Комната</option>
-                                            <option>Участок</option>
+                                        <select id="type_facility" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for tp in type_facility %}
+                                                <option value="{{tp.id}}">{{tp}}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="typeobj">Комнаты</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Смежные</option>
-                                            <option>Раздельные</option>
-                                            <option>Смежно-раздельные</option>
+                                        <select id="rooms_id" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for rooms in list_rooms %}
+                                                <option value="{{ rooms.id }}">{{ rooms }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="street">Улица</label>
-                                        <select>
-                                            <option selected="selected">-----</option>
-                                            <option>ул.Полуботка</option>
-                                            <option>ул. Шевченка</option>
-                                            <option>ул. Щорса</option>
+                                        <label for="state">Этап</label>
+                                        <select id="stage_a" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for stage in list_stage %}
+                                                <option value="{{ stage.id }}">{{ stage }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
@@ -150,10 +156,10 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Тип клиента</label>
-                                    <select placeholder="-----">
-                                        <option>Постоянный</option>
-                                        <option>Разовый</option>
-                                        <option>Средний</option>
+                                    <select id="type_client" class="multiple" multiple="multiple"  placeholder="-----">
+                                        {% for client in list_client %}
+                                            <option value="{{ client.id }}">{{ client }}</option>
+                                        {% endfor %}
                                     </select>
                                     </div>
                                 </div>
@@ -162,10 +168,10 @@
                                         <label for="">Комнат</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input class="allownumericwithoutdecimal" id="rooms_from" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input class="allownumericwithoutdecimal" id="rooms_to" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +179,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="stat">E-mail</label>
-                                        <input type="text" placeholder="-----">
+                                        <input class="filter_space" id="email_a" type="email" placeholder="  -----">
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +187,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Имя</label>
-                                        <input type="text" placeholder="-----">
+                                        <input class="filter_space" id="name_a" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -189,10 +195,10 @@
                                         <label for="phone">Этаж</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="От">
+                                                <input class="allownumericwithoutdecimal" id="floor_from" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" placeholder="До">
+                                                <input class="allownumericwithoutdecimal" id="floor_to" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -200,13 +206,10 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Кто проживает</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Семья</option>
-                                            <option>1 человек</option>
-                                            <option>Не русские</option>
-                                            <option>Семья с детьми</option>
-                                            <option>Более 4х человек</option>
-                                            <option>Пара</option>
+                                        <select id="nop" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for nop in list_number_of_persons %}
+                                                <option value="{{ nop.id }}">{{ nop }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
@@ -215,16 +218,16 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">ID клиента</label>
-                                        <input type="text" placeholder="-----">
+                                        <input class="allownumericwithoutdecimal" id="id_buyer" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Ремонт</label>
-                                        <select class="multiple" multiple="multiple" placeholder="-----">
-                                            <option>Евро</option>
-                                            <option>Жилой</option>
-                                            <option>Под ремонт</option>
+                                        <select id="repair" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for repair in list_repair %}
+                                                <option value="{{ repair.id }}">{{ repair }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
@@ -232,8 +235,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 btn-search">
-                                <a href="#" class="btn btn-red">Очистить</a>
-                                <a href="#" class="btn btn-blue">Применить</a>
+                                <a href="{% url 'buyers' %}" class="btn btn-red">Очистить</a>
+                                <a id="search_buyer" href="#" class="btn btn-blue">Применить</a>
                             </div>
                         </div>
                     </div>
@@ -241,409 +244,72 @@
             </div>
             <div class="row search-object">
                 <div class="col-md-12">
-                    <h1 class="section-head">Ваши <span>покупатели </span> <i class="label label-default">15</i></h1>
+                    <h1 class="section-head">Ваши <span>Покупатели </span> <i class="label label-default">{{ count_buyer }}</i></h1>
                     <div class="section-sort">
-                        <a href="{% url 'add_buyer' %}" class="btn btn-green">Добавить</a>
+                        <a href="{% url "add_buyer" %}" class="btn btn-green">Добавить</a>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="tabs">
-                        <ul class="object-filter">
-                            <li><a href="#">Артикул</a></li>
-                            <li><a href="#">Цена</a></li>
-                            <li><a href="#">Адрес</a></li>
-                            <li><a href="#">Состояние</a></li>
-                            <li><a href="#">Добавлен</a></li>
-                            <li><a href="#">Активность</a></li>
+                         <ul class="object-filter">
+                            {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'id' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'id' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Артикул
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=call_date{% if order_by == 'call_date' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'call_date' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'call_date' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Дата звонка
+                                </a></li>
+                                <li><a href="{% url request.path|cut:'/' %}?order_by=review_date{% if order_by == 'review_date' and reverse != '1' %}&amp;reverse=1{% endif %}">
+                                    {% if order_by == 'review_date' and reverse == '1' %}&darr;
+                                    {% elif order_by == 'review_date' %}
+                                            &uarr;
+                                    {% endif %}
+                                    Дата обновления
+                                </a></li>
+                            {% endwith %}
                         </ul>
                     </div>
 
                 </div>
-
-                <div class="wrap-buyers">
-                    <div class="col-md-12">
-                        <div class="col-md-12 buyers-card">
-                            <div class="row">
-                                <div class="row">
-
-                                    <div class="col-md-12 buyers-info">
-                                            <div class="col-md-8">
-                                                <h2 class="buyers-id">
-                                                    <a href="#">ID 322</a>
-
-                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
-                                                </h2>
-                                                <p class="buyers-more-info">
-                                                    <i class="fa fa-building"></i> от 1 до 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-male"></i> Пара
-                                                    <i class="fa fa-universal-access"></i> Средний
-
-                                                </p>
-                                                <p class="buyers-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="buyers-comment">
-                                                    <span>E-mail:</span>
-                                                    dmirty.primak@gmail.com<br>
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="buyers-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="buyers-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="buyers-data-call">
-                                                    Дата звонка<br>
-
-                                                    <input id="peresmotr" type="text" placeholder="13/05/16">
-                                                </p>
-                                                <p class="buyers-commission">
-                                                    <i class="fa fa-user"></i> Вячеслав<br>
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="buyers-edit">
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="buyers-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="buyers-data-view">
-                                                   Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  <span class="f-clr-red">10 мая 2016 18:53</span>
-                                                </p>
-                                                <p class="buyers-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
+                {% for buyer in buyer_list %}
+                    {% if buyer.trash == 0 %}
+                        {% if buyer.loyality.get.id == '' %}
+                            {% include 'homes/obj_buyer.html' %}
+                        {% elif buyer.loyality.get.id == user.id or user.is_superuser %}
+                            {% include 'homes/obj_buyer.html' %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if paginator.num_pages > 1 %}
+                    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+                        <div class="col-md-12 section-pagination">
+                            <ul class="pagination">
+                                <li><a href="{% url request.path|cut:'/' %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a></li>
+                                {% for p in paginator.page_range %}
+                                    <li
+                                        {% if request.GET.page|first == p|floatformat %}
+                                            class="active"
+                                        {% endif %}>
+                                        <a href="{% url request.path|cut:'/' %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li><a href="{% url request.path|cut:'/' %}?page={{ paginator.num_pages}}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a></li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
-                <div class="wrap-buyers">
-                    <div class="col-md-12">
-                        <div class="col-md-12 buyers-card">
-                            <div class="row">
-                                <div class="row">
-
-                                    <div class="col-md-12 buyers-info">
-                                            <div class="col-md-8">
-                                                <h2 class="buyers-id">
-                                                    <a href="#">ID 322</a>
-
-                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
-                                                </h2>
-                                                <p class="buyers-more-info">
-                                                    <i class="fa fa-building"></i> от 1 до 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-male"></i> Пара
-                                                    <i class="fa fa-universal-access"></i> Средний
-
-                                                </p>
-                                                <p class="buyers-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="buyers-comment">
-                                                    <span>E-mail:</span>
-                                                    dmirty.primak@gmail.com<br>
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="buyers-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="buyers-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="buyers-data-call">
-                                                    Дата звонка<br>
-
-                                                    <input id="peresmotr" type="text" placeholder="13/05/16">
-                                                </p>
-                                                <p class="buyers-commission">
-                                                    <i class="fa fa-user"></i> Вячеслав<br>
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="buyers-edit">
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="buyers-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="buyers-data-view">
-                                                   Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  <span class="f-clr-red">10 мая 2016 18:53</span>
-                                                </p>
-                                                <p class="buyers-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-buyers">
-                    <div class="col-md-12">
-                        <div class="col-md-12 buyers-card">
-                            <div class="row">
-                                <div class="row">
-
-                                    <div class="col-md-12 buyers-info">
-                                            <div class="col-md-8">
-                                                <h2 class="buyers-id">
-                                                    <a href="#">ID 322</a>
-
-                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
-                                                </h2>
-                                                <p class="buyers-more-info">
-                                                    <i class="fa fa-building"></i> от 1 до 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-male"></i> Пара
-                                                    <i class="fa fa-universal-access"></i> Средний
-
-                                                </p>
-                                                <p class="buyers-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="buyers-comment">
-                                                    <span>E-mail:</span>
-                                                    dmirty.primak@gmail.com<br>
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="buyers-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="buyers-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="buyers-data-call">
-                                                    Дата звонка<br>
-
-                                                    <input id="peresmotr" type="text" placeholder="13/05/16">
-                                                </p>
-                                                <p class="buyers-commission">
-                                                    <i class="fa fa-user"></i> Вячеслав<br>
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="buyers-edit">
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="buyers-stat">
-                                                   <i class="fa fa-check-circle-o"></i> АКТИВНО СДАЕМ
-                                                </p>
-                                                <p class="buyers-data-view">
-                                                   Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  <span class="f-clr-red">10 мая 2016 18:53</span>
-                                                </p>
-                                                <p class="buyers-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-buyers">
-                    <div class="col-md-12">
-                        <div class="col-md-12 buyers-card">
-                            <div class="row">
-                                <div class="row">
-
-                                    <div class="col-md-12 buyers-info">
-                                            <div class="col-md-8">
-                                                <h2 class="buyers-id">
-                                                    <a href="#">ID 322</a>
-
-                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
-                                                </h2>
-                                                <p class="buyers-more-info">
-                                                    <i class="fa fa-building"></i> от 1 до 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-male"></i> Пара
-                                                    <i class="fa fa-universal-access"></i> Средний
-
-                                                </p>
-                                                <p class="buyers-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="buyers-comment">
-                                                    <span>E-mail:</span>
-                                                    dmirty.primak@gmail.com<br>
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="buyers-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="buyers-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="buyers-data-call">
-                                                    Дата звонка<br>
-
-                                                    <input id="peresmotr" type="text" placeholder="13/05/16">
-                                                </p>
-                                                <p class="buyers-commission">
-                                                    <i class="fa fa-user"></i> Вячеслав<br>
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="buyers-edit">
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="buyers-stat question">
-                                                   <i class="fa fa-question-circle-o"></i> УТОЧНИТЬ ДАННЫЕ
-                                                </p>
-                                                <p class="buyers-data-view">
-                                                   Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="buyers-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-buyers">
-                    <div class="col-md-12">
-                        <div class="col-md-12 buyers-card">
-                            <div class="row">
-                                <div class="row">
-
-                                    <div class="col-md-12 buyers-info">
-                                            <div class="col-md-8">
-                                                <h2 class="buyers-id">
-                                                    <a href="#">ID 322</a>
-
-                                                    <span class="buyers-price-arend">от 2 000$ до 2 500$</span>
-                                                </h2>
-                                                <p class="buyers-more-info">
-                                                    <i class="fa fa-building"></i> от 1 до 3
-                                                    <i class="fa fa-building-o"></i> 5 / 5
-                                                    <i class="fa fa-male"></i> Пара
-                                                    <i class="fa fa-universal-access"></i> Средний
-
-                                                </p>
-                                                <p class="buyers-local">
-                                                    <i class="fa fa-map-marker"></i> пер. Красногвардейский, <span>г. Киев, Днепропетровский район</span>
-
-                                                </p>
-                                                <p class="buyers-comment">
-                                                    <span>E-mail:</span>
-                                                    dmirty.primak@gmail.com<br>
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    <span>Комментарий:</span>
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 prop">
-                                                <p class="buyers-prop">
-                                                    <i class="fa fa-user"></i> Орлова Елена Викторовна
-                                                </p>
-                                                <p class="buyers-prop-phone">
-                                                    0932377318
-                                                </p>
-                                                <p class="buyers-data-call">
-                                                    Дата звонка<br>
-
-                                                    <input id="peresmotr" type="text" placeholder="13/05/16">
-                                                </p>
-                                                <p class="buyers-commission">
-                                                    <i class="fa fa-user"></i> Вячеслав<br>
-                                                    Комиссия: <span>640$</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-2 col-sm-6 edit">
-                                                <p class="buyers-edit">
-                                                    <a href="#"><i class="fa fa-pencil"></i> </a>
-
-                                                    <a href="#"><i class="fa fa-times"></i> </a>
-                                                </p>
-                                                <p class="buyers-stat fire">
-                                                   <i class="fa fa-fire"></i> ГОРЯЧИЙ
-                                                </p>
-                                                <p class="buyers-data-view">
-                                                   Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                                <p class="buyers-data-update">
-                                                   Дата обновления<br>
-                                                    <i class="fa fa-calendar"></i>  10 мая 2016 18:53
-                                                </p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 section-pagination">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
+                    {% endwith %}
+                {% endif %}
             </div>
         </div>
     </section>
+    <div class="messageServer"></div>
 {% endblock content %}
 {% block extra_js %}
     <script>
@@ -656,9 +322,10 @@
         $("#stat").selectmenu();
         $("#street").selectmenu();
         $("#typebuild").selectmenu();
-        $("#peresmotr").datepicker();
-        $("#terms").datepicker();
-        $("#call-date").datepicker();
+
+        $("#terms").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
+        $("#call_date_from").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
+        $("#call_date_to").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
         $(".multiple").select2();
         $(".extend-block").click(function() {
             var x = $(".extended-search").css('height');
@@ -689,6 +356,95 @@
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
         }
     });
+    $('.prop').on('change', '.call_date', function(event) {
+        event.preventDefault();
+        $.get('buyers/change_call_date', {"id": $(this).attr('id'), "date": $(this).val()}, function(data) {});
+    });
+    $('#search_buyer').on('click',function(event) {
+        event.preventDefault();
+        var user_id = $('#user_id').val();
+        var price_from = $('#price_from').val();
+        var price_to = $('#price_to').val();
+        var terms = $('#terms').val();
+        var district_name = $('#district_name').val();
+        var area_from = $('#area_from').val();
+        var area_to = $('#area_to').val();
+        var state = $('#state').val();
+        var call_date_from = $('#call_date_from').val();
+        var call_date_to = $('#call_date_to').val();
+        var phone_n = $('#phone_n').val();
+        var type_facility = $('#type_facility').val();
+        var rooms_id = $('#rooms_id').val();
+        var type_client = $('#type_client').val();
+        var name_a = $('#name_a').val();
+        var email_a = $('#email_a').val();
+        var rooms_from = $('#rooms_from').val();
+        var rooms_to = $('#rooms_to').val();
+        var repair = $('#repair').val();
+        var nop = $('#nop').val();
+        var stage_a = $('#stage_a').val();
+        var id_buyer = $('#id_buyer').val();
+        var floor_from = $('#floor_from').val();
+        var floor_to = $('#floor_to').val();
+        data = {
+            "user_id": user_id,
+            "price_from": price_from,
+            "price_to": price_to,
+            "terms": terms,
+            "district_name": district_name,
+            "area_from": area_from,
+            "area_to": area_to,
+            "state": state,
+            "call_date_from": call_date_from,
+            "call_date_to": call_date_to,
+            "phone_n": phone_n,
+            "type_facility": type_facility,
+            "rooms_id": rooms_id,
+            "type_client": type_client,
+            "name_a": name_a,
+            "email_a": email_a,
+            "rooms_from": rooms_from,
+            "rooms_to": rooms_to,
+            "repair": repair,
+            "nop": nop,
+            "stage_a": stage_a,
+            "id_buyer": id_buyer,
+            "floor_from": floor_from,
+            "floor_to": floor_to
+        };
+        $.get('buyers/search_buyer', data, function(data) {
+            $('.search-object').html(data)
+        });
+    });
+    $('.filter_space').on('keyup', function () {
+        $(this).val($.trim($(this).val()));
+    });
+     $(".allownumericwithoutdecimal").on('keyup', function () {
+         console.log($(this).val())
+         $(this).val($.trim($(this).val()));
+         if ($.isNumeric($(this).val())){
+
+         }else{
+             var numbs = $(this).val();
+             numbs = numbs.slice(0, numbs.length-1);
+             $(this).val(numbs)
+
+         }
+        });
+     $('.object-edit').on('click', '.fa-times', function(event) {
+                event.preventDefault();
+                var idobj_trash = $(this).attr('id-obj');
+                $(this).parents('.wrap-buyers').fadeOut('slow');
+                $.post('buyers/trash_buyer', {"trash": idobj_trash, "iduser":{{ user.id }}}, messageServer);
+            });
+            function messageServer(data) {
+                if (data==='Ошибка'){
+                    $('.messageServer').css('backgroundColor', '#c9302c');
+                }else {
+                    $('.messageServer').css('backgroundColor', '#5bc0de');
+                }
+                $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
+            }
 });
     </script>
 {% endblock extra_js %}

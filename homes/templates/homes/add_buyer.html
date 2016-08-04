@@ -18,258 +18,221 @@
     </section>
     <section class="content">
         <div class="container">
-            <div class="row section-search">
+            <form action="add_buyer_obj" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row section-search">
+                    <div class="col-md-12">
+                        <h1 class="section-head">Информация <span>о покупателе</span></h1>
+                        <div class="section-sort">
+                            <input name="add_buyer_obj" type="submit" class="btn btn-green" value=" Добавить">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12 substrate">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="typeobj">Риэлтор</label>
+                                        {{ form.rieltor }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="price">Доступ</label>
+                                        {{ form.loyality }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="price">Комиссия</label>
+                                        {{ form.commission }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="tarea">Имя</label>
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="price">Состояние</label>
+                                        {{ form.type_state }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="stat">Тип клиента</label>
+                                        {{ form.type_client }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="price">Телефон 1<i style="color:#f1300a">
+                                            {{ form.phone_first.errors }}</i>
+                                        </label>
+                                        {{ form.phone_first }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="search-item">
+                                                <label for="price">Телефон 2<i style="color:#f1300a">
+                                                    {{ form.phone_second.errors }}</i>
+                                                </label>
+                                                {{ form.phone_second }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="search-item">
+                                            <label for="price">E-mail</label>
+                                            {{ form.email }}
+                                            </div>
+                                        </div>
+                                </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="search-item">
+                                        <label for="price">Комментарий</label>
+                                        {{ form.comment }}
+                                    </div>
+                                    <br>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-md-12">
-                    <h1 class="section-head">Информация <span>о покупателе</span></h1>
-                    <div class="section-sort">
-                        <a href="#" class="btn btn-green">
-                            Добавить
-                        </a>
-                    </div>
+                    <h1 class="section-head">Дополнительные <span>параметры</span></h1>
+
                 </div>
                 <div class="col-md-12">
                     <div class="col-md-12 substrate">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="typeobj">Риэлтор</label>
-                                    <select placeholder="-----">
-                                        <option>Вячеслав</option>
-                                        <option>Дмитрий</option>
-                                        <option>Сергей</option>
-                                    </select>
-                                </div>
+                                        <label for="tarea">Район</label>
+                                        {{ form.district_obj }}
+                                    </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="price">Доступ</label>
-                                    <select placeholder="-----">
-                                        <option>Вячеслав</option>
-                                        <option>Дмитрий</option>
-                                        <option>Сергей</option>
-                                    </select>
-                                </div>
+                                        <label for="price">Ремонт</label>
+                                        {{ form.repairs }}
+                                    </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="price">Комиссия</label>
-                                    <input type="text" placeholder="-----">
-                                </div>
+                                        <label for="typeobj">Тип объекта</label>
+                                        {{ form.type_building_data }}
+                                    </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="tarea">Имя</label>
-                                    <input type="text" placeholder="-----">
+                                    <label for="tarea">Комнаты</label>
+                                    {{ form.room }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="price">Состояние</label>
-                                    <select placeholder="-----">
-                                        <option>Пункт 1</option>
-                                        <option>Пункт 2</option>
-                                        <option>Пункт 3</option>
-                                    </select>
-                                </div>
+                                        <label for="price">Комнат<i style="color:#f1300a">
+                                        {{ form.rooms_from.errors }}
+                                        {{ form.rooms_to.errors }}</i>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.rooms_from }}
+                                            </div>
+                                            <div class="col-md-6">
+                                               {{ form.rooms_to }}
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="stat">Тип клиента</label>
-                                    <select placeholder="-----">
-                                        <option>Постоянный</option>
-                                        <option>Разовый</option>
-                                    </select>
-                                </div>
+                                        <label for="price">Этажность</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.floors_from }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.floors_to }}
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="price">Телефон 1</label>
-                                    <input type="text" placeholder="-----">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="search-item">
-                                            <label for="price">Телефон 2</label>
-                                            <input type="text" placeholder="-----">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                <div class="col-md-12">
-                                    <div class="search-item">
-                                        <label for="price">E-mail</label>
-
-                                                <input type="text" placeholder="-----">
+                                        <label for="price">Площадь</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.area_from }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.area_to }}
+                                            </div>
                                         </div>
                                     </div>
                             </div>
-                            </div>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="price">Комментарий</label>
-                                    <textarea name="" id="" rows="7"></textarea>
-
-                                </div>
-                                <br>
-
+                                        <label for="price">Цена</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.price_from }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.price_to }}
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                        <label for="phone">Сроки <i class="fa fa-calendar"></i></label>
+                                        {{ form.date_term }}
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12">
-                <h1 class="section-head">Дополнительные <span>параметры</span></h1>
-
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-12 substrate">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="tarea">Район</label>
-                                    <select>
-                                        <option>Духовец</option>
-                                        <option>Курский</option>
-                                        <option>Центральный</option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Ремонт</label>
-                                    <select>
-                                        <option>Евро</option>
-                                        <option>Жилой</option>
-                                        <option>Под ремонт</option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="typeobj">Тип объекта</label>
-                                    <select>
-                                        <option>Дом</option>
-                                        <option>Квартира</option>
-                                        <option>Комната</option>
-                                        <option>Участок</option>
-                                    </select>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                <label for="tarea">Комнаты</label>
-                                <select>
-                                    <option>Смежные</option>
-                                    <option>Раздельные</option>
-                                    <option>Смежно-раздельные</option>
-                                </select>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                        <label for="price">Люди</label>
+                                        {{ form.number_of_persons }}
+                                    </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Комнат</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="От">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="До">
-                                        </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                        <label for="price">Этап</label>
+                                        {{ form.type_stage }}
                                     </div>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Этажность</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="От">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="До">
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Площадь</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="От">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="До">
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Цена</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="От">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="До">
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="phone">Сроки <i class="fa fa-calendar"></i></label>
-                                    <input id="peresmotr" type="text" placeholder="-----">
-                                </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Люди</label>
-                                    <select name="" id="">
-                                        <option value="">Семья</option>
-                                        <option value="">Пара</option>
-                                        <option value="">1 человек</option>
-                                        <option value="">Не русские</option>
-                                        <option value="">Пара с ребенком</option>
-                                    </select>
-                                </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="search-item">
-                                    <label for="price">Этап</label>
-                                    <select name="" id="">
-                                        <option value="">Подбор объекта</option>
-                                        <option value="">пункт 1</option>
-                                        <option value="">пункт 2</option>
-                                    </select>
-                                </div>
-                                <br>
+                                    <br>
+                            </div>
+
                         </div>
 
                     </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="text-align: center; margin: 15px 0">
-                        <a href="#" class="btn btn-green">Добавить</a>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center; margin: 15px 0">
+                             <input name="add_buyer_obj" type="submit" class="btn btn-green" value=" Добавить">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         </div>
     </section>
@@ -316,6 +279,12 @@
                 tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
             }
         });
+        $("#id_date_term").datepicker({
+             monthNames: ['Январь', 'Февраль', 'Март', 'Апрель',
+            'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+            'Октябрь', 'Ноябрь', 'Декабрь'],
+             dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+             firstDay: 1}).datepicker();
     });
     </script>
 {% endblock extra_js %}

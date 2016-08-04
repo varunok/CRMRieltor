@@ -369,9 +369,9 @@ class AddressFacilityData(models.Model):
                                     blank=True,
                                     null=True)
     # Етаж первий
-    first_floor = models.BooleanField(verbose_name='Первый')
+    first_floor = models.BooleanField(verbose_name=u'Первый')
     # Етаж последний
-    last_floor = models.BooleanField(verbose_name='Последний')
+    last_floor = models.BooleanField(verbose_name=u'Последний')
 
     floor = models.IntegerField(verbose_name=u'Этаж',
                                 blank=True,

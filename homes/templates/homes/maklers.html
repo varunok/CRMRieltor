@@ -1,6 +1,10 @@
 {% extends "homes/base.html" %}
 
-{% block extra_css %}{% endblock extra_css %}
+{% load static from staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/makler.css" %}">
+{% endblock extra_css %}
 
 {% block content %}
     <section>
@@ -21,7 +25,7 @@
                 <div class="col-md-12">
                     <h1 class="section-head">Маклера</h1>
                     <div class="section-sort">
-                        <a href="#" class="btn btn-green">Добавить</a>
+                        <a id="add_makler" href="#" class="btn btn-green">Добавить</a>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -78,7 +82,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 btn-search">
-                                <a href="#" class="btn btn-blue">Отправить</a>
+                                <a id="send_email_makler" href="#" class="btn btn-blue">Отправить</a>
                             </div>
                         </div>
                     </div>
@@ -94,9 +98,9 @@
                                         <br>
                                         <div class="tabs">
                                             <ul class="main-tabs">
-                                                <li><a href="#">Все <span class="label label-default">10</span></a></li>
-                                                <li><a href="#">Белые <span class="label label-default">10</span></a></li>
-                                                <li><a href="#">Черные <span class="label label-default">10</span></a></li>
+                                                <li{% if '/maklers' == request.path %} class="tabs-active" {% endif %}><a href="{% url 'maklers' %}">Все <span class="label label-default">{{ count_makler }}</span></a></li>
+                                                <li{% if '/maklers_white' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'maklers_white' %}">Белые <span class="label label-default">{{ count_makler_white }}</span></a></li>
+                                                <li{% if '/maklers_black' in request.path %} class="tabs-active" {% endif %}><a href="{% url 'maklers_black' %}">Черные <span class="label label-default">{{ count_makler_black }}</span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -105,7 +109,7 @@
                         </div>
                         <div class="row">
                             <div class="table-responsive">
-                                <table class="table table table-striped table-bordered table-hover makler table-in">
+                                <table class="add_apend_makler table table table-striped table-bordered table-hover makler table-in">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -117,141 +121,67 @@
                                             <th> </th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="f-clr-grey">
-                                            32
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Иногда <span class="makler-type makler-white">белый</span>
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-user"></i> Сергей Петров
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-phone"></i> +380932377318
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Агенты
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            dmirty.primak@gmail.com
-                                        </td>
-                                        <td class="edit f-clr-grey">
-                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-clr-grey">
-                                            32
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Редко <span class="makler-type makler-white">белый</span>
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-user"></i> Сергей Петров
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-phone"></i> +380932377318
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Агенты
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            dmirty.primak@gmail.com
-                                        </td>
-                                        <td class="edit f-clr-grey">
-                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-clr-grey">
-                                            32
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Иногда <span class="makler-type makler-white">белый</span>
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-user"></i> Сергей Петров
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-phone"></i> +380932377318
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Агенты
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            dmirty.primak@gmail.com
-                                        </td>
-                                        <td class="edit f-clr-grey">
-                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-clr-grey">
-                                            32
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Часто <span class="makler-type makler-black">черный</span>
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-user"></i> Сергей Петров
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-phone"></i> +380932377318
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Агенты
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            dmirty.primak@gmail.com
-                                        </td>
-                                        <td class="edit f-clr-grey">
-                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="f-clr-grey">
-                                            32
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Иногда <span class="makler-type makler-black">черный</span>
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-user"></i> Сергей Петров
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            <i class="fa fa-phone"></i> +380932377318
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            Агенты
-                                        </td>
-                                        <td class="f-clr-grey">
-                                            dmirty.primak@gmail.com
-                                        </td>
-                                        <td class="edit f-clr-grey">
-                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                        </td>
-                                    </tr>
+                                    {% for makler in maklers %}
+                                        <tr>
+                                            <td class="f-clr-grey">
+                                                {{ makler.id }}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                {{ makler.cooperation }} <span class="makler-type makler-white">
+                                                {% if makler.white_black.id == 1 %}
+                                                    <span class="makler-type makler-white">
+                                                {% elif makler.white_black.id == 2 %}
+                                                    <span class="makler-type makler-black">
+                                                {% else %}
+                                                {% endif %}
+                                                {{ makler.white_black }}
+                                            </span>
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                <i class="fa fa-user"></i>
+                                                {{ makler.name }}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                <i class="fa fa-phone"></i>
+                                                {{ makler.phone }}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                {{ makler.agency }}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                {{ makler.email }}
+                                            </td>
+                                            <td class="edit f-clr-grey">
+                                                <a id-makler='{{ makler.id }}' href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 section-pagination">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </div>
+        {% if paginator.num_pages > 1 %}
+                        <div class="col-md-12 section-pagination">
+                            <ul class="pagination">
+                                <li><a href="{% url request.path|cut:'/' %}?page=1">&laquo;</a></li>
+                                {% for p in paginator.page_range %}
+                                    <li
+                                        {% if request.GET.page|first == p|floatformat %}
+                                            class="active"
+                                        {% endif %}>
+                                        <a href="{% url request.path|cut:'/' %}?page={{ p }}">{{ p }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li><a href="{% url request.path|cut:'/' %}?page={{ paginator.num_pages}}">&raquo;</a></li>
+                            </ul>
+                        </div>
+                {% endif %}
         </div>
         </div>
     </section>
+   <div id="add_form"></div>
 {% endblock content %}
 {% block extra_js %}
     <script>
@@ -282,4 +212,5 @@
 
     });
     </script>
+    <script src="{% static "js/makler.js" %}"></script>
 {% endblock extra_js %}

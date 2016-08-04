@@ -1,5 +1,5 @@
                                     {% if error %}
-                                        <tr class="show_tr"
+                                        <tr id="show_tr-{{ arendator.id }}" class="show_tr"
                                             {% if display %}
                                                 style="">
                                             {% else %}
@@ -61,7 +61,7 @@
                                             <td class="edit">
                                                 <input type="checkbox">
                                                 <a href="#"> <i class="fa fa-pencil"></i>
-                                                </a> <a href="#"><i del-arendator-id="{{ arendator.id }}" class="fa fa-times"></i></a>
+                                                </a> <a href="#"><i del-arendator-id="{{ arendator.id }}" class="fa delete_arendator_tr fa-times"></i></a>
                                             </td>
                                         </tr>
                                     {% else %}

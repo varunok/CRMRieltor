@@ -32,6 +32,8 @@ import single_object.urls
 import who_online.urls
 import send_messege_user.urls
 import arendator.urls
+import buyer.urls
+import makler.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -45,6 +47,8 @@ urlpatterns = [
     url(r'^', include(who_online.urls)),
     url(r'^', include(send_messege_user.urls)),
     url(r'^arendators/', include(arendator.urls)),
+    url(r'^buyers/', include(buyer.urls)),
+    url(r'^maklers/', include(makler.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

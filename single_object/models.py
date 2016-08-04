@@ -4,6 +4,7 @@
 from django.db import models
 from facility.models import ContactOwner
 from arendator.models import Arendator
+from buyer.models import Buyer
 # Create your models here.
 
 
@@ -42,6 +43,8 @@ class SingleObjComments(models.Model):
     image = models.CharField(max_length=100,
                              default='0')
 
+    type_tabs = models.CharField(max_length=20, verbose_name=u'Какая вкладка?')
+
     def __unicode__(self):
         return self.comment
 
@@ -65,16 +68,42 @@ class ShowsArendator(models.Model):
 
 class Tie(models.Model):
     class Meta(object):
-        verbose_name = u'Связка'
+        verbose_name = u'Связка с арендатором'
         verbose_name_plural = u'Связки'
 
     tie_cont_owner = models.OneToOneField(ContactOwner, verbose_name=u'Обект')
 
     tie_arenda = models.ManyToManyField(Arendator, blank=True, verbose_name=u"Связка обекта с арендатором")
 
-    # shows_arendator = models.OneToOneField(ShowsArendator, verbose_name=u"Покази Арендаторам")
+    def __unicode__(self):
+        return '%s' % self.id
 
-    comment_arendator = models.TextField(verbose_name=u'Коментарий', blank=True, null=True)
+
+class ShowsBuyer(models.Model):
+    class Meta(object):
+        verbose_name = u'Показ покупателю'
+        verbose_name_plural = u'Покази покупателям'
+
+    type_shows_buyer = models.ForeignKey(TypeShows, verbose_name=u"Покази Покупателю",
+                                        on_delete=models.PROTECT, null=True, default=1)
+
+    array_buyer = models.ForeignKey(Buyer, on_delete=models.PROTECT, null=True)
+
+    array_cont_ower = models.ForeignKey(ContactOwner, on_delete=models.PROTECT, null=True)
+
+
+    def __unicode__(self):
+        return '%s' % self.id
+
+
+class TieBuyer(models.Model):
+    class Meta(object):
+        verbose_name = u'Связка с покупателем'
+        verbose_name_plural = u'Связки'
+
+    tie_cont_owner = models.OneToOneField(ContactOwner, verbose_name=u'Обект')
+
+    tie_buye = models.ManyToManyField(Buyer, blank=True, verbose_name=u"Связка обекта с покупателем")
 
     def __unicode__(self):
         return '%s' % self.id

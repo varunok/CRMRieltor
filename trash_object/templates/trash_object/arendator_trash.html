@@ -52,7 +52,7 @@
 {% block extra_js %}
     <script>
         $(document).ready(function() {
-            $('.object-edit').on('click', '.fa-times', function(event) {
+            $('.buyers-edit').on('click', '.fa-times', function(event) {
                 event.preventDefault();
                 var idobj_del = $(this).attr('id-obj');
                 var th = $(this);
@@ -63,12 +63,12 @@
                     $('#messege_warning').fadeOut('slow');
                     $('#back-module').fadeOut('slow');
                     foo(th, idobj_del);
-                    $.post('del_obj', {"del": idobj_del}, messageServer );
+                    $.post('del_arendator', {"del": idobj_del}, messageServer );
                     $('div').off('click');
                 });
             });
             function foo(data, data2){
-                    data.parents('.wrap-obj').fadeOut('slow');
+                    data.parents('.wrap-buyers').fadeOut('slow');
                     $('.label-id-'+ data2).fadeOut('slow');
                 }
             $('.nobtn').on('click', function(event) {

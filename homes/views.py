@@ -6,18 +6,21 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone, dateformat
 from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 
 from notes.models import Notes
 from setting_street.models import Street, District, Subway
 from facility.forms import AddressFacilityForm
 from arendator.forms import ArendatorForm
+from buyer.forms import BuyerForm
 from arendator.models import Arendator, TypeState, TypeClient, TypeStage
+from buyer.models import Buyer
 from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeFacility, \
     TypeActuality, TypeCondition, TypeRooms, TypeBuilding, TypeRepairs, TypeNumberOfPerson
 from setting_globall.models import NationalCarrency
 from search_home import searh
-from django.views.generic import ListView
 from extuser.models import MyUser
+from makler.models import Makler
 
 
 # Create your views here.
@@ -88,9 +91,24 @@ def buyers_list(request):
     return render(request, 'homes/buyers.html', {'time': timezone.now()})
 
 
-@login_required
-def maklers_list(request):
-    return render(request, 'homes/maklers.html', {'time': timezone.now()})
+class MaklerList(ListView):
+    model = Makler
+    paginate_by = 10
+    context_object_name = 'maklers'
+    template_name = 'homes/maklers.html'
+    # qeryset = Makler.objects.all()
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MaklerList, self).get_context_data(**kwargs)
+        self.context['time'] = timezone.now()
+        self.context['count_makler'] = Makler.objects.all().count()
+        self.context['count_makler_white'] = Makler.objects.filter(white_black=1).count()
+        self.context['count_makler_black'] = Makler.objects.filter(white_black=2).count()
+        return self.context
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MaklerList, self).dispatch(request, *args, **kwargs)
 
 
 @login_required
@@ -135,15 +153,54 @@ class ArendatorsList(ListView):
     def dispatch(self, request, *args, **kwargs):
         return super(ArendatorsList, self).dispatch(request, *args, **kwargs)
 
-@login_required
-def add_buyer(request):
-    return render(request, 'homes/add_buyer.html', {'time': timezone.now()})
-
 
 @login_required
 def add_arendator(request, form=ArendatorForm()):
     return render(request, 'homes/add_arendator.html', {'time': timezone.now(),
                                                         'form': form})
+
+
+class BuyersList(ListView):
+    """docstring for ObjectList"""
+    model = Buyer
+    paginate_by = 10
+    context_object_name = 'buyer_list'
+    template_name = 'homes/buyers.html'
+    qeryset = Buyer.objects.all().filter(trash=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(BuyersList, self).get_context_data(**kwargs)
+        self.context['time'] = timezone.now()
+        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['count_arendator'] = len(Buyer.objects.all().filter(trash=False))
+        self.context['user_list'] = MyUser.objects.all()
+        self.context['list_district'] = District.objects.all()
+        self.context['list_state'] = TypeState.objects.all()
+        self.context['type_facility'] = TypeFacility.objects.all()
+        self.context['list_rooms'] = TypeRooms.objects.all()
+        self.context['list_client'] = TypeClient.objects.all()
+        self.context['list_stage'] = TypeStage.objects.all()
+        self.context['list_repair'] = TypeRepairs.objects.all()
+        self.context['list_number_of_persons'] = TypeNumberOfPerson.objects.all()
+
+        return self.context
+
+    def get_queryset(self):
+        order_by = self.request.GET.get('order_by', '')
+        if order_by in ('id', 'call_date', 'review_date'):
+            self.qeryset = self.qeryset.order_by(order_by)
+        if self.request.GET.get('reverse', '') == '1':
+            self.qeryset = self.qeryset.reverse()
+        return self.qeryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(BuyersList, self).dispatch(request, *args, **kwargs)
+
+@login_required
+def add_buyer(request, form=BuyerForm()):
+    return render(request, 'homes/add_buyer.html', {'time': timezone.now(),
+                                                    'form': form})
 
 
 @login_required

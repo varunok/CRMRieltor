@@ -24,7 +24,7 @@ class TypeState(models.Model):
         verbose_name_plural = u'Типи состояний'
 
     state = models.CharField(max_length=150,
-                             verbose_name='Состояние',
+                             verbose_name=u'Состояние',
                              blank=True,
                              null=True)
 
@@ -38,7 +38,7 @@ class TypeClient(models.Model):
         verbose_name_plural = u'Типи клиентов'
 
     client = models.CharField(max_length=150,
-                              verbose_name='Тип клиента',
+                              verbose_name=u'Тип клиента',
                               blank=True,
                               null=True)
 
@@ -52,7 +52,7 @@ class TypeStage(models.Model):
         verbose_name_plural = u'Типи Этапов'
 
     stage = models.CharField(max_length=150,
-                             verbose_name='Тип Этапа',
+                             verbose_name=u'Тип Этапа',
                              blank=True,
                              null=True)
 
@@ -121,7 +121,7 @@ class Arendator(models.Model):
                                      blank=True)
 
     type_building_data = models.ManyToManyField(TypeFacility,
-                                                verbose_name=u'Строение',
+                                                verbose_name=u'Тип объекта',
                                                 blank=True)
 
     room = models.ManyToManyField(TypeRooms,
@@ -167,16 +167,16 @@ class Arendator(models.Model):
                                  blank=True,
                                  null=True)
 
-    time_trash = models.DateTimeField(verbose_name='Время удаления',
+    time_trash = models.DateTimeField(verbose_name=u'Время удаления',
                                       blank=True,
                                       null=True)
 
     name_user_trash = models.CharField(max_length=100,
                                        blank=True,
                                        null=True,
-                                       verbose_name='Кто удалил')
+                                       verbose_name=u'Кто удалил')
 
-    trash = models.BooleanField(verbose_name='Корзина', default=False)
+    trash = models.BooleanField(verbose_name=u'Корзина', default=False)
 
 
     def __unicode__(self):

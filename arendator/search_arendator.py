@@ -8,9 +8,9 @@ from django.db.models import Q
 
 
 def searh(request):
-    data = request.GET
-    arendator = Arendator.objects.all()
-    try:
+        data = request.GET
+        arendator = Arendator.objects.all()
+    # try:
         if data.get('id_arendator'):
             arendator = arendator.filter(id=data.get('id_arendator'))
         if data.getlist('user_id[]'):
@@ -34,24 +34,19 @@ def searh(request):
             arendator = arendator.filter(type_state__in=data.getlist('state[]'))
         if data.get('call_date_from'):
             call_date_from = data.get('call_date_from').split('/')
-            call_date_from = datetime.date(int(call_date_from[2]), call_date_from[0], call_date_from[1])
+            call_date_from = datetime.date(int(call_date_from[2]), int(call_date_from[0]), int(call_date_from[1]))
             if data.get('call_date_to'):
                 call_date_to = data.get('call_date_to').split('/')
-                call_date_to = datetime.date(call_date_to[2], call_date_to[0], call_date_to[1])
+                call_date_to = datetime.date(int(call_date_to[2]), int(call_date_to[0]), int(call_date_to[1]))
                 arendator = arendator.filter(call_date__range=(call_date_from, call_date_to))
             else:
                 end_date = datetime.date(2100, 1, 1)
                 arendator = arendator.filter(call_date__range=(call_date_from, end_date))
         if data.get('call_date_to'):
             call_date_to = data.get('call_date_to').split('/')
-            call_date_to = datetime.date(call_date_to[2], call_date_to[0], call_date_to[1])
-            if data.get('call_date_from'):
-                call_date_from = data.get('call_date_from').split('/')
-                call_date_from = datetime.date(call_date_from[2], call_date_from[0], call_date_from[1])
-                arendator = arendator.filter(call_date__range=(call_date_from, call_date_to))
-            else:
-                start_date = datetime.date(2000, 1, 1)
-                arendator = arendator.filter(call_date__range=(start_date, call_date_to))
+            call_date_to = datetime.date(int(call_date_to[2]), int(call_date_to[0]), int(call_date_to[1]))
+            start_date = datetime.date(2000, 1, 1)
+            arendator = arendator.filter(call_date__range=(start_date, call_date_to))
         if data.get('phone_n'):
             arendator = arendator.filter(Q(phone_first__iexact=data.get('phone_n')) | Q(phone_second__iexact=data.get('phone_n')))
         if data.getlist('type_facility[]'):
@@ -78,7 +73,7 @@ def searh(request):
             arendator = arendator.filter(number_of_persons__in=data.getlist('nop[]'))
         if data.getlist('repair[]'):
             arendator = arendator.filter(repairs__in=data.getlist('repair[]'))
-    except:
-        return arendator.filter(trash=False)
+    # except:
+        # return arendator.filter(trash=False)
 
-    return arendator.filter(trash=False)
+        return arendator.filter(trash=False)

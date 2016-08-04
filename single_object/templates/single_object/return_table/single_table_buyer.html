@@ -1,0 +1,69 @@
+                                    {% if error %}
+                                        <tr id="show_tr-{{ buyer.id }}" class="show_tr"
+                                            {% if display %}
+                                                style="">
+                                            {% else %}
+                                                style="display: none">
+                                            {% endif %}
+                                            <td>{{ buyer.id }}</td>
+                                            <td class="f-clr-green">
+                                                {% if buyer.type_state %}
+                                                    <i class="fa fa-check-circle-o"></i>
+                                                    {{ buyer.type_state }}
+                                                {% endif %}
+                                            </td>
+                                            <td class="f-clr-grey edit warning">
+                                                <select name="" class="id_shows_buyer" id-buyer-sin="{{ buyer.id }}">
+                                                    {% for show in type_shows %}
+                                                        <option
+                                                    {% for sh in shows_buyer %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
+                                                            {% if buyer.id|floatformat == sh.array_buyer|floatformat %}
+                                                                {% if show == sh.type_shows_buyer %}
+                                                                    selected="selected"
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    value="{{ show.id }}">{{ show }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                <i class="fa fa-user"></i>
+                                                {{ buyer.name }}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                            {% if buyer.phone_first %}
+                                                {{ buyer.phone_first }}
+                                            {% elif buyer.phone_second %}
+                                                {{ buyer.phone_second }}
+                                             {% else %}
+                                                нет телефона
+                                            {% endif %}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                {% if buyer.price_from %}
+                                                    {{ buyer.price_from }}{{ nac_carrency }}
+                                                {% endif %}
+                                                {% if buyer.price_to %}
+                                                    - {{ buyer.price_to }}{{ nac_carrency }}
+                                                {% endif %}
+                                            </td>
+                                            <td class="f-clr-grey">
+                                                {% if buyer.rooms_from %}
+                                                    {{ buyer.rooms_from }}
+                                                {% endif %}
+                                                {% if buyer.rooms_to %}
+                                                    - {{ buyer.rooms_to }}
+                                                {% endif %}
+                                            </td>
+                                            <td class="edit">
+                                                <input type="checkbox">
+                                                <a href="#"> <i class="fa fa-pencil"></i>
+                                                </a> <a href="#"><i del-buyer-id="{{ buyer.id }}" class="fa delete_buyer_tr fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                    {{ count_buyer }}
+                                    {% endif %}

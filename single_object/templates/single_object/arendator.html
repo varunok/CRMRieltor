@@ -1,4 +1,4 @@
-                    <div class="object-arendator">
+                    <div type-tabs="arendators" class="object-arendator">
                         <h3 class="arendator-head">Арендаторы</h3>
                         <div class="row">
                             <div class="col-md-12 arendator-sort">
@@ -38,7 +38,7 @@
                                         <a id="cencel_automat_btn" href="#" class="btn btn-red">Отменить</a>
                                     </div>
                                 </div>
-                                <a href="#" class="btn btn-red">Очистить</a>
+                                <a href="#" id="clear_all_arendator" class="btn btn-red">Очистить</a>
                             </div>
                         </div>
                         <div class="col-md-12 delivery">
@@ -90,55 +90,22 @@
                         </div>
                         <div class="col-md-12">
                             <div class="comments">
-                                <h3 class="comments-head">Комментарии</h3>
-                                <div class="row">
-                                    <div class="comments-item">
-                                        <div class="col-md-1">
-                                            <div class="comments-avatar">
-                                                <img src="images/comment-avatar.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11">
-                                            <h4 class="comments-name">Вячеслав Рекечинский</h4>
-                                            <p class="comments-text">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
-                                            </p>
-                                            <div class="comments-edit">
-                                                <a href="#"><i class="fa fa-times"></i></a>
-                                            </div>
-                                            <div class="comments-time">
-                                                <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comments-item last-comments">
-                                        <div class="col-md-1">
-                                            <div class="comments-avatar">
-                                                <img src="images/comment-avatar.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11">
-                                            <h4 class="comments-name">Вячеслав Рекечинский</h4>
-                                            <p class="comments-text">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae architecto quaerat, libero! Eum, officia, quibusdam! Temporibus nam earum eos iure at obcaecati voluptatibus velit.
-                                            </p>
-                                            <div class="comments-edit">
-                                                <a href="#"><i class="fa fa-times"></i></a>
-                                            </div>
-                                            <div class="comments-time">
-                                                <i class="fa fa-clock-o"></i> 10 мая 2016 20:16
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comments-area">
-                                        <div class="col-md-12">
-                                            <textarea name="" id=""></textarea>
-                                            <div class="comments-add">
-                                                <a href="#" class="btn btn-green">Добавить</a>
-                                            </div>
-                                        </div>
+                        <h3 class="comments-head">Комментарии</h3>
+                        <div class="row comment_add">
+                            {% for data_comment in single_obj_comments %}
+                                {% if data_comment.type_tabs == 'arendators' %}
+                                    {% include 'single_object/single_comment/single_comment.html' %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                            <div class="comments-area">
+                                <div class="col-md-12">
+                                    <textarea name="" id="text_comment"></textarea>
+                                    <div class="comments-add">
+                                        <a id="send_comment" href="#" class="btn btn-green">Добавить</a>
                                     </div>
                                 </div>
                             </div>
+                    </div>
                         </div>
                     </div>
