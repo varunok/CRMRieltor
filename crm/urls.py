@@ -34,6 +34,7 @@ import send_messege_user.urls
 import arendator.urls
 import buyer.urls
 import makler.urls
+import setting_superadmin.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -49,6 +50,7 @@ urlpatterns = [
     url(r'^arendators/', include(arendator.urls)),
     url(r'^buyers/', include(buyer.urls)),
     url(r'^maklers/', include(makler.urls)),
+    url(r'^', include(setting_superadmin.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

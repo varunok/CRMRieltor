@@ -1,3 +1,5 @@
+{% load all_to_call %}
+{% load franshise %}
 {% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="ru">
@@ -49,8 +51,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
-                        <div class="logo">
-                            <a href="#"><span>GEK</span>.OD.UA</a>
+                        <div class="logo">{% franshise_len %}
+                            <a href="#"><span>{% franshise_first %}</span>.{% franshise_second %}</a>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4">
@@ -118,7 +120,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="logo">
-                        <a href="#"><span>GEK</span>.OD.UA</a>
+                        <a href="#"><span>{% franshise_first %}</span>.{% franshise_second %}</a>
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -142,10 +144,10 @@
                             <div class="admin-contact">
                                 <span>Всегда на связи</span>
                                 <ul>
-                                    <li><i class="fa fa-mobile"></i> +380932377318</li>
-                                    <li><i class="fa fa-envelope-o"></i> dmirty.primak@gmail.com</li>
-                                    <li><i class="fa fa-skype"></i> dima_primachok</li>
-                                    <li><i class="fa fa-vk"></i> Група Вконтакте</li>
+                                    <li><i class="fa fa-mobile"></i> {% all_to_call 'phone' %}</li>
+                                    <li><i class="fa fa-envelope-o"></i> {% all_to_call 'email' %}</li>
+                                    <li><i class="fa fa-skype"></i> {% all_to_call 'skype' %}</li>
+                                    <li><i class="fa fa-vk"></i> {% all_to_call 'group_vk' %}</li>
                                 </ul>
                             </div>
                         </div>

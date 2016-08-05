@@ -25,3 +25,17 @@ class NationalCarrency(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.currency)
+
+
+class FranshiseSity(models.Model):
+    class Meta:
+        verbose_name = u'Город франшизи'
+
+    sity = models.CharField(max_length=100, verbose_name=u'Город', blank=True, null=True)
+
+
+class Franshise(models.Model):
+    class Meta:
+        verbose_name = u'Франшиза'
+
+    franshise = models.CharField(max_length=100, verbose_name=u'Франшиза', blank=True, null=True)

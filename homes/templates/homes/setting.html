@@ -4,24 +4,38 @@
 
 
 {% block content %}
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ol class="breadcrumb">
-                        <li><a href="{% url "homes" %}">Главная</a></li>
-                        <li class="active">Настройки</li>
-                    </ol>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <li><a href="{% url "homes" %}">Главная</a></li>
+                            <li class="active">Настройки</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     <section class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                         <h1 class="section-head">Настройки</h1>
                 </div>
+                {% if user.myuser.type_user.id == 2 %}
+                    <div class="col-md-6">
+                        <a href="{% url 'list_setting_superadmin' %}" class="setting-link">
+                            <div class="setting-section">
+                                    <div class="setting-icon col-md-4">
+                                        <i class="fa fa-magic"></i>
+                                    </div>
+                                    <div class="setting-text col-md-8">
+                                        <h3>Настройки для суперадминистратора</h3>
+                                        <p></p>
+                                    </div>
+                            </div></a>
+                    </div>
+                {% endif %}
                     <div class="col-md-6">
                         <a href="{% url 'setting_globall' %}" class="setting-link">
                             <div class="setting-section">

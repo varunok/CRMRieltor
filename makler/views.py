@@ -39,7 +39,8 @@ def add_makler(request):
     else:
         return HttpResponse(status=404)
 
-def form_makler(request, form=MaklerForm(),):
+
+def form_makler(request, form=MaklerForm()):
     if form.errors:
         return render(request, 'makler/form.html', {"form": form}, status=404)
     return render(request, 'makler/form.html', {"form": form})

@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load sity_franshise %}
                 <div class="wrap-buyers">
                     <div class="col-md-12">
                         <div class="col-md-12 buyers-card">
@@ -55,7 +56,7 @@
                                                 <p class="buyers-local">
                                                     <i class="fa fa-map-marker"></i> 
                                                     {# пер. Красногвардейский,  #}
-                                                    <span>г. Киев, 
+                                                    <span>г. {% sity_franshise %},
                                                         {% for district in arendator.district_obj.all %}
                                                             {{ district }} район
                                                         {% endfor %}
