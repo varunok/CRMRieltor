@@ -35,6 +35,7 @@ import arendator.urls
 import buyer.urls
 import makler.urls
 import setting_superadmin.urls
+import tasking.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -51,6 +52,7 @@ urlpatterns = [
     url(r'^buyers/', include(buyer.urls)),
     url(r'^maklers/', include(makler.urls)),
     url(r'^', include(setting_superadmin.urls)),
+    url(r'^tasking/', include(tasking.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

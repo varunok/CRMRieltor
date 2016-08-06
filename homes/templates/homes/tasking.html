@@ -1,6 +1,10 @@
 {% extends "homes/base.html" %}
 
-{% block extra_css %}{% endblock extra_css %}
+{% load static from staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/tasking.css" %}">
+{% endblock extra_css %}
 
 
 {% block content %}
@@ -82,7 +86,7 @@
                                     <div class="row">
                                         <h1 class="section-head">Задачи</h1>
                                         <div class="section-sort">
-                                            <a href="#" class="btn btn-green">Добавить</a>
+                                            <a id="add_task_form" href="#" class="btn btn-green">Добавить</a>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -235,6 +239,7 @@
         </div>
         </div>
     </section>
+    <div id="add_form"></div>
 {% endblock content %}
 {% block extra_js %}
     <script>
@@ -265,4 +270,5 @@
 
     });
     </script>
+    <script src="{% static "js/tasking.js" %}"></script>
 {% endblock extra_js %}

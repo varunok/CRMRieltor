@@ -13,4 +13,6 @@ urlpatterns = [
     url(r'^del_obj$', trash_object.views.del_obj),
     url(r'^del_arendator$', trash_object.views.del_arendator),
     url(r'^del_buyer$', trash_object.views.del_buyer),
+    url(r'^archiv_email$', trash_object.views.archiv_email, name='archiv_email'),
+    url(r'^delete_message$', trash_object.views.delete_message),
 ]

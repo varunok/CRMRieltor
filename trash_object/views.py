@@ -8,6 +8,7 @@ from homes.views import ObjectList, ArendatorsList, BuyersList
 from facility.models import ContactOwner
 from arendator.models import Arendator
 from buyer.models import Buyer
+from send_messege_user.models import UserMessage
 
 # Create your views here.
 
@@ -59,6 +60,22 @@ def del_buyer(request):
     else:
         return HttpResponse(u"Ошибка удаления")
 
+
+def archiv_email(request):
+    messages = UserMessage.objects.filter(read=True)
+    print(messages)
+    return render(request, 'trash_object/archiv_email.html', {'time': timezone.now(),
+                                                              'messages': messages})
+
+def delete_message(request):
+    if request.method == 'POST':
+        id_message = request.POST['id']
+        # ff = UserMessage.objects.get(id=id_message)
+        # print ff
+        UserMessage.objects.get(id=id_message).delete()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=404)
 
 def go_trash(request):
     pass

@@ -34,17 +34,19 @@
 			event.preventDefault();
 			$.get('get_text_message', {"id_mes": $(this).attr('id')}, function(data) {
 				var data = jQuery.parseJSON(data);
-				$('#name_sender').text(data.from_fn+' '+data.from_ln)
+				$('#name_sender').text(data.from_fn+' '+data.from_ln);
 				var today = new Date;
-				today = today.setTime(Date.parse(data.time))
-				$('#time_send').text(data.time)
-				$('#text_new_message').text(data.text_message)
+				today = today.setTime(Date.parse(data.time));
+				$('#time_send').text(data.time);
+				$('#text_new_message').text(data.text_message);
+                $('#reading').attr('id-message', data.id_message)
 			});
 		});			
 		$('#reading').click(function(event) {
 			event.preventDefault();
 			$.magnificPopup.close();
-			console.log('ok');
+            var id_message = $(this).attr('id-message');
+		    $.post('reading_message', {'id': id_message});
 			$(this).off('click');
 		});
 		

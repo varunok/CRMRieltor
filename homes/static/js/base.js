@@ -15,7 +15,7 @@
 		var seconds = date.getSeconds();
 		var dates = year + '-' + (month+1) + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 		return dates;    	
-    }
+    };
 
  	var get_online = function(dates) {$.get('who_online',{"date": dates}, function(data) {
  	 			var data = jQuery.parseJSON(data);
@@ -28,14 +28,14 @@
  	 			}
  	 			$('.len_online').text(online.length)
  	 		});	
- 	}
+ 	};
 
  	var get_messege = function (){
             $.get('get_messege', function(data) {
                 var data = jQuery.parseJSON(data);
                 $('.count_message').text(data.new_message)
             });
-        }
+        };
 
     get_online(get_date());
     get_messege();
@@ -54,7 +54,5 @@
 				$('#new_message').html(data);
 			});
 		});
-
-
 });
                                     

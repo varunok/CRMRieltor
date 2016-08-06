@@ -33,9 +33,20 @@ def get_text_message(request):
     id_mes = request.GET['id_mes'].split('-')[-1]
     message = UserMessage.objects.get(id=id_mes)
     message = JsonResponse({
+        "id_message": message.id,
         "from_fn": message.from_user.user.first_name,
         "from_ln": message.from_user.user.last_name,
         "time": message.time_message,
         "text_message": message.message
         })
     return HttpResponse(message)
+
+def reading_message(request):
+    if request.method == 'POST':
+        id_mes = request.POST['id']
+        message = UserMessage.objects.get(id=id_mes)
+        message.read = True
+        message.save()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=404)
