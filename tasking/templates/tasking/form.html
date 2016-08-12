@@ -1,7 +1,8 @@
-    <div class="task-form container">
+{% load static from staticfiles %}
+<div class="task-form container">
         <div class="row">
             <div class="col-md-12">
-                <form id="send_form" action="makler/add_makler" method="post">
+                <form id="send_form" action="" method="post">
                 {% csrf_token %}
                     <div class="row">
                         <div class="col-md-12">
@@ -9,23 +10,35 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="">Крайний срок</label>
-                            <input type="text">
+                            {{ form.dead_line }}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-2">
+                            <label for="">Час.</label>
+                            <select name="" id="hours_task" style="min-width:0; padding:4px;">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="" >Мин.</label>
+                            <select name="" id="minute_task" style="min-width:0; padding:4px;">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4" style="width: 30%;">
                             <label for="">Доступ</label>
-                            <input type="text">
+                            {{ form.access }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="">Риелтор</label>
-                            <input type="text">
+                            {{ form.rieltor }}
                         </div>
                         <div class="col-md-6">
                             <label for="">Сложность</label>
-                            <input type="text">
+                            {{ form.type_complex }}
                         </div>
                     </div>
                     <div class="row">
@@ -61,3 +74,4 @@
             </div>
         </div>
      </div>
+    <script src="{% static "js/select2.min.js" %}"></script>

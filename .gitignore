@@ -1,6 +1,6 @@
 settings.py
 *.pyc
 .idea/
-#extuser/migrations/
+*/migrations/
 #setting_street/migrations/
 media/
