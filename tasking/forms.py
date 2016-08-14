@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from django.forms import ModelForm, TextInput, RadioSelect, Select, SelectMultiple
+from django.forms import ModelForm, Select, SelectMultiple, Textarea
 from tasking.models import Tasking
 
 
@@ -13,5 +13,6 @@ class TaskingForm(ModelForm):
 
         widgets = {
             'access': SelectMultiple(attrs={'class': 'multiple', 'multiple': 'multiple'}),
-            'rieltor': Select(attrs={}),
+            # 'rieltor': Select(attrs={}),
+            'task_text': Textarea(attrs={'cols': '30', 'rows': '7'})
         }

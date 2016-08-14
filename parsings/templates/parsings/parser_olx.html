@@ -1,0 +1,48 @@
+{% extends "homes/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url "homes" %}">Главная</a></li>
+                        <li><a href="{% url "services" %}">Сервисы</a></li>
+                        <li class="active">Парсер OLX</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <h1 class="section-head">Парсер OLX</h1>
+
+                <div class="col-md-4" style="float: right">
+                    <a href="#" class="setting-link">
+                        <div class="setting-section">
+                            <div class="setting-icon col-md-4" style="height: 80px; font-size: 40px;">
+                                <i class="fa fa-cog"></i>
+                            </div>
+                            <div class="setting-text col-md-8">
+                                <h3>Настройки</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+{% endblock content %}
+{% block extra_js %}
+{% endblock extra_js %}

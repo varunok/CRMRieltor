@@ -7,6 +7,7 @@ from facility.models import ContactOwner
 from arendator.models import Arendator
 from buyer.models import Buyer
 
+
 # Create your models here.
 
 class UserFullName(User):
@@ -24,6 +25,8 @@ class TypeComplexity(models.Model):
 
     complexity = models.CharField(max_length=20, verbose_name=u'Тип сложности', blank=True, null=True)
 
+    def __unicode__(self):
+        return '%s' % self.complexity
 
 
 class Tasking(models.Model):
@@ -34,13 +37,15 @@ class Tasking(models.Model):
     dead_line = models.DateTimeField(verbose_name=u'Крайний срок')
 
     access = models.ManyToManyField(UserFullName,
-                                      blank=True,
-                                      verbose_name=u'Доступ',
-                                      related_name='access')
+                                    blank=True,
+                                    verbose_name=u'Доступ',
+                                    related_name='access')
 
-    rieltor = models.ManyToManyField(UserFullName,
-                                     blank=True,
-                                     verbose_name=u'Риелтор')
+    rieltor = models.ForeignKey(UserFullName,
+                                blank=True,
+                                verbose_name=u'Риелтор',
+                                null=True,
+                                on_delete=models.PROTECT)
 
     type_complex = models.ForeignKey(TypeComplexity,
                                      verbose_name=u'Сложность',
@@ -49,10 +54,10 @@ class Tasking(models.Model):
                                      on_delete=models.PROTECT)
 
     task_facility = models.ForeignKey(ContactOwner,
-                                    verbose_name=u'ID(O) Объект',
-                                    blank=True,
-                                    null=True,
-                                    on_delete=models.PROTECT)
+                                      verbose_name=u'ID(O) Объект',
+                                      blank=True,
+                                      null=True,
+                                      on_delete=models.PROTECT)
 
     task_arendator = models.ForeignKey(Arendator,
                                        verbose_name=u'ID(A) Арендатор',

@@ -18,7 +18,8 @@ urlpatterns = [
     url(r'^buyers/add_buyer$', views.add_buyer, name='add_buyer'),
     url(r'^arendators/add_arendator$', views.add_arendator, name='add_arendator'),
     url(r'^objects/add_object$', views.add_object, name='add_object'),
-    url(r'^tasking$', views.tasking, name='tasking'),
+    url(r'^tasking$', views.TaskingList.as_view(), name='tasking'),
+    url(r'^archive$', views.TaskingListArchive.as_view(), name='archive'),
     url(r'^setting$', views.setting, name='setting'),
     url(r'^meeting$', views.meeting, name='meeting'),
     # end site

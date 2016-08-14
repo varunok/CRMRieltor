@@ -36,6 +36,7 @@ import buyer.urls
 import makler.urls
 import setting_superadmin.urls
 import tasking.urls
+import parsings.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -53,6 +54,7 @@ urlpatterns = [
     url(r'^maklers/', include(makler.urls)),
     url(r'^', include(setting_superadmin.urls)),
     url(r'^tasking/', include(tasking.urls)),
+    url(r'^', include(parsings.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin
