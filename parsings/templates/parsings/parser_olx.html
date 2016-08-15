@@ -22,22 +22,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                        <h1 class="section-head">Парсер OLX</h1>
-
-                <div class="col-md-4" style="float: right">
-                    <a href="#" class="setting-link">
-                        <div class="setting-section">
-                            <div class="setting-icon col-md-4" style="height: 80px; font-size: 40px;">
-                                <i class="fa fa-cog"></i>
+                    <h1 class="section-head">Парсер OLX</h1>
+                    <div class="col-md-4" style="float: right">
+                        <a href="#" class="setting-link">
+                            <div class="setting-section">
+                                <div class="setting-icon col-md-4" style="height: 80px; font-size: 40px;">
+                                    <i class="fa fa-cog"></i>
+                                </div>
+                                <div class="setting-text col-md-8">
+                                    <h3>Настройки</h3>
+                                    <p></p>
+                                </div>
                             </div>
-                            <div class="setting-text col-md-8">
-                                <h3>Настройки</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a id="parse" href="" class="btn btn-green">OK</a>
+                </div>
+                <div id="include_parse_text" class="col-md-12"></div>
             </div>
         </div>
     </section>
@@ -45,4 +50,5 @@
     <br>
 {% endblock content %}
 {% block extra_js %}
+    <script src="{% static "js/parser_olx.js" %}"></script>
 {% endblock extra_js %}
