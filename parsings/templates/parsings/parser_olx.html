@@ -39,16 +39,42 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <a id="parse" href="" class="btn btn-green">OK</a>
-                </div>
-                <div id="include_parse_text" class="col-md-12"></div>
-                <select name="" id="">
-                    {% for categories in list_categories_text  %}
-                        <option value="">{{ categories }}</option>
-                    {% endfor %}
-
-                </select>
+                <form id="parse_form" action="" method="post">
+                    <div class="col-md-4">
+                        <label class="col-md-6" for="">Раздел</label>
+                        <select name="id_categories" id="id_categories">
+                            {% for categories in list_categories_text  %}
+                                <option value="{{ forloop.counter }}">{{ categories }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-6" for="">Искльючать</label>
+                        <select name="id_except" id="id_except">
+                            <option value="1">Маклера</option>
+                            <option value="2">Обекты</option>
+                            <option value="3">Все</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-6" for="">Период</label>
+                        <select name="id_term" id="id_term">
+                            <option value="1">1 день</option>
+                            <option value="7">7 дней</option>
+                            <option value="30">30 дней</option>
+                            <option value="500">Все</option>
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a id="parse" href="" class="btn btn-green" style="float: right">OK</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
