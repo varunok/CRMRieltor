@@ -1,0 +1,156 @@
+{% extends "homes/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url "homes" %}">Главная</a></li>
+                        <li><a href="{% url "services" %}">Сервисы</a></li>
+                        <li><a href="{% url "parser_olx" %}">Парсер OLX</a></li>
+                        <li class="active">Настройки парсера OLX</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <h1 class="section-head">Настройки парсера OLX</h1>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SITE_URL</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">AJAX_PHONE</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_GETLINK_CATEGORIES</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_GETTEXT_CATEGORIES</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_GETLINK_ARTICLES</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_SITY</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_TITLE</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">SELECTOR_DATE</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </section>
+{% endblock content %}
+{% block extra_js %}
+    <script src="{% static "js/parser_olx.js" %}"></script>
+{% endblock extra_js %}
