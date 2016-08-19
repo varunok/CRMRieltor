@@ -21,7 +21,7 @@ try:
     config_parser = ConfigParserOLX.objects.get(id=1)
 except:
     class config_parser():
-        SITE_URL = ''
+        SITE_URL = 'http://google.com'
         AJAX_PHONE = ''
         SELECTOR_GETLINK_ARTICLES = ''
         SELECTOR_GETLINK_CATEGORIES = ''
