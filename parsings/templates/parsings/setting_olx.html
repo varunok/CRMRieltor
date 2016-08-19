@@ -22,6 +22,7 @@
     <section class="content">
         <div class="container">
             <div class="row">
+                <div class="messageServer"></div>
                 <div class="col-md-12">
                         <h1 class="section-head">Настройки парсера OLX</h1>
                 </div>
@@ -29,13 +30,28 @@
             <div class="col-md-10 col-md-offset-2">
                 <div class="row">
                     <div class="col-md-3" style="margin-top: 5px">
+                        <label for="" style="vertical-align: middle;">ГОРОД</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" id="sity_conf" value="{{ config_parser.SITY }}">
+                    </div>
+                    <div class="col-md-4">
+                        <input id="sity_conf_btn" type="button" value="Сохранить" class="btn btn-green">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-3" style="margin-top: 5px">
                         <label for="" style="vertical-align: middle;">SITE_URL</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SITE_URL" value="{{ config_parser.SITE_URL }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SITE_URL_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -47,10 +63,10 @@
                         <label for="" style="vertical-align: middle;">AJAX_PHONE</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="AJAX_PHONE" value="{{ config_parser.AJAX_PHONE }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="AJAX_PHONE_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -62,10 +78,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_GETLINK_CATEGORIES</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_GETLINK_CATEGORIES" value="{{ config_parser.SELECTOR_GETLINK_CATEGORIES }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_GETLINK_CATEGORIES_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -77,10 +93,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_GETTEXT_CATEGORIES</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_GETTEXT_CATEGORIES" value="{{ config_parser.SELECTOR_GETTEXT_CATEGORIES }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_GETTEXT_CATEGORIES_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -92,10 +108,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_GETLINK_ARTICLES</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_GETLINK_ARTICLES" value="{{ config_parser.SELECTOR_GETLINK_ARTICLES }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_GETLINK_ARTICLES_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -107,10 +123,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_SITY</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_SITY" value="{{ config_parser.SELECTOR_SITY }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_SITY_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -122,10 +138,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_TITLE</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_TITLE" value="{{ config_parser.SELECTOR_TITLE }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_TITLE_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
@@ -137,10 +153,10 @@
                         <label for="" style="vertical-align: middle;">SELECTOR_DATE</label>
                     </div>
                     <div class="col-md-4">
-                        <input type="text">
+                        <input type="text" id="SELECTOR_DATE" value="{{ config_parser.SELECTOR_DATE }}">
                     </div>
                     <div class="col-md-4">
-                        <input id="" type="button" value="Сохранить" class="btn btn-green">
+                        <input id="SELECTOR_DATE_btn" type="button" value="Сохранить" class="btn btn-green">
                     </div>
                 </div>
             </div>
