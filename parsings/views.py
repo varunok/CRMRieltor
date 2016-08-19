@@ -21,20 +21,22 @@ try:
     config_parser = ConfigParserOLX.objects.get(id=1)
 except:
     config_parser = ''
-
-SITE_URL = config_parser.SITE_URL
-AJAX_PHONE = config_parser.AJAX_PHONE
-SELECTOR_GETLINK_CATEGORIES = config_parser.SELECTOR_GETLINK_CATEGORIES
-SELECTOR_GETTEXT_CATEGORIES = config_parser.SELECTOR_GETTEXT_CATEGORIES
-# SELECTOR_GETTEXT_CATEGORIES = '//div[@id="bottom1"]//ul//li//a//span[@class="block link category-name"]//span/text()'
-SELECTOR_GETLINK_ARTICLES = config_parser.SELECTOR_GETLINK_ARTICLES
-# SELECTOR_GETLINK_ARTICLES = '//a[@class="marginright5 link linkWithHash detailsLink"]/@href'
-SELECTOR_SITY = config_parser.SELECTOR_SITY
-# SELECTOR_SITY = '//strong[@class="c2b small"]/text()'
-SELECTOR_TITLE = config_parser.SELECTOR_TITLE
-# SELECTOR_TITLE = '//h1[@class="brkword lheight28"]/text()'
-SELECTOR_DATE = config_parser.SELECTOR_DATE
-# SELECTOR_DATE = '//span[@class="pdingleft10 brlefte5"]/text()'
+try:
+    SITE_URL = config_parser.SITE_URL
+    AJAX_PHONE = config_parser.AJAX_PHONE
+    SELECTOR_GETLINK_CATEGORIES = config_parser.SELECTOR_GETLINK_CATEGORIES
+    SELECTOR_GETTEXT_CATEGORIES = config_parser.SELECTOR_GETTEXT_CATEGORIES
+    # SELECTOR_GETTEXT_CATEGORIES = '//div[@id="bottom1"]//ul//li//a//span[@class="block link category-name"]//span/text()'
+    SELECTOR_GETLINK_ARTICLES = config_parser.SELECTOR_GETLINK_ARTICLES
+    # SELECTOR_GETLINK_ARTICLES = '//a[@class="marginright5 link linkWithHash detailsLink"]/@href'
+    SELECTOR_SITY = config_parser.SELECTOR_SITY
+    # SELECTOR_SITY = '//strong[@class="c2b small"]/text()'
+    SELECTOR_TITLE = config_parser.SELECTOR_TITLE
+    # SELECTOR_TITLE = '//h1[@class="brkword lheight28"]/text()'
+    SELECTOR_DATE = config_parser.SELECTOR_DATE
+    # SELECTOR_DATE = '//span[@class="pdingleft10 brlefte5"]/text()'
+except:
+    pass
 
 
 def services(request):
