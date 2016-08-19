@@ -22,13 +22,13 @@ try:
 except:
     class config_parser():
         SITE_URL = 'http://google.com'
-        AJAX_PHONE = ''
-        SELECTOR_GETLINK_ARTICLES = ''
-        SELECTOR_GETLINK_CATEGORIES = ''
-        SELECTOR_GETTEXT_CATEGORIES = ''
-        SELECTOR_SITY = ''
-        SELECTOR_TITLE = ''
-        SELECTOR_DATE = ''
+        AJAX_PHONE = '/ajax'
+        SELECTOR_GETLINK_ARTICLES = '//a/@href'
+        SELECTOR_GETLINK_CATEGORIES = '//a/@href'
+        SELECTOR_GETTEXT_CATEGORIES = '//text()'
+        SELECTOR_SITY = '//text()'
+        SELECTOR_TITLE = '//text()'
+        SELECTOR_DATE = '//text()'
 
 
 SITE_URL = config_parser.SITE_URL
