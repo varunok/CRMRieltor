@@ -17,6 +17,9 @@ from extuser.models import MyUser
 from arendator.models import Arendator
 from buyer.models import Buyer
 from search_automat_arendator import search_automat
+from tasking.forms import TaskingForm
+from tasking.models import UserFullName, Tasking
+from homes.views import TaskingList, TaskingListArchive
 
 
 class SingleObjectView(DetailView):
@@ -342,6 +345,42 @@ def clear_all_buyer(request):
         return HttpResponse(status=404)
 # END BLOCK BUYER
 
+#START BLOCK TASKING
+def get_form_task(request, form=TaskingForm()):
+    form.fields['task_facility'].queryset = ContactOwner.objects.filter(trash=False)
+    form.fields['task_arendator'].queryset = Arendator.objects.filter(trash=False)
+    form.fields['task_buyer'].queryset = Buyer.objects.filter(trash=False)
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['access'].queryset = UserFullName.objects.filter(is_active=True)
+    if form.errors:
+        return render(request, 'single_object/single_tasking/form.html', {"form": form}, status=500)
+
+    return render(request, 'single_object/single_tasking/form.html', {"form": form})
+
+def save_form_tasking_task(request):
+    if request.method == 'POST':
+       form = TaskingForm(request.POST)
+       if form.is_valid():
+           form.save()
+           task = Tasking.objects.last()
+           return single_task(request, task)
+       else:
+           form = TaskingForm(request.POST)
+           return get_form_task(request, form)
+
+def single_task(request, task):
+    return render(request, 'tasking/single_task.html', {"tasking": task})
+
+
+class TaskingSingleList(TaskingList):
+    template_name = 'single_object/tasks.html'
+    queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
+        return self.queryset
+#END BLOCK TASKING
+
 
 def get_publication(request):
     return render(request, 'single_object/publication.html', {})
@@ -351,8 +390,8 @@ def get_meetings(request):
     return render(request, 'single_object/meetings.html', {})
 
 
-def get_tasks(request):
-    return render(request, 'single_object/tasks.html', {})
+# def get_tasks(request):
+#     return render(request, 'single_object/tasks.html', {})
 
 
 

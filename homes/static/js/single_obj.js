@@ -3,6 +3,43 @@
  */
 
 $(document).ready(function() {
+    $.datepicker.regional['ru'] = {
+        closeText: 'Закрыть',
+        prevText: '<Пред',
+        nextText: 'След>',
+        currentText: 'Сегодня',
+        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+        'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+        'Июл','Авг','Сен','Окт','Ноя','Дек'],
+        dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+        dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        weekHeader: 'Не',
+        dateFormat: 'yy-mm-dd',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+    $.timepicker.regional['ru'] = {
+        timeOnlyTitle: 'Выберите время',
+        timeText: 'Время',
+        hourText: 'Часы',
+        minuteText: 'Минуты',
+        secondText: 'Секунды',
+        millisecText: 'Миллисекунды',
+        timezoneText: 'Часовой пояс',
+        currentText: 'Сейчас',
+        closeText: 'Закрыть',
+        timeFormat: 'HH:mm',
+        amNames: ['AM', 'A'],
+        pmNames: ['PM', 'P'],
+        isRTL: false
+    };
+    $.timepicker.setDefaults($.timepicker.regional['ru']);
     // "use strict";
     $('.tabs-rule').on('click', '#add_arendator_id', function (event) {
         event.preventDefault();
@@ -59,7 +96,7 @@ $(document).ready(function() {
     });
     $('.tabs-rule').on('click', '.delete_arendator_tr', function (event) {
         event.preventDefault();
-        var del_obj = $(this).parents('.show_tr')
+        var del_obj = $(this).parents('.show_tr');
         var dai = $(this).attr('del-arendator-id');
         $.post('delete_tie_arendator/'+dai, {'id': $('#sisingle_obj_id').attr('sisingle_obj_id')})
             .success( function (data) {
@@ -139,7 +176,7 @@ $(document).ready(function() {
     });
     $('.tabs-rule').on('click', '.delete_buyer_tr', function (event) {
         event.preventDefault();
-        var del_obj = $(this).parents('.show_tr')
+        var del_obj = $(this).parents('.show_tr');
         var dai = $(this).attr('del-buyer-id');
         $.post('delete_tie_buyer/'+dai, {'id': $('#sisingle_obj_id').attr('sisingle_obj_id')})
             .success( function (data) {
@@ -163,4 +200,60 @@ $(document).ready(function() {
                 })
             });
     });
+    
+    //  START  Block SINGLE OBJECT
+    $('.tabs-rule').on('click', '#add_task_form', function (event) {
+        event.preventDefault();
+        $.get('get_form_task').success( function (data) {
+            $('#add_form_t').html(data);
+            $('.task-form').animate({top: '10%'}, 1000);
+            $('#add_form_t').children('.task-form').fadeIn('slow');
+            $('#add_form_t').trigger('click');
+            $('select').select2();
+        });
+    });
+
+    $('.tabs-rule').on('click','#cancel_add_form', function (event) {
+        event.preventDefault();
+        $('.task-form').hide('scale');
+    });
+
+    $('.tabs-rule').on('click', '#add_form_t', function(event) {
+        event.preventDefault();
+        $('#id_dead_line').datetimepicker($.timepicker.regional['ru']);
+    });
+    $('.tabs-rule').on('click', '#save_form_tasking', function (event) {
+        event.preventDefault();
+        var msg   = $('#send_form').serialize();
+        $.post('save_form_tasking_task', msg)
+        .success( function (data) {
+            $('.task-form').animate({top: '20%'}, 2000);
+            $('.task-form').animate({top: '-700px'}, 500, function () {
+                $('#add_single_task').append(data);
+                $('tr').fadeIn('slow');
+                $('.count_active_task').text(parseInt($('.count_active_task').text())+1);
+            });
+
+        })
+        .error(function(data) {
+            $('#add_form').html(data.responseText);
+            $('.task-form').css('top', '10%');
+            $('#add_form').trigger('click');
+            $('select').select2();
+            wrongForm();
+        })
+    });
+    function wrongForm() {
+        $('.task-form').animate({top: '15%'},50);
+        $('.task-form').animate({top: '10%'},50);
+        $('.task-form').animate({top: '14%'},80);
+        $('.task-form').animate({top: '10%'},80);
+        $('.task-form').animate({top: '13%'},100);
+        $('.task-form').animate({top: '10%'},100);
+        $('.task-form').animate({top: '12%'},120);
+        $('.task-form').animate({top: '10%'},120);
+        $('.task-form').animate({top: '11%'},150);
+        $('.task-form').animate({top: '10%'},150);
+    }
+    //  END  Block SINGLE OBJECT
 });

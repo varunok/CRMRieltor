@@ -52,7 +52,6 @@ $(document).ready(function() {
 
     $('#add_form').on('click','#cancel_add_form', function (event) {
         event.preventDefault();
-        // $('.task-form').animate({width: '0px'}, 1000);
         $('.task-form').hide('scale');
     });
 
@@ -124,6 +123,5 @@ $(document).ready(function() {
 
         })
         .error(function(data) {});
-    })
-
+    });
 });

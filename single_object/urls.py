@@ -4,8 +4,9 @@
 from django.conf.urls import url
 from single_object.views import SingleObjectView, change_call_date, change_review_date, change_actuality, \
     add_obj_comment, del_comment, get_arendator, get_comment, get_buyer, get_publication, get_meetings, \
-    get_tasks, DatabasesPrevious, AddArendatorToTie, change_shows, AutomatTie, delete_tie_arendator, clear_all_arendator,\
-    AddBuyerToTie, change_shows_buyer, AutomatTieBuyer, delete_tie_buyer, clear_all_buyer
+    TaskingSingleList, DatabasesPrevious, AddArendatorToTie, change_shows, AutomatTie, delete_tie_arendator, clear_all_arendator,\
+    AddBuyerToTie, change_shows_buyer, AutomatTieBuyer, delete_tie_buyer, clear_all_buyer, get_form_task, \
+    save_form_tasking_task
 
 urlpatterns = [
     url(r'^(?P<oid>[0-9]+)$', SingleObjectView.as_view(), name='single_obj'),
@@ -36,9 +37,15 @@ urlpatterns = [
     url(r'^delete_tie_buyer/(?P<did>[0-9]+)$', delete_tie_buyer),
     url(r'^clear_all_buyer$', clear_all_buyer),
     # end block buyer
+
+    # start block task
+    url(r'^get_tasks$', TaskingSingleList.as_view(), name='get_tasks'),
+    url(r'^get_form_task$', get_form_task),
+    url(r'^save_form_tasking_task$', save_form_tasking_task),
+    # end block task
+
     url(r'^get_publication$', get_publication, name='get_publication'),
     url(r'^get_meetings$', get_meetings, name='get_meetings'),
-    url(r'^get_tasks$', get_tasks, name='get_tasks'),
     url(r'^data/(?P<poid>[0-9]+)$', DatabasesPrevious.as_view(), name='databases'),
 
 ]

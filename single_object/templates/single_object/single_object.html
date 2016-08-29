@@ -3,7 +3,8 @@
 {% load static from staticfiles %}
 
 {% block extra_css %}{% endblock extra_css %}
-
+<link rel="stylesheet" href="{% static "css/tasking.css" %}">
+<link rel="stylesheet" href="{% static "css/jquery-ui-timepicker-addon.css" %}">
 {% block content %}
     <section>
         <div class="container">
@@ -229,7 +230,6 @@
                 </div>
         </div>
         </div>
-        </div>
     </section>
         <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam minima nisi ab dolorem iste optio officia. Maxime ab corporis incidunt inventore explicabo qui velit, ipsa sapiente unde numquam accusamus, earum commodi voluptatibus, odit nemo at eum nulla amet iste pariatur. Voluptatum natus aspernatur quae explicabo, inventore magni, vel quia quos quo itaque adipisci ipsam. At culpa, provident non quos blanditiis nesciunt, eligendi dolor ea, quas est delectus doloribus quaerat dolorem temporibus soluta! Praesentium maxime ut aperiam, iusto natus vitae quod!</div>
 {% endblock content %}
@@ -348,10 +348,14 @@
 				});
 			});
 		});
+{#        $('.tabs-rule').on('click', '#add_task_form', function (event) {#}
+{#            event.preventDefault();#}
+{#        });#}
 
 
 
     });
     </script>
+    <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
     <script src="{% static "js/single_obj.js" %}"></script>
 {% endblock extra_js %}
