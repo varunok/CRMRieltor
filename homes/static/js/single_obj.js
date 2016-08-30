@@ -256,4 +256,18 @@ $(document).ready(function() {
         $('.task-form').animate({top: '10%'},150);
     }
     //  END  Block SINGLE OBJECT
+    // START BLOCK POSTING
+    $('.tabs-rule').on('click', '#post_obj', function (event) {
+        event.preventDefault();
+        var obj_status = $(this);
+        var status = $(this).attr('status');
+        $.post('post/'+status)
+            .success( function (data) {
+                obj_status.attr('status', 'true')
+            })
+            .error(function (data) {
+                
+            })
+    });
+    // END BLOCK POSTING
 });

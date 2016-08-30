@@ -39,3 +39,6 @@ class Franshise(models.Model):
         verbose_name = u'Франшиза'
 
     franshise = models.CharField(max_length=100, verbose_name=u'Франшиза', blank=True, null=True)
+
+    def __unicode__(self):
+        return '%s' % (self.franshise)

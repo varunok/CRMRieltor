@@ -37,6 +37,7 @@ import makler.urls
 import setting_superadmin.urls
 import tasking.urls
 import parsings.urls
+import posting.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -55,6 +56,7 @@ urlpatterns = [
     url(r'^', include(setting_superadmin.urls)),
     url(r'^tasking/', include(tasking.urls)),
     url(r'^', include(parsings.urls)),
+    url(r'^', include(posting.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin
