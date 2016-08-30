@@ -43,7 +43,7 @@ class InsertData():
         self.database = database
         self.data = data
 
-        db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.texthostname, autocommit=True)
+        db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
         c = db.cursor()
         c.execute("INSERT INTO Object_Daily (description) VALUES (%s)")
         # c.commit()
