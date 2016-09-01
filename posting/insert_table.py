@@ -52,6 +52,6 @@ class InsertData():
                  self.data.name_owner,
                  self.data.phone_owner,
                  self.data.price_month,
-                 str(self.data.street_obj)+str(self.data.number_home))
+                 self.data.street_obj)
         c.execute(query)
         # c.commit()
