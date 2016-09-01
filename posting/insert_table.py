@@ -45,7 +45,13 @@ class InsertData():
 
         db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
         c = db.cursor()
-        query = "INSERT INTO Object_Daily (description, contactPerson) VALUES ('%s', '%s')" % (self.data.comment,
-                                                                                               self.data.name_owner)
+        query = "INSERT INTO Object_Daily (description, " \
+                "contactPerson, contactPhone, price, address) " \
+                "VALUES ('%s', '%s', '%s', '%s', '%s')" % \
+                (self.data.comment,
+                 self.data.name_owner,
+                 self.data.phone_owner,
+                 self.data.price_month,
+                 self.data.street_obj+self.data.number_home)
         c.execute(query)
         # c.commit()
