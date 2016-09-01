@@ -17,46 +17,50 @@
                                             </thead>
                                             <tr>
                                                 <td class="edit">
-                                                    <a href="#" class="status-label sl-grey">Снять с публикации</a>
-                                                </td>
-                                                <td>
-                                                    gek.volyn.ua
-                                                </td>
-                                                <td>
-                                                    12
-                                                </td>
-                                                <td>
-                                                    Публикуется
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="edit">
                                                     <a status="false" id="post_obj" href="#" class="status-label sl-green">Опубликовать</a>
                                                 </td>
                                                 <td>
-                                                    gek.volyn.ua
+                                                    {{ franshise }}
                                                 </td>
                                                 <td>
-                                                    12
+
                                                 </td>
                                                 <td>
+                                                    {% if status.public %}
                                                     Публикуется
+                                                    {% else %}
+                                                        Не публикуется
+                                                    {% endif %}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="edit">
-                                                    <a href="#" class="status-label sl-green">Опубликовать</a>
-                                                </td>
-                                                <td>
-                                                    gek.volyn.ua
-                                                </td>
-                                                <td>
-                                                    12
-                                                </td>
-                                                <td>
-                                                    Публикуется
-                                                </td>
-                                            </tr>
+{#                                            <tr>#}
+{#                                                <td class="edit">#}
+{#                                                    <a href="#" class="status-label sl-grey">Снять с публикации</a>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    gek.volyn.ua#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    12#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    Публикуется#}
+{#                                                </td>#}
+{#                                            </tr>#}
+{#                                            <tr>#}
+{#                                                <td class="edit">#}
+{#                                                    <a href="#" class="status-label sl-green">Опубликовать</a>#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    gek.volyn.ua#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    12#}
+{#                                                </td>#}
+{#                                                <td>#}
+{#                                                    Публикуется#}
+{#                                                </td>#}
+{#                                            </tr>#}
                                         </table>
                                     </div>
                                 </div>

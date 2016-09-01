@@ -261,7 +261,8 @@ $(document).ready(function() {
         event.preventDefault();
         var obj_status = $(this);
         var status = $(this).attr('status');
-        $.post('post/'+status)
+        var sisingle_obj_id = $('#sisingle_obj_id').attr('sisingle_obj_id');
+        $.post('post/'+status, {'id_so': sisingle_obj_id})
             .success( function (data) {
                 obj_status.attr('status', 'true')
             })

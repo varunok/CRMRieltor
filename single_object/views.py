@@ -20,6 +20,7 @@ from search_automat_arendator import search_automat
 from tasking.forms import TaskingForm
 from tasking.models import UserFullName, Tasking
 from homes.views import TaskingList, TaskingListArchive
+from setting_globall.models import Franshise
 
 
 class SingleObjectView(DetailView):
@@ -383,7 +384,10 @@ class TaskingSingleList(TaskingList):
 
 
 def get_publication(request):
-    return render(request, 'single_object/publication.html', {})
+    franshise = Franshise.objects.values()[0]['franshise']
+    single_object = ContactOwner.objects.get(id=request.GET['id_so'])
+    return render(request, 'single_object/publication.html', {"franshise": franshise,
+                                                              "status": single_object})
 
 
 def get_meetings(request):
