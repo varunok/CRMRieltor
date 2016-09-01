@@ -47,7 +47,7 @@ class InsertData():
         c = db.cursor()
         query = "INSERT INTO Object_Daily (description, " \
                 "contactPerson, contactPhone, price, address) " \
-                "VALUES ('%s', '%s', '%s', '%s', '%s')" % \
+                "VALUES ('%s', '%s', '%s', '%d', '%s')" % \
                 (self.data.comment,
                  self.data.name_owner,
                  self.data.phone_owner,
