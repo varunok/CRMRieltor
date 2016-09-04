@@ -158,10 +158,10 @@ class ArendatorsList(ListView):
     def get_queryset(self):
         order_by = self.request.GET.get('order_by', '')
         if order_by in ('id', 'call_date', 'review_date'):
-            self.qeryset = self.qeryset.order_by(order_by)
+            self.queryset = self.queryset.order_by(order_by)
         if self.request.GET.get('reverse', '') == '1':
-            self.qeryset = self.qeryset.reverse()
-        return self.qeryset
+            self.queryset = self.queryset.reverse()
+        return self.queryset
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
