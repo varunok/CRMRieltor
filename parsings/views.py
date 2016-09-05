@@ -147,10 +147,9 @@ def sity_conf(request):
 
 def site_url(request):
     if request.method == 'POST':
-        SITE_URL, created = ConfigParserOLX.objects.get_or_create(id=1, SITE_URL=request.POST['SITE_URL'])
-        if created:
-            SITE_URL = ConfigParserOLX.objects.get(id=1)
-        SITE_URL.SITE_URL = request.POST['SITE_URL']
+        SITE_URL = ConfigParserOLX(id=1, SITE_URL=request.POST['SITE_URL'])
+        # SITE_URL = ConfigParserOLX.objects.get(id=1)
+        # SITE_URL.SITE_URL = request.POST['SITE_URL']
         SITE_URL.save()
         return HttpResponse(status=200)
     else:
