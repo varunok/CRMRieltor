@@ -10,8 +10,8 @@ from setting_globall.models import NationalCarrency, ListNationalCarrency, Frans
 
 
 def setting_globall(request):
-	class FakeClass(object):
-		pass
+    class FakeClass(object):
+        pass
     list_currency = ListNationalCarrency.objects.all()
     try:
         nat_curr = NationalCarrency.objects.get(id=1)
