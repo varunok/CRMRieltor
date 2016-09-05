@@ -10,6 +10,8 @@ from setting_globall.models import NationalCarrency, ListNationalCarrency, Frans
 
 
 def setting_globall(request):
+	class FakeClass(object):
+		pass
     list_currency = ListNationalCarrency.objects.all()
     try:
         nat_curr = NationalCarrency.objects.get(id=1)
@@ -18,11 +20,13 @@ def setting_globall(request):
     try:
         sity = FranshiseSity.objects.get(id=1)
     except:
-        sity = ''
+    	sity = FakeClass()
+        sity.sity = ''
     try:
         franshise = Franshise.objects.get(id=1)
     except:
-        franshise = ''
+    	franshise = FakeClass()
+        franshise.franshise = ''
     return render(request, 'setting_globall/setting_globall.html', {'time': timezone.now(),
                                                                     'list_currency': list_currency,
                                                                     'nat_curr': nat_curr,
