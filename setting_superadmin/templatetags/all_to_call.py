@@ -7,6 +7,7 @@ from setting_superadmin.models import AllToCall
 
 register = template.Library()
 
+
 @register.simple_tag(name='all_to_call')
 def all_to_call(arg=''):
     if arg == 'phone':

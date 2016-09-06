@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load franshise %}
 
 <!DOCTYPE html>
 <html lang="ru" class="log-in-html">
@@ -22,7 +23,8 @@
             <div class="col-md-6 col-md-offset-3">
             <div class="log-in-container">
                 <div class="logo">
-                            <a href="{% url "logining" %}"><span>GEK</span>.OD.UA</a>
+                            {# <a href="{% url "logining" %}"><span>GEK</span>.OD.UA</a> #}
+                            <a href="{% url "logining" %}"><span>{% franshise_first %}</span>.{% franshise_second %}</a></a>
                         </div>
                         <br>
                     <div class="log-in-form">

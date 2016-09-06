@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class ListNationalCarrency(models.Model):
     class Meta(object):
         verbose_name = u'Список национальной валюты'
