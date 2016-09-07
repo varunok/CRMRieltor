@@ -43,7 +43,7 @@ class Street(models.Model):
                                           on_delete=models.PROTECT)
 
     def __unicode__(self):
-        return '%s' % (self.full_street)
+        return '%s' % self.full_street
 
 
 class District(models.Model):
