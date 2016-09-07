@@ -42,7 +42,7 @@ class InsertData():
         self.texthostname = texthostname
         self.database = database
         self.data = data
-        # print((str(self.data.street_obj).decode('utf-8')))
+        # print(str(self.data.street_obj).encode( locale.getpreferredencoding() ))
         # print((unicode(self.data.street_obj)))
         # print((u'oki'))
 
@@ -53,7 +53,7 @@ class InsertData():
                 (str(self.data.id),
                  str(self.data.street_obj),
                  str(self.data.comment),
-                 unicode.encode( unicode(self.data.street_obj), "koi8-r"))
+                 unicode.encode( unicode(self.data.street_obj), "utf8"))
         print(query)
         c.execute(query)
         # c.commit()
