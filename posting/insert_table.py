@@ -42,18 +42,23 @@ class InsertData():
         self.texthostname = texthostname
         self.database = database
         self.data = data
-        # print(str(self.data.street_obj).encode( locale.getpreferredencoding() ))
-        # print((unicode(self.data.street_obj)))
-        # print((u'oki'))
+        # print(str(self.data.list_operations.all()[0]))
 
         db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
         c = db.cursor()
         query = "INSERT INTO Object_Live (code, title, description, address)" \
                 "VALUES ('%s', '%s', '%s', '%s')" % \
                 (str(self.data.id),
-                 str(self.data.street_obj),
+                 self._get_operation_list(),
                  str(self.data.comment),
-                 unicode.encode( unicode(self.data.street_obj), "cp1251"))
+                 unicode.encode(unicode(self.data.street_obj), "cp1251"))
         print(query)
         c.execute(query)
         # c.commit()
+
+    def _get_operation_list(self):
+        operations = ' '
+        for elem in self.data.list_operations.all():
+            operations += unicode.encode(unicode(elem, "cp1251"))
+        print(operations)
+        return operations
