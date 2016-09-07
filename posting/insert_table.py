@@ -53,7 +53,7 @@ class InsertData():
                 (str(self.data.id),
                  str(self.data.street_obj),
                  str(self.data.comment),
-                 unicode.encode( unicode(self.data.street_obj), "utf8"))
+                 unicode.encode( unicode(self.data.street_obj), "cp1251"))
         print(query)
         c.execute(query)
         # c.commit()
