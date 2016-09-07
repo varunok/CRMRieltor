@@ -50,7 +50,7 @@ class InsertData():
         db.use_unicode = True
         c = db.cursor()
         query = "INSERT INTO Object_Live (code, address)" \
-                "VALUES ('"+unicode(self.data.id)+"', '"+unicode(self.data.street_obj)+"')"
+                "VALUES ('"+str(self.data.id)+"', '"+str(self.data.street_obj)+"')"
         print(query)
         c.execute(query)
         # c.commit()
