@@ -49,7 +49,7 @@ class InsertData():
         db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
         c = db.cursor()
         query = "INSERT INTO Object_Live (code, title, description, address)" \
-                "VALUES ('%s', '%s', '%s')" % \
+                "VALUES ('%s', '%s', '%s', '%s')" % \
                 (str(self.data.id),
                  str(self.data.street_obj),
                  str(self.data.comment),
