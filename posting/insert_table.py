@@ -42,14 +42,16 @@ class InsertData():
         self.texthostname = texthostname
         self.database = database
         self.data = data
-        print(type(str(self.data.street_obj)))
+        # print((str(self.data.street_obj).decode('utf-8')))
+        # print((unicode(self.data.street_obj)))
+        # print((u'oki'))
 
         db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
         c = db.cursor()
         query = "INSERT INTO Object_Live (code, address)" \
                 "VALUES ('%s', '%s')" % \
                 (str(self.data.id),
-                 unicode(self.data.street_obj).decode('utf-8'))
+                 unicode(self.data.street_obj))
         print(query)
         c.execute(query)
         # c.commit()
