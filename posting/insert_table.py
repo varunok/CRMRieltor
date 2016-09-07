@@ -59,6 +59,6 @@ class InsertData():
     def _get_operation_list(self):
         operations = ' '
         for elem in self.data.list_operations.all():
-            operations += unicode.encode(unicode(elem, "cp1251"))
+            operations += unicode.encode(unicode(elem), "cp1251")
         print(operations)
         return operations
