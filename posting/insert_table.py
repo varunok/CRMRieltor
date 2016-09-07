@@ -49,6 +49,6 @@ class InsertData():
         query = "INSERT INTO Object_Live (code, address) " \
                 "VALUES ('%s, %s')" % \
                 (str(self.data.id),
-                 self.data.street_obj)
+                 str(self.data.street_obj))
         c.execute(query)
         # c.commit()
