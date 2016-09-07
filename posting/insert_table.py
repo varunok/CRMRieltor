@@ -49,7 +49,7 @@ class InsertData():
         query = "INSERT INTO Object_Live (code, address)" \
                 "VALUES ('%s', '%s')" % \
                 (str(self.data.id),
-                 str(self.data.street_obj).decode('utf-8'))
+                 str(self.data.street_obj).encode('utf-8'))
         print(query)
         c.execute(query)
         # c.commit()
