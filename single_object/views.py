@@ -383,11 +383,22 @@ class TaskingSingleList(TaskingList):
 #END BLOCK TASKING
 
 
+# START BLOCK PUBLICATIONS
 def get_publication(request):
+    from posting.work_table import GetShows
+    from setting_globall.models import Franshise
+    from crm.settings import DATABASES_POST
+    franshise = Franshise.objects.values()
+    franshise = franshise[0]['franshise'].replace('.', '')
+    DATABASE = ''.join([DATABASES_POST['DATABASE'], franshise])
+    len_shows = GetShows(DATABASES_POST['USER'], DATABASES_POST['PASS'], DATABASES_POST['HOST'], DATABASE, request.GET['id_so']).data_return()
     franshise = Franshise.objects.values()[0]['franshise']
     single_object = ContactOwner.objects.get(id=request.GET['id_so'])
     return render(request, 'single_object/publication.html', {"franshise": franshise,
-                                                              "status": single_object})
+                                                              "status": single_object,
+                                                              "len_shows": len_shows})
+
+# START BLOCK PUBLICATIONS
 
 
 def get_meetings(request):
