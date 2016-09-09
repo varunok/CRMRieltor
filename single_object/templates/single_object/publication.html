@@ -20,12 +20,12 @@
                                                     <a status="false" id="post_obj" href="#" class="status-label sl-green">Опубликовать</a>
                                                 </td>
                                                 <td>
-                                                {% if franshise != 'None' %}
                                                     {{ franshise }}
-                                                {% endif %}
                                                 </td>
                                                 <td>
-                                                    {{ len_shows }}
+                                                    {% if len_shows %}
+                                                        {{ len_shows }}
+                                                    {% endif %}
                                                 </td>
                                                 <td>
                                                     {% if status.public %}
