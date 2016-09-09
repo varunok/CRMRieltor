@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 from setting_globall.models import FranshiseSity
-from parser_olx import ParserOLX, mutable_month, mutable_phone
+from parser_olx import ParserOLX, mutable_month, mutable_phone, get_list_translate_sity
 from makler.models import Makler
 from facility.models import ContactOwner
 from parsings.models import ConfigParserOLX
@@ -63,69 +63,72 @@ def parser_olx(request):
 def parse(request):
     try:
         if request.method == 'POST':
-            day_art = timezone.now() - datetime.timedelta(days=int(request.POST['id_term']))
-            parse_categories = ParserOLX(SITE_URL).getlink(SELECTOR_GETLINK_CATEGORIES)[
-                int(request.POST['id_categories'])]
             if request.POST['id_sity']:
                 sity = ConfigParserOLX.objects.get(id=1)
-                sity = TextBlob(sity.SITY).translate()
-                print sity
-                parse_categories = ''.join([parse_categories, str(sity.lower()), '/'])
-            dict_article = {}
-            for page in xrange(int(request.POST['id_page']), int(request.POST['id_page'])+1):
-                list_article = ParserOLX(''.join([parse_categories, '?page=', str(page)])).getlink(SELECTOR_GETLINK_ARTICLES)
-                count_braek = 0
-                for article in list_article:
-                    id_article = article.split('.')[-2].split('-')[-1]
-                    page_article = ParserOLX(article)
-                    date_article = ' '.join(page_article.gettext(SELECTOR_DATE)).encode('utf-8')
-                    p = re.compile(ur'(?P<time_art>\d{2}[:]\d{2})')
-                    time_art = re.search(p, date_article)
-                    time_art = time_art.group().split(':')
-                    p = re.compile(ur'(?P<date_art>\d{1,2}\s\W+\d{4})')
-                    date_art = re.search(p, date_article)
-                    date_art = date_art.group().split(' ')
-                    date_art.reverse()
-                    date_art[1] = mutable_month(date_art[1])
-                    datetime_art = datetime.datetime(int(date_art[0]), int(date_art[1]), int(date_art[2]),
-                                                     hour=int(time_art[0]), minute=int(time_art[1]))
-                    if datetime_art > day_art:
-                        phone = ParserOLX(SITE_URL + AJAX_PHONE + id_article[2:]).gettext()
-                        phone = ''.join(phone)
-                        try:
-                            phone = json.loads(phone)
-                            phone = mutable_phone(phone['value'])
-                        except:
-                            phone = ['000000']
-                        if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=[int(i) for i in phone]):
-                            dict_article[id_article] = {
-                                'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
-                                'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
-                                'link': article,
-                                'phone': phone}
-                        elif request.POST['id_except'] == '2' and not ContactOwner.objects.filter(
-                                phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
-                                phone_owner_plus=[int(i) for i in phone]):
-                            dict_article[id_article] = {
-                                'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
-                                'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
-                        elif request.POST['id_except'] == '3' and not Makler.objects.filter(
-                                phone__in=[int(i) for i in phone]) and not ContactOwner.objects.filter(
-                                phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
-                                phone_owner_plus=[int(i) for i in phone]):
-                            dict_article[id_article] = {
-                                'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
-                                'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
-                    else:
-                        count_braek += 1
-                if count_braek > 10:
-                    break
-            dict_article['id_page'] = page+1
-            return HttpResponse(JsonResponse(dict_article))
+                for sity in get_list_translate_sity(sity.SITY.encode('utf-8')):
+                    day_art = timezone.now() - datetime.timedelta(days=int(request.POST['id_term']))
+                    parse_categories = ParserOLX(SITE_URL).getlink(SELECTOR_GETLINK_CATEGORIES)[
+                        int(request.POST['id_categories'])]
+                    if request.POST['id_sity']:
+                        # sity = ConfigParserOLX.objects.get(id=1)
+                        # sity = TextBlob(unicode(sity.SITY)).translate()
+                        # sity = 'kiev'
+                        parse_categories = ''.join([parse_categories, sity.lower(), '/'])
+                    dict_article = {}
+                    for page in xrange(int(request.POST['id_page']), int(request.POST['id_page'])+1):
+                        list_article = ParserOLX(''.join([parse_categories, '?page=', str(page)])).getlink(SELECTOR_GETLINK_ARTICLES)
+                        count_braek = 0
+                        for article in list_article:
+                            id_article = article.split('.')[-2].split('-')[-1]
+                            page_article = ParserOLX(article)
+                            date_article = ' '.join(page_article.gettext(SELECTOR_DATE)).encode('utf-8')
+                            p = re.compile(ur'(?P<time_art>\d{2}[:]\d{2})')
+                            time_art = re.search(p, date_article)
+                            time_art = time_art.group().split(':')
+                            p = re.compile(ur'(?P<date_art>\d{1,2}\s\W+\d{4})')
+                            date_art = re.search(p, date_article)
+                            date_art = date_art.group().split(' ')
+                            date_art.reverse()
+                            date_art[1] = mutable_month(date_art[1])
+                            datetime_art = datetime.datetime(int(date_art[0]), int(date_art[1]), int(date_art[2]),
+                                                             hour=int(time_art[0]), minute=int(time_art[1]))
+                            if datetime_art > day_art:
+                                phone = ParserOLX(SITE_URL + AJAX_PHONE + id_article[2:]).gettext()
+                                phone = ''.join(phone)
+                                try:
+                                    phone = json.loads(phone)
+                                    phone = mutable_phone(phone['value'])
+                                except:
+                                    phone = ['000000']
+                                if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=[int(i) for i in phone]):
+                                    dict_article[id_article] = {
+                                        'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
+                                        'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
+                                        'link': article,
+                                        'phone': phone}
+                                elif request.POST['id_except'] == '2' and not ContactOwner.objects.filter(
+                                        phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                        phone_owner_plus=[int(i) for i in phone]):
+                                    dict_article[id_article] = {
+                                        'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
+                                        'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
+                                elif request.POST['id_except'] == '3' and not Makler.objects.filter(
+                                        phone__in=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                        phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                        phone_owner_plus=[int(i) for i in phone]):
+                                    dict_article[id_article] = {
+                                        'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
+                                        'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
+                            else:
+                                count_braek += 1
+                        if count_braek > 10:
+                            break
+                    dict_article['id_page'] = page+1
+                    return HttpResponse(JsonResponse(dict_article))
         else:
             return HttpResponse(status=503)
     except:
-        pass
+        return HttpResponse(status=503)
 
 
 def setting_olx(request):

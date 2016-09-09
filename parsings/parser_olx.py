@@ -5,6 +5,7 @@ import requests
 from lxml import html
 import re
 from urlparse import urlparse, urljoin
+import os
 
 
 class ParserOLX(object):
@@ -71,5 +72,25 @@ def mutable_month(month):
         return month
     except:
         return '01'
+
+
+def get_list_translate_sity(sity):
+    try:
+        request_sity = ''
+        with open(''.join([os.getcwd(), '/parsings/cities5000.txt']), 'r') as f:
+                for i in f:
+                    if sity in i:
+                        i = i.replace('\t', ',').split(',')
+                        i = [ g for g in i if g!='' and '.' not in g and '/' not in g and  '-' not in g and ' ' not in g and len(g)>3][1:-1]
+                        for j in i:
+                            if sity == j:
+                                if len(i) > len(request_sity):
+                                    request_sity = i
+        if len(request_sity) >= 1:
+            return request_sity
+        else:
+            return None
+    except:
+        return None
 
 
