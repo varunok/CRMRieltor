@@ -55,4 +55,7 @@ class GetShows(object):
             db.close()
 
     def data_return(self):
-        return '%s' % self.data[0]
+        if self.data:
+            return '%s' % self.data[0]
+        else:
+            return None
