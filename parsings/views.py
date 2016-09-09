@@ -61,7 +61,7 @@ def parser_olx(request):
 
 
 def parse(request):
-    # try:
+    try:
         if request.method == 'POST':
             if request.POST['id_sity']:
                 sity = ConfigParserOLX.objects.get(id=1)
@@ -127,8 +127,8 @@ def parse(request):
                     return HttpResponse(JsonResponse(dict_article))
         else:
             return HttpResponse(status=503)
-    # except:
-    #     return HttpResponse(status=503)
+    except:
+        return HttpResponse(status=503)
 
 
 def setting_olx(request):
