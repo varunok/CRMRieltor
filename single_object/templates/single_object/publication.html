@@ -15,41 +15,35 @@
                                                     <th>Статус</th>
                                                 </tr>
                                             </thead>
-                                            <tr>
-                                                <td class="edit">
-                                                    <a status="false" id="post_obj" href="#" class="status-label sl-green">Опубликовать</a>
-                                                </td>
-                                                <td>
-                                                    {{ franshise }}
-                                                </td>
-                                                <td>
-                                                    {% if len_shows %}
-                                                        {{ len_shows }}
-                                                    {% endif %}
-                                                </td>
-                                                <td>
-                                                    {% if status.public %}
-                                                    Публикуется
-                                                    {% else %}
-                                                        Не публикуется
-                                                    {% endif %}
-                                                </td>
-                                            </tr>
-{#                                            <tr>#}
-{#                                                <td class="edit">#}
-{#                                                    <a href="#" class="status-label sl-grey">Снять с публикации</a>#}
-{#                                                </td>#}
-{#                                                <td>#}
-{#                                                    gek.volyn.ua#}
-{#                                                </td>#}
-{#                                                <td>#}
-{#                                                    12#}
-{#                                                </td>#}
-{#                                                <td>#}
-{#                                                    Публикуется#}
-{#                                                </td>#}
-{#                                            </tr>#}
-{#                                            <tr>#}
+                                            <tbody>
+                                                <tr>
+                                                    <td class="edit">
+                                                        <a id="post_obj" href="#" class="status-label 
+                                                        {% if status.public %}
+                                                            sl-grey" status="true"> Снять с публикации 
+                                                        {% else %}
+                                                            sl-green" status="false">Опубликовать
+                                                        {% endif %}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {{ franshise }}
+                                                    </td>
+                                                    <td>
+                                                        {% if len_shows %}
+                                                            {{ len_shows }}
+                                                        {% endif %}
+                                                    </td>
+                                                    <td class="info_status">
+                                                        {% if status.public %}
+                                                        Публикуется
+                                                        {% else %}
+                                                            Не публикуется
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            
 {#                                                <td class="edit">#}
 {#                                                    <a href="#" class="status-label sl-green">Опубликовать</a>#}
 {#                                                </td>#}

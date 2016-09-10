@@ -264,10 +264,25 @@ $(document).ready(function() {
         var sisingle_obj_id = $('#sisingle_obj_id').attr('sisingle_obj_id');
         $.post('post/'+status, {'id_so': sisingle_obj_id})
             .success( function (data) {
-                obj_status.attr('status', 'true')
+                var data = jQuery.parseJSON(data)
+                if (data.data === 'true') {
+                    obj_status.attr('status', 'true');
+                    obj_status.text('Снять с публикации');
+                    obj_status.removeClass('sl-green');
+                    obj_status.addClass('sl-grey');
+                    $('.info_status').text('Публикуется')
+                }
+                else{
+                    obj_status.attr('status', 'false');
+                    obj_status.text('Опубликовать');
+                    obj_status.removeClass('sl-grey');
+                    obj_status.addClass('sl-green');
+                    $('.info_status').text('Не публикуется')
+                }
             })
             .error(function (data) {
-                
+                $('.info_status').text('Ошибка.')
+                $('.info_status').css('background-color', 'red');
             })
     });
     // END BLOCK POSTING
