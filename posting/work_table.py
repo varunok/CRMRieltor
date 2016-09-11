@@ -48,7 +48,7 @@ class SavePhoto(ConnectDatabases):
         self.images_list = []
         images = ImagesFacility.objects.filter(album=1)
         for ele in images:
-            print(self._copy_image(ele.image))
+            self._copy_image(ele.image)
             self.images_list.append((self.objectId, self.objectCode, str(ele.image), self.districtId))
         return self.images_list
 
@@ -117,7 +117,7 @@ class InsertData(ConnectDatabases):
             query = "INSERT INTO Object_Live (code, title, operationType, plan," \
                     "description, address, type, districtId, floor, square, totalFloors," \
                     "roomsNumber, priceUSD, price, contactPerson, contactPhone, video, panoramaCode)" \
-                    "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+                    "VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%d', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s')" % \
                     (str(self.data.id),
                      self._get_title(unicode.encode(unicode(self.data.title), "cp1251")),
                      self._get_operationType(self.data.list_operations.all()),
@@ -158,25 +158,25 @@ class InsertData(ConnectDatabases):
         return self._return_str(data)
 
     def _get_price_month(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_price_bay(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_rooms(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_floors_up(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_total_area(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_floor(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_room(self, data):
-        return self._return_str(data)
+        return self._return_int(data)
 
     def _get_title(self, data):
         return self._return_str(data)
@@ -189,6 +189,12 @@ class InsertData(ConnectDatabases):
             return data
         else:
             return ' '
+
+    def _return_int(self, data):
+        if data:
+            return data
+        else:
+            return 0
 
     def _get_district_id(self, data):
         list_district = District().get_district()
