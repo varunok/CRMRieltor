@@ -55,6 +55,7 @@ class SavePhoto(ConnectDatabases):
     def _copy_image(self, img):
             img_from = ''.join([os.getcwd(), '/media/', str(img)])
             img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
+            print(img_from, '\n', img_to)
             shutil.copy2(img_from, img_to)
 
 
@@ -262,8 +263,8 @@ class SetShows(ConnectDatabases):
             c = db.cursor()
             query = "UPDATE image20_testokua.Object_Live SET active=%s WHERE code='%s'" % (self.active, self.code)
             c.execute(query)
-        except e:
-            raise e
+        except:
+            pass
         finally:
             c.close()
             db.close()
