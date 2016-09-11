@@ -31,20 +31,24 @@ class SavePhoto(ConnectDatabases):
         self.objectCode = objectCode
         self.districtId = districtId
 
-        db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
-        c = db.cursor()
-        self.query = "INSERT INTO Object_Photo_Live (objectId, objectCode, photo, districtId) VALUES (%s, %s, %s, %s)"
-        self.values = self._get_images()
-        c.executemany(self.query, self.values)
-        c.close()
-        db.close()
+        try:
+            db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
+            c = db.cursor()
+            self.query = "INSERT INTO Object_Photo_Live (objectId, objectCode, photo, districtId) VALUES (%s, %s, %s, %s)"
+            self.values = self._get_images()
+            c.executemany(self.query, self.values)
+        except:
+            pass
+        finally:
+            c.close()
+            db.close()
 
     def _get_images(self):
-        # try:
-        self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
-        os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
-        # except:
-            # pass
+        try:
+            self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
+            os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
+        except:
+            pass
         self.images_list = []
         images = ImagesFacility.objects.filter(album=str(self.objectCode))
         for ele in images:
@@ -54,10 +58,10 @@ class SavePhoto(ConnectDatabases):
         return self.images_list
 
     def _copy_image(self, img):
-            img_from = ''.join([os.getcwd(), '/media/', str(img)])
-            img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
-            shutil.copy2(img_from, img_to)
-            return img_to
+        img_from = ''.join([os.getcwd(), '/media/', str(img)])
+        img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
+        shutil.copy2(img_from, img_to)
+        return img_to
 
 
 class District(ConnectDatabases):
@@ -109,10 +113,10 @@ class InsertData(ConnectDatabases):
     isPost = True
 
     def __init__(self, data):
-            super(InsertData, self).__init__()
-            self.data = data
+        super(InsertData, self).__init__()
+        self.data = data
 
-        # try:
+        try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
             query = "INSERT INTO Object_Live (code, title, operationType, plan," \
@@ -143,9 +147,9 @@ class InsertData(ConnectDatabases):
             self.id_obj = c.fetchone()[0]
             SavePhoto(self.id_obj, str(self.data.id), self._get_district_id(self.data.district_obj))
             # c.commit()
-        # except:
-        #     isPost = False
-        # finally:
+        except:
+            isPost = False
+        finally:
             c.close()
             db.close()
 
