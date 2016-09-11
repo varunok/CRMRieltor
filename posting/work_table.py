@@ -48,7 +48,7 @@ class SavePhoto(ConnectDatabases):
         self.images_list = []
         images = ImagesFacility.objects.filter(album=str(self.objectCode))
         for ele in images:
-            img_to = '/'.join(self._copy_image(ele.image).split('/')[-1:-2])
+            img_to = '/'.join(self._copy_image(ele.image).split('/')[-1:-3])
             print(img_to)
             self.images_list.append((self.objectId, self.objectCode, img_to, self.districtId))
         return self.images_list
