@@ -44,7 +44,7 @@ class SavePhoto(ConnectDatabases):
         self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
         os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
         # except:
-            pass
+            # pass
         self.images_list = []
         images = ImagesFacility.objects.filter(album=1)
         for ele in images:
