@@ -48,15 +48,16 @@ class SavePhoto(ConnectDatabases):
         self.images_list = []
         images = ImagesFacility.objects.filter(album=str(self.objectCode))
         for ele in images:
-            self._copy_image(ele.image)
-            self.images_list.append((self.objectId, self.objectCode, str(ele.image), self.districtId))
+            img_to = '/'.join(self._copy_image(ele.image).split('/')[-1:-2])
+            print(img_to)
+            self.images_list.append((self.objectId, self.objectCode, img_to, self.districtId))
         return self.images_list
 
     def _copy_image(self, img):
             img_from = ''.join([os.getcwd(), '/media/', str(img)])
             img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
-            print(img_from, '\n', img_to)
             shutil.copy2(img_from, img_to)
+            return img_to
 
 
 class District(ConnectDatabases):
