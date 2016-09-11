@@ -40,10 +40,10 @@ class SavePhoto(ConnectDatabases):
         db.close()
 
     def _get_images(self):
-        try:
-            self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
-            cc = os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
-        except:
+        # try:
+        self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
+        os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
+        # except:
             pass
         self.images_list = []
         images = ImagesFacility.objects.filter(album=1)
