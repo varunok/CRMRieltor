@@ -38,6 +38,7 @@ import setting_superadmin.urls
 import tasking.urls
 import parsings.urls
 import posting.urls
+import watermark.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -57,6 +58,7 @@ urlpatterns = [
     url(r'^tasking/', include(tasking.urls)),
     url(r'^', include(parsings.urls)),
     url(r'^', include(posting.urls)),
+    url(r'^', include(watermark.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

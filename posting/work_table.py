@@ -246,7 +246,7 @@ class GetShows(ConnectDatabases):
         try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
-            query = "SELECT views FROM Object_Live WHERE code= %s" % self.code
+            query = "SELECT views FROM Object_Live WHERE code=%s" % self.code
             c.execute(query)
             self.data = c.fetchall()
         except:

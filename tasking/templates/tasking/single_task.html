@@ -23,11 +23,11 @@
     <td class="edit">
         {% if tasking.type_complex %}
             <span class="status-label
-        {% if tasking.type_complex.id == 1 %}
+        {% if tasking.type_complex.id == 2 %}
             sl-grey
-        {% elif tasking.type_complex.id == 2 %}
-            sl-orange
         {% elif tasking.type_complex.id == 3 %}
+            sl-orange
+        {% elif tasking.type_complex.id == 1 %}
             sl-red
         {% endif %}">
         {{ tasking.type_complex }}

@@ -11,6 +11,26 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Franshise',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('franshise', models.CharField(max_length=100, null=True, verbose_name='\u0424\u0440\u0430\u043d\u0448\u0438\u0437\u0430', blank=True)),
+            ],
+            options={
+                'verbose_name': '\u0424\u0440\u0430\u043d\u0448\u0438\u0437\u0430',
+            },
+        ),
+        migrations.CreateModel(
+            name='FranshiseSity',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('sity', models.CharField(max_length=100, null=True, verbose_name='\u0413\u043e\u0440\u043e\u0434', blank=True)),
+            ],
+            options={
+                'verbose_name': '\u0413\u043e\u0440\u043e\u0434 \u0444\u0440\u0430\u043d\u0448\u0438\u0437\u0438',
+            },
+        ),
+        migrations.CreateModel(
             name='ListNationalCarrency',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),

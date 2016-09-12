@@ -28,7 +28,8 @@ from tasking.models import Tasking, UserFullName, TypeComplexity
 @login_required
 def homes(request):
     notes = Notes.objects.all()
-    return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now()})
+    tasking = Tasking.objects.filter(task_trash=False, task_archiv=False).order_by('dead_line')[0:5]
+    return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now(), 'tasking': tasking})
 
 
 class ObjectList(ListView):
@@ -44,7 +45,7 @@ class ObjectList(ListView):
         self.context['time'] = timezone.now()
         self.context['images'] = ImagesFacility.objects.all()
         self.context['addres_facility_data_list'] = AddressFacilityData.objects.all()
-        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['nac_carrency'] = NationalCarrency.objects.filter(id=1)[0]
         self.context['all_contact_owner_se'] = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False)
         self.context['all_contact_owner_ad'] = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False)
         self.context['all_contact_owner'] = ContactOwner.objects.all().filter(trash=False)
@@ -141,7 +142,7 @@ class ArendatorsList(ListView):
     def get_context_data(self, **kwargs):
         self.context = super(ArendatorsList, self).get_context_data(**kwargs)
         self.context['time'] = timezone.now()
-        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['nac_carrency'] = NationalCarrency.objects.filter(id=1)[0]
         self.context['count_arendator'] = len(Arendator.objects.all().filter(trash=False))
         self.context['user_list'] = MyUser.objects.all()
         self.context['list_district'] = District.objects.all()
@@ -185,7 +186,7 @@ class BuyersList(ListView):
     def get_context_data(self, **kwargs):
         self.context = super(BuyersList, self).get_context_data(**kwargs)
         self.context['time'] = timezone.now()
-        self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['nac_carrency'] = NationalCarrency.objects.filter(id=1)[0]
         self.context['count_arendator'] = len(Buyer.objects.all().filter(trash=False))
         self.context['user_list'] = MyUser.objects.all()
         self.context['list_district'] = District.objects.all()

@@ -1,4 +1,5 @@
 {% extends "homes/base.html" %}
+{% load dead_line %}
 
 {% block content %}
 <section class="content">
@@ -88,65 +89,36 @@
                                     <th>Дата</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet <span class="task-level hard">слож</span>
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet <span class="task-level medium">сред</span>
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet <span class="task-level simply">прост</span>
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet <span class="task-level medium">сред</span>
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet <span class="task-level medium">сред</span>
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
+                            <tbody>
+                                {% for task in tasking %}
+                                    <tr>
+                                        <td>{{ task.task_text }}<span class="task-level 
+                                            {% if task.type_complex.id == 1 %}
+                                                hard
+                                            {% elif task.type_complex.id == 2 %}
+                                                simply
+                                            {% elif task.type_complex.id == 3 %}
+                                                medium
+                                            {% endif %}">
+                                            {{ task.type_complex }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="rieltor">
+                                                <i class="fa fa-user"></i> {{ task.rieltor }}
+                                            </div>
+                                            <div class="date
+                                            {% if task.dead_line|dead_line %}
+                                                f-clr-red
+                                            {% else %}
+                                                f-clr-grey
+                                            {% endif %}">
+                                                <i class="fa fa-clock-o"></i> {{ task.dead_line }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
                             </tr>
                         </table>
                     </div>
