@@ -8,6 +8,7 @@ import MySQLdb
 from crm.settings import DATABASES_POST
 from setting_globall.models import Franshise
 from facility.models import ImagesFacility
+from watermark.wm import AddWatermark
 
 
 
@@ -60,7 +61,8 @@ class SavePhoto(ConnectDatabases):
     def _copy_image(self, img):
         img_from = ''.join([os.getcwd(), '/media/', str(img)])
         img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
-        shutil.copy2(img_from, img_to)
+        # shutil.copy2(img_from, img_to)
+        AddWatermark(img_from, img_to)
         return img_to
 
 
