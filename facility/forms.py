@@ -24,7 +24,7 @@ class AddressFacilityForm(ModelForm):
             'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment', 'rieltor', 'loyality',
             'actuality', 'condition', 'commission', 'currency', 'number_of_persons', 'equipment',
             'the_presence_of_hot_water', 'lot', 'sleeps', 'where_to_stay', 'prepayment', 'windows', 'heating',
-            'lavatory', 'furniture', 'room')
+            'lavatory', 'furniture', 'room', 'title', 'youtube', 'panorama')
         widgets = {
             'street_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'currency': Select(attrs={'class': 'add'}),
@@ -60,5 +60,8 @@ class AddressFacilityForm(ModelForm):
             'the_presence_of_hot_water': Select(attrs={'class': 'js-example-basic-single'}),
             'lot': NumberInput(attrs={'placeholder': 'кол. соток'}),
             'sleeps': NumberInput(attrs={'placeholder': 'Количество'}),
+            'title': TextInput(attrs={'placeholder': 'рекламный заголовок'}),
+            'youtube': TextInput(attrs={'рекламный заголовок': '-----'}),
+            'panorama': TextInput(attrs={'рекламный заголовок': 'код'}),
             # 'image': ClearableFileInput(attrs={'multiple': 'multiple'}),
         }
