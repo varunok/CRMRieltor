@@ -11,9 +11,9 @@ class CreateWatermark(object):
     isCreated = False
     """docstring for CreateWatermark"""
     def __init__(self, arg):
-        super(CreateWatermark, self).__init__()
-        self.arg = arg
-        try:
+            super(CreateWatermark, self).__init__()
+            self.arg = arg
+        # try:
             url = "http://google.com.ua"
             path_to_phantomjs = '/'.join([os.getcwd(), 'watermark', 'phantomjs'])
             driver = webdriver.PhantomJS(path_to_phantomjs)
@@ -30,8 +30,8 @@ class CreateWatermark(object):
                 pass
             driver.save_screenshot('media/watermark/watermark.png')
             self.isCreated = True
-        except:
-            pass
+        # except:
+        #     pass
 
     def _mutable_word(self):
         self.htmlString = self.htmlString.replace('\n', ' ')
