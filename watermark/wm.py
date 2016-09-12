@@ -21,8 +21,7 @@ class CreateWatermark(object):
             driver.set_window_size(width_image, 50)
             driver.get(url)
             path_to_wm_html = '/'.join([os.getcwd(), 'watermark', 'wm.html'])
-            with open(path_to_wm_html, 'r') as f:
-                self.htmlString = f.read()
+            self.htmlString = htmlString
             driver.execute_script("document.write('{}');".format(self._mutable_word()))
             try:
                 os.mkdir('media/watermark')
@@ -75,3 +74,29 @@ def add_watermark(image, watermark, opacity=1, wm_interval=0):
 # img_title = Image.open('Tryndamere_OriginalSkin_old.jpg')
 # watermark = Image.open('testing.png')
 # add_watermark(img_title, watermark, 0.5, 2).save('new_img.jpg')
+
+htmlString = """
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .logo a {
+          font-size: 35px;
+          line-height: 35px;
+          color: #bbbab8;
+          text-decoration: none;
+          font-family: "codpro";
+        }
+        .logo a span {
+          color: #fccd1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <a href="#"><span>first_word</span>.word_after_dot</a>
+    </div>
+</body>
+</html>
+"""
