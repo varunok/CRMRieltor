@@ -129,7 +129,7 @@ class InsertData(ConnectDatabases):
                      self._get_title(unicode.encode(unicode(self.data.title), "cp1251")),
                      self._get_operationType(self.data.list_operations.all()),
                      self._get_room(self.data.room_id),
-                     str(self.data.comment),
+                     unicode.encode(unicode(self.data.comment), "cp1251"),
                      unicode.encode(unicode(self.data.street_obj), "cp1251"),
                      self._get_type(self.data.type_facilit_id),
                      self._get_district_id(self.data.district_obj),
