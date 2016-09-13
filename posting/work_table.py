@@ -123,8 +123,8 @@ class InsertData(ConnectDatabases):
             c = db.cursor()
             query = "INSERT INTO Object_Live (code, title, operationType, plan," \
                     "description, address, type, districtId, floor, square, totalFloors," \
-                    "roomsNumber, priceUSD, price, contactPerson, contactPhone, video, panoramaCode)" \
-                    "VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%d', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s')" % \
+                    "roomsNumber, priceUSD, price, contactPerson, contactPhone, video, panoramaCode, rieltorId)" \
+                    "VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%d', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s', '%s')" % \
                     (str(self.data.id),
                      self._get_title(unicode.encode(unicode(self.data.title), "cp1251")),
                      self._get_operationType(self.data.list_operations.all()),
@@ -142,7 +142,8 @@ class InsertData(ConnectDatabases):
                      self._get_name_owner(unicode.encode(unicode(self.data.name_owner), "cp1251")),
                      self._get_phone_owner(unicode.encode(unicode(self.data.phone_owner), "cp1251")),
                      self._get_youtube(unicode.encode(unicode(self.data.youtube), "cp1251")),
-                     self._get_panorama(unicode.encode(unicode(self.data.panorama), "cp1251")))
+                     self._get_panorama(unicode.encode(unicode(self.data.panorama), "cp1251")),
+                     self._get_riltorId())
             c.execute(query)
             query = "SELECT id FROM Object_Live WHERE code=%s" % str(self.data.id)
             c.execute(query)
@@ -154,6 +155,9 @@ class InsertData(ConnectDatabases):
         # finally:
             c.close()
             db.close()
+
+    def _get_riltorId(self):
+        return 0
 
     def _get_youtube(self, data):
         return self._return_str(data)
