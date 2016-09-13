@@ -117,10 +117,10 @@ class InsertData(ConnectDatabases):
     isPost = True
 
     def __init__(self, data):
-            super(InsertData, self).__init__()
-            self.data = data
+        super(InsertData, self).__init__()
+        self.data = data
 
-        # try:
+        try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
             query = "INSERT INTO Object_Live (code, title, operationType, plan," \
@@ -153,9 +153,9 @@ class InsertData(ConnectDatabases):
             self.id_obj = c.fetchone()[0]
             SavePhoto(self.id_obj, str(self.data.id), self._get_district_id(self.data.district_obj))
             # c.commit()
-        # except:
-        #     isPost = False
-        # finally:
+        except:
+            isPost = False
+        finally:
             c.close()
             db.close()
 
