@@ -1,0 +1,62 @@
+{% extends "homes/base.html" %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{% url "homes" %}">Главная</a></li>
+                        <li><a href="{% url "setting" %}">Настройки</a></li>
+                        <li class="active">Рассылка</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <h1 class="section-head">Рассылка <span></span></h1>
+                    <div class="messageServer"></div>
+                <div class="section-sort">
+                    <a href="#" class="extend-block">
+                        <i class=""></i>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="setting-link">
+                        <div class="setting-section">
+                            <div class="setting-icon col-md-4">
+                                <i class="fa fa-mobile-phone"></i>
+                            </div>
+                            <div class="setting-text col-md-8">
+                                <h3>Шаблон рассылок SMS</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="setting-link">
+                        <div class="setting-section">
+                            <div class="setting-icon col-md-4">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="setting-text col-md-8">
+                                <h3>Шаблон рассылок E-MAIL</h3>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+
+{% endblock content %}

@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.mail import send_mail
 from setting_superadmin.models import AllToConnect
+from django.template.loader import render_to_string
+from single_object.models import ContactOwner
 
 
 def send_email_rieltor(request):
@@ -19,5 +21,9 @@ def send_email_rieltor(request):
 
 
 def send_email_so(request):
-	html_message = render(request, 'single_object/previous.html', {})
-	return HttpResponse(status=200)
+	if requesr.method == 'POST':
+
+		html_message = render_to_string('single_object/previous.html', {})
+
+		sending = send_mail('HELLO', 'message', 'rieltor@testcrm.gek.od.ua', ['varunok13@gmail.com'], fail_silently=False, html_message=html_message)
+		return HttpResponse(sending)

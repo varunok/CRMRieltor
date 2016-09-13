@@ -3,9 +3,9 @@
 
 # Create your views here.
 from django.db import DataError
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, JsonResponse
-from django.utils import timezone, dateformat
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.utils import timezone
 from setting_globall.models import NationalCarrency, ListNationalCarrency, FranshiseSity, Franshise
 
 
@@ -20,12 +20,12 @@ def setting_globall(request):
     try:
         sity = FranshiseSity.objects.get(id=1)
     except:
-    	sity = FakeClass()
+        sity = FakeClass()
         sity.sity = ''
     try:
         franshise = Franshise.objects.get(id=1)
     except:
-    	franshise = FakeClass()
+        franshise = FakeClass()
         franshise.franshise = ''
     return render(request, 'setting_globall/setting_globall.html', {'time': timezone.now(),
                                                                     'list_currency': list_currency,
@@ -71,4 +71,3 @@ def franshise(request):
         return HttpResponse(u'Значение сохранено')
     else:
         return HttpResponse(u'Ошибка', status=404)
-
