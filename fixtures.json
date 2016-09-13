@@ -505,6 +505,14 @@
 },
 {
     "fields": {
+        "model": "alltoconnect",
+        "app_label": "setting_superadmin"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 64
+},
+{
+    "fields": {
         "expire_date": "2016-09-26T00:21:12.237",
         "session_data": "YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
     },
@@ -601,6 +609,22 @@
 },
 {
     "fields": {
+        "street": "\u0428\u0435\u0432\u0447\u0435\u043d\u043a\u0430",
+        "full_street": "\u0443\u043b.\u0428\u0435\u0432\u0447\u0435\u043d\u043a\u0430",
+        "type_street_group": 1
+    },
+    "model": "setting_street.street",
+    "pk": 1
+},
+{
+    "fields": {
+        "district": "\u0413\u043e\u043b\u043e\u0441\u0456\u0457\u0432\u0441\u043a\u0438\u0439"
+    },
+    "model": "setting_street.district",
+    "pk": 1
+},
+{
+    "fields": {
         "type_user": "\u0410\u0434\u043c\u0438\u043d"
     },
     "model": "extuser.usersgroupextuser",
@@ -618,6 +642,33 @@
         "type_user": "\u041c\u043e\u0434\u0435\u0440\u0430\u0442\u043e\u0440"
     },
     "model": "extuser.usersgroupextuser",
+    "pk": 3
+},
+{
+    "fields": {
+        "album": 1,
+        "image": "img_obj/bloodmoon.articlebanner2_JF1oSjT.jpg",
+        "cover": true
+    },
+    "model": "facility.imagesfacility",
+    "pk": 1
+},
+{
+    "fields": {
+        "album": 1,
+        "image": "img_obj/Kennen_6_vLg5vNV.jpg",
+        "cover": false
+    },
+    "model": "facility.imagesfacility",
+    "pk": 2
+},
+{
+    "fields": {
+        "album": 1,
+        "image": "img_obj/Tryndamere_OriginalSkin_old_NZYSF9x.jpg",
+        "cover": false
+    },
+    "model": "facility.imagesfacility",
     "pk": 3
 },
 {
@@ -1119,6 +1170,29 @@
 },
 {
     "fields": {
+        "phone": 1
+    },
+    "model": "facility.phoneowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "db_id_owner": "1",
+        "db_phone_owner": "09648743535"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 1
+},
+{
+    "fields": {
+        "db_id_owner": "1",
+        "db_phone_owner": "0964563434"
+    },
+    "model": "facility.databasephoneowner",
+    "pk": 2
+},
+{
+    "fields": {
         "currency_glob": "\u0433\u0440\u043d"
     },
     "model": "setting_globall.listnationalcarrency",
@@ -1161,7 +1235,7 @@
 },
 {
     "fields": {
-        "franshise": "CRM.RIELTORY.BIZ"
+        "franshise": "test.ok.ua"
     },
     "model": "setting_globall.franshise",
     "pk": 1
@@ -1186,6 +1260,18 @@
     },
     "model": "single_object.typeshows",
     "pk": 3
+},
+{
+    "fields": {
+        "comment": "New Comment",
+        "type_tabs": "comments",
+        "image": "avatar/iam_xT6xOdG.jpg",
+        "author_comment": "\u0410\u043d\u0434\u0440\u0456\u0439 \u0412\u0430\u0440\u0443\u043d\u043e\u043a",
+        "date_comment": "2016-09-12T00:59:01.059",
+        "obj_comments": 1
+    },
+    "model": "single_object.singleobjcomments",
+    "pk": 1
 },
 {
     "fields": {
@@ -1301,6 +1387,13 @@
 },
 {
     "fields": {
+        "email": "varunok13@gmail.com"
+    },
+    "model": "setting_superadmin.alltoconnect",
+    "pk": 1
+},
+{
+    "fields": {
         "complexity": "\u0421\u043b\u043e\u0436\u043d\u0430\u044f"
     },
     "model": "tasking.typecomplexity",
@@ -1333,6 +1426,14 @@
         "SELECTOR_GETTEXT_CATEGORIES": "//div[@id=\"bottom1\"]//ul//li//a//span[@class=\"block link category-name\"]//span/text()"
     },
     "model": "parsings.configparserolx",
+    "pk": 1
+},
+{
+    "fields": {
+        "text": "varunoq",
+        "watermark_img": "watermark/watermark.png"
+    },
+    "model": "watermark.watermark",
     "pk": 1
 },
 {
@@ -2957,13 +3058,40 @@
 },
 {
     "fields": {
+        "codename": "add_alltoconnect",
+        "name": "Can add \u041d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435",
+        "content_type": 64
+    },
+    "model": "auth.permission",
+    "pk": 181
+},
+{
+    "fields": {
+        "codename": "change_alltoconnect",
+        "name": "Can change \u041d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435",
+        "content_type": 64
+    },
+    "model": "auth.permission",
+    "pk": 182
+},
+{
+    "fields": {
+        "codename": "delete_alltoconnect",
+        "name": "Can delete \u041d\u0430\u043f\u0438\u0441\u0430\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435",
+        "content_type": 64
+    },
+    "model": "auth.permission",
+    "pk": 183
+},
+{
+    "fields": {
         "username": "varunok",
         "first_name": "\u0410\u043d\u0434\u0440\u0456\u0439",
         "last_name": "\u0412\u0430\u0440\u0443\u043d\u043e\u043a",
         "is_active": true,
         "is_superuser": true,
         "is_staff": true,
-        "last_login": "2016-09-12T00:51:52",
+        "last_login": "2016-09-13T05:54:03",
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=",
@@ -2980,6 +3108,110 @@
         "type_user": 2
     },
     "model": "extuser.myuser",
+    "pk": 1
+},
+{
+    "fields": {
+        "comment": "lorem ipsum dolor emet",
+        "area_badroom": "35",
+        "floors_up": 10,
+        "total_area": 140,
+        "street_obj": "\u0443\u043b.\u0428\u0435\u0432\u0447\u0435\u043d\u043a\u0430",
+        "currency": 2,
+        "lavatory": 1,
+        "rooms": 6,
+        "area_extra_room": "20",
+        "subway_obj": null,
+        "repairs": "\u0415\u0432\u0440\u043e",
+        "area_living_room": "50",
+        "floor": 4,
+        "panorama": null,
+        "number_of_persons": [
+            1
+        ],
+        "equipment": [
+            1,
+            2
+        ],
+        "commission": "300",
+        "condition": 2,
+        "lot": 2,
+        "actuality": 1,
+        "the_presence_of_hot_water": 1,
+        "public": true,
+        "date_of_renovation": "2016-09-13T03:26:54.455",
+        "rieltor": [
+            1
+        ],
+        "loyality": [],
+        "number_apartment": "12",
+        "prepayment": 2,
+        "price_bay": 30000,
+        "type_building_data": "VIP- \u043d\u043e\u0432\u043e\u0441\u0442\u0440\u043e\u0439",
+        "where_to_stay": [
+            3
+        ],
+        "last_floor": false,
+        "district_obj": "\u0413\u043e\u043b\u043e\u0441\u0456\u0457\u0432\u0441\u043a\u0438\u0439",
+        "area_kitchen": 40,
+        "type_facilit": "\u041a\u0432\u0430\u0440\u0442\u0438\u0440\u0430",
+        "date_added": "2016-09-12T00:56:38.013",
+        "list_operations": [
+            2
+        ],
+        "price_month": 600,
+        "number_home": 35,
+        "first_floor": false,
+        "furniture": 1,
+        "room": 2,
+        "windows": 1,
+        "number_of_floors": 1,
+        "sleeps": 4,
+        "title": null,
+        "youtube": null,
+        "heating": 1,
+        "images_count": 3,
+        "payments": "\u043d\u0435\u0442",
+        "landmark": "\u0431\u0456\u043b\u044f \u0434\u0443\u0431\u0430"
+    },
+    "model": "facility.addressfacilitydata",
+    "pk": 1
+},
+{
+    "fields": {
+        "rieltor": [
+            1
+        ],
+        "loyality": [],
+        "call_date": "2016-09-12",
+        "agency": "",
+        "review_date": "2017-03-12",
+        "name_owner": "\u0418\u0432\u0430\u043d \u0424\u0440\u0430\u043d\u043a\u043e",
+        "where_to_stay": [
+            3
+        ],
+        "contact_owner": 2,
+        "call_time": "00:56:38.024",
+        "equipment": [
+            1,
+            2
+        ],
+        "time_trash": null,
+        "review_time": "00:56:38.024",
+        "number_of_persons": [
+            1
+        ],
+        "email_owner": "exemple@ex.ua",
+        "vip_owner": false,
+        "name_user_trash": null,
+        "list_operations": [
+            2
+        ],
+        "trash": false,
+        "phone_owner": "09648743535",
+        "phone_owner_plus": "0964563434"
+    },
+    "model": "facility.contactowner",
     "pk": 1
 },
 {
