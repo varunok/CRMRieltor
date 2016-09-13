@@ -39,6 +39,7 @@ import tasking.urls
 import parsings.urls
 import posting.urls
 import watermark.urls
+import sender_email.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -59,6 +60,7 @@ urlpatterns = [
     url(r'^', include(parsings.urls)),
     url(r'^', include(posting.urls)),
     url(r'^', include(watermark.urls)),
+    url(r'^', include(sender_email.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

@@ -17,3 +17,10 @@ class AllToCall(models.Model):
     skype = models.CharField(max_length=100, verbose_name=u'Skype', blank=True, null=True)
 
     group_vk = models.CharField(max_length=200, verbose_name=u'Група Вконтакте', blank=True, null=True)
+
+
+class AllToConnect(models.Model):
+    class Meta:
+        verbose_name = u'Написать сообщение'
+
+    email = models.EmailField(verbose_name=u'Email', blank=True, null=True)
