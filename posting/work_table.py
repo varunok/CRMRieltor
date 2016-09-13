@@ -218,8 +218,8 @@ class InsertData(ConnectDatabases):
         for elem in list_district:
             if str(data) in elem:
                 return elem[0]
-        else:
-            return list_district[0]
+            else:
+                return elem[0]
 
     def _get_type(self, data):
         if data == 1:
