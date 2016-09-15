@@ -6592,9 +6592,9 @@ input[type="email"] {
     z-index: 1000
 }
 .messageServer{
-    float:left;
+    /*float:left;*/
     top: 11em;
-    right: 20%;
+    /*right: 20%;*/
     display: none;
     padding: 10px;
     background-color: #5bc0de;

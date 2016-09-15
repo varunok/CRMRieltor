@@ -17,6 +17,7 @@ from extuser.models import MyUser
 from arendator.models import Arendator
 from buyer.models import Buyer
 from search_automat_arendator import search_automat
+from search_automat_buyer import search_automat_buyer
 from tasking.forms import TaskingForm
 from tasking.models import UserFullName, Tasking
 from homes.views import TaskingList, TaskingListArchive
@@ -279,7 +280,7 @@ class AutomatTieBuyer(ListView):
 
 
     def get_queryset(self):
-        return search_automat(self.request.GET, self.qeryset)
+        return search_automat_buyer(self.request.GET, self.qeryset)
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

@@ -4,7 +4,6 @@ from facility.models import ContactOwner
 from single_object.models import Tie
 
 
-
 def search_automat(request, arendators):
     price_automat = request.get('price_automat')
     rooms_automat = request.get('rooms_automat')
@@ -23,12 +22,16 @@ def search_automat(request, arendators):
         if type_obj_automat == 'true':
             arendators = arendators.filter(type_building_data=contact_owner.type_facilit)
         if area_automat == 'true':
-            arendators = arendators.filter(area_from__lte=contact_owner.total_area, area_to__gte=contact_owner.total_area)
+            arendators = arendators.filter(area_from__lte=contact_owner.total_area,
+                                           area_to__gte=contact_owner.total_area)
         if repairs_automat == 'true':
             arendators = arendators.filter(repairs=contact_owner.repairs)
         if district_automat == 'true':
             arendators = arendators.filter(district_obj=contact_owner.district_obj)
-        Tie.objects.get(tie_cont_owner=id_so).tie_arenda.clear()
+        try:
+            Tie.objects.get(tie_cont_owner=id_so).tie_arenda.clear()
+        except Tie.DoesNotExist:
+            pass
         for arendator in arendators:
             # print (0, arendators)
             # if contact_owner.tie in arendator.tie_set.all():
@@ -41,6 +44,5 @@ def search_automat(request, arendators):
                 tie.tie_arenda.add(arendator)
     except:
         return arendators
-
 
     return arendators

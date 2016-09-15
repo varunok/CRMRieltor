@@ -41,6 +41,8 @@ $(document).ready(function() {
     };
     $.timepicker.setDefaults($.timepicker.regional['ru']);
     // "use strict";
+
+    // START BLOCK ARENDATOR
     $('.tabs-rule').on('click', '#add_arendator_id', function (event) {
         event.preventDefault();
         var id_a = $('#id_arendator').val();
@@ -120,6 +122,47 @@ $(document).ready(function() {
                 })
             });
     });
+    $('.tabs-rule').on('click', '#delivery_email_arendator', function(event) {
+        event.preventDefault();
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет рассылка').fadeIn(1000);
+        data = {
+            'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
+            'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
+        }
+        $.post('delivery_email_arendator', data)
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            // $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text('Отправлено').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+    });
+
+    $('.tabs-rule').on('click', '#delivery_sms_arendator', function(event) {
+        event.preventDefault();
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет рассылка').fadeIn(1000);
+        data = {
+            'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
+            'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
+        }
+        $.post('delivery_sms_arendator', data)
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            // $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text('Отправлено').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+    });
+
+    // END BLOCK ARENDATOR
 
 //    BLOCK BUYER
     $('.tabs-rule').on('click', '#add_buyer_id', function (event) {
@@ -200,8 +243,29 @@ $(document).ready(function() {
                 })
             });
     });
+    $('.tabs-rule').on('click', '#delivery_email_buyer', function(event) {
+        event.preventDefault();
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет рассылка').fadeIn(1000);
+        data = {
+            'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
+            'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
+        }
+        $.post('delivery_email_buyer', data)
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            // $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text('Отправлено').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+    });
+
+    // END BLOCK BUYER
     
-    //  START  Block SINGLE OBJECT
+    //  START  Block TASK
     $('.tabs-rule').on('click', '#add_task_form', function (event) {
         event.preventDefault();
         $.get('get_form_task').success( function (data) {
@@ -255,7 +319,7 @@ $(document).ready(function() {
         $('.task-form').animate({top: '11%'},150);
         $('.task-form').animate({top: '10%'},150);
     }
-    //  END  Block SINGLE OBJECT
+    //  END  Block TASK
     // START BLOCK POSTING
     $('.tabs-rule').on('click', '#post_obj', function (event) {
         event.preventDefault();
@@ -286,4 +350,5 @@ $(document).ready(function() {
             })
     });
     // END BLOCK POSTING
+
 });

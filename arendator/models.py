@@ -178,6 +178,5 @@ class Arendator(models.Model):
 
     trash = models.BooleanField(verbose_name=u'Корзина', default=False)
 
-
     def __unicode__(self):
         return '%s' % self.id

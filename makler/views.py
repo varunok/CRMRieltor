@@ -66,16 +66,3 @@ def save_edit_makler(request, id):
             return render(request, 'makler/edit_makler.html', {"form": form, "id_makler":post}, status=404)
     else:
         return HttpResponse(status=404)
-
-
-
-def send_email_makler(request):
-
-    s = send_mail('Hello',
-                  'fisdfjsfi',
-                  'ddd@ddd.ddd',
-                  ['varunok13@gmail.com'],
-                  fail_silently=False,
-                  auth_user='varunok13',
-                  auth_password='varunokpython',)
-    return HttpResponse(s)

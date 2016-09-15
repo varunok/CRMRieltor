@@ -72,6 +72,21 @@ $(document).ready(function() {
 
     $('#send_email_makler').on('click', function (event) {
         event.preventDefault();
-        $.post('maklers/send_email_makler')
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет рассылка').fadeIn(1000);
+        data = {
+            "subject": $('#email_subject').val(),
+            "body": $('#email_body').val()
+        }
+        $.post('send_email_makler', data)
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            $('.messageServer').text('Отправлено '+data+' сообщений').fadeIn(1000).delay(2000).fadeOut(500);
+            ('#write_email').val('');
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
     })
 });

@@ -20,7 +20,7 @@ $(document).ready(function() {
             'id_so': id_so,
         }
 		$.post('send_email_so', data)
-		.success( function (data) {
+    		.success( function (data) {
             $('.messageServer').css('backgroundColor', '#5bc0de');
             $('.messageServer').text('Отправлено').fadeIn(1000).delay(2000).fadeOut(500);
             ('#write_email').val('');
@@ -30,5 +30,6 @@ $(document).ready(function() {
             $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
         })
 	});
+
 
 });
