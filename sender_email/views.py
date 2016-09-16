@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import EmailMessage
 from setting_superadmin.models import AllToConnect
-from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS
+from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
 from single_object.models import ContactOwner
 from arendator.models import Arendator
 from buyer.models import Buyer
@@ -38,14 +38,18 @@ class RieltorEmailBackend(EmailBackend):
         self.connection = None
         self._lock = threading.RLock()
 
+rieltor_email_setting = get_object_or_404(SettingEmail, id=1)
+EMAIL_HOST = str(rieltor_email_setting.host.split('//')[-1])
+EMAIL_HOST_USER = str(rieltor_email_setting.host_user)
+EMAIL_HOST_PASSWORD = str(rieltor_email_setting.password)
+EMAIL_TIMEOUT = int(rieltor_email_setting.timeout)
 
-EMAIL_HOST = 'mail.testcrm.gek.od.ua'
-EMAIL_HOST_USER = 'rieltor@testcrm.gek.od.ua'
-EMAIL_HOST_PASSWORD = 'Varunok13'
 
-connect = RieltorEmailBackend(host=EMAIL_HOST, port=587, username=EMAIL_HOST_USER,
-                              password=EMAIL_HOST_PASSWORD, use_tls=True, fail_silently=False, use_ssl=False,
-                              timeout=90)
+def connect_rieltor():
+    connect = RieltorEmailBackend(host=EMAIL_HOST, port=587, username=EMAIL_HOST_USER,
+                                  password=EMAIL_HOST_PASSWORD, use_tls=True, fail_silently=False, use_ssl=False,
+                                  timeout=EMAIL_TIMEOUT)
+    return connect
 
 
 def send_email_rieltor(request):
@@ -72,6 +76,7 @@ def send_email_so(request):
                              [request.POST.get('email')], [request.POST.get('email')])
 
         email.content_subtype = "html"
+        connect = connect_rieltor()
         connect.open()
         sending = connect.send_messages([email])
         connect.close()
@@ -96,15 +101,19 @@ def delivery_email_arendator(request):
                                                                              'single_object': single_object})
         arendator_emails = Arendator.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_a')[0]) if i != ',']).values_list('email', flat=True)
-
+        arendator_emails = [i for i in arendator_emails if i != '']
+        connect = connect_rieltor()
         connect.open()
+        count_sending = 0
         for arendator_email in arendator_emails:
             email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
                                  [arendator_email], [])
             email.content_subtype = "html"
             sending = connect.send_messages([email])
+            if sending:
+                count_sending += 1
         connect.close()
-        return HttpResponse(sending)
+        return HttpResponse(count_sending)
     else:
         return HttpResponse(status=500)
 
@@ -119,7 +128,8 @@ def delivery_email_buyer(request):
                                                                              'single_object': single_object})
         buyer_emails = Buyer.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_b')[0]) if i != ',']).values_list('email', flat=True)
-
+        buyer_emails = [i for i in buyer_emails if i != '']
+        connect = connect_rieltor()
         connect.open()
         count_sending_email = 0
         for buyer_email in buyer_emails:
@@ -138,6 +148,8 @@ def delivery_email_buyer(request):
 def send_email_makler(request):
     if request.method == 'POST':
         emails = Makler.objects.values_list('email', flat=True)
+        emails = [i for i in emails if i != '']
+        connect = connect_rieltor()
         connect.open()
         count_sending_email = 0
         for email in emails:

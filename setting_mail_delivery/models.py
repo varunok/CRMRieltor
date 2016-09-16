@@ -2,6 +2,7 @@
 
 
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class TemplateSms(models.Model):
@@ -52,3 +53,22 @@ class SettingSMS(models.Model):
 
     def __unicode__(self):
         return '%s' % self.id
+
+
+class SettingEmail(models.Model):
+    class Meta:
+        verbose_name = u"Настройка рассылок Email"
+        verbose_name_plural = u"Настройка рассылок Email"
+
+    host = models.URLField(max_length=50, verbose_name=u'Сервер подключения')
+
+    host_user = models.EmailField(max_length=50, verbose_name=u'Имя пользователя')
+
+    password = models.CharField(max_length=50, verbose_name=u'Пароль')
+
+    timeout = models.SmallIntegerField(default=90,
+                                       validators=[MaxValueValidator(limit_value=180, message=u'Слишком большое значение'),
+                                                   MinValueValidator(limit_value=30, message=u'Слишком малое значение')])
+
+    def __unicode__(self):
+        return '%s' % self.host
