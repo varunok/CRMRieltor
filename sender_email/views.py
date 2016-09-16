@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import EmailMessage
 from setting_superadmin.models import AllToConnect
-from setting_mail_delivery.models import TemplateEmail, TemplateSms
+from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS
 from single_object.models import ContactOwner
 from arendator.models import Arendator
 from buyer.models import Buyer
@@ -154,7 +154,75 @@ def send_email_makler(request):
 
 
 def delivery_sms_arendator(request):
+    """# Auth(xs:string login, xs:string password, )
+       # GetCreditBalance()
+       # GetMessageStatus(xs:string MessageId, )
+       # GetNewMessages()
+       # SendSMS(xs:string sender, xs:string destination, xs:string text, xs:string wappush, )
+    """
     if request.method == 'POST':
-        return HttpResponse(status=200)
+        single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
+        setting_sms = get_object_or_404(SettingSMS, id=1)
+        arendator_phone = Arendator.objects.filter(id__in=[i for i in list(
+            request.POST.getlist('id_a')[0]) if i != ',']).values_list('phone_first', flat=True)
+        print()
+        client = Client('http://turbosms.in.ua/api/wsdl.html')
+        # auth = client.service.Auth(login='crm', password='sin1984')
+        auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
+        count_message = 0
+        if auth == u'Вы успешно авторизировались':
+            balance = client.service.GetCreditBalance()
+            if float(balance):
+                result = client.service.SendSMS(sender=setting_sms.sender,
+                                                destination=list_phone_validate(arendator_phone),
+                                                text=link_to_single_obj(single_object, 'arendator'))
+                for i in result['ResultArray'][1:]:
+                    status = client.service.GetMessageStatus(MessageId=i)
+                    if status == u'Отправлено':
+                        count_message += 1
+                return HttpResponse(count_message)
+            else:
+                balance = u'Ваш баланс ' + balance
+                return HttpResponse(balance, status=500)
+        else:
+            return HttpResponse(auth, status=500)
     else:
         return HttpResponse(status=500)
+
+
+def list_phone_validate(list_phone):
+    list_phone = [str(i) for i in list(list_phone)]
+    new_list_phone = []
+    for phone in list_phone:
+        if len(phone) == 12 and int(phone[0]) == 3:
+            new_list_phone.append(''.join(['+', phone]))
+        elif len(phone) == 11 and int(phone[0]) == 8:
+            new_list_phone.append(''.join(['+3', phone]))
+        elif len(phone) == 10 and int(phone[0]) == 0:
+            new_list_phone.append(''.join(['+38', phone]))
+        elif len(phone) == 9:
+            new_list_phone.append(''.join(['+380', phone]))
+    del list_phone
+    return ','.join(new_list_phone)
+
+
+def link_to_single_obj(single_object, type_kontagent):
+    from crm.settings import ALLOWED_HOSTS
+    templ_sms = get_object_or_404(TemplateSms, id=1)
+    address = single_object.street_obj
+    if type_kontagent == 'arendator':
+        price = single_object.price_month
+    elif type_kontagent == 'buyer':
+        price = single_object.price_bay
+    link = ''.join([ALLOWED_HOSTS[0], '/objects/data/', str(single_object.id)])
+    landmark = single_object.landmark
+    link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
+                      str(price), link, templ_sms.signature])
+    return link
+
+# (ArrayOfString){
+#    ResultArray[] = 
+#       "Сообщения успешно отправлены",
+#       "de62ce70-57db-b1e8-e7df-f083b97c1972",
+#       "Добавляемый номер уже присутствует в рассылке",
+#  }

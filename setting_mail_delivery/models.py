@@ -44,7 +44,7 @@ class SettingSMS(models.Model):
         verbose_name = u"Настройка рассылок SMS"
         verbose_name_plural = u"Настройка рассылок SMS"
 
-    sender = models.CharField(max_length=150, verbose_name=u'Настройка рассылок SMS', blank=False, null=False)
+    sender = models.CharField(max_length=150, verbose_name=u'Заголовок', blank=False, null=False)
 
     login = models.CharField(max_length=150, verbose_name=u'Логин', blank=False, null=False)
 

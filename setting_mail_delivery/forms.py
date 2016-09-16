@@ -2,7 +2,7 @@
 
 
 from django import forms
-from django.forms import ModelForm, ClearableFileInput, EmailInput
+from django.forms import ModelForm, ClearableFileInput, EmailInput, PasswordInput
 from setting_mail_delivery.models import TemplateSms, TemplateEmail, SettingSMS
 
 
@@ -31,3 +31,6 @@ class SettingSMSForm(ModelForm):
     class Meta:
         model = SettingSMS
         fields = ('sender', 'login', 'password',)
+        widgets = {
+            'password': PasswordInput(attrs={'class': 'col-md-12'}, render_value=True),
+        }

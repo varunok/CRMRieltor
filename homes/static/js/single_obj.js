@@ -154,11 +154,11 @@ $(document).ready(function() {
         .success( function (data) {
             $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
             // $('.messageServer').css('backgroundColor', '#5bc0de');
-            $('.messageServer').text('Отправлено').fadeIn(1000).delay(2000).fadeOut(500);
+            $('.messageServer').text('Отправлено'+data+'SMS').fadeIn(1000).delay(2000).fadeOut(500);
         })
         .error(function(data) {
             $('.messageServer').css('backgroundColor', '#c9302c');
-            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+            $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
         })
     });
 
