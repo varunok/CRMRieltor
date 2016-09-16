@@ -77,7 +77,7 @@ def mutable_month(month):
 def get_list_translate_sity(sity):
     try:
         request_sity = ''
-        with open(''.join([os.getcwd(), '/parsings/cities5000.txt']), 'r') as f:
+        with open(''.join([os.getcwd(), '/media/cities5000.txt']), 'r') as f:
                 for i in f:
                     if sity in i:
                         i = i.replace('\t', ',').split(',')
