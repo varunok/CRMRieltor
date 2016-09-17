@@ -537,6 +537,14 @@
 },
 {
     "fields": {
+        "model": "settingemail",
+        "app_label": "setting_mail_delivery"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 68
+},
+{
+    "fields": {
         "expire_date": "2016-09-26T00:21:12.237",
         "session_data": "YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0="
     },
@@ -1644,6 +1652,16 @@
         "sender": "KNIN"
     },
     "model": "setting_mail_delivery.settingsms",
+    "pk": 1
+},
+{
+    "fields": {
+        "host": "http://mail.testcrm.gek.od.ua",
+        "password": "Varunok13",
+        "host_user": "rieltor@testcrm.gek.od.ua",
+        "timeout": 90
+    },
+    "model": "setting_mail_delivery.settingemail",
     "pk": 1
 },
 {
@@ -3376,13 +3394,40 @@
 },
 {
     "fields": {
+        "codename": "add_settingemail",
+        "name": "Can add \u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0440\u0430\u0441\u0441\u044b\u043b\u043e\u043a Email",
+        "content_type": 68
+    },
+    "model": "auth.permission",
+    "pk": 193
+},
+{
+    "fields": {
+        "codename": "change_settingemail",
+        "name": "Can change \u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0440\u0430\u0441\u0441\u044b\u043b\u043e\u043a Email",
+        "content_type": 68
+    },
+    "model": "auth.permission",
+    "pk": 194
+},
+{
+    "fields": {
+        "codename": "delete_settingemail",
+        "name": "Can delete \u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430 \u0440\u0430\u0441\u0441\u044b\u043b\u043e\u043a Email",
+        "content_type": 68
+    },
+    "model": "auth.permission",
+    "pk": 195
+},
+{
+    "fields": {
         "username": "varunok",
         "first_name": "\u0410\u043d\u0434\u0440\u0456\u0439",
         "last_name": "\u0412\u0430\u0440\u0443\u043d\u043e\u043a",
         "is_active": true,
         "is_superuser": true,
         "is_staff": true,
-        "last_login": "2016-09-16T04:06:53",
+        "last_login": "2016-09-17T05:38:28",
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=",
@@ -3430,7 +3475,7 @@
         "actuality": 1,
         "the_presence_of_hot_water": 1,
         "public": false,
-        "date_of_renovation": "2016-09-14T21:14:08.622",
+        "date_of_renovation": "2016-09-17T03:54:12.102",
         "rieltor": [
             1
         ],
@@ -3492,7 +3537,7 @@
         "actuality": null,
         "the_presence_of_hot_water": null,
         "public": false,
-        "date_of_renovation": "2016-09-14T22:33:46.192",
+        "date_of_renovation": "2016-09-17T00:53:08.095",
         "rieltor": [],
         "loyality": [],
         "number_apartment": "",
@@ -3550,7 +3595,7 @@
         "actuality": null,
         "the_presence_of_hot_water": null,
         "public": false,
-        "date_of_renovation": "2016-09-15T02:51:47.518",
+        "date_of_renovation": "2016-09-17T01:14:19.881",
         "rieltor": [],
         "loyality": [],
         "number_apartment": "",
@@ -3633,12 +3678,12 @@
         "contact_owner": null,
         "call_time": "22:33:45.948",
         "equipment": [],
-        "time_trash": null,
+        "time_trash": "2016-09-17T00:53:08.095",
         "review_time": "22:33:45.948",
         "number_of_persons": [],
         "email_owner": "",
         "vip_owner": false,
-        "name_user_trash": null,
+        "name_user_trash": "\u0410\u043d\u0434\u0440\u0456\u0439 \u0412\u0430\u0440\u0443\u043d\u043e\u043a",
         "list_operations": [
             2
         ],
@@ -3661,12 +3706,12 @@
         "contact_owner": null,
         "call_time": "02:51:47.269",
         "equipment": [],
-        "time_trash": null,
+        "time_trash": "2016-09-17T01:14:19.881",
         "review_time": "02:51:47.269",
         "number_of_persons": [],
         "email_owner": "",
         "vip_owner": false,
-        "name_user_trash": null,
+        "name_user_trash": "\u0410\u043d\u0434\u0440\u0456\u0439 \u0412\u0430\u0440\u0443\u043d\u043e\u043a",
         "list_operations": [
             4
         ],
@@ -3942,6 +3987,150 @@
     },
     "model": "buyer.buyer",
     "pk": 2
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 1,
+        "task_arendator": null,
+        "task_text": "wadwwdwd",
+        "dead_line": "2016-09-17T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": null
+    },
+    "model": "tasking.tasking",
+    "pk": 1
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 3,
+        "task_arendator": null,
+        "task_text": "ssdd",
+        "dead_line": "2016-09-24T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": null
+    },
+    "model": "tasking.tasking",
+    "pk": 2
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 2,
+        "task_arendator": null,
+        "task_text": "awawdda",
+        "dead_line": "2016-09-18T00:00:00",
+        "access": [],
+        "task_archiv": true,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": 1
+    },
+    "model": "tasking.tasking",
+    "pk": 3
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 2,
+        "task_arendator": null,
+        "task_text": "qsSS",
+        "dead_line": "2016-09-22T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": null
+    },
+    "model": "tasking.tasking",
+    "pk": 4
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 2,
+        "task_arendator": null,
+        "task_text": "wdawdd",
+        "dead_line": "2016-09-17T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": null
+    },
+    "model": "tasking.tasking",
+    "pk": 5
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 2,
+        "task_arendator": null,
+        "task_text": "awdwad",
+        "dead_line": "2016-09-29T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": null
+    },
+    "model": "tasking.tasking",
+    "pk": 6
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 1,
+        "task_arendator": null,
+        "task_text": "dfsf",
+        "dead_line": "2016-09-17T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": 1
+    },
+    "model": "tasking.tasking",
+    "pk": 7
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": 3,
+        "task_arendator": null,
+        "task_text": "awdadwad",
+        "dead_line": "2016-09-22T00:00:00",
+        "access": [],
+        "task_archiv": false,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": 1
+    },
+    "model": "tasking.tasking",
+    "pk": 8
+},
+{
+    "fields": {
+        "rieltor": 1,
+        "type_complex": null,
+        "task_arendator": null,
+        "task_text": "fgdgrgdr",
+        "dead_line": "2016-09-17T00:00:00",
+        "access": [],
+        "task_archiv": true,
+        "task_trash": false,
+        "task_buyer": null,
+        "task_facility": 3
+    },
+    "model": "tasking.tasking",
+    "pk": 9
 },
 {
     "fields": {
