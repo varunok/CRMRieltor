@@ -38,14 +38,15 @@ class RieltorEmailBackend(EmailBackend):
         self.connection = None
         self._lock = threading.RLock()
 
-rieltor_email_setting = get_object_or_404(SettingEmail, id=1)
-EMAIL_HOST = str(rieltor_email_setting.host.split('//')[-1])
-EMAIL_HOST_USER = str(rieltor_email_setting.host_user)
-EMAIL_HOST_PASSWORD = str(rieltor_email_setting.password)
-EMAIL_TIMEOUT = int(rieltor_email_setting.timeout)
+
 
 
 def connect_rieltor():
+    rieltor_email_setting = get_object_or_404(SettingEmail, id=1)
+    EMAIL_HOST = str(rieltor_email_setting.host.split('//')[-1])
+    EMAIL_HOST_USER = str(rieltor_email_setting.host_user)
+    EMAIL_HOST_PASSWORD = str(rieltor_email_setting.password)
+    EMAIL_TIMEOUT = int(rieltor_email_setting.timeout)
     connect = RieltorEmailBackend(host=EMAIL_HOST, port=587, username=EMAIL_HOST_USER,
                                   password=EMAIL_HOST_PASSWORD, use_tls=True, fail_silently=False, use_ssl=False,
                                   timeout=EMAIL_TIMEOUT)
