@@ -11,9 +11,15 @@
                                         <div class="col-md-12">
                                             <div class="tabs">
                                                 <ul class="main-tabs">
-                                                    <li class="tabs-active"><a href="#">Все <span class="label label-default">10</span></a></li>
-                                                    <li><a href="#">Активные <span class="label label-default">10</span></a></li>
-                                                    <li><a href="#">Архив <span class="label label-default">10</span></a></li>
+                                                    <li class="{% if tabs_active_all == 1 %}tabs-active{% endif %}">
+                                                        <a id="tasks_all" href="#">Все <span class="label label-default">{{ count_task_all }}</span></a>
+                                                    </li>
+                                                    <li class="{% if tabs_active_active == 1 %}tabs-active{% endif %}">
+                                                        <a id="tasks_active" href="#">Активные <span class="label label-default">{{ count_task_active }}</span></a>
+                                                    </li>
+                                                    <li class="{% if tabs_active_archive == 1 %}tabs-active{% endif %}">
+                                                        <a id="tasks_archive" href="#">Архив <span class="label label-default">{{ count_task_archive }}</span></a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -59,11 +65,11 @@
                                                     {% if tasking.type_complex %}
                                                         <span class="status-label
                                                         {% if tasking.type_complex.id == 1 %}
-                                                            sl-grey
-                                                        {% elif tasking.type_complex.id == 2 %}
-                                                            sl-orange
-                                                        {% elif tasking.type_complex.id == 3 %}
                                                             sl-red
+                                                        {% elif tasking.type_complex.id == 2 %}
+                                                            sl-grey
+                                                        {% elif tasking.type_complex.id == 3 %}
+                                                            sl-orange
                                                         {% endif %}">
                                                             {{ tasking.type_complex }}
                                                         </span>

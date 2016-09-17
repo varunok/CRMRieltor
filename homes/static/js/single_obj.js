@@ -268,7 +268,10 @@ $(document).ready(function() {
     //  START  Block TASK
     $('.tabs-rule').on('click', '#add_task_form', function (event) {
         event.preventDefault();
-        $.get('get_form_task').success( function (data) {
+        data = {
+            'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id')
+        };
+        $.get('get_form_task', data).success( function (data) {
             $('#add_form_t').html(data);
             $('.task-form').animate({top: '10%'}, 1000);
             $('#add_form_t').children('.task-form').fadeIn('slow');

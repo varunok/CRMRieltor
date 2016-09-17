@@ -38,7 +38,7 @@ class ObjectList(ListView):
     paginate_by = 10
     context_object_name = 'contact_owner'
     template_name = 'homes/objects.html'
-    qeryset = ContactOwner.objects.all().filter(trash=False)
+    qeryset = ContactOwner.objects.all().filter(trash=False).order_by('id')
 
     def get_context_data(self, **kwargs):
         self.context = super(ObjectList, self).get_context_data(**kwargs)

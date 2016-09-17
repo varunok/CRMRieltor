@@ -5,7 +5,8 @@
 from django.shortcuts import render
 from django.utils import timezone, dateformat
 from datetime import datetime
-from django.http import HttpResponse,  JsonResponse
+from django.utils import formats
+from django.http import HttpResponse,  JsonResponse, HttpResponseNotFound, Http404
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -47,7 +48,15 @@ class SingleObjectView(DetailView):
             self.context['count_buyer'] = TieBuyer.objects.get(tie_cont_owner=self.context['single_object'].id).tie_buye.all().count()
         except:
             self.context['count_buyer'] = 0
+        self.context['count_task'] = Tasking.objects.filter(task_facility=self.context['single_object'].id).count()
         return self.context
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.trash:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 def change_call_date(request):
@@ -77,6 +86,13 @@ def change_actuality(request):
     con_owner.actuality = actual
     con_owner.save()
     return HttpResponse("ok")
+
+def repeat_obj(request):
+    single_obj = ContactOwner.objects.get(id=request.GET.get('id_so'))
+    single_obj.save()
+    formatted_datetime = formats.date_format(single_obj.date_of_renovation, "DATETIME_FORMAT")
+    return HttpResponse(formatted_datetime)
+
 
 # START BLOCK COMMENTS
 def get_comment(request):
@@ -278,7 +294,6 @@ class AutomatTieBuyer(ListView):
         self.context['error'] = True
         return self.context
 
-
     def get_queryset(self):
         return search_automat_buyer(self.request.GET, self.qeryset)
 
@@ -354,21 +369,23 @@ def get_form_task(request, form=TaskingForm()):
     form.fields['task_buyer'].queryset = Buyer.objects.filter(trash=False)
     form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
     form.fields['access'].queryset = UserFullName.objects.filter(is_active=True)
+    id_task_facility = ContactOwner.objects.filter(trash=False, id=request.GET.get('id_so'))[0]
     if form.errors:
-        return render(request, 'single_object/single_tasking/form.html', {"form": form}, status=500)
+        return render(request, 'single_object/single_tasking/form.html', {"form": form, "id_task_facility": id_task_facility.id}, status=500)
 
-    return render(request, 'single_object/single_tasking/form.html', {"form": form})
+    return render(request, 'single_object/single_tasking/form.html', {"form": form,
+                                                                      "id_task_facility": id_task_facility.id})
 
 def save_form_tasking_task(request):
     if request.method == 'POST':
-       form = TaskingForm(request.POST)
-       if form.is_valid():
-           form.save()
-           task = Tasking.objects.last()
-           return single_task(request, task)
-       else:
-           form = TaskingForm(request.POST)
-           return get_form_task(request, form)
+        form = TaskingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            task = Tasking.objects.last()
+            return single_task(request, task)
+    else:
+        form = TaskingForm(request.POST)
+    return render(request, 'single_object/single_tasking/form.html', {"form": form})
 
 def single_task(request, task):
     return render(request, 'tasking/single_task.html', {"tasking": task})
@@ -376,10 +393,56 @@ def single_task(request, task):
 
 class TaskingSingleList(TaskingList):
     template_name = 'single_object/tasks.html'
-    queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleList, self).get_context_data(**kwargs)
+        self.context['tabs_active_all'] = 1
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_archive'] = 0
+        self.context['count_task_active'] = Tasking.objects.filter(task_trash=False, task_archiv=False, task_facility=self.request.GET.get('id_so')).count()
+        self.context['count_task_all'] = Tasking.objects.filter(task_trash=False, task_facility=self.request.GET.get('id_so')).count()
+        self.context['count_task_archive'] = Tasking.objects.filter(task_trash=False, task_archiv=True, task_facility=self.request.GET.get('id_so')).count()
+        return self.context
 
     def get_queryset(self):
+        self.queryset = Tasking.objects.filter(task_trash=False, task_facility=self.request.GET.get('id_so'))
+        return self.queryset
+
+
+class TaskingSingleListActive(TaskingSingleList):
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleListActive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 1
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 0
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = Tasking.objects.filter(task_trash=False, task_archiv=False, task_facility=self.request.GET.get('id_so'))
+        return self.queryset
+
+
+class TaskingSingleListArchive(TaskingSingleList):
+    queryset = Tasking.objects.filter(task_trash=False, task_archiv=True)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleListArchive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 1
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = Tasking.objects.filter(task_trash=False, task_archiv=True, task_facility=self.request.GET.get('id_so'))
+        return self.queryset
+
+
+
+    def get_queryset(self):
+        print(self.queryset)
         self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
+        print(self.queryset)
         return self.queryset
 #END BLOCK TASKING
 

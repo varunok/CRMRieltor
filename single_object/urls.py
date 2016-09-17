@@ -6,13 +6,14 @@ from single_object.views import SingleObjectView, change_call_date, change_revie
     add_obj_comment, del_comment, get_arendator, get_comment, get_buyer, get_publication, get_meetings, \
     TaskingSingleList, DatabasesPrevious, AddArendatorToTie, change_shows, AutomatTie, delete_tie_arendator, clear_all_arendator,\
     AddBuyerToTie, change_shows_buyer, AutomatTieBuyer, delete_tie_buyer, clear_all_buyer, get_form_task, \
-    save_form_tasking_task
+    save_form_tasking_task, repeat_obj, TaskingSingleListActive, TaskingSingleListArchive
 
 urlpatterns = [
     url(r'^(?P<oid>[0-9]+)$', SingleObjectView.as_view(), name='single_obj'),
     url(r'^change_call_date$', change_call_date, name='change_call_date'),
     url(r'^change_review_date$', change_review_date, name='change_review_date'),
     url(r'^change_actuality$', change_actuality, name='change_actuality'),
+    url(r'^repeat_obj', repeat_obj, name='repeat_obj'),
 
     # block comment
     url(r'^get_comment$', get_comment, name='get_comment'),
@@ -40,6 +41,8 @@ urlpatterns = [
 
     # start block task
     url(r'^get_tasks$', TaskingSingleList.as_view(), name='get_tasks'),
+    url(r'^get_tasks_active$', TaskingSingleListActive.as_view(), name='get_tasks_active'),
+    url(r'^get_tasks_archive$', TaskingSingleListArchive.as_view(), name='get_tasks_archive'),
     url(r'^get_form_task$', get_form_task),
     url(r'^save_form_tasking_task$', save_form_tasking_task),
     # end block task

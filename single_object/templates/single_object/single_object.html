@@ -23,10 +23,14 @@
         <div class="container">
             <div class="row search-object">
                 <div class="col-md-12">
-                    <h1 class="section-head">{{ single_object.list_operations.all|first }}<span></span></h1>
+                    {% if single_object.title %}
+                        <h1 class="section-head">{{ single_object.title }}<span></span></h1>
+                    {% else %}
+                        <h1 class="section-head">{{ single_object.list_operations.all|first }}<span></span></h1>
+                    {% endif %}
 {#                    <h1 class="section-head">Сдам <span>квартиру посуточно </span>{{ single_object.list_operations.all|first }}</h1>#}
                     <div class="section-sort">
-                        <a href="#"><i class="fa fa-link"></i> Ссылка</a>
+                        <a data-clipboard-text="{{request.get_host}}{% url 'databases' single_object.id %}" href="#" id="clip_link"><i class="fa fa-link"></i> Ссылка</a>
                         <input id="text_email_so" type="text" placeholder="E-mail">
                         <a id="send_email_so" href="#" class="btn btn-green">Отправить</a>
                     </div>
@@ -192,11 +196,13 @@
                                                     <br>
                                                     <input value="{{ single_object.review_date|date:'m/d/Y' }}" id="peresmotr" type="text">
                                                 </p>
-                                                <p class="object-data-update">
+                                                <p class="object-data-update" style="margin-right: 10px;">
                                                     Дата обновления
                                                     <br>
                                                     <i class="fa fa-calendar"></i>
-                                                    {{ single_object.date_of_renovation|date:'d E Y H:i' }}
+                                                    <i id="new_repeat">
+                                                        {{ single_object.date_of_renovation|date:'d E Y H:i' }}
+                                                    </i>
                                                 </p>
                                             </div>
                                         </div>
@@ -220,7 +226,7 @@
 
                             <li><a class="btna" id="get_publication" href="#">Публикации</a></li>
                             <li><a class="btna" id="get_meetings" href="">Встречи <span class="label label-default">10</span></a></li>
-                            <li><a class="btna" id="get_tasks" href="">Задачи <span class="label label-default">10</span></a></li>
+                            <li><a class="btna" id="get_tasks" href="">Задачи <span class="label label-default">{{ count_task }}</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -354,12 +360,100 @@
 				});
 			});
 		});
-{#        $('.tabs-rule').on('click', '#add_task_form', function (event) {#}
-{#            event.preventDefault();#}
-{#        });#}
+
+        $(document).on('click', '#tasks_active', function(event) {
+            event.preventDefault();
+            $.get('get_tasks_active', {"id_so":{{ single_object.id }}}, function(data) {
+				$('.tabs-rule').fadeOut('200', function() {
+					$(this).html('');
+					$(this).html(data);
+					$(this).fadeIn('200');
+				});
+			});
+        });
+
+        $(document).on('click', '#tasks_archive', function(event) {
+            event.preventDefault();
+            $.get('get_tasks_archive', {"id_so":{{ single_object.id }}}, function(data) {
+				$('.tabs-rule').fadeOut('200', function() {
+					$(this).html('');
+					$(this).html(data);
+					$(this).fadeIn('200');
+				});
+			});
+        });
+
+        $(document).on('click', '#tasks_all', function(event) {
+            event.preventDefault();
+            $.get('get_tasks', {"id_so":{{ single_object.id }}}, function(data) {
+				$('.tabs-rule').fadeOut('200', function() {
+					$(this).html('');
+					$(this).html(data);
+					$(this).fadeIn('200');
+				});
+			});
+        });
 
 
+        // sleep function
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
 
+
+        //trash object
+        $('.object-edit').on('click', '.fa-times', function(event) {
+            event.preventDefault();
+            var idobj_trash = $('#sisingle_obj_id').attr('sisingle_obj_id');
+{#            $(this).parents('.wrap-obj').fadeOut('slow');#}
+            $.post('trash_obj', {"trash": idobj_trash, "iduser":{{ user.id }}})
+            .success( function (data) {
+                $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+                // $('.messageServer').css('backgroundColor', '#5bc0de');
+                $('.messageServer').text('Обект перемещен в корзину. Ви будете перенаправлени на страницу обектов.').fadeIn(1000).delay(2000).fadeOut(500, function(){
+                    var url = document.location.href.split('/', 4);
+                    url[1]='/';
+                    url[3] += '/';
+                    url = url.join('/');
+                    window.location.replace(url);
+                });
+            })
+            .error(function(data) {
+                $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+{#                $('.messageServer').css('backgroundColor', '#c9302c');#}
+                $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        });
+
+        // repeat object
+        $('.object-edit').on('click', '.fa-repeat', function(event) {
+            event.preventDefault();
+            var id_so = $('#sisingle_obj_id').attr('sisingle_obj_id');
+            $.get('repeat_obj', {'id_so': id_so})
+                    .success( function(data){
+                        $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                        $('.messageServer').text('Обект обновлен').fadeIn(1000).delay(2000).fadeOut(500);
+                        $('#new_repeat').text(data);
+                    })
+                    .error(function(){
+                        $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+                        $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+                    })
+        });
+
+        // cliplink
+        var clip_link = document.getElementById('clip_link');
+        var clipboard = new Clipboard(clip_link);
+        $(document).on('click', '#clip_link',function(event){event.preventDefault()});
+            clipboard.on('success', function(e) {
+                $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                $('.messageServer').text('Ссилка на обект скопирована в буфер').fadeIn(1000).delay(2000).fadeOut(500);
+            });
     });
     </script>
     <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
