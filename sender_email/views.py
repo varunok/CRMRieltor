@@ -85,6 +85,8 @@ def send_email_so(request):
 
 
 def is_sender_address_valid(sender_address):
+    rieltor_email_setting = get_object_or_404(SettingEmail, id=1)
+    EMAIL_HOST_USER = str(rieltor_email_setting.host_user)
     sender_address_is_valid = sender_address.split('@')[-1]
     email_host_is_valid = EMAIL_HOST_USER.split('@')[-1]
     if sender_address_is_valid != email_host_is_valid:
