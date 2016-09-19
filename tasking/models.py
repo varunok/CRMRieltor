@@ -33,6 +33,7 @@ class Tasking(models.Model):
     class Meta:
         verbose_name = u'Задача'
         verbose_name_plural = u'Задачи'
+        ordering = ['dead_line']
 
     dead_line = models.DateTimeField(verbose_name=u'Крайний срок')
 

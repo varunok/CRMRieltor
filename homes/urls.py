@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^tasking$', views.TaskingList.as_view(), name='tasking'),
     url(r'^archive$', views.TaskingListArchive.as_view(), name='archive'),
     url(r'^setting$', views.setting, name='setting'),
-    url(r'^meeting$', views.meeting, name='meeting'),
+    url(r'^meeting$', views.MeetingList.as_view(), name='meeting'),
+    url(r'^archive_meet$', views.MeetingListArchive.as_view(), name='archive_meet'),
     # end site
 ]

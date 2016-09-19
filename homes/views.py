@@ -22,6 +22,7 @@ from search_home import searh
 from extuser.models import MyUser
 from makler.models import Makler
 from tasking.models import Tasking, UserFullName, TypeComplexity
+from meeting.models import Meeting, UserFullName, TypeStatus
 
 
 # Create your views here.
@@ -211,10 +212,13 @@ class BuyersList(ListView):
     def dispatch(self, request, *args, **kwargs):
         return super(BuyersList, self).dispatch(request, *args, **kwargs)
 
+
 @login_required
 def add_buyer(request, form=BuyerForm()):
     return render(request, 'homes/add_buyer.html', {'time': timezone.now(),
                                                     'form': form})
+
+
 class TaskingList(ListView):
     model = Tasking
     paginate_by = 10
@@ -231,7 +235,6 @@ class TaskingList(ListView):
         self.context['complexity_list'] = TypeComplexity.objects.all()
         return self.context
 
-
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(TaskingList, self).dispatch(request, *args, **kwargs)
@@ -246,6 +249,31 @@ def setting(request):
     return render(request, 'homes/setting.html', {'time': timezone.now()})
 
 
-@login_required
-def meeting(request):
-    return render(request, 'homes/meeting.html', {'time': timezone.now()})
+class MeetingList(ListView):
+    model = Meeting
+    paginate_by = 10
+    context_object_name = 'meeting_list'
+    template_name = 'homes/meeting.html'
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingList, self).get_context_data(**kwargs)
+        self.context['time'] = timezone.now()
+        self.context['count_active_meet'] = Meeting.objects.filter(meet_trash=False, meet_archiv=False).count()
+        self.context['count_archive_meet'] = Meeting.objects.filter(meet_trash=False, meet_archiv=True).count()
+        self.context['rieltor_list'] = UserFullName.objects.filter(is_active=True)
+        self.context['status_list'] = TypeStatus.objects.all()
+        return self.context
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingList, self).dispatch(request, *args, **kwargs)
+
+
+class MeetingListArchive(MeetingList):
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=True)
+
+
+# @login_required
+# def meeting(request):
+#     return render(request, 'homes/meeting.html', {'time': timezone.now()})

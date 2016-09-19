@@ -47,9 +47,6 @@ def search_task(request):
         return render(request, 'tasking/obj_tasking.html', {"tasking_list": tasking_list})
 
 
-
-
-
 def to_archive(request):
     if request.method == 'POST':
         task = Tasking.objects.get(id=request.POST['id'])

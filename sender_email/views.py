@@ -234,10 +234,3 @@ def link_to_single_obj(single_object, type_kontagent):
     link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                       str(price), link, templ_sms.signature])
     return link
-
-# (ArrayOfString){
-#    ResultArray[] = 
-#       "Сообщения успешно отправлены",
-#       "de62ce70-57db-b1e8-e7df-f083b97c1972",
-#       "Добавляемый номер уже присутствует в рассылке",
-#  }

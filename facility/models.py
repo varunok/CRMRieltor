@@ -540,6 +540,8 @@ class ContactOwner(AddressFacilityData):
     class Meta(object):
         verbose_name = u'Контакты владельца'
         verbose_name_plural = u'Контакты владельцев'
+        ordering = ['id']
+
 
     contact_owner = models.ForeignKey(TypeContactOwner,
                                       blank=True,

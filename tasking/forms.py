@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from django.forms import ModelForm, Select, SelectMultiple, Textarea
+from django.forms import ModelForm, SelectMultiple, Textarea
 from tasking.models import Tasking
 
 

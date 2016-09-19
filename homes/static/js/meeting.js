@@ -1,19 +1,19 @@
 /**
- * Created by varunok on 06.08.16.
+ * Created by varunok on 18.09.16.
  */
 $(document).ready(function() {
-        $.datepicker.regional['ru'] = {
+    $.datepicker.regional['ru'] = {
         closeText: 'Закрыть',
         prevText: '<Пред',
         nextText: 'След>',
         currentText: 'Сегодня',
-        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
-        'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
-        'Июл','Авг','Сен','Окт','Ноя','Дек'],
-        dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-        dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+            'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+        dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
         weekHeader: 'Не',
         dateFormat: 'yy-mm-dd',
         firstDay: 1,
@@ -40,9 +40,10 @@ $(document).ready(function() {
     };
     $.timepicker.setDefaults($.timepicker.regional['ru']);
 
-    $('#add_task_form').on('click', function (event) {
+
+    $('#add_meet_form').on('click', function (event) {
         event.preventDefault();
-        $.get('tasking/get_form_task').success( function (data) {
+        $.get('meet/get_form_task').success( function (data) {
             $('#add_form').html(data);
             $('.task-form').animate({top: '10%'}, 1000);
             $('#add_form').trigger('click');
@@ -50,7 +51,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#add_form').on('click','#cancel_add_form', function (event) {
+    $(document).on('click','#cancel_add_form', function (event) {
         event.preventDefault();
         //$('.task-form').hide('scale');
         $('.task-form').animate({top: '-700px'}, 500);
@@ -58,19 +59,19 @@ $(document).ready(function() {
 
     $("#add_form").on('click', function(event) {
         event.preventDefault();
-        $('#id_dead_line').datetimepicker($.timepicker.regional['ru']);
+        $('#id_meet_date').datetimepicker($.timepicker.regional['ru']);
     });
 
-    $('#add_form').on('click', '#save_form_tasking', function (event) {
+    $(document).on('click', '#save_form_meeting', function (event) {
         event.preventDefault();
         var msg   = $('#send_form').serialize();
-        $.post('tasking/save_form_tasking', msg)
+        $.post('meeting/save_form_meeting', msg)
         .success( function (data) {
             $('.task-form').animate({top: '20%'}, 2000);
             $('.task-form').animate({top: '-700px'}, 500, function () {
-                $('#add_single_task').append(data);
+                $('#add_single_meet').append(data);
                 $('tr').fadeIn('slow');
-                $('.count_active_task').text(parseInt($('.count_active_task').text())+1);
+                $('.count_active_meet').text(parseInt($('.count_active_meet').text())+1);
             });
 
         })
@@ -95,33 +96,31 @@ $(document).ready(function() {
         $('.task-form').animate({top: '10%'},150);
     }
 
-    $('.task').on('click', '.fa-play', function (event) {
+    $(document).on('click', '.fa-play', function (event) {
         event.preventDefault();
-        var id_task = $(this).parents('td').attr('id-task');
-        var task = $(this).parents('tr');
-        $.post('tasking/to_archive', {"id": id_task})
+        var id_meet = $(this).parents('td').attr('id-meet');
+        var meet = $(this).parents('tr');
+        $.post('meeting/to_archive', {"id": id_meet})
         .success( function (data) {
-            task.fadeOut('slow', function () {
-                task.remove();
-                $('.count_active_task').text(parseInt($('.count_active_task').text())-1);
-                $('.count_archive_task').text(parseInt($('.count_archive_task').text())+1);
+            meet.fadeOut('slow', function () {
+                meet.remove();
+                $('.count_active_meet').text(parseInt($('.count_active_meet').text())-1);
+                $('.count_archive_meet').text(parseInt($('.count_archive_meet').text())+1);
             });
         })
         .error(function(data) {});
     });
 
-    $('#search_task').on('click', function (event) {
+    $(document).on('click', '.fa-pencil', function(event){
         event.preventDefault();
-        var msg   = $('#search_form').serialize();
-        $.post('tasking/search_task', msg)
+        var id_meet = $(this).parents('td').attr('id-meet');
+        $.post('meeting/edit_form', {"id": id_meet})
         .success( function (data) {
-            $('#add_single_task').fadeOut('slow', function () {
-                // $('#add_single_task').html('');
-                $('#add_single_task').html(data);
-                $('#add_single_task').fadeIn('slow');
-            });
-
+            $('#add_form').html(data);
+            $('.task-form').animate({top: '10%'}, 2000);
+            $('#add_form').trigger('click');
+            $('select').select2();
         })
         .error(function(data) {});
-    });
+    })
 });
