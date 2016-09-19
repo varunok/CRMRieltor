@@ -43,7 +43,7 @@ $(document).ready(function() {
 
     $('#add_meet_form').on('click', function (event) {
         event.preventDefault();
-        $.get('meet/get_form_task').success( function (data) {
+        $.get('meeting/get_form_task').success( function (data) {
             $('#add_form').html(data);
             $('.task-form').animate({top: '10%'}, 1000);
             $('#add_form').trigger('click');
