@@ -17,66 +17,32 @@
                                     <th>Дата</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor sit amet
-                                </td>
-                                <td>
-                                    <div class="rieltor">
-                                        <i class="fa fa-user"></i> Вячеслав
-                                    </div>
-                                    <div class="date">
-                                        <i class="fa fa-clock-o"></i> 13 мая 2016 13:35
-                                    </div>
-                                </td>
-                            </tr>
+                            <tbody id="">
+                            {% for meeting in meeting_list %}
+                                <tr>
+                                    <td>{{ meeting.meet_comment }}
+                                    </td>
+                                    <td>
+                                        <div class="rieltor">
+                                            <i class="fa fa-user"></i>
+                                            {% if meeting.rieltor %}
+                                                {{ meeting.rieltor }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="date
+                                            {% if meeting.meet_date|dead_line %}
+                                                f-clr-red
+                                            {% else %}
+                                                f-clr-grey
+                                            {% endif %}
+                                                ">
+                                            <i class="fa fa-clock-o"></i>
+                                            {{ meeting.meet_date|date:'D d M H:i' }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                 </div>

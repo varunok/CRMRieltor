@@ -29,8 +29,11 @@ from meeting.models import Meeting, UserFullName, TypeStatus
 @login_required
 def homes(request):
     notes = Notes.objects.all()
+    meeting_list = Meeting.objects.filter(meet_trash=False, meet_archiv=False).order_by('meet_date')[0:5]
     tasking = Tasking.objects.filter(task_trash=False, task_archiv=False).order_by('dead_line')[0:5]
-    return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now(), 'tasking': tasking})
+    return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now(),
+                                                'tasking': tasking,
+                                                'meeting_list': meeting_list})
 
 
 class ObjectList(ListView):
