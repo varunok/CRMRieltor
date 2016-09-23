@@ -55,3 +55,11 @@ def to_archive(request):
         return HttpResponse(status=200)
     else:
         return HttpResponse(status=500)
+
+
+def to_trash(request):
+    if request.method == 'POST':
+        Tasking.objects.get(id=request.POST['id']).delete()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=500)

@@ -110,6 +110,31 @@ $(document).ready(function() {
         .error(function(data) {});
     });
 
+    $(document).on('click', '.fa-times', function(event){
+        event.preventDefault();
+        var id_task = $(this).parents('td').attr('id-task');
+        var task = $(this).parents('tr');
+        var is_archive = $(this).parents('td').children('a').eq(0).children('.fa-play')
+        $.post('tasking/to_trash', {"id": id_task})
+        .success( function (data) {
+            task.fadeOut('slow', function () {
+                task.remove();
+                if (is_archive.length){
+                    $('.count_active_task').text(parseInt($('.count_active_task').text())-1);
+                } else {
+                    $('.count_archive_task').text(parseInt($('.count_archive_task').text())-1);
+                }
+                $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                $('.messageServer').text('Задача удалена').fadeIn(1000).delay(2000).fadeOut(500);
+            });
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        });
+
+    });
+
     $('#search_task').on('click', function (event) {
         event.preventDefault();
         var msg   = $('#search_form').serialize();

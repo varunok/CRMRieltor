@@ -25,9 +25,9 @@
                     <h1 class="section-head">Всегда  <span>на связи</span></h1>
                 </div>
             </div>
-            <form id="send_form_call"  action="save_call" method="post">
+            <form id="send_form_call"  action="save_call" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="row">
+                <div class="row" style="margin-bottom:40px;">
                     <div class="col-md-3">
                         <label for="">Телефон</label>
                         {{ form.phone }}
@@ -44,6 +44,16 @@
                     <div class="col-md-3">
                         <label for="">Група Вконтакте</label>
                         {{ form.group_vk }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {# <label for="">Фото</label> #}
+                        <div class="btn btn-green grn_upload_file">
+                            {{ form.image }}
+                            <i class="fa fa-cloud-download"></i>
+                            Загрузить изображение 
+                        </div>
                     </div>
                 </div>
 

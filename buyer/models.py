@@ -19,10 +19,21 @@ class UserFullName(User):
         return self.get_full_name()
 
 
+class BuyerManager(models.Manager):
+    def get_by_natural_key(self, name, phone_first):
+        return self.get(name=name, phone_first=phone_first)
+
+
 class Buyer(models.Model):
     class Meta(object):
         verbose_name = u'Покупатель'
         verbose_name_plural = u'Покупатели'
+        unique_together = (('name', 'phone_first'),)
+
+    objects = BuyerManager()
+
+    def natural_key(self):
+        return (self.name, self.phone_first)
 
     rieltor = models.ManyToManyField(UserFullName,
                                      blank=True,

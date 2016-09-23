@@ -36,3 +36,12 @@ def all_to_call(arg=''):
         return group_vk.group_vk
     else:
         return ''
+
+
+@register.simple_tag(name='photo_futer')
+def photo_futer(arg=''):
+    try:
+        image = AllToCall.objects.get(id=1)
+        return image.image
+    except:
+        return 'Bad Robot'

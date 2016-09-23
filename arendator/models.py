@@ -60,10 +60,21 @@ class TypeStage(models.Model):
         return self.stage
 
 
+class ArendatorManager(models.Manager):
+    def get_by_natural_key(self, name, phone_first):
+        return self.get(name=name, phone_first=phone_first)
+
+
 class Arendator(models.Model):
     class Meta(object):
         verbose_name = u'Арендатор'
         verbose_name_plural = u'Арендатори'
+        unique_together = (('name', 'phone_first'),)
+
+    objects = ArendatorManager()
+
+    def natural_key(self):
+        return (self.name, self.phone_first)
 
     rieltor = models.ManyToManyField(UserFullName,
                                      blank=True,

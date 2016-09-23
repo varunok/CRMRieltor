@@ -111,6 +111,31 @@ $(document).ready(function() {
         .error(function(data) {});
     });
 
+    $(document).on('click', '.fa-times', function(event){
+        event.preventDefault();
+        var id_meet = $(this).parents('td').attr('id-meet');
+        var meet = $(this).parents('tr');
+        var is_archive = $(this).parents('td').children('a').eq(0).children('.fa-play')
+        $.post('meeting/to_trash', {"id": id_meet})
+        .success( function (data) {
+            meet.fadeOut('slow', function () {
+                meet.remove();
+                if (is_archive.length){
+                    $('.count_active_meet').text(parseInt($('.count_active_meet').text())-1);
+                } else {
+                    $('.count_archive_meet').text(parseInt($('.count_archive_meet').text())-1);
+                }
+                $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                $('.messageServer').text('Встреча удалена').fadeIn(1000).delay(2000).fadeOut(500);
+            });
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        });
+
+    });
+
     $(document).on('click', '.fa-pencil', function(event){
         event.preventDefault();
         var id_meet = $(this).parents('td').attr('id-meet');

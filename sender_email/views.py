@@ -15,6 +15,7 @@ from arendator.models import Arendator
 from buyer.models import Buyer
 from makler.models import Makler
 from suds.client import Client
+from django.settings import EMAIL_HOST_USER
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 
@@ -39,6 +40,14 @@ class RieltorEmailBackend(EmailBackend):
         self._lock = threading.RLock()
 
 
+def send_mail_php(from_addr, to_addr, subject, body):
+    cmdline = ["/usr/sbin/sendmail", "-f"]
+    cmdline.append(from_addr)
+    cmdline.append(to_addr)
+    mailer = subprocess.Popen(cmdline, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    dialog = "From: %s\nTo: %s\nSubject: %s\n\n%s\n.\n" % (from_addr, to_addr, subject, body)
+    return mailer.communicate(dialog)
+
 
 
 def connect_rieltor():
@@ -56,9 +65,12 @@ def connect_rieltor():
 def send_email_rieltor(request):
     if request.method == 'POST' and request.is_ajax():
         message = request.POST.get('text')
+        temp_email = get_object_or_404(TemplateEmail, pk=1)
         email_to = AllToConnect.objects.filter(pk=1)
-        sending = send_mail('HELLO', message, 'rieltor@testcrm.gek.od.ua', [email_to[0].email], fail_silently=False)
-        print(sending)
+        email_from = is_sender_address_valid(temp_email.sender_address)
+        subject = "Сообщение из футера"
+        sending = send_mail_php(email_from, email_to[0].email, subject, message)
+        # sending = send_mail('HELLO', message, 'rieltor@dom6.dom.zt.ua', [email_to[0].email], fail_silently=False)
         return HttpResponse(sending)
     else:
         return HttpResponse(status=500)
@@ -73,14 +85,16 @@ def send_email_so(request):
                                                                              'request': request_abs_url,
                                                                              'single_object': single_object})
 
-        email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                             [request.POST.get('email')], [request.POST.get('email')])
+        # email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+        #                      [request.POST.get('email')], [request.POST.get('email')])
 
-        email.content_subtype = "html"
-        connect = connect_rieltor()
-        connect.open()
-        sending = connect.send_messages([email])
-        connect.close()
+        # email.content_subtype = "html"
+        # connect = connect_rieltor()
+        # connect.open()
+        # sending = connect.send_messages([email])
+        # connect.close()
+        sending = send_mail_php(is_sender_address_valid(temp_email.sender_address), request.POST.get('email'), temp_email.title, html_message)
+
         return HttpResponse(sending)
 
 

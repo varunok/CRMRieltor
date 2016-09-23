@@ -45,10 +45,12 @@
     		event.preventDefault();
     		var id_mes = $(this).attr('id-mes');
     		var text_messege = $('textarea#text_messege_user').val()
-    		$.post('send_messege_user', {"id_user": id_mes, "text_messege": text_messege}, function(data) {
-    			/*optional stuff to do after success */
-    		});
-    		$.magnificPopup.close();
+    		$.post('send_messege_user', {"id_user": id_mes, "text_messege": text_messege})
+            .success( function (data) {
+                $('.messageServer').animate({'backgroundColor': '#5bc0de'}, 2000);
+                $('.messageServer').text('Сообщение отправлено').fadeIn(1000).delay(2000).fadeOut(500);
+            })
+        		$.magnificPopup.close();
     		$(this).off('click');
     	});
 	 })
