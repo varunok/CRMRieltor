@@ -6,7 +6,7 @@ import shutil
 import uuid
 import MySQLdb
 import datetime
-from crm.settings import DATABASES_POST
+from django.core import settings
 from setting_globall.models import Franshise
 from facility.models import ImagesFacility
 from watermark.wm import AddWatermark
@@ -19,10 +19,10 @@ class ConnectDatabases(object):
     def __init__(self):
         self.franshise = Franshise.objects.values()
         self.franshise_colaps = self.franshise[0]['franshise'].replace('.', '')
-        DATABASE = ''.join([DATABASES_POST['DATABASE'], self.franshise_colaps])
-        self.textusername = DATABASES_POST['USER']
-        self.textpassword = DATABASES_POST['PASS']
-        self.texthostname = DATABASES_POST['HOST']
+        DATABASE = ''.join([settings.DATABASES_POST['DATABASE'], self.franshise_colaps])
+        self.textusername = settings.DATABASES_POST['USER']
+        self.textpassword = settings.DATABASES_POST['PASS']
+        self.texthostname = settings.DATABASES_POST['HOST']
         self.database = DATABASE
 
 
