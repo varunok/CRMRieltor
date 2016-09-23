@@ -6,7 +6,7 @@ import shutil
 import uuid
 import MySQLdb
 import datetime
-from django.core import settings
+from django.conf import settings
 from setting_globall.models import Franshise
 from facility.models import ImagesFacility
 from watermark.wm import AddWatermark
