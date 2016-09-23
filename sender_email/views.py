@@ -15,9 +15,11 @@ from arendator.models import Arendator
 from buyer.models import Buyer
 from makler.models import Makler
 from suds.client import Client
-from django.settings import EMAIL_HOST_USER
+from django.conf import settings
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
+
+EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
 class RieltorEmailBackend(EmailBackend):
     """docstring for ClassName"""
