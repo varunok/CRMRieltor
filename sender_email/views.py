@@ -6,7 +6,7 @@ import subprocess
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_messages
 from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import EmailMessage
 from setting_superadmin.models import AllToConnect
@@ -96,7 +96,9 @@ def send_email_so(request):
         # connect.open()
         # sending = connect.send_messages([email])
         # connect.close()
-        sending = send_mail_php(is_sender_address_valid(temp_email.sender_address), request.POST.get('email'), temp_email.title, html_message)
+        # sending = send_mail_php(is_sender_address_valid(temp_email.sender_address), request.POST.get('email'), temp_email.title, html_message)
+        sending = send_messages(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                [request.POST.get('email')], [request.POST.get('email')])
 
         return HttpResponse(sending)
 
