@@ -72,21 +72,19 @@ def delivery_email_arendator(request):
         arendator_emails = [i for i in arendator_emails if i != '']
         # connect = connect_rieltor()
         # connect.open()
-        count_sending = 0
-        # emails = []
+        # count_sending = 0
+        emails = []
         for arendator_email in arendator_emails:
-            # email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-            #                      [arendator_email], [])
-            # email.content_subtype = "html"
-            # emails.append(email)
-            sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                                [arendator_email], [arendator_email], html_message=html_message)
+            email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                 [arendator_email], [])
+            email.content_subtype = "html"
+            emails.append(email)
         #     sending = connect.send_messages([email])
-            if sending:
-                count_sending += 1
+        #     if sending:
+        #         count_sending += 1
         # connect.close()
-        # sending = send_mass_mail(tuple(emails))
-        return HttpResponse(count_sending)
+        sending = send_mass_mail(tuple(emails))
+        return HttpResponse(sending)
     else:
         return HttpResponse(status=500)
 
