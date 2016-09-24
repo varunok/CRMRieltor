@@ -70,23 +70,15 @@ def delivery_email_arendator(request):
         arendator_emails = Arendator.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_a')[0]) if i != ',']).values_list('email', flat=True)
         arendator_emails = [i for i in arendator_emails if i != '']
-        # connect = connect_rieltor()
-        # connect.open()
-        # count_sending = 0
-        emails = []
+        count_sending = 0
         for arendator_email in arendator_emails:
-            email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                                 [arendator_email], [])
-            email.content_subtype = "html"
-            emails.append(email)
-        #     sending = connect.send_messages([email])
-        #     if sending:
-        #         count_sending += 1
-        # connect.close()
-        sending = send_mass_mail(tuple(emails))
-        return HttpResponse(sending)
-    else:
-        return HttpResponse(status=500)
+            sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                [arendator_email], [arendator_email], html_message=html_message)
+            if sending:
+                count_sending += 1
+        if count_sending:
+            return HttpResponse(count_sending)
+    return HttpResponse(status=500)
 
 
 def delivery_email_buyer(request):
@@ -100,40 +92,31 @@ def delivery_email_buyer(request):
         buyer_emails = Buyer.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_b')[0]) if i != ',']).values_list('email', flat=True)
         buyer_emails = [i for i in buyer_emails if i != '']
-        connect = connect_rieltor()
-        connect.open()
-        count_sending_email = 0
+        count_sending = 0
         for buyer_email in buyer_emails:
-            email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                                 [buyer_email], [])
-            email.content_subtype = "html"
-            sending = connect.send_messages([email])
+            sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                [buyer_email], [buyer_email], html_message=html_message)
             if sending:
-                count_sending_email += 1
-        connect.close()
-        return HttpResponse(count_sending_email)
-    else:
-        return HttpResponse(status=500)
+                count_sending += 1
+        if count_sending:
+            return HttpResponse(count_sending)
+    return HttpResponse(status=500)
 
 
 def send_email_makler(request):
     if request.method == 'POST':
         emails = Makler.objects.values_list('email', flat=True)
         emails = [i for i in emails if i != '']
-        connect = connect_rieltor()
-        connect.open()
         count_sending_email = 0
         for email in emails:
-            email = EmailMessage(request.POST.get('subject'), request.POST.get('body'),
-                                 is_sender_address_valid(EMAIL_HOST_USER),
-                                 [email], [])
-            sending = connect.send_messages([email])
+            sending = send_mail(request.POST.get('subject'), request.POST.get('body'),
+                                is_sender_address_valid(EMAIL_HOST_USER),
+                                [email], [])
             if sending:
                 count_sending_email += 1
-        connect.close()
-        return HttpResponse(count_sending_email)
-    else:
-        return HttpResponse(status=500)
+        if count_sending_email:
+            return HttpResponse(count_sending_email)
+    return HttpResponse(status=500)
 
 
 def delivery_sms_arendator(request):
