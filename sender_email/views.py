@@ -4,7 +4,7 @@
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.http import HttpResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.core.mail import EmailMessage
 from setting_superadmin.models import AllToConnect
 from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
@@ -84,7 +84,7 @@ def delivery_email_arendator(request):
         #         count_sending += 1
         # connect.close()
         sending = send_mass_mail(tuple(emails))
-        return HttpResponse(count_sending)
+        return HttpResponse(sending)
     else:
         return HttpResponse(status=500)
 
