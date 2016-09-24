@@ -98,7 +98,7 @@ def send_email_so(request):
         # connect.close()
         # sending = send_mail_php(is_sender_address_valid(temp_email.sender_address), request.POST.get('email'), temp_email.title, html_message)
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                                [request.POST.get('email')], [request.POST.get('email')], html_message=True)
+                                [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
 
         return HttpResponse(sending)
 
