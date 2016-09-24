@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-import threading
-import subprocess
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.core.mail import send_mail
-from django.core.mail.backends.smtp import EmailBackend
 from django.core.mail import EmailMessage
 from setting_superadmin.models import AllToConnect
 from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
@@ -22,48 +19,6 @@ from django.conf import settings
 
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
-class RieltorEmailBackend(EmailBackend):
-    """docstring for ClassName"""
-
-    def __init__(self, host=None, port=None, username=None, password=None,
-                 use_tls=None, fail_silently=False, use_ssl=None, timeout=None, **kwargs):
-        super(RieltorEmailBackend, self).__init__(fail_silently=fail_silently)
-        self.host = host
-        self.port = port
-        self.username = username
-        self.password = password
-        self.use_tls = use_tls
-        self.use_ssl = use_ssl
-        self.timeout = timeout
-        if self.use_ssl and self.use_tls:
-            raise ValueError(
-                "EMAIL_USE_TLS/EMAIL_USE_SSL are mutually exclusive, so only set "
-                "one of those settings to True.")
-        self.connection = None
-        self._lock = threading.RLock()
-
-
-def send_mail_php(from_addr, to_addr, subject, body):
-    cmdline = ["/usr/sbin/sendmail", "-f"]
-    cmdline.append(from_addr)
-    cmdline.append(to_addr)
-    mailer = subprocess.Popen(cmdline, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    dialog = "From: %s\nTo: %s\nSubject: %s\n\n%s\n.\n" % (from_addr, to_addr, subject, body)
-    return mailer.communicate(dialog)
-
-
-
-def connect_rieltor():
-    rieltor_email_setting = get_object_or_404(SettingEmail, id=1)
-    EMAIL_HOST = str(rieltor_email_setting.host.split('//')[-1])
-    EMAIL_HOST_USER = str(rieltor_email_setting.host_user)
-    EMAIL_HOST_PASSWORD = str(rieltor_email_setting.password)
-    EMAIL_TIMEOUT = int(rieltor_email_setting.timeout)
-    connect = RieltorEmailBackend(host=EMAIL_HOST, port=587, username=EMAIL_HOST_USER,
-                                  password=EMAIL_HOST_PASSWORD, use_tls=True, fail_silently=False, use_ssl=False,
-                                  timeout=EMAIL_TIMEOUT)
-    return connect
-
 
 def send_email_rieltor(request):
     if request.method == 'POST' and request.is_ajax():
@@ -72,8 +27,7 @@ def send_email_rieltor(request):
         email_to = AllToConnect.objects.filter(pk=1)
         email_from = is_sender_address_valid(temp_email.sender_address)
         subject = "Сообщение из футера"
-        # sending = send_mail_php(email_from, email_to[0].email, subject, message)
-        sending = send_mail('HELLO', message, 'rieltor@dom6.dom.zt.ua', [email_to[0].email], fail_silently=False)
+        sending = send_mail(subject, message, email_from, [email_to[0].email], fail_silently=False)
         return HttpResponse(sending)
     else:
         return HttpResponse(status=500)
@@ -88,19 +42,11 @@ def send_email_so(request):
                                                                              'request': request_abs_url,
                                                                              'single_object': single_object})
 
-        # email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-        #                      [request.POST.get('email')], [request.POST.get('email')])
-
-        # email.content_subtype = "html"
-        # connect = connect_rieltor()
-        # connect.open()
-        # sending = connect.send_messages([email])
-        # connect.close()
-        # sending = send_mail_php(is_sender_address_valid(temp_email.sender_address), request.POST.get('email'), temp_email.title, html_message)
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
-                                [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
-
-        return HttpResponse(sending)
+                            [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
+        if sending:
+            return HttpResponse(sending)
+        return HttpResponse(status=500)
 
 
 def is_sender_address_valid(sender_address):
@@ -124,17 +70,20 @@ def delivery_email_arendator(request):
         arendator_emails = Arendator.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_a')[0]) if i != ',']).values_list('email', flat=True)
         arendator_emails = [i for i in arendator_emails if i != '']
-        connect = connect_rieltor()
-        connect.open()
-        count_sending = 0
+        # connect = connect_rieltor()
+        # connect.open()
+        # count_sending = 0
+        emails = []
         for arendator_email in arendator_emails:
             email = EmailMessage(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
                                  [arendator_email], [])
             email.content_subtype = "html"
-            sending = connect.send_messages([email])
-            if sending:
-                count_sending += 1
-        connect.close()
+            emails.append(email)
+        #     sending = connect.send_messages([email])
+        #     if sending:
+        #         count_sending += 1
+        # connect.close()
+        sending = send_mass_mail(tuple(emails))
         return HttpResponse(count_sending)
     else:
         return HttpResponse(status=500)
