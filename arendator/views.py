@@ -72,6 +72,16 @@ def trash_arendator(request):
         return HttpResponse("Ошибка")
 
 
+def restore_arendator(request):
+    if request.method == 'POST':
+        restore_obj = Arendator.objects.get(id=request.POST.get('id_obj'))
+        restore_obj.trash = False
+        restore_obj.save()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=500)
+
+
 def edit_arendator(request, id_arendator):
     arendator = Arendator.objects.get(id=id_arendator)
     form = ArendatorForm(instance=arendator)

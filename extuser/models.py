@@ -28,8 +28,8 @@ class MyUser(models.Model):
 class UsersGroupExtUser(models.Model):
 
     class Meta:
-        verbose_name = "Тип пользователя"
-        verbose_name_plural = "Типи пользователей"
+        verbose_name = u"Тип пользователя"
+        verbose_name_plural = u"Типи пользователей"
 
     type_user = models.CharField(max_length=50,
                                  blank=True,
@@ -37,3 +37,17 @@ class UsersGroupExtUser(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.type_user)
+
+
+class RecoveryPass(models.Model):
+    """docstring for RecoveryPass"""
+    class Meta:
+        verbose_name = u"Восстановление пароля"
+        verbose_name_plural = u"Восстановление пароля"
+
+    email = models.CharField(max_length=100, verbose_name=u'EMAIL')
+
+    password = models.CharField(max_length=100, verbose_name='PASS')
+
+    def __unicode__(self):
+        return '%s' % (self.email)

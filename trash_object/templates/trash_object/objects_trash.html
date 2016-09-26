@@ -99,6 +99,20 @@
                 }
                 $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
             }
+
+            $(document).on('click', '.fa-arrows-alt', function(event) {
+                event.preventDefault();
+                var idobj_res = $(this).attr('id-obj');
+                var th = $(this);
+                $.post('objects/restore_obj', {"id_obj": idobj_res})
+                .success( function (data) {
+                    $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                    $('.messageServer').text('Объект востановлен').fadeIn(1000).delay(2000).fadeOut(500);
+                    foo(th, idobj_res);
+
+                })
+                
+            });
         })
     </script>
 {% endblock extra_js %}

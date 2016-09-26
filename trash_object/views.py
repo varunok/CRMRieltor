@@ -20,19 +20,20 @@ def list_trash(request):
 class ObjectListTrash(ObjectList):
     """docstring for ClassName"""
     template_name = 'trash_object/objects_trash.html'
-    qeryset = ContactOwner.objects.filter(trash=1)
+    qeryset = ContactOwner.objects.filter(trash=True)
 
 
 class ArendatorListTrash(ArendatorsList):
     """docstring for ClassName"""
     template_name = 'trash_object/arendator_trash.html'
-    qeryset = Arendator.objects.filter(trash=1)
+    queryset = Arendator.objects.all().filter(trash=True)
+    context_object_name = 'arendator_list'
 
 
 class BuyerListTrash(BuyersList):
     """docstring for ClassName"""
     template_name = 'trash_object/buyer_trash.html'
-    qeryset = Buyer.objects.filter(trash=1)
+    queryset = Buyer.objects.all().filter(trash=True)
 
 
 def del_obj(request):
@@ -42,6 +43,7 @@ def del_obj(request):
         return HttpResponse(u"Обьект удален")
     else:
         return HttpResponse(u"Ошибка удаления")
+
 
 def del_arendator(request):
     if request.method == 'POST':

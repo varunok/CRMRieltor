@@ -70,6 +70,16 @@ def trash_buyer(request):
         return HttpResponse("Ошибка")
 
 
+def restore_buyers(request):
+    if request.method == 'POST':
+        restore_obj = Buyer.objects.get(id=request.POST.get('id_obj'))
+        restore_obj.trash = False
+        restore_obj.save()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=500)
+
+
 def edit_buyer(request, id_buyer):
     buyer = Buyer.objects.get(id=id_buyer)
     form = BuyerForm(instance=buyer)

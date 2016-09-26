@@ -117,7 +117,11 @@
                                             </div>
                                             <div class="col-md-2 col-sm-6 edit">
                                                 <p class="buyers-edit">
+                                                {% if not buyer.trash %}
                                                     <a href="{% url "edit_buyer" buyer.id %}"><i class="fa fa-pencil"></i> </a>
+                                                {% else %}
+                                                    <a href=""><i id-obj="{{ buyer.id }}" class="fa fa-arrows-alt"></i></a>
+                                                {% endif %}
 
                                                     <a href="#"><i id-obj="{{ buyer.id }}" class="fa fa-times"></i> </a>
                                                 </p>

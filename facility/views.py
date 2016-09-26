@@ -80,11 +80,24 @@ def add_img(request):
 
 
 def del_img(request):
-    try:
-        os.remove(str(request).split('?')[-1][1:-2])
-        return HttpResponse('delete image')
-    except:
-        return HttpResponse('wrong delete')
+    if request.method == 'POST':
+        try:
+            os.remove(str(request).split('?')[-1][1:-2])
+            return HttpResponse('delete image')
+        except:
+            return HttpResponse('wrong delete')
+    else:
+        HttpResponse(status=200)
+
+
+def restore_obj(request):
+    if request.method == 'POST':
+        restore_obj = ContactOwner.objects.get(id=request.POST.get('id_obj'))
+        restore_obj.trash = False
+        restore_obj.save()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=500)
 
 
 def handle_uploaded_file(f):

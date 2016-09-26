@@ -15,7 +15,7 @@ class UserFullName(User):
         proxy = True
 
     def __unicode__(self):
-        return self.get_full_name()
+        return '%s' % self.get_full_name()
 
 
 class ImagesFacility(models.Model):
@@ -33,7 +33,7 @@ class ImagesFacility(models.Model):
     cover = models.BooleanField(verbose_name=u'Обложка', default=0)
 
     def __unicode__(self):
-        return self.album
+        return '%s' % self.album
 
 
 class TypeFacility(models.Model):
@@ -46,7 +46,7 @@ class TypeFacility(models.Model):
                                      verbose_name=u'Тип обекта')
 
     def __unicode__(self):
-        return self.type_facility
+        return '%s' % self.type_facility
 
 
 class TypeOperations(models.Model):
@@ -61,7 +61,7 @@ class TypeOperations(models.Model):
                                        verbose_name=u'Тип операции')
 
     def __unicode__(self):
-        return self.type_operations
+        return '%s' % self.type_operations
 
 
 class TypeContactOwner(models.Model):
@@ -76,7 +76,7 @@ class TypeContactOwner(models.Model):
                                           verbose_name=u'Тип контакта владельца')
 
     def __unicode__(self):
-        return self.type_contact_owner
+        return '%s' % self.type_contact_owner
 
 
 class TypeBuilding(models.Model):
@@ -91,7 +91,7 @@ class TypeBuilding(models.Model):
                                      verbose_name=u'Тип строения')
 
     def __unicode__(self):
-        return self.type_building
+        return '%s' % self.type_building
 
 
 class TypeRepairs(models.Model):
@@ -106,7 +106,7 @@ class TypeRepairs(models.Model):
                                     verbose_name=u'Тип ремонта')
 
     def __unicode__(self):
-        return self.type_repairs
+        return '%s' % self.type_repairs
 
 
 class TypeActuality(models.Model):
@@ -121,7 +121,7 @@ class TypeActuality(models.Model):
                                       verbose_name=u'Тип актуальности')
 
     def __unicode__(self):
-        return self.type_actuality
+        return '%s' % self.type_actuality
 
 
 class TypeCondition(models.Model):
@@ -136,7 +136,7 @@ class TypeCondition(models.Model):
                                       verbose_name=u'Тип состояния')
 
     def __unicode__(self):
-        return self.type_condition
+        return '%s' % self.type_condition
 
 
 class TypeNumberOfPerson(models.Model):
@@ -151,7 +151,7 @@ class TypeNumberOfPerson(models.Model):
                                               verbose_name=u'Тип количество человек')
 
     def __unicode__(self):
-        return self.type_number_of_persons
+        return '%s' % self.type_number_of_persons
 
 
 class TypeEquipment(models.Model):
@@ -166,7 +166,7 @@ class TypeEquipment(models.Model):
                                       verbose_name=u'Тип техники')
 
     def __unicode__(self):
-        return self.type_equipment
+        return '%s' % self.type_equipment
 
 
 class TypeWhereToStay(models.Model):
@@ -181,7 +181,7 @@ class TypeWhereToStay(models.Model):
                                           verbose_name=u'Тип Где спать?')
 
     def __unicode__(self):
-        return self.type_where_to_stay
+        return '%s' % self.type_where_to_stay
 
 
 class TypeThePresenceOfHotWater(models.Model):
@@ -196,7 +196,7 @@ class TypeThePresenceOfHotWater(models.Model):
                                                       verbose_name=u'Тип Наличие горячей воды')
 
     def __unicode__(self):
-        return self.type_the_presence_of_hot_water
+        return '%s' % self.type_the_presence_of_hot_water
 
 
 class TypePrepayment(models.Model):
@@ -211,7 +211,7 @@ class TypePrepayment(models.Model):
                                        verbose_name=u'Тип Предоплаты')
 
     def __unicode__(self):
-        return self.type_prepayment
+        return '%s' % self.type_prepayment
 
 
 class TypeWindows(models.Model):
@@ -226,7 +226,7 @@ class TypeWindows(models.Model):
                                     verbose_name=u'Тип Окна')
 
     def __unicode__(self):
-        return self.type_windows
+        return '%s' % self.type_windows
 
 
 class TypeHeating(models.Model):
@@ -241,7 +241,7 @@ class TypeHeating(models.Model):
                                     verbose_name=u'Тип Отопления')
 
     def __unicode__(self):
-        return self.type_heating
+        return '%s' % self.type_heating
 
 
 class TypeLavatory(models.Model):
@@ -256,7 +256,7 @@ class TypeLavatory(models.Model):
                                      verbose_name=u'Тип Санузла')
 
     def __unicode__(self):
-        return self.type_lavatory
+        return '%s' % self.type_lavatory
 
 
 class TypeFurniture(models.Model):
@@ -271,7 +271,7 @@ class TypeFurniture(models.Model):
                                       verbose_name=u'Тип Мебели')
 
     def __unicode__(self):
-        return self.type_furniture
+        return '%s' % self.type_furniture
 
 
 class TypeRooms(models.Model):
@@ -286,7 +286,7 @@ class TypeRooms(models.Model):
                                   verbose_name=u'Тип Комнаты')
 
     def __unicode__(self):
-        return self.type_rooms
+        return '%s' % self.type_rooms
 
 
 class AddressFacilityData(models.Model):

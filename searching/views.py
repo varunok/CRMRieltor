@@ -28,6 +28,7 @@ def searching(request):
     except:
         search_phone_a = ''
         search_phone_b = ''
+        search_phone_m = ''
     return render(request, 'searching/search_results.html', {'search_results_facility': facility,
                                                              'search_results_arendator': search_results_a,
                                                              'search_phone_arendator': search_phone_a,

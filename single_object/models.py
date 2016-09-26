@@ -55,12 +55,11 @@ class ShowsArendator(models.Model):
         verbose_name_plural = u'Покази арендаторам'
 
     type_shows_arendator = models.ForeignKey(TypeShows, verbose_name=u"Покази Арендаторам",
-                                        on_delete=models.PROTECT, null=True, default=1)
+                                             null=True, default=1)
 
-    array_arendator = models.ForeignKey(Arendator, on_delete=models.PROTECT, null=True)
+    array_arendator = models.ForeignKey(Arendator, null=True)
 
-    array_cont_ower = models.ForeignKey(ContactOwner, on_delete=models.PROTECT, null=True)
-
+    array_cont_ower = models.ForeignKey(ContactOwner, null=True)
 
     def __unicode__(self):
         return '%s' % self.id
@@ -84,13 +83,11 @@ class ShowsBuyer(models.Model):
         verbose_name = u'Показ покупателю'
         verbose_name_plural = u'Покази покупателям'
 
-    type_shows_buyer = models.ForeignKey(TypeShows, verbose_name=u"Покази Покупателю",
-                                        on_delete=models.PROTECT, null=True, default=1)
+    type_shows_buyer = models.ForeignKey(TypeShows, verbose_name=u"Покази Покупателю", null=True, default=1)
 
-    array_buyer = models.ForeignKey(Buyer, on_delete=models.PROTECT, null=True)
+    array_buyer = models.ForeignKey(Buyer, null=True)
 
-    array_cont_ower = models.ForeignKey(ContactOwner, on_delete=models.PROTECT, null=True)
-
+    array_cont_ower = models.ForeignKey(ContactOwner, null=True)
 
     def __unicode__(self):
         return '%s' % self.id
