@@ -96,7 +96,7 @@ def delete_user(request):
         result = results.get('id_user')
         inactive_user = User.objects.get(id=int(result))
         inactive_user.is_active = 0
-        inactive_user.save()
+        inactive_user.save() 
         exuser = User.objects.all().filter(is_active=1)
         json = JsonResponse({"del":True, "count_user":len(exuser)})
         return HttpResponse(json)
