@@ -24,6 +24,20 @@ def add_buyer_obj(request):
         return add_buyer(request, form)
 
 
+def save_edit_buyer(request):
+    if request.method == 'POST':
+        buyer = Buyer.objects.get(id=request.POST.get('edit'))
+        form = BuyerForm(request.POST, instance=buyer)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/arendators')
+        else:
+            form = change_form_text(form)
+    else:
+        form = BuyerForm()
+    return edit_buyer(request, request.POST.get('edit'))
+
+
 def change_call_date(request):
     id_ar = request.GET['id'].split('-')[-1]
     buyer = Buyer.objects.get(id=id_ar)
@@ -54,3 +68,9 @@ def trash_buyer(request):
         return HttpResponse("Обьект 'Покупатель' перемещен в корзину")
     else:
         return HttpResponse("Ошибка")
+
+
+def edit_buyer(request, id_buyer):
+    buyer = Buyer.objects.get(id=id_buyer)
+    form = BuyerForm(instance=buyer)
+    return render(request, 'homes/add_buyer.html', {'form': form, 'edit': True, 'id_buyer': id_buyer})

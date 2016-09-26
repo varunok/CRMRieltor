@@ -21,7 +21,23 @@ def add_arendator_obj(request):
             return HttpResponseRedirect('/arendators')
         else:
             form = change_form_text(form)
-        return add_arendator(request, form)
+    else:
+        form = ArendatorForm()
+    return add_arendator(request, form)
+
+
+def save_edit_arendator(request):
+    if request.method == 'POST':
+        arendator = Arendator.objects.get(id=request.POST.get('edit'))
+        form = ArendatorForm(request.POST, instance=arendator)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/arendators')
+        else:
+            form = change_form_text(form)
+    else:
+        form = ArendatorForm()
+    return edit_arendator(request, request.POST.get('edit'))
 
 
 def change_call_date(request):
@@ -54,3 +70,9 @@ def trash_arendator(request):
         return HttpResponse("Обьект 'Арендатор' перемещен в корзину")
     else:
         return HttpResponse("Ошибка")
+
+
+def edit_arendator(request, id_arendator):
+    arendator = Arendator.objects.get(id=id_arendator)
+    form = ArendatorForm(instance=arendator)
+    return render(request, 'homes/add_arendator.html', {'form': form, 'edit': True, 'id_arendator': id_arendator})

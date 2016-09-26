@@ -21,8 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def add_facility(request):
     if request.method == 'POST':
         print(request.POST.get('edit'))
-        if request.POST.get('edit'):
-            save_edit_facility(request)
         form = AddressFacilityForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -43,24 +41,28 @@ def add_facility(request):
 
 
 def save_edit_facility(request):
-    facility = ContactOwner.objects.get(id=request.POST.get('edit'))
-    form = AddressFacilityForm(request.POST, instance=facility)
-    if form.is_valid():
-        form.save()
-        phone_numb = ContactOwner.objects.last()
-        phone_owner = PhoneOwner(phone=phone_numb)
-        phone_owner.save()
-        db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
-                                      db_phone_owner=phone_numb.phone_owner)
-        db_phone.save()
-        db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
-                                      db_phone_owner=phone_numb.phone_owner_plus)
-        db_phone.save()
-        save_photo(request, phone_numb.id)
-        return HttpResponseRedirect('/objects/')
+    if request.method == 'POST':
+        facility = ContactOwner.objects.get(id=request.POST.get('edit'))
+        form = AddressFacilityForm(request.POST, instance=facility)
+        if form.is_valid():
+            form.save()
+            phone_numb = ContactOwner.objects.last()
+            phone_owner = PhoneOwner(phone=phone_numb)
+            phone_owner.save()
+            db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                          db_phone_owner=phone_numb.phone_owner)
+            db_phone.save()
+            db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                          db_phone_owner=phone_numb.phone_owner_plus)
+            db_phone.save()
+            save_photo(request, phone_numb.id)
+            return HttpResponseRedirect('/objects/')
+        else:
+            form = change_form_text(form)
     else:
-        form = change_form_text(form)
+        form = AddressFacilityForm()
     return edit_facility(request, request.POST.get('edit'))
+    
 
 def check_phone(request):
     if request.method == 'GET':
