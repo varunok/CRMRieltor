@@ -733,14 +733,6 @@
 },
 {
     "fields": {
-        "password": "test",
-        "email": "test@test.test"
-    },
-    "model": "extuser.recoverypass",
-    "pk": 1
-},
-{
-    "fields": {
         "type_facility": "\u041a\u043e\u043c\u043d\u0430\u0442\u0430"
     },
     "model": "facility.typefacility",
