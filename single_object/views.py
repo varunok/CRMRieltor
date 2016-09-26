@@ -19,9 +19,9 @@ from arendator.models import Arendator
 from buyer.models import Buyer
 from search_automat_arendator import search_automat
 from search_automat_buyer import search_automat_buyer
-from tasking.forms import TaskingForm
-from tasking.models import UserFullName, Tasking
-from homes.views import TaskingList, TaskingListArchive
+from tasking.models import Tasking
+from meeting.models import Meeting
+from homes.views import TaskingList, MeetingList
 from setting_globall.models import Franshise
 
 
@@ -48,7 +48,8 @@ class SingleObjectView(DetailView):
             self.context['count_buyer'] = TieBuyer.objects.get(tie_cont_owner=self.context['single_object'].id).tie_buye.all().count()
         except:
             self.context['count_buyer'] = 0
-        self.context['count_task'] = Tasking.objects.filter(task_facility=self.context['single_object'].id).count()
+        self.context['count_task'] = Tasking.objects.filter(task_trash=False, task_facility=self.context['single_object'].id).count()
+        self.context['count_meet'] = Meeting.objects.filter(meet_trash=False, meet_facility=self.context['single_object'].id).count()
         return self.context
 
     def get(self, request, *args, **kwargs):
@@ -60,24 +61,26 @@ class SingleObjectView(DetailView):
 
 
 def change_call_date(request):
-    try:
-        date_request = datetime.strptime(str(request.GET['data']), "%m/%d/%Y")
+    # try:
+        date_request = datetime.strptime(str(request.GET['data']), "%Y-%m-%d")
         date_change = dateformat.format(date_request, 'Y-m-d')
         con_owner = ContactOwner.objects.get(id=request.GET['id'])
         con_owner.call_date = date_change
         con_owner.save()
-        return HttpResponse("ok")
-    except:
-        return HttpResponse("error")
+        formatted_datetime = formats.date_format(con_owner.date_of_renovation, "DATETIME_FORMAT")
+        return HttpResponse(formatted_datetime)
+    # except:
+    #     return HttpResponse("error")
 
 
 def change_review_date(request):
-    date_request = datetime.strptime(str(request.GET['data']), "%m/%d/%Y")
+    date_request = datetime.strptime(str(request.GET['data']), "%Y-%m-%d")
     date_change = dateformat.format(date_request, 'Y-m-d')
     con_owner = ContactOwner.objects.get(id=request.GET['id'])
     con_owner.review_date = date_change
     con_owner.save()
-    return HttpResponse("ok")
+    formatted_datetime = formats.date_format(con_owner.date_of_renovation, "DATETIME_FORMAT")
+    return HttpResponse(formatted_datetime)
 
 
 def change_actuality(request):
@@ -85,7 +88,9 @@ def change_actuality(request):
     actual = TypeActuality.objects.get(id=request.GET['data'])
     con_owner.actuality = actual
     con_owner.save()
-    return HttpResponse("ok")
+    formatted_datetime = formats.date_format(con_owner.date_of_renovation, "DATETIME_FORMAT")
+    return HttpResponse(formatted_datetime)
+
 
 def repeat_obj(request):
     single_obj = ContactOwner.objects.get(id=request.GET.get('id_so'))
@@ -362,36 +367,11 @@ def clear_all_buyer(request):
         return HttpResponse(status=404)
 # END BLOCK BUYER
 
-#START BLOCK TASKING
-def get_form_task(request, form=TaskingForm()):
-    form.fields['task_facility'].queryset = ContactOwner.objects.filter(trash=False)
-    form.fields['task_arendator'].queryset = Arendator.objects.filter(trash=False)
-    form.fields['task_buyer'].queryset = Buyer.objects.filter(trash=False)
-    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
-    form.fields['access'].queryset = UserFullName.objects.filter(is_active=True)
-    id_task_facility = ContactOwner.objects.filter(trash=False, id=request.GET.get('id_so'))[0]
-    if form.errors:
-        return render(request, 'single_object/single_tasking/form.html', {"form": form, "id_task_facility": id_task_facility.id}, status=500)
-
-    return render(request, 'single_object/single_tasking/form.html', {"form": form,
-                                                                      "id_task_facility": id_task_facility.id})
-
-def save_form_tasking_task(request):
-    if request.method == 'POST':
-        form = TaskingForm(request.POST)
-        if form.is_valid():
-            form.save()
-            task = Tasking.objects.last()
-            return single_task(request, task)
-    else:
-        form = TaskingForm(request.POST)
-    return render(request, 'single_object/single_tasking/form.html', {"form": form})
-
-def single_task(request, task):
-    return render(request, 'tasking/single_task.html', {"tasking": task})
+# START BLOCK TASKING
 
 
 class TaskingSingleList(TaskingList):
+    model = Tasking
     template_name = 'single_object/tasks.html'
 
     def get_context_data(self, **kwargs):
@@ -410,7 +390,7 @@ class TaskingSingleList(TaskingList):
 
 
 class TaskingSingleListActive(TaskingSingleList):
-
+    queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
     def get_context_data(self, **kwargs):
         self.context = super(TaskingSingleListActive, self).get_context_data(**kwargs)
         self.context['tabs_active_active'] = 1
@@ -419,7 +399,7 @@ class TaskingSingleListActive(TaskingSingleList):
         return self.context
 
     def get_queryset(self):
-        self.queryset = Tasking.objects.filter(task_trash=False, task_archiv=False, task_facility=self.request.GET.get('id_so'))
+        self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
         return self.queryset
 
 
@@ -434,16 +414,9 @@ class TaskingSingleListArchive(TaskingSingleList):
         return self.context
 
     def get_queryset(self):
-        self.queryset = Tasking.objects.filter(task_trash=False, task_archiv=True, task_facility=self.request.GET.get('id_so'))
-        return self.queryset
-
-
-
-    def get_queryset(self):
-        print(self.queryset)
         self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
-        print(self.queryset)
         return self.queryset
+
 #END BLOCK TASKING
 
 
@@ -457,15 +430,62 @@ def get_publication(request):
                                                               "status": single_object,
                                                               "len_shows": len_shows})
 
-# START BLOCK PUBLICATIONS
+# END BLOCK PUBLICATIONS
 
 
-def get_meetings(request):
-    return render(request, 'single_object/meetings.html', {})
+# START BLOCK MEETING
+class MeetingSingleList(MeetingList):
+    model = Meeting
+    template_name = 'single_object/meetings.html'
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleList, self).get_context_data(**kwargs)
+        self.context['tabs_active_all'] = 1
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_archive'] = 0
+        self.context['count_meet_active'] = Meeting.objects.filter(meet_trash=False,
+                                                                   meet_archiv=False, meet_facility=self.request.GET.get('id_so')).count()
+        self.context['count_meet_all'] = Meeting.objects.filter(meet_trash=False, meet_facility=self.request.GET.get('id_so')).count()
+        self.context['count_meet_archive'] = Meeting.objects.filter(meet_trash=False,
+                                                                    meet_archiv=True, meet_facility=self.request.GET.get('id_so')).count()
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = Meeting.objects.filter(meet_trash=False, meet_facility=self.request.GET.get('id_so'))
+        return self.queryset
 
 
-# def get_tasks(request):
-#     return render(request, 'single_object/tasks.html', {})
+class MeetingSingleListActive(MeetingSingleList):
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleListActive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 1
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 0
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(meet_facility=self.request.GET.get('id_so'))
+        return self.queryset
+
+
+class MeetingSingleListArchive(MeetingSingleList):
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=True)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleListArchive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 1
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(meet_facility=self.request.GET.get('id_so'))
+        return self.queryset
+
+# END BLOCK MEETING
+
 
 
 

@@ -69,9 +69,10 @@ $(document).ready(function() {
         .success( function (data) {
             $('.task-form').animate({top: '20%'}, 2000);
             $('.task-form').animate({top: '-700px'}, 500, function () {
-                $('#add_single_meet').append(data);
-                $('tr').fadeIn('slow');
-                $('.count_active_meet').text(parseInt($('.count_active_meet').text())+1);
+                window.location.replace("/meeting");
+                // $('#add_single_meet').append(data);
+                // $('tr').fadeIn('slow');
+                // $('.count_active_meet').text(parseInt($('.count_active_meet').text())+1);
             });
 
         })
@@ -148,4 +149,19 @@ $(document).ready(function() {
         })
         .error(function(data) {});
     })
+
+    $('#search_meet').on('click', function (event) {
+        event.preventDefault();
+        var msg   = $('#search_form').serialize();
+        $.post('meeting/search_meet', msg)
+        .success( function (data) {
+            $('#add_single_meet').fadeOut('slow', function () {
+                // $('#add_single_task').html('');
+                $('#add_single_meet').html(data);
+                $('#add_single_meet').fadeIn('slow');
+            });
+
+        })
+        .error(function(data) {});
+    });
 });

@@ -3,7 +3,10 @@
         {{ makler.id }}
     </td>
     <td class="f-clr-grey">
-        {{ makler.cooperation }} <span class="makler-type makler-white">
+        {% if makler.cooperation %}
+            {{ makler.cooperation }} 
+        {% endif %}
+        <span class="makler-type makler-white">
         {% if makler.white_black.id == 1 %}
             <span class="makler-type makler-white">
         {% elif makler.white_black.id == 2 %}

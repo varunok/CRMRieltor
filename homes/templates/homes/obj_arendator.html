@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load sity_franshise %}
+{% load dead_line %}
                 <div class="wrap-buyers">
                     <div class="col-md-12">
                         <div class="col-md-12 buyers-card">
@@ -68,12 +69,21 @@
                                                         <span>E-mail:</span>
                                                         {{ arendator.email }}<br>
                                                     {% endif %}
-                                                    <span>Этап:</span> Подбор объекта<br>
-                                                    {% if arendator.comment %}
-                                                        <span>Комментарий:</span>
-                                                        {{ arendator.comment }}
+                                                    {% if arendator.type_stage %}
+                                                        <span>Этап:</span> {{arendator.type_stage}}
                                                     {% endif %}
-
+                                                    <div class="object-comment-short" style="margin-top:-2.4%;">
+                                                        <div class="object-comment-long">
+                                                            <p >
+                                                                <strong>Комментарий:</strong>
+                                                                {{ arendator.comment }} {# коментарі до обєкту #}
+                                                            </p>
+                                                        </div>
+                                                    {% if arendator.comment %}
+                                                        <span style="font-weight: bold; font-size: 14px;">Комментарий:</span>
+                                                        {{ arendator.comment|truncatechars:200 }}
+                                                    {% endif %}
+                                                    </div>
                                                 </p>
                                             </div>
                                             <div class="col-md-2 col-sm-6 prop">
@@ -118,10 +128,14 @@
                                                 </p>
                                                 <p class="buyers-data-view">
                                                    Сроки<br>
-                                                    <i class="fa fa-calendar"></i>  <span class="f-clr-red">
+                                                    <i class="fa fa-calendar"></i>
+                                                    {% if arendator.date_term|dead_line %}
+                                                       <span class="f-clr-red">        
+                                                    {% endif %}    
                                                     {% if arendator.date_term %}
                                                         {{ arendator.date_term }}
                                                     {% else %}
+                                                        <span class="f-clr-red"> 
                                                         неуказано
                                                     {% endif %}
                                                     </span>

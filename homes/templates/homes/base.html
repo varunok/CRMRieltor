@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
+    {% block title %}{% endblock title %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {#  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> #}
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-4 col-sm-4">
                         <div class="main-panel_search">
-                            <input type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
+                            <input id="searching" type="text" placeholder="найти..."><a href=""><i class="fa fa-search"></i></a>
                         </div>
                         <div class="nav-panel_date">
                             <div class="calendar">
@@ -114,8 +114,9 @@
             </div>
         </div>
     </section>
-
+<div id="search_results">
 {% block content %}{% endblock content %}
+</div>
     <section class="footer">
         <div class="container">
             <div class="row">
@@ -208,6 +209,7 @@
     </script>
  <script type="text/javascript">  showTime();</script>
  <script src="{% static "js/emailer.js" %}"></script>
+ <script src="{% static "js/search.js" %}"></script>
 </body>
 
 </html>

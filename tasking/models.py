@@ -77,3 +77,5 @@ class Tasking(models.Model):
     task_trash = models.BooleanField(verbose_name='В корзину', default=False)
 
     task_archiv = models.BooleanField(verbose_name='В архив', default=False)
+
+    add_date = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)

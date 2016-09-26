@@ -1,6 +1,9 @@
 {% extends "homes/base.html" %}
 
+{% block title %}<title>Сервисы/Парсер OLX </title>{% endblock title %}
+
 {% load static from staticfiles %}
+{% load get_value %}
 
 {% block extra_css %}{% endblock extra_css %}
 
@@ -46,7 +49,7 @@
                         <label class="col-md-6" for="">Раздел</label>
                         <select name="id_categories" id="id_categories">
                             {% for categories in list_categories_text  %}
-                                <option value="{{ forloop.counter0 }}">{{ categories }}</option>
+                                <option value="{{ categories }}">{{ list_categories_text|get_value:categories }}</option>
                             {% endfor %}
                         </select>
                     </div>

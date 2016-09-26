@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from tasking.models import UserFullName, Tasking
+from tasking.models import Tasking
 
 
 def search(request):

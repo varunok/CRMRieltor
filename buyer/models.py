@@ -148,6 +148,7 @@ class Buyer(models.Model):
 
     trash = models.BooleanField(verbose_name=u'Корзина', default=False)
 
+    add_date = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)
 
     def __unicode__(self):
         return '%s' % self.id

@@ -78,5 +78,7 @@ class Meeting(models.Model):
 
     meet_archiv = models.BooleanField(verbose_name='В архив', default=False)
 
+    add_date = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)
+
     def __unicode__(self):
         return '%s' % self.id

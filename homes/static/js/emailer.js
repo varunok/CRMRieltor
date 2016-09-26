@@ -17,7 +17,7 @@ $(document).ready(function() {
         var id_so = $('#sisingle_obj_id').attr('sisingle_obj_id');
         data = {
             'email': $('#text_email_so').val(),
-            'id_so': id_so,
+            'id_so': id_so
         }
 		$.post('send_email_so', data)
     		.success( function (data) {

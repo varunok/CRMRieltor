@@ -2,8 +2,18 @@
 
 
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
+
+
+class UserFullName(User):
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        return self.get_full_name()
+
+
 class TypeCooperations(models.Model):
     class Meta(object):
         verbose_name = u'Тип сотрудничества'
@@ -52,6 +62,14 @@ class Makler(models.Model):
                                     blank=True,
                                     null=True,
                                     on_delete=models.PROTECT)
+
+    rieltor = models.ForeignKey(UserFullName,
+                                blank=True,
+                                null=True,
+                                verbose_name=u'Риелтор',
+                                on_delete=models.PROTECT)
+
+    add_date = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)
 
     def __unicode__(self):
         return '%s' % self.id

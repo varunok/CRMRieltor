@@ -28,9 +28,16 @@
 
 <body>
     <section id="all-offers">
-        <div class="bc-title-inner vip-title bc-vip-title"><span>Аренда магазина, Одесса, Одесская обл.</span></div>
             <section id="content">
-                <h1 class="desc-inner-arend">Аренда магазина на ул. Терешковой <span class="price-green">{{ single_object.type_operations }}5500 грн ($ 400)</span></h1>
+                <h1 class="desc-inner-arend">
+                {% if single_object.title %}
+                    {{single_object.title}} 
+                {{ else }}
+                    {% for operation in single_object.list_operations.all %}
+                        {{ operation.id }}
+                    {% endfor %}
+                {% endif %}
+                <span class="price-green">{{ single_object.price_bay }} грн</span></h1>
                 <div class="bc-slider-wrapp">
                     <div class="fotorama" data-nav="thumbs" style="width:1000px;">
                         {% for image in images %}
@@ -47,15 +54,16 @@
                             <td>
                             <h2>Информация</h2>
                                 <ul>
-                                    <li><b>Тип:</b> Офис</li>
+                                    <li><b>Тип:</b> {{ single_object.type_facilit }}</li>
                                     <li><b>Площадь:</b> 
                                     {% if single_object.total_area %}
                                         {{ single_object.total_area }}
                                     кв.м.
                                     {% endif %}
                                     </li>
-
-                                    <li><b>Расположение:</b> <span class="b-hover">Бизнес-центр "Шевченковский"
+                                    <li><b>Район:</b> {{single_object.district_obj}}</li>
+                                    <li><b>Улица:</b> {{single_object.street_obj}}</li>
+                                    {# <li><b>Расположение:</b> <span class="b-hover">Бизнес-центр "Шевченковский" #}
                                     <div class="buisnes-center-card">
                                         <h1>Шевченковский</h1>
                                         <div><img src="img/bc-card-photo.JPG" width="240" alt=""></div>
@@ -72,9 +80,10 @@
 
                                     </div>
                                     </span></li>
-                                    <li><b>Этаж:</b> 1 Этаж</li>
+                                    <li><b>Этаж:</b> {{ single_object.floor }}</li>
                                     <li><b>ID:</b> {{ single_object.id }}</li>
-                                    <li><b>Тех. план:</b> <a href="#tplan">Посмотреть</a></li>
+                                    {# <li><b>Тех. план:</b> <a href="#tplan">Посмотреть</a> #}
+                                    {# </li> #}
 
                                 </ul>
                             </td>
@@ -83,18 +92,6 @@
                                 <ul>
                                     <li><b>Телефон:</b> <span class="text_contact">{{ single_object.phone_owner }}</span></li>
                                     <li><b>Имя:</b> <span class="text_contact">{{ single_object.name_owner }}</span></li>
-                                    <li class="social_icon"><b>Поделиться с друзьями:</b><br><div class="social">
-                        <script type="text/javascript">(function() {
-                          if (window.pluso)if (typeof window.pluso.start == "function") return;
-                          if (window.ifpluso==undefined) { window.ifpluso = 1;
-                            var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-                            s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
-                            s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
-                            var h=d[g]('body')[0];
-                            h.appendChild(s);
-                          }})();</script>
-                        <div class="pluso" data-background="transparent" data-options="small,square,line,horizontal,nocounter,theme=04" data-services="google,twitter,vkontakte,facebook,odnoklassniki,moimir,email"></div>
-                        </div></li>
                                 </ul>
                             </td>
                         </tr>
@@ -117,14 +114,13 @@
                     </div>
                 </div>
 
-                <div class="off-video">
-                    <h4>Видео</h4>
-                    <iframe height="375" src="http://www.youtube.com/embed/Vy0-RsLv0Jg" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div id="tplan" class="off-plan">
-                    <h4>Технический план</h4>
-                    <img src="img/plan.jpg" height="455" width="919" alt="">
-                </div>
+                {% if single_object.youtube %}
+                    <div class="off-video">
+                        <h4>Видео</h4>
+                            {{single_object.youtube}}
+                    </div>
+                {% endif %}
+                
 
                
 </body>

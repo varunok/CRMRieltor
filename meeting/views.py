@@ -3,12 +3,13 @@
 
 from django.shortcuts import render
 from django.core import serializers
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from facility.models import ContactOwner
 from arendator.models import Arendator
 from buyer.models import Buyer
 from meeting.models import Meeting, UserFullName, TypeStatus
 from meeting.forms import MeetingForm
+from search_meet import search
 # Create your views here.
 
 
@@ -38,18 +39,22 @@ def save_form_meeting(request):
 
 
 def save_edit_form_meeting(request):
-    meeting = Meeting.objects.get(id=request.POST.get('edit'))
-    form = MeetingForm(request.POST, instance=meeting)
-    if form.is_valid():
-        form.save()
-        meet = Meeting.objects.get(id=request.POST.get('edit'))
-        return edit_single_meet(request, meet)
+    if request.method == 'POST':
+        meeting = Meeting.objects.get(id=request.POST.get('edit'))
+        form = MeetingForm(request.POST, instance=meeting)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=200)
+    else:
+        form = MeetingForm()
+    return get_form_task(request, form)
 
 
-def edit_single_meet(request, meet):
-    data_meet = serializers.serialize("json", [meet], indent=2,
-                                      use_natural_foreign_keys=True, use_natural_primary_keys=True)
-    return HttpResponse(data_meet)
+# def edit_single_meet(request, meet):
+#     data_meet = serializers.serialize("json", [meet], indent=2,
+#                                       use_natural_foreign_keys=True, use_natural_primary_keys=True)
+#     return HttpResponse(data_meet)
+#     return HttpResponseRedirect('/meeting')
 
 
 def single_meet(request, meet):
@@ -80,3 +85,11 @@ def to_trash(request):
         return HttpResponse(status=200)
     else:
         return HttpResponse(status=500)
+
+
+def search_meet(request):
+    if request.method == 'POST':
+        meeting_list = search(request.POST)
+        status_list = TypeStatus.objects.all()
+        return render(request, 'meeting/obj_meeting.html', {"meeting_list": meeting_list,
+                                                            "status_list": status_list})

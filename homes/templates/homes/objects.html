@@ -2,6 +2,8 @@
 
 {% load static from staticfiles %}
 
+{% block title %}<title>Объекты</title>{% endblock title %}
+
 {% block extra_css %}{% endblock extra_css %}
 
 {% block content %}
@@ -497,6 +499,14 @@
                 }
                 $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
             }
+
+            // $(document).on('mouseenter', '.object-comment',function() {
+            //     $(this).prev().css('display', 'block');
+            // });
+            // $(document).on('mouseleave', '.object-comment-long',function() {
+            //     $(this).css('display', 'none');
+            // });
+
         });
     </script>
 {% endblock extra_js %}

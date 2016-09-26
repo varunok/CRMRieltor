@@ -6273,6 +6273,7 @@ body {
   font-weight: bold;
   font-size: 14px;
 }
+
 .content .buyers-card .buyers-info .buyers-prop,
 .content .buyers-card .buyers-info .buyers-prop-phone,
 .content .buyers-card .buyers-info .buyers-data-call,
@@ -6644,4 +6645,38 @@ input[type="email"] {
   font-size: 1.3em; 
   z-index:10000; 
   display: none;
+}
+
+.object-comment-short{
+  /*position: relative;*/
+  /*display: inline-block;*/
+}
+
+.object-comment-long{
+  position:absolute; 
+  display: block;
+  border: 1px solid silver; 
+  padding-left:5px; 
+  /*margin-top:-14%;*/
+  background-color: #FFF; 
+  z-index:1000;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s, margin-top 0.3s, visibility 0s linear 0.3s;
+  -moz-transition: opacity 0.3s, margin-top 0.3s, visibility 0s linear 0.3s;
+  -o-transition: opacity 0.3s, margin-top 0.3s, visibility 0s linear 0.3s;
+  transition: opacity 0.3s, margin-top 0.3s, visibility 0s linear 0.3s;
+}
+
+.object-comment-short:hover .object-comment-long{
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.object-comment-long > p {
+  margin: 0px;
 }

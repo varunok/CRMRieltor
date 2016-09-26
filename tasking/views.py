@@ -27,14 +27,28 @@ def get_form_task(request, form=TaskingForm()):
 
 def save_form_tasking(request):
     if request.method == 'POST':
+        if request.POST.get('edit'):
+            return save_edit_form_tasking(request)
         form = TaskingForm(request.POST)
         if form.is_valid():
             form.save()
             task = Tasking.objects.last()
             return single_task(request, task)
-        else:
-            form = TaskingForm(request.POST)
-            return get_form_task(request,form)
+    else:
+        form = TaskingForm(request.POST)
+    return get_form_task(request, form)
+
+
+def save_edit_form_tasking(request):
+    if request.method == 'POST':
+        tasking = Tasking.objects.get(id=request.POST.get('edit'))
+        form = TaskingForm(request.POST, instance=tasking)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(status=200)
+    else:
+        form = TaskingForm()
+    return get_form_task(request, form)
 
 
 def single_task(request, task):
@@ -45,6 +59,13 @@ def search_task(request):
     if request.method == 'POST':
         tasking_list = search(request.POST)
         return render(request, 'tasking/obj_tasking.html', {"tasking_list": tasking_list})
+
+
+def edit_form(request):
+    if request.method == 'POST':
+        tasking = Tasking.objects.get(id=request.POST.get('id'))
+        form = TaskingForm(instance=tasking)
+        return render(request, 'tasking/form.html', {"form": form, "edit": True, 'id_task': tasking.id})
 
 
 def to_archive(request):

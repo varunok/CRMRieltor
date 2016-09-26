@@ -1,5 +1,7 @@
 {% extends "homes/base.html" %}
 
+{% block title %}<title>Встречи</title>{% endblock title %}
+
 {% load dead_line %}
 
 {% load static from staticfiles %}
@@ -25,55 +27,56 @@
     </section>
     <section class="content">
         <div class="container">
-
-              <div class="row section-search">
-
+            <div class="row section-search">
                 <div class="col-md-12">
                     <div class="col-md-12 substrate">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="search-item">
-                                    <label for="typeobj">Риэлтор</label>
-                                    <select class="multiple" multiple="multiple" placeholder="-----">
-                                        <option>Сергей</option>
-                                        <option>Дмитрий</option>
-                                        <option>Вячеслав</option>
-                                        <option>Богдан</option>
-                                    </select>
+                        <form id="search_form" action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="typeobj">Риэлтор</label>
+                                        <select class="multiple" multiple="multiple" name="search_meet_rieltor">
+                                            {% for rieltor in rieltor_list %}
+                                                <option value="{{ rieltor.id }}">{{ rieltor }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="search-item">
-                                    <label for="price">Период</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input id="meet-data-to" type="text" placeholder="От">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input id="meet-data-from" type="text" placeholder="До">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="price">Период</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input id="meet-data-to" name="data_to" type="text" placeholder="От">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input id="meet-data-from" name="data_from" type="text" placeholder="До">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="search-item">
-                                    <label for="actual">Статус</label>
-                                    <select>
-                                        <option selected="selected">-----</option>
-                                        <option>Перенесена</option>
-                                        <option>Неназначено</option>
-                                        <option>Подтверждена</option>
-                                    </select>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="actual">Статус</label>
+                                        <select name="status">
+                                            <option selected="selected">-----</option>
+                                            {% for status in status_list %}
+                                                <option value="{{ status.id }}">{{ status }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div class="row">
-                            <div class="col-md-12 btn-search">
-                                <a href="#" class="btn btn-blue">Поиск</a>
+                            <div class="row">
+                                <div class="col-md-12 btn-search">
+                                    <a id="search_meet" href="#" class="btn btn-blue">Поиск</a>
+                                    <a href="{% url 'meeting' %}" class="btn btn-red">Очистить</a>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

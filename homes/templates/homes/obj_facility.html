@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load sity_franshise %}
+{% load dead_line %}
                     <div class="wrap-obj">
                         <div class="col-md-12">
                             <div class="col-md-12 object-card">
@@ -114,10 +115,18 @@
                                                         </span>
 
                                                     </p>
-                                                    <p class="object-comment">
-                                                        <span>Комментарий:</span>
-                                                        {{ object_data.comment }} {# коментарі до обєкту #}
-                                                    </p>
+                                                    <div class="object-comment-short">
+                                                        <div class="object-comment-long">
+                                                            <p >
+                                                                <strong>Комментарий:</strong>
+                                                                {{ object_data.comment }} {# коментарі до обєкту #}
+                                                            </p>
+                                                        </div>
+                                                        <p class="object-comment">
+                                                            <span>Комментарий:</span>
+                                                            {{ object_data.comment|truncatechars:200 }} {# коментарі до обєкту #}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-2 col-sm-6 prop" style="padding: 0;">
                                                     <p class="object-prop">
@@ -144,7 +153,7 @@
                                                 <div class="col-md-2 col-sm-6 edit" style="padding-left: 0;">
                                                     <p class="object-edit">
                                                     <a href="{% url "databases" object_data.id %}" target="_blank"><i class="fa fa-link"></i> </a>
-                                                        <a href="#"><i class="fa fa-pencil"></i> </a>
+                                                        <a href="{% url "edit_facility" object_data.id %}"><i class="fa fa-pencil"></i> </a>
                                                         <a href="#"><i class="fa fa-eye"></i> </a>
                                                         <a href="#"><i id-obj="{{ object_data.id }}" class="fa fa-times"></i> </a>
                                                     </p>
@@ -168,6 +177,9 @@
                                                         <p class="object-data-view">
                                                             Дата пересмотра<br>
                                                             <i class="fa fa-calendar"></i>
+                                                            {% if object_data.review_date|dead_line %}
+                                                               <span class="f-clr-red">        
+                                                            {% endif %}  
                                                         {{ object_data.review_date|timeuntil:time }}
                                                     </p>
 {#                                                    {% endif %}#}

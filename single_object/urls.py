@@ -3,10 +3,18 @@
 
 from django.conf.urls import url
 from single_object.views import SingleObjectView, change_call_date, change_review_date, change_actuality, \
-    add_obj_comment, del_comment, get_arendator, get_comment, get_buyer, get_publication, get_meetings, \
+    add_obj_comment, del_comment, get_arendator, get_comment, get_buyer, get_publication, \
     TaskingSingleList, DatabasesPrevious, AddArendatorToTie, change_shows, AutomatTie, delete_tie_arendator, clear_all_arendator,\
-    AddBuyerToTie, change_shows_buyer, AutomatTieBuyer, delete_tie_buyer, clear_all_buyer, get_form_task, \
-    save_form_tasking_task, repeat_obj, TaskingSingleListActive, TaskingSingleListArchive
+    AddBuyerToTie, change_shows_buyer, AutomatTieBuyer, delete_tie_buyer, clear_all_buyer, \
+    repeat_obj, TaskingSingleListActive, TaskingSingleListArchive, MeetingSingleList, MeetingSingleListActive, \
+    MeetingSingleListArchive
+
+from tasking.views import get_form_task, edit_form as edit_form_task, save_form_tasking as save_form_tasking_task, \
+    to_trash as to_trash_task, to_archive as to_archive_task
+
+from meeting.views import get_form_task as get_form_meet, save_form_meeting, to_trash as to_trash_meet, \
+    to_archive as to_archive_meet, edit_form as edit_form_meet
+
 
 urlpatterns = [
     url(r'^(?P<oid>[0-9]+)$', SingleObjectView.as_view(), name='single_obj'),
@@ -45,10 +53,23 @@ urlpatterns = [
     url(r'^get_tasks_archive$', TaskingSingleListArchive.as_view(), name='get_tasks_archive'),
     url(r'^get_form_task$', get_form_task),
     url(r'^save_form_tasking_task$', save_form_tasking_task),
+    url(r'^to_trash_task$', to_trash_task),
+    url(r'^to_archive_task$', to_archive_task),
+    url(r'^edit_form_task$', edit_form_task),
     # end block task
 
+    # start block meet
+    url(r'^get_meetings$', MeetingSingleList.as_view(), name='get_meetings'),
+    url(r'^get_meetings_active$', MeetingSingleListActive.as_view(), name='get_meetings_active'),
+    url(r'^get_meetings_archive$', MeetingSingleListArchive.as_view(), name='get_meetings_archive'),
+    url(r'^get_form_meet$', get_form_meet),
+    url(r'^save_form_meeting$', save_form_meeting),
+    url(r'^to_trash_meet$', to_trash_meet),
+    url(r'^to_archive_meet$', to_archive_meet),
+    url(r'^edit_form_meet$', edit_form_meet),
+    # end block meet
+
     url(r'^get_publication$', get_publication, name='get_publication'),
-    url(r'^get_meetings$', get_meetings, name='get_meetings'),
     url(r'^data/(?P<poid>[0-9]+)$', DatabasesPrevious.as_view(), name='databases'),
 
 ]

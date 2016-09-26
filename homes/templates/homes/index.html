@@ -1,5 +1,6 @@
 {% extends "homes/base.html" %}
 {% load dead_line %}
+{% block title %}<title>Главная</title>{% endblock title %}
 
 {% block content %}
 <section class="content">
@@ -97,48 +98,49 @@
                         <i class="fa fa-calendar"></i>
                         <input class="input-date" id="dateto" type="text" placeholder="От">
                         <input class="input-date" id="datefrom" type="text" placeholder="До">
-                        <select>
-                            <option>Вячеслав</option>
-                            <option>Дмитрий</option>
-                            <option selected="selected">Сергей</option>
+                        <select id="user_id_activity">
+                            <option value="0">Все</option>
+                            {% for user in list_user %}
+                                <option value="{{ user.id }}">{{ user}}</option>
+                            {% endfor %}
                         </select>
-                        <a href="#" class="btn btn-blue">Применить</a>
+                        <a href="#" id="show_activity" class="btn btn-blue">Применить</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block arendator">
                         <i class="fa fa-user"></i> АРЕНДАТОРОВ
-                        <span class="activiti-count">40</span>
+                        <span id="arendators" class="activiti-count">{{arendators}}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block object">
                         <i class="fa fa-university"></i> ОБЪЕКТОВ
-                        <span class="activiti-count">15</span>
+                        <span id="facilitys" class="activiti-count">{{facilitys}}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block task">
                         <i class="fa fa-list-alt"></i> ЗАДАЧ
-                        <span class="activiti-count">26</span>
+                        <span id="taskings" class="activiti-count">{{taskings}}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block buyers">
                         <i class="fa fa-male"></i> ПОКУПАТЕЛЕЙ
-                        <span class="activiti-count">10</span>
+                        <span id="buyers" class="activiti-count">{{buyers}}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block makler">
                         <i class="fa fa-briefcase"></i> МАКЛЕРОВ
-                        <span class="activiti-count">14</span>
+                        <span id="maklers" class="activiti-count">{{maklers}}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="activiti-block meet">
                         <i class="fa fa-coffee"></i> ВСТРЕЧ
-                        <span class="activiti-count">13</span>
+                        <span id="meetings" class="activiti-count">{{meetings}}</span>
                     </div>
                 </div>
             </div>
@@ -191,7 +193,27 @@
 {% block extra_js %}
 <script src="static/js/notes.js"></script>
     <script>
-    $(function() {
+        $(function() {
+            $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: '<Пред',
+            nextText: 'След>',
+            currentText: 'Сегодня',
+            monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+            'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+            monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+            'Июл','Авг','Сен','Окт','Ноя','Дек'],
+            dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+            dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+            dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
         $("#speed").selectmenu();
         $("#dateto").datepicker();
         $("#datefrom").datepicker();

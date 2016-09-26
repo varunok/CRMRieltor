@@ -94,3 +94,11 @@ def get_list_translate_sity(sity):
         return None
 
 
+def valid_categories_list(list_categories_text):
+    list_categories_text_copy = list_categories_text.copy()
+    blacklist = [u'Аренда гаражей / стоянок', u'Ищу компаньона', u'Продажа гаражей / стоянок', u'Аренда помещений',
+                 u'Продажа помещений', u'Обмен недвижимости', u'Прочая недвижимость']
+    for cat in list_categories_text_copy:
+        if list_categories_text[cat] in blacklist:
+            del list_categories_text[cat]
+    return list_categories_text

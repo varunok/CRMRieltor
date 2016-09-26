@@ -68,9 +68,10 @@ $(document).ready(function() {
         .success( function (data) {
             $('.task-form').animate({top: '20%'}, 2000);
             $('.task-form').animate({top: '-700px'}, 500, function () {
-                $('#add_single_task').append(data);
-                $('tr').fadeIn('slow');
-                $('.count_active_task').text(parseInt($('.count_active_task').text())+1);
+                window.location.replace("/tasking");
+                // $('#add_single_task').append(data);
+                // $('tr').fadeIn('slow');
+                // $('.count_active_task').text(parseInt($('.count_active_task').text())+1);
             });
 
         })
@@ -149,4 +150,16 @@ $(document).ready(function() {
         })
         .error(function(data) {});
     });
+    $(document).on('click', '.fa-pencil', function(event){
+        event.preventDefault();
+        var id_task = $(this).parents('td').attr('id-task');
+        $.post('tasking/edit_form', {"id": id_task})
+        .success( function (data) {
+            $('#add_form').html(data);
+            $('.task-form').animate({top: '10%'}, 2000);
+            $('#add_form').trigger('click');
+            $('select').select2();
+        })
+        .error(function(data) {});
+    })
 });

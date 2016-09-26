@@ -42,6 +42,7 @@ import watermark.urls
 import sender_email.urls
 import setting_mail_delivery.urls
 import meeting.urls
+import searching.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -65,6 +66,7 @@ urlpatterns = [
     url(r'^', include(sender_email.urls)),
     url(r'^', include(setting_mail_delivery.urls)),
     url(r'^', include(meeting.urls)),
+    url(r'^', include(searching.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

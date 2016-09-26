@@ -2,6 +2,8 @@
 
 {% block extra_css %}{% endblock extra_css %}
 
+{% block title %}<title>Добавление объекта </title>{% endblock title %}
+
 {% block content %}
     <section>
         <div class="container">
@@ -23,6 +25,9 @@
                 <div class="row section-search">
                     <div class="col-md-12">
                         <h1 class="section-head">Адрес <span>объекта</span></h1>
+                        {% if edit %}
+                            <input type="hidden" name="edit" id="edit" value="{{ id_obj }}">
+                        {% endif %}     
                         <div class="section-sort">
                             <input name="add_facility" type="submit" class="btn btn-green" value=" Добавить">
                         </div>

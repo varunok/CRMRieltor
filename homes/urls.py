@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^setting$', views.setting, name='setting'),
     url(r'^meeting$', views.MeetingList.as_view(), name='meeting'),
     url(r'^archive_meet$', views.MeetingListArchive.as_view(), name='archive_meet'),
+    url(r'^show_activity_index$', views.show_activity_index),
     # end site
 ]

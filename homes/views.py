@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+import datetime
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone, dateformat
 from django.utils.decorators import method_decorator
@@ -20,20 +21,86 @@ from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, T
 from setting_globall.models import NationalCarrency
 from search_home import searh
 from extuser.models import MyUser
-from makler.models import Makler
+from makler.models import Makler, TypeCooperations
 from tasking.models import Tasking, UserFullName, TypeComplexity
-from meeting.models import Meeting, UserFullName, TypeStatus
+from meeting.models import Meeting, TypeStatus
+
+
+DAY_AGO = timezone.now() - datetime.timedelta(days=int(30))
 
 
 # Create your views here.
 @login_required
 def homes(request):
+    data = default_show_activity_index()
+    list_user = UserFullName.objects.all()
     notes = Notes.objects.all()
     meeting_list = Meeting.objects.filter(meet_trash=False, meet_archiv=False).order_by('meet_date')[0:5]
     tasking = Tasking.objects.filter(task_trash=False, task_archiv=False).order_by('dead_line')[0:5]
     return render(request, 'homes/index.html', {'notes': notes, 'time': timezone.now(),
                                                 'tasking': tasking,
-                                                'meeting_list': meeting_list})
+                                                'meeting_list': meeting_list,
+                                                'list_user': list_user,
+                                                'arendators': data.get('arendators'),
+                                                'buyers': data.get('buyers'),
+                                                'facilitys': data.get('facilitys'),
+                                                'maklers': data.get('maklers'),
+                                                'taskings': data.get('taskings'),
+                                                'meetings': data.get('meetings')})
+
+
+def default_show_activity_index(dateto=DAY_AGO, datefrom=datetime.date(2100, 1, 1)):
+    arendators = Arendator.objects.filter(add_date__range=(dateto, datefrom), trash=False).count()
+    buyers = Buyer.objects.filter(add_date__range=(dateto, datefrom), trash=False).count()
+    facilitys = ContactOwner.objects.filter(date_added__range=(dateto, datefrom), trash=False).count()
+    maklers = Makler.objects.filter(add_date__range=(dateto, datefrom)).count()
+    taskings = Tasking.objects.filter(add_date__range=(dateto, datefrom), task_trash=False).count()
+    meetings = Meeting.objects.filter(add_date__range=(dateto, datefrom), meet_trash=False).count()
+    data = {
+        'arendators': arendators,
+        'buyers': buyers,
+        'facilitys': facilitys,
+        'maklers': maklers,
+        'taskings': taskings,
+        'meetings': meetings,
+    }
+    return data
+
+
+def show_activity_index(request):
+    dateto = datetime.date(2000, 1, 1)
+    datefrom = datetime.date(2100, 1, 1)
+    if request.GET.get('dateto'):
+        dateto = request.GET.get('dateto')
+    if request.GET.get('datefrom'):
+        datefrom = request.GET.get('datefrom')
+    if int(request.GET.get('user_id')):
+        arendators = Arendator.objects.filter(rieltor=request.GET.get('user_id'), add_date__range=(dateto, datefrom),
+                                              trash=False).count()
+        buyers = Buyer.objects.filter(rieltor=request.GET.get('user_id'), add_date__range=(dateto, datefrom),
+                                      trash=False).count()
+        facilitys = ContactOwner.objects.filter(rieltor=request.GET.get('user_id'),
+                                                date_added__range=(dateto, datefrom),
+                                                trash=False).count()
+        maklers = Makler.objects.filter(rieltor=request.GET.get('user_id'), add_date__range=(dateto, datefrom)).count()
+        taskings = Tasking.objects.filter(rieltor=request.GET.get('user_id'), add_date__range=(dateto, datefrom),
+                                          task_trash=False).count()
+        meetings = Meeting.objects.filter(rieltor=request.GET.get('user_id'), add_date__range=(dateto, datefrom),
+                                          meet_trash=False).count()
+        data = {
+            'arendators': arendators,
+            'buyers': buyers,
+            'facilitys': facilitys,
+            'maklers': maklers,
+            'taskings': taskings,
+            'meetings': meetings,
+        }
+        data = JsonResponse(data, safe=True)
+        return HttpResponse(data)
+    else:
+        data = default_show_activity_index(dateto, datefrom)
+        data = JsonResponse(data, safe=True)
+        return HttpResponse(data)
 
 
 class ObjectList(ListView):
@@ -123,16 +190,12 @@ class MaklerList(ListView):
         self.context['count_makler'] = Makler.objects.all().count()
         self.context['count_makler_white'] = Makler.objects.filter(white_black=1).count()
         self.context['count_makler_black'] = Makler.objects.filter(white_black=2).count()
+        self.context['list_cooperation'] = TypeCooperations.objects.all()
         return self.context
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(MaklerList, self).dispatch(request, *args, **kwargs)
-
-
-@login_required
-def arendators_list(request):
-    return render(request, 'homes/arendators.html', {'time': timezone.now()})
 
 
 class ArendatorsList(ListView):

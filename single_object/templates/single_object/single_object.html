@@ -1,10 +1,14 @@
 {% extends "homes/base.html" %}
 
-{% load static from staticfiles %}
+{% block title %}<title>Объект ID{{single_object.id}}</title>{% endblock title %}
 
-{% block extra_css %}{% endblock extra_css %}
+{% load static from staticfiles %}
+{% load sity_franshise %}
+
+{% block extra_css %}
 <link rel="stylesheet" href="{% static "css/modal_form.css" %}">
 <link rel="stylesheet" href="{% static "css/jquery-ui-timepicker-addon.css" %}">
+{% endblock extra_css %}
 {% block content %}
     <section>
         <div class="container">
@@ -141,7 +145,7 @@
                                                         <i class="fa fa-map-marker"></i>
                                                         {{ single_object.street_obj }},
                                                         <span>
-                                                            г. Киев
+                                                            г.{% sity_franshise %}
                                                             {% if single_object.district_obj  %}
                                                                 ,{{ single_object.district_obj }} район
                                                             {% endif %}
@@ -225,7 +229,7 @@
                             {% endfor %}
 
                             <li><a class="btna" id="get_publication" href="#">Публикации</a></li>
-                            <li><a class="btna" id="get_meetings" href="">Встречи <span class="label label-default">10</span></a></li>
+                            <li><a class="btna" id="get_meetings" href="">Встречи <span class="label label-default">{{count_meet}}</span></a></li>
                             <li><a class="btna" id="get_tasks" href="">Задачи <span class="label label-default">{{ count_task }}</span></a></li>
                         </ul>
                     </div>
@@ -299,19 +303,40 @@
 		  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
 		});
 		$('#call-phone').on('change', function() {
-			$.get('change_call_date', {"id": {{ single_object.id }}, "data": $(this).val()}, function(data) {
-				/*optional stuff to do after success */
-			});
+			$.get('change_call_date', {"id": {{ single_object.id }}, "data": $(this).val()})
+            .success( function(data){
+                        $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                        $('.messageServer').text('Обект обновлен').fadeIn(1000).delay(2000).fadeOut(500);
+                        $('#new_repeat').text(data);
+                    })
+                    .error(function(){
+                        $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+                        $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+                    })
 		});
 		$('#peresmotr').on('change', function() {
-			$.get('change_review_date', {"id": {{ single_object.id }}, "data": $(this).val()}, function(data) {
-				/*optional stuff to do after success */
-			});
+			$.get('change_review_date', {"id": {{ single_object.id }}, "data": $(this).val()})
+            .success( function(data){
+                        $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                        $('.messageServer').text('Обект обновлен').fadeIn(1000).delay(2000).fadeOut(500);
+                        $('#new_repeat').text(data);
+                    })
+                    .error(function(){
+                        $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+                        $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+                    })
 		});
 		$('#actuality').on('change', function() {
-			$.get('change_actuality', {"id": {{ single_object.id }}, "data": $(this).val()}, function(data) {
-				/*optional stuff to do after success */
-			});
+			$.get('change_actuality', {"id": {{ single_object.id }}, "data": $(this).val()})
+            .success( function(data){
+                        $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                        $('.messageServer').text('Обект обновлен').fadeIn(1000).delay(2000).fadeOut(500);
+                        $('#new_repeat').text(data);
+                    })
+                    .error(function(){
+                        $('.messageServer').animate({backgroundColor: '#c9302c'}, 1000);
+                        $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+                    })
 		});
 		$('.tabs-rule').on('click', '#send_comment', function(event) {
 			event.preventDefault();
@@ -361,6 +386,8 @@
 			});
 		});
 
+
+        // START BLOCK TASKING
         $(document).on('click', '#tasks_active', function(event) {
             event.preventDefault();
             $.get('get_tasks_active', {"id_so":{{ single_object.id }}}, function(data) {
@@ -394,6 +421,43 @@
 			});
         });
 
+        // END BLOCK TASKING
+
+        // START BLOCK MEETING
+        $(document).on('click', '#meets_active', function(event) {
+            event.preventDefault();
+            $.get('get_meetings_active', {"id_so":{{ single_object.id }}}, function(data) {
+                $('.tabs-rule').fadeOut('200', function() {
+                    $(this).html('');
+                    $(this).html(data);
+                    $(this).fadeIn('200');
+                });
+            });
+        });
+
+        $(document).on('click', '#meets_archive', function(event) {
+            event.preventDefault();
+            $.get('get_meetings_archive', {"id_so":{{ single_object.id }}}, function(data) {
+                $('.tabs-rule').fadeOut('200', function() {
+                    $(this).html('');
+                    $(this).html(data);
+                    $(this).fadeIn('200');
+                });
+            });
+        });
+
+        $(document).on('click', '#meets_all', function(event) {
+            event.preventDefault();
+            $.get('get_meetings', {"id_so":{{ single_object.id }}}, function(data) {
+                $('.tabs-rule').fadeOut('200', function() {
+                    $(this).html('');
+                    $(this).html(data);
+                    $(this).fadeIn('200');
+                });
+            });
+        });
+
+        // END BLOCK MEETING
 
         // sleep function
         function sleep(milliseconds) {

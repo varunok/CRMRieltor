@@ -54,5 +54,21 @@
 				$('#new_message').html(data);
 			});
 		});
+
+    $('#show_activity').on('click', function(event) {
+        event.preventDefault();
+        var user_id = $("#user_id_activity option:selected").val();
+        var dateto = $('#dateto').val();
+        var datefrom = $('#datefrom').val();
+        $.get('show_activity_index', {'user_id': user_id, 'dateto': dateto, 'datefrom': datefrom}, function(data) {
+            var data = jQuery.parseJSON( data);
+            $('#arendators').text(data.arendators);
+            $('#facilitys').text(data.facilitys);
+            $('#taskings').text(data.taskings);
+            $('#buyers').text(data.buyers);
+            $('#maklers').text(data.maklers);
+            $('#meetings').text(data.meetings);
+        });
+    });
 });
                                     

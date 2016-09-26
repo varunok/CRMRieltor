@@ -2,7 +2,7 @@
 
 
 import os
-# from django.shortcuts import render
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 # from django import forms
 from django.utils import timezone, dateformat
@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def add_facility(request):
     if request.method == 'POST':
+        print(request.POST.get('edit'))
+        if request.POST.get('edit'):
+            save_edit_facility(request)
         form = AddressFacilityForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
@@ -38,6 +41,26 @@ def add_facility(request):
             form = change_form_text(form)
         return add_object(request, form)
 
+
+def save_edit_facility(request):
+    facility = ContactOwner.objects.get(id=request.POST.get('edit'))
+    form = AddressFacilityForm(request.POST, instance=facility)
+    if form.is_valid():
+        form.save()
+        phone_numb = ContactOwner.objects.last()
+        phone_owner = PhoneOwner(phone=phone_numb)
+        phone_owner.save()
+        db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                      db_phone_owner=phone_numb.phone_owner)
+        db_phone.save()
+        db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                      db_phone_owner=phone_numb.phone_owner_plus)
+        db_phone.save()
+        save_photo(request, phone_numb.id)
+        return HttpResponseRedirect('/objects/')
+    else:
+        form = change_form_text(form)
+    return edit_facility(request, request.POST.get('edit'))
 
 def check_phone(request):
     if request.method == 'GET':
@@ -90,3 +113,9 @@ def trash_obj(request):
         return HttpResponse("Обьект перемещен в корзину")
     else:
         return HttpResponse("Ошибка")
+
+
+def edit_facility(request, id_obj):
+    facility = ContactOwner.objects.get(id=id_obj)
+    form = AddressFacilityForm(instance=facility)
+    return render(request, 'homes/add_object.html', {'form': form, 'edit': True, 'id_obj': id_obj})
