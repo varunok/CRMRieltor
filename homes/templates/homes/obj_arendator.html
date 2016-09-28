@@ -9,7 +9,7 @@
                                     <div class="col-md-12 buyers-info">
                                             <div class="col-md-8">
                                                 <h2 class="buyers-id">
-                                                    <a href="#">{{ arendator.id }}</a>
+                                                    <a href="{% url "single_arendator" arendator.id %}">{{ arendator.id }}</a>
                                                     {% if arendator.price_from or arendator.price_to %}
                                                         <span class="buyers-price-arend">
                                                             {% if arendator.price_from %}
@@ -52,7 +52,6 @@
                                                         <i class="fa fa-universal-access"></i>
                                                         {{ arendator.type_client }}
                                                     {% endif %}
-
                                                 </p>
                                                 <p class="buyers-local">
                                                     <i class="fa fa-map-marker"></i> 
@@ -119,6 +118,7 @@
                                                 <p class="buyers-edit">
                                                 {% if not arendator.trash %}
                                                     <a href="{% url "edit_arendator" arendator.id %}"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="{% url "single_arendator" arendator.id %}"><i class="fa fa-eye"></i> </a>
                                                 {% else %}
                                                     <a href=""><i id-obj="{{ arendator.id }}" class="fa fa-arrows-alt"></i></a>
                                                 {% endif %}

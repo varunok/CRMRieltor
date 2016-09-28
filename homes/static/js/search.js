@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     function SendSearch(){
         var search_text = $('#searching').val();
-        $('.messageServer').animate({backgroundColor: '#6cc0df'}, 1000);
+        $('.messageServer').animate({backgroundColor: '#FCCD1B'}, 1000);
         $('.messageServer').html('<div><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Поиск</div').fadeIn(1000).delay(2000);
         // $('.messageServer').text('Поиск').fadeIn(1000).delay(2000).fadeOut(500);
         $.get('searching', {"search_text": search_text})
@@ -18,7 +18,7 @@ $(document).ready(function() {
             $('.messageServer').fadeOut(500);
         })
         .error(function(data) {
-            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').animate({'backgroundColor': '#c9302c'}, 300);
             $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
         })
     }

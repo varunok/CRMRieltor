@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from arendator.forms import ArendatorForm
 from homes.views import add_arendator, ArendatorsList
 from change_form import change_form_text
-from arendator.models import Arendator
+from arendator.models import Arendator, TypeState
 from datetime import datetime
 from django.utils import timezone, dateformat
 from search_arendator import searh
@@ -48,6 +48,23 @@ def change_call_date(request):
     arendator.call_date = date_change
     arendator.save()
     return HttpResponse("ok")
+
+
+def change_term_date(request):
+    id_ar = request.GET['id']
+    arendator = Arendator.objects.get(id=id_ar)
+    date_request = datetime.strptime(str(request.GET['date']), "%m/%d/%Y")
+    date_change = dateformat.format(date_request, 'Y-m-d')
+    arendator.date_term = date_change
+    arendator.save()
+    return HttpResponse(status=200)
+
+
+def change_type_state(request):
+    id_ar = request.GET['id']
+    type_state = TypeState.objects.get(id=request.GET.get('type_state'))
+    Arendator.objects.update(id=id_ar, type_state=type_state)
+    return HttpResponse(content=b'Ok')
 
 
 class ArendatorListSearch(ArendatorsList):

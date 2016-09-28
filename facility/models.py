@@ -536,24 +536,11 @@ class AddressFacilityData(models.Model):
         return '%s' % (self.id)
 
 
-class ContactOwnerManager(models.Manager):
-    def get_by_natural_key(self, name_owner, phone_owner, street_obj, number_home):
-        return self.get(name_owner=name_owner, phone_owner=phone_owner, street_obj=street_obj, number_home=number_home)
-
-
 class ContactOwner(AddressFacilityData):
     class Meta(object):
         verbose_name = u'Контакты владельца'
         verbose_name_plural = u'Контакты владельцев'
         ordering = ['id']
-        unique_together = (('name_owner', 'phone_owner'),)
-
-    objects = ContactOwnerManager()
-
-    def natural_key(self):
-        return (self.name_owner, self.phone_owner, str(self.street_obj), self.number_home)
-
-
 
     contact_owner = models.ForeignKey(TypeContactOwner,
                                       blank=True,

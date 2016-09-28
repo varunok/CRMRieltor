@@ -139,7 +139,7 @@
                                                     <p class="object-data-call">
                                                         Дата звонка<br>
                                                         <i class="fa fa-calendar"></i>
-                                                        {{ object_data.call_date|date:'d E Y' }} {{ object_data.call_time|time:'H:i' }}
+                                                        {{ object_data.call_date|date:'d E Y' }}
                                                     </p>
                                                     <p class="object-commission">
                                                         Комиссия: <span>
@@ -155,7 +155,7 @@
                                                         {% if not object_data.trash %}
                                                             <a href="{% url "databases" object_data.id %}" target="_blank"><i class="fa fa-link"></i> </a>
                                                             <a href="{% url "edit_facility" object_data.id %}"><i class="fa fa-pencil"></i> </a>
-                                                            <a href="#"><i class="fa fa-eye"></i> </a>
+                                                            <a href="{% url "single_obj" object_data.id %}"><i class="fa fa-eye"></i> </a>
                                                         {% else %}
                                                             <a href=""><i id-obj="{{ object_data.id }}" class="fa fa-arrows-alt"></i></a>
                                                         {% endif %}
@@ -190,7 +190,7 @@
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
                                                         <i class="fa fa-calendar"></i>
-                                                        {{ object_data.date_of_renovation|date:'d E Y H:i' }}
+                                                        {{ object_data.date_of_renovation|date:'d E Y' }}
                                                     </p>
                                                 </div>
                                             </div>

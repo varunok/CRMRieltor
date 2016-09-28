@@ -2,7 +2,13 @@
 
 {% block extra_css %}{% endblock extra_css %}
 
-{% block title %}<title>Добавление объекта </title>{% endblock title %}
+{% block title %}<title>
+{% if edit %}
+    Редактирование объекта  ID {{id_obj}}
+{% else %}
+   Добавление объекта 
+{% endif %}
+</title>{% endblock title %}
 
 {% block content %}
     <section>
@@ -12,7 +18,11 @@
                     <ol class="breadcrumb">
                         <li><a href="{% url "homes" %}">Главная</a></li>
                         <li><a href="{% url "objects" %}">Объекты</a></li>
-                        <li class="active">Добавление</li>
+                        {% if edit %}
+                            <li class="active">Редактирование ID {{id_obj}}</li>
+                        {% else %}
+                            <li class="active">Добавление</li>
+                        {% endif %}
                     </ol>
                 </div>
             </div>
@@ -29,7 +39,12 @@
                             <input type="hidden" name="edit" id="edit" value="{{ id_obj }}">
                         {% endif %}     
                         <div class="section-sort">
-                            <input name="add_facility" type="submit" class="btn btn-green" value=" Добавить">
+                            <input name="add_facility" type="submit" class="btn btn-green" value=
+                            {% if edit %}
+                                "Сохранить"
+                            {% else %}
+                                "Добавить"
+                            {% endif %}>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -540,7 +555,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="text-align: center; margin: 15px 0">
-                            <input name="add_facility" type="submit" class="btn btn-green" value=" Добавить">
+                            <input name="add_facility" type="submit" class="btn btn-green" value=
+                            {% if edit %}
+                                "Сохранить"
+                            {% else %}
+                                "Добавить"
+                            {% endif %}>
                         </div>
                     </div>
                 </div>

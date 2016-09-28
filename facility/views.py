@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def add_facility(request):
     if request.method == 'POST':
-        print(request.POST.get('edit'))
         form = AddressFacilityForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()

@@ -6659,6 +6659,7 @@ input[type="email"] {
   padding-left:5px; 
   /*margin-top:-14%;*/
   background-color: #FFF; 
+  word-break: break-all;
   z-index:1000;
   opacity: 0;
   visibility: hidden;

@@ -23,7 +23,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="log-in-container">
                     <div class="logo">
-                        <a href="{% url "logining" %}"><span>{% franshise_first %}</span>.{% franshise_second %}</a>
+                        <a href="#"><span>{% franshise_first %}</span>.{% franshise_second %}</a>
                     </div>
                     <br>
                     <div class="log-in-form drop-down">
@@ -58,25 +58,26 @@
             </div>
         </div>
     </div>
-                    <div class="log-in-form form_email_send" style="position: absolute; left: 34%; top: 35%; width: 30%; padding: 50px; visibility: hidden; opacity: 0;">
-                        <form id="send-form" action="fake" method="post">
-                            {% csrf_token %}
-                            <div class="login">
-                                <i class="fa fa-envelope"></i>
-                                <input id="restore_pass" name="restore_pass" class="log-input" type="email" placeholder="email">
-                            </div>
-                            <div class="col-md-6 log-in-btn"  style="margil-left: -20px;">
-                                <a href="#" name="restore_btn" id="restore_btn" type="submit" class="btn btn-green" value="">Восстановит</a>
-                            </div>
-                            <div class="col-md-6 log-in-btn" >
-                                <input  name="cancel_restore_btn" type="submit" class="btn btn-red cancel_restore_btn" value="Отменить" />
-                            </div>
-                        </form>
-                    </div>
-                    <div></div>
-                    <div class="log-in-form message_to_send" style="position: absolute; left: 30%; top: 35%; width: 38%; padding: 50px; visibility: hidden; opacity: 0;"> 
-                        <h2> <b class="text"></b></h2>
-                    </div>
+    <div class="log-in-form form_email_send" style="position: absolute; left: 34%; top: 35%; width: 30%; padding: 50px; visibility: hidden; opacity: 0;">
+        <form id="send-form" action="fake" method="post">
+            {% csrf_token %}
+            <div class="login">
+                <i class="fa fa-envelope"></i>
+                <input id="restore_pass" name="restore_pass" class="log-input" type="email" placeholder="email">
+            </div>
+            <div class="col-md-6 log-in-btn"  style="margil-left: -20px;">
+                <a href="#" name="restore_btn" id="restore_btn" type="submit" class="btn btn-green" value="">Восстановит</a>
+            </div>
+            <div class="col-md-6 log-in-btn" >
+                <input  name="cancel_restore_btn" type="submit" class="btn btn-red cancel_restore_btn" value="Отменить" />
+            </div>
+        </form>
+    </div>
+    <div class="log-in-form message_to_send" style="position: absolute; left: 30%; top: 35%; width: 38%; padding: 50px; visibility: hidden; opacity: 0;"> 
+        <h2>
+            <b class="text"></b>
+        </h2>
+    </div>
 {% block extra_js %}
 <script type="text/javascript">
     $(document).ready(function() {
