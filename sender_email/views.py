@@ -173,14 +173,14 @@ def list_phone_validate(list_phone):
 
 
 def link_to_single_obj(single_object, type_kontagent):
-    from crm.settings import ALLOWED_HOSTS
+    from django.conf import settings
     templ_sms = get_object_or_404(TemplateSms, id=1)
     address = single_object.street_obj
     if type_kontagent == 'arendator':
         price = single_object.price_month
     elif type_kontagent == 'buyer':
         price = single_object.price_bay
-    link = ''.join([ALLOWED_HOSTS[0], '/objects/data/', str(single_object.id)])
+    link = ''.join([settings.ALLOWED_HOSTS[0], '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
     link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                       str(price), link, templ_sms.signature])
