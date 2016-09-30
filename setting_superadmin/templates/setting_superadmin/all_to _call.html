@@ -52,9 +52,19 @@
                     <div class="col-md-12">
                         {# <label for="">Фото</label> #}
                         <div class="btn btn-green grn_upload_file">
-                            {{ form.image }}
+                            <input id="id_image" class="upload_file" name="image" type="file">
                             <i class="fa fa-cloud-download"></i>
                             Загрузить изображение 
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                    <label for="">Аватар сейчас</label>
+                        <div>
+                            <img src="{{ MEDIA_URL }}{{post.image}}" width="150px">
                         </div>
                     </div>
                 </div>
@@ -81,7 +91,7 @@
         $(document).ready(function() {
             $('#save_all_to_call').on('click', function (evene) {
                 evene.preventDefault();
-                var msg   = $('#send_form_call').serialize();
+                var msg = $('#send_form_call').serialize();
                 $.post('save_call', msg)
             })
         });

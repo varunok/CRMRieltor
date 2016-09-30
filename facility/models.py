@@ -462,13 +462,11 @@ class AddressFacilityData(models.Model):
                              blank=True,
                              null=True)
 
-    youtube = models.CharField(max_length=250,
-                               verbose_name=u'YouTube',
+    youtube = models.TextField(verbose_name=u'YouTube',
                                blank=True,
                                null=True)
 
-    panorama = models.CharField(max_length=250,
-                                verbose_name=u'Панорама',
+    panorama = models.TextField(verbose_name=u'Панорама',
                                 blank=True,
                                 null=True)
     # end Реклама объекта

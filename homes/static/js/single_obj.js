@@ -70,22 +70,23 @@ $(document).ready(function() {
     $(document).on('click', '#ok_automat_btn', function (event) {
         event.preventDefault();
         $('#modal_avto').fadeOut('slow');
-        var price_automat = $("#price_automat").prop("checked");
-        var area_automat = $("#area_automat").prop("checked");
-        var rooms_automat = $("#rooms_automat").prop("checked");
-        var repairs_automat = $("#repairs_automat").prop("checked");
-        var type_obj_automat = $("#type_obj_automat").prop("checked");
-        var district_automat = $("#district_automat").prop("checked");
-        var data = {
-            "price_automat": price_automat,
-            "area_automat": area_automat,
-            "rooms_automat": rooms_automat,
-            "repairs_automat": repairs_automat,
-            "type_obj_automat": type_obj_automat,
-            "district_automat": district_automat,
-            "id_so": $('#sisingle_obj_id').attr('sisingle_obj_id'),
-            "type_operations": "arendator"
-        };
+        // var price_automat = $("#price_automat").prop("checked");
+        // var area_automat = $("#area_automat").prop("checked");
+        // var rooms_automat = $("#rooms_automat").prop("checked");
+        // var repairs_automat = $("#repairs_automat").prop("checked");
+        // var type_obj_automat = $("#type_obj_automat").prop("checked");
+        // var district_automat = $("#district_automat").prop("checked");
+        // var data = {
+        //     "price_automat": price_automat,
+        //     "area_automat": area_automat,
+        //     "rooms_automat": rooms_automat,
+        //     "repairs_automat": repairs_automat,
+        //     "type_obj_automat": type_obj_automat,
+        //     "district_automat": district_automat,
+        //     "id_so": $('#sisingle_obj_id').attr('sisingle_obj_id'),
+        //     "type_operations": "arendator"
+        // };
+        var data = $('#avtomat_form').serialize();
         $.get('automat_tie', data).success( function (data) {
             $('#add_tr').html(' ');
             $('#add_tr').fadeIn('slow');
@@ -93,7 +94,6 @@ $(document).ready(function() {
             $('.show_tr').fadeIn('slow');
             var count_ar = parseInt($('#add_tr').children('.show_tr').length);
             $('#get_arendator').children('span').text(count_ar);
-            console.log(count_ar)
         });
     });
     $(document).on('click', '.delete_arendator_tr', function (event) {
@@ -266,7 +266,7 @@ $(document).ready(function() {
     // END BLOCK BUYER
     
     //  START  Block TASK
-    $(document).on('click', '#add_task_form', function (event) {
+    $('.tabs-rule').on('click', '#add_task_form', function (event) {
         event.preventDefault();
         data = {
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id')
@@ -280,16 +280,16 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click','#cancel_add_form', function (event) {
+    $('.tabs-rule').on('click','#cancel_add_form', function (event) {
         event.preventDefault();
         $('.task-form').hide('scale');
     });
 
-    $(document).on('click', '#add_form_t', function(event) {
+    $('.tabs-rule').on('click', '#add_form_t', function(event) {
         event.preventDefault();
         $('#id_dead_line').datetimepicker($.timepicker.regional['ru']);
     });
-    $(document).on('click', '#save_form_tasking', function (event) {
+    $('.tabs-rule').on('click', '#save_form_tasking', function (event) {
         event.preventDefault();
         var msg   = $('#send_form').serialize();
         $.post('save_form_tasking_task', msg)
@@ -318,7 +318,7 @@ $(document).ready(function() {
         })
     });
 
-    $(document).on('click', '.fa-times', function(event){
+    $('.tabs-rule').on('click', '.fa-times', function(event){
         event.preventDefault();
         var id_task = $(this).parents('td').attr('id-task');
         if (id_task) {
@@ -349,7 +349,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '.fa-play', function (event) {
+    $('.tabs-rule').on('click', '.fa-play', function (event) {
         event.preventDefault();
         var id_task = $(this).parents('td').attr('id-task');
         if (id_task) {
@@ -372,7 +372,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '.fa-pencil', function(event){
+    $('.tabs-rule').on('click', '.fa-pencil', function(event){
         event.preventDefault();
         var id_task = $(this).parents('td').attr('id-task');
         $.post('edit_form_task', {"id": id_task})
@@ -391,7 +391,7 @@ $(document).ready(function() {
 
 
     // START BLOCK MEET
-    $(document).on('click', '#add_task_form_meet', function (event) {
+    $('.tabs-rule').on('click', '#add_task_form_meet', function (event) {
         event.preventDefault();
         data = {
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id')
@@ -404,17 +404,17 @@ $(document).ready(function() {
             $('select').select2();
         });
     });
-    $(document).on('click','#cancel_add_form', function (event) {
+    $('.tabs-rule').on('click','#cancel_add_form', function (event) {
         event.preventDefault();
         $('.task-form').hide('scale');
     });
 
-    $(document).on('click', '#add_form_m', function(event) {
+    $('.tabs-rule').on('click', '#add_form_m', function(event) {
         event.preventDefault();
         $('#id_meet_date').datetimepicker($.timepicker.regional['ru']);
     });
 
-    $(document).on('click', '#save_form_meeting', function (event) {
+    $('.tabs-rule').on('click', '#save_form_meeting', function (event) {
         event.preventDefault();
         var msg   = $('#send_form').serialize();
         $.post('save_form_meeting', msg)
@@ -443,7 +443,7 @@ $(document).ready(function() {
         })
     });
 
-    $(document).on('click', '.fa-times', function(event){
+    $('.tabs-rule').on('click', '.fa-times', function(event){
         event.preventDefault();
         var id_meet = $(this).parents('td').attr('id-meet');
         if (id_meet) {
@@ -474,7 +474,7 @@ $(document).ready(function() {
 
     });
 
-    $(document).on('click', '.fa-play', function (event) {
+    $('.tabs-rule').on('click', '.fa-play', function (event) {
         event.preventDefault();
         var id_meet = $(this).parents('td').attr('id-meet');
         if (id_meet) {
@@ -497,7 +497,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '.fa-pencil', function(event){
+    $('.tabs-rule').on('click', '.fa-pencil', function(event){
         event.preventDefault();
         var id_meet = $(this).parents('td').attr('id-meet');
         if (id_meet) {

@@ -13,20 +13,26 @@ def search_automat(request, arendators):
     district_automat = request.get('district_automat')
     id_so = request.get('id_so')
     contact_owner = ContactOwner.objects.get(id=id_so)
+    if not contact_owner.price_month:
+        contact_owner.price_month = 0
+    if not contact_owner.rooms:
+        contact_owner.rooms = 0
+    if not contact_owner.total_area:
+        contact_owner.total_area = 0
     try:
-        if price_automat == 'true':
+        if price_automat:
             arendators = arendators.filter(price_from__lte=contact_owner.price_month,
                                            price_to__gte=contact_owner.price_month)
-        if rooms_automat == 'true':
-            arendators = arendators.filter(rooms_from__lte=contact_owner.rooms, price_to__gte=contact_owner.rooms)
-        if type_obj_automat == 'true':
+        if rooms_automat:
+            arendators = arendators.filter(rooms_from__lte=contact_owner.rooms, rooms_to__gte=contact_owner.rooms)
+        if type_obj_automat:
             arendators = arendators.filter(type_building_data=contact_owner.type_facilit)
-        if area_automat == 'true':
+        if area_automat:
             arendators = arendators.filter(area_from__lte=contact_owner.total_area,
                                            area_to__gte=contact_owner.total_area)
-        if repairs_automat == 'true':
+        if repairs_automat:
             arendators = arendators.filter(repairs=contact_owner.repairs)
-        if district_automat == 'true':
+        if district_automat:
             arendators = arendators.filter(district_obj=contact_owner.district_obj)
         try:
             Tie.objects.get(tie_cont_owner=id_so).tie_arenda.clear()

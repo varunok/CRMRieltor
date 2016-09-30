@@ -4,15 +4,51 @@
                         <h3 class="arendator-head">Подобрать объект</h3>
                         <div class="row">
                             <div class="col-md-12 arendator-sort">
-                                <input type="text" placeholder="ID">
-                                <a href="#" class="btn btn-green">Добавить по ID</a>
-                                <select name="" id="">
-                                    <option value="">пункт 1</option>
-                                    <option value="">пункт 2</option>
-                                    <option value="">пункт 3</option>
-                                </select>
-                                <a href="#" class="btn btn-green">автоматически</a>
-                                <a href="#" class="btn btn-red">Очистить</a>
+                                <form id="cont_form" name="cont_form" style="width:10%; float: left;" >
+                                    <input id="id_cont_owner" name="id_cont_owner" type="text" placeholder="ID">
+                                    <input style="position: fixed;" type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                </form>
+                                    <a href="#" id="add_id_cont_owner" name="add_id_cont_owner" class="btn btn-green">Добавить по ID</a>
+                                {# <select name="" id=""> #}
+                                    {# <option value="">пункт 1</option> #}
+                                    {# <option value="">пункт 2</option> #}
+                                    {# <option value="">пункт 3</option> #}
+                                {# </select> #}
+                                <a href="#" id="avtomat_add_arendator" class="btn btn-green">автоматически</a>
+                                <div id="modal_avto" style="width: 300px; height: 200px; background-color: #f5f5f5; border-radius: 5px; box-shadow: 1px 1px 5px 1px #0b0b0b; position: fixed; z-index: 10000; left: 40%; top: 40%; display: none; padding: 10px;">
+                                <form id="avtomat_form" name="avtomat_form">
+                                    <h3 style="margin-bottom: 0;">Критерии:</h3>
+                                    <div style="padding: 20px;">
+                                        <div class="row">
+                                            <label for="">Цена</label>
+                                            <input type="checkbox" name="price_automat" id="price_automat" style="margin-left: 47px">
+                                            <label style="margin-left: 40px" for="">Площадь </label>
+                                            <input type="checkbox" name="area_automat" id="area_automat">
+                                        </div>
+                                        <div class="row">
+                                            <label for="">Кол. комнат </label>
+                                            <input type="checkbox" name="rooms_automat" id="rooms_automat">
+                                            <label style="margin-left: 40px" for="">Ремонт</label>
+                                            <input type="checkbox" name="repairs_automat" id="repairs_automat" style="margin-left: 14px;">
+                                        </div>
+                                        <div class="row">
+                                            <label for="">Тип обекта</label>
+                                            <input type="checkbox" name="type_obj_automat" id="type_obj_automat" style="margin-left: 6px">
+                                            <label style="margin-left: 40px" for="">Район</label>
+                                            <input type="checkbox" name="district_automat" id="district_automat" style="margin-left: 21px;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <input type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                        <a id="ok_automat_btn" href="#" class="btn btn-green">OK</a>
+                                        <a id="cencel_automat_btn" href="#" class="btn btn-red">Отменить</a>
+                                    </div>
+                                    </form>
+                                </div>
+                                <form id="clear_form" name="clear_form" style="width:10%; float: left;">
+                                    <input type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                </form>
+                                <a id="clear_cont_owner" href="#" class="btn btn-red">Очистить</a>
                             </div>
                         </div>
                         <div class="col-md-12 delivery">
@@ -31,6 +67,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="table-responsive">
@@ -41,116 +78,82 @@
                                                 <th>Адрес</th>
                                                 <th>Показ</th>
                                                 <th>Контактное лицо</th>
-                                                <th>Выкуп</th>
+                                                <th>Месяц</th>
                                                 <th>Комнат</th>
                                                 <th>Тип</th>
                                                 <th>Состояние</th>
                                                 <th> </th>
                                             </tr>
                                         </thead>
-                                        <tr class="success">
-                                            <td>32</td>
-                                            <td class="f-clr-grey">
-                                                Сеймский<br>
-                                                ул. Энгельса 90
-                                            </td>
-                                            <td class="f-clr-grey edit">
-                                                <select name="" id="">
-                                                    <option value="">Предлагали</option>
-                                                    <option value="">Не предлагали</option>
-                                                    <option value="">Ok</option>
-                                                </select>
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Наталья<br>
-                                                +380932377318
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                205000
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                1-4
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Квартира
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Ищем
-                                            </td>
-                                            <td class="edit">
-                                                <input type="checkbox">
-                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="danger">
-                                            <td>32</td>
-                                            <td class="f-clr-grey">
-                                                Сеймский<br>
-                                                ул. Энгельса 90
-                                            </td>
-                                            <td class="f-clr-grey edit">
-                                                <select name="" id="">
-                                                    <option value="">Предлагали</option>
-                                                    <option value="">Не предлагали</option>
-                                                    <option value="">Ok</option>
-                                                </select>
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Наталья<br>
-                                                +380932377318
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                205000
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                1-1
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Квартира
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Ищем
-                                            </td>
-                                            <td class="edit">
-                                                <input type="checkbox">
-                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="warning">
-                                            <td>32</td>
-                                            <td class="f-clr-grey">
-                                                Сеймский<br>
-                                                ул. Энгельса 90
-                                            </td>
-                                            <td class="f-clr-grey edit">
-                                                <select name="" id="">
-                                                    <option value="">Предлагали</option>
-                                                    <option value="">Не предлагали</option>
-                                                    <option value="">Ok</option>
-                                                </select>
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Наталья<br>
-                                                +380932377318
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                205000
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                1-2
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Квартира
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                Ищем
-                                            </td>
-                                            <td class="edit">
-                                                <input type="checkbox">
-                                                <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                        
+                                        <tbody>
+                                        {% for tie in ties %}
+                                            {% for arenda in tie.tie_arenda.all %}
+                                                {% if id_arendator.id == tie.tie_arenda.id %}
+                                                    <tr class="success">
+                                                        <td>{{tie.tie_cont_owner.id}}</td>
+                                                        <td class="f-clr-grey">
+                                                            {{tie.tie_cont_owner.district_obj}}<br>
+                                                            {{tie.tie_cont_owner.street_obj}}
+                                                            {% if tie.tie_cont_owner.number_home %}
+                                                                {{tie.tie_cont_owner.number_home}}
+                                                             {% endif %} 
+                                                            {% if tie.tie_cont_owner.number_apartment %}
+                                                                / {{tie.tie_cont_owner.number_apartment}}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="f-clr-grey edit">
+                                                            <input type="hidden" class="id_arendator" value="{{id_arendator}}">
+                                                            
+                                                            <select name="" class="show_cont_owner">
+                                                                {% for show in shows %}
+                                                                    <option
+                                                                    {% for sh in id_show.all %}
+                                                                        {% if sh.array_cont_ower.id == tie.tie_cont_owner.id %}
+                                                                            {{sh.type_shows_arendator}}
+                                                                            {% if sh.type_shows_arendator.id == show.id %}
+                                                                                selected="selected"    
+                                                                            {% endif %}
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                    value="{{show.id}}">{{show}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            <input type="hidden" class="id_cont_owner" value="{{tie.tie_cont_owner.id}}">
+                                                        </td>
+                                                        <td class="f-clr-grey">
+                                                            {{ tie.tie_cont_owner.name_owner }}<br>
+                                                            {{ tie.tie_cont_owner.phone_owner }}
+                                                        </td>
+                                                        <td class="f-clr-grey">
+                                                            {{ tie.tie_cont_owner.price_month }}
+                                                        </td>
+                                                        <td class="f-clr-grey">
+                                                        {% if tie.tie_cont_owner.rooms %}
+                                                            {{ tie.tie_cont_owner.rooms }}
+                                                            {% else %}
+                                                            неуказано
+                                                        {% endif %}
+                                                        </td>
+                                                        <td class="f-clr-grey">
+                                                            {{tie.tie_cont_owner.type_facilit}}
+                                                        </td>
+                                                        <td class="f-clr-grey">
+                                                            {% if tie.tie_cont_owner.condition %}
+                                                                {{tie.tie_cont_owner.condition}}
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="edit">
+                                                            <input type="checkbox">
+                                                            <a href="{% url "edit_facility" tie.tie_cont_owner.id %}"> <i class="fa fa-pencil"></i></a> 
+                                                            <input type="hidden" class="id_arendator" value="{{id_arendator}}">
+                                                            <a id="del_cont_owner" href="#"><i class="fa fa-times"></i></a>
+                                                            <input type="hidden" class="id_cont_owner" value="{{tie.tie_cont_owner.id}}">
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

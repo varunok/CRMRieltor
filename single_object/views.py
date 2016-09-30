@@ -160,7 +160,7 @@ class AddArendatorToTie(DetailView):
         cont_owner = ContactOwner.objects.get(id=self.request.GET.get('id'))
         # self.context['count_arendator'] = Tie.objects.get(tie_cont_owner=cont_owner).tie_arenda.all().count()
         tie, created = Tie.objects.get_or_create(tie_cont_owner=cont_owner)
-        if Tie.objects.filter(tie_arenda=arendator, tie_cont_owner=cont_owner).exists() == False:
+        if not Tie.objects.filter(tie_arenda=arendator, tie_cont_owner=cont_owner).exists():
             tie.tie_arenda.add(arendator)
         else:
             return HttpResponse(status=404)
@@ -211,7 +211,8 @@ def get_arendator(request):
                                                             "nac_carrency": nac_carrency,
                                                             "shows_arendator": shows,
                                                             "count_arendator": count_arendator,
-                                                            "single_obj_comments": data_comment})
+                                                            "single_obj_comments": data_comment,
+                                                            "id_so": request.GET.get('id_so')})
 
 
 def change_shows(request, id_a):

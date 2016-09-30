@@ -50,7 +50,7 @@
                 {% for result in search_results_arendator %}
                     <div class="col-md-12">
                         <div>{{forloop.counter}}
-                            <a href="{% url "single_obj" result.id %}">ID {{ result.id }},
+                            <a href="{% url "single_arendator" result.id %}">ID {{ result.id }},
                             {% if result.name %}
                                 {{result.name}},
                             {% endif %}
@@ -63,7 +63,7 @@
                 {% for result in search_phone_arendator %}
                     <div class="col-md-12">
                         <div>{{forloop.counter}}
-                            <a href="{% url "single_obj" result.id %}">ID {{ result.id }},
+                            <a href="{% url "single_arendator" result.id %}">ID {{ result.id }},
                             {% if result.name %}
                                 {{result.name}},
                             {% endif %}

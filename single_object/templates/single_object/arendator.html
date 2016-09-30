@@ -12,31 +12,34 @@
 {#                                <a href="#" class="btn btn-green">Подобрать параметри</a>#}
                                 <a id="avtomat_add_arendator" href="#" class="btn btn-green">автоматически</a>
                                 <div id="modal_avto" style="width: 300px; height: 200px; background-color: #f5f5f5; border-radius: 5px; box-shadow: 1px 1px 5px 1px #0b0b0b; position: fixed; z-index: 10000; left: 40%; top: 40%; display: none; padding: 10px;">
+                                <form id="avtomat_form" name="avtomat_form">
                                     <h3 style="margin-bottom: 0;">Критерии:</h3>
                                     <div style="padding: 20px;">
                                         <div class="row">
                                             <label for="">Цена</label>
-                                            <input type="checkbox" name="" id="price_automat" style="margin-left: 47px">
+                                            <input type="checkbox" name="price_automat" id="price_automat" style="margin-left: 47px">
                                             <label style="margin-left: 40px" for="">Площадь </label>
-                                            <input type="checkbox" name="" id="area_automat">
+                                            <input type="checkbox" name="area_automat" id="area_automat">
                                         </div>
                                         <div class="row">
                                             <label for="">Кол. комнат </label>
-                                            <input type="checkbox" name="" id="rooms_automat">
+                                            <input type="checkbox" name="rooms_automat" id="rooms_automat">
                                             <label style="margin-left: 40px" for="">Ремонт</label>
-                                            <input type="checkbox" name="" id="repairs_automat" style="margin-left: 14px;">
+                                            <input type="checkbox" name="repairs_automat" id="repairs_automat" style="margin-left: 14px;">
                                         </div>
                                         <div class="row">
                                             <label for="">Тип обекта</label>
-                                            <input type="checkbox" name="" id="type_obj_automat" style="margin-left: 6px">
+                                            <input type="checkbox" name="type_obj_automat" id="type_obj_automat" style="margin-left: 6px">
                                             <label style="margin-left: 40px" for="">Район</label>
-                                            <input type="checkbox" name="" id="district_automat" style="margin-left: 21px;">
+                                            <input type="checkbox" name="district_automat" id="district_automat" style="margin-left: 21px;">
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <input type="hidden" name="id_so" id="id_so" value="{{id_so}}">
                                         <a id="ok_automat_btn" href="#" class="btn btn-green">OK</a>
                                         <a id="cencel_automat_btn" href="#" class="btn btn-red">Отменить</a>
                                     </div>
+                                    </form>
                                 </div>
                                 <a href="#" id="clear_all_arendator" class="btn btn-red">Очистить</a>
                             </div>

@@ -22,7 +22,8 @@ def all_to_call(request, form=AllToCallForm()):
     # except:
         # pass
     return render(request, 'setting_superadmin/all_to _call.html', {'time': timezone.now(),
-                                                                    'form': form})
+                                                                    'form': form,
+                                                                    'post': post})
 
 
 def save_call(request):

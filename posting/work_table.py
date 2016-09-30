@@ -98,7 +98,7 @@ class SearchData(ConnectDatabases):
         try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
-            query = "SELECT id FROM Object_Live WHERE code= %s" % self.code
+            query = "SELECT id FROM Object_Live WHERE code= '%s'" % 'O' + str(self.code)
             c.execute(query)
             self.data = c.fetchall()
             self._isFind()
@@ -127,7 +127,7 @@ class InsertData(ConnectDatabases):
                     "description, address, type, districtId, floor, square, totalFloors," \
                     "roomsNumber, priceUSD, price, contactPerson, contactPhone, video, panoramaCode, rieltorId, updateDate)" \
                     "VALUES ('%s', '%s', '%s', %s, '%s', '%s', '%d', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', '%s', '%s', '%s', '%s')" % \
-                    (str(self.data.id),
+                    ('O' + str(self.data.id),
                      self._get_title(unicode.encode(unicode(self.data.title), "cp1251")),
                      self._get_operationType(self.data.list_operations.all()),
                      self._get_room(self.data.room_id),
@@ -148,7 +148,7 @@ class InsertData(ConnectDatabases):
                      self._get_riltorId(),
                      self._updateDate())
             c.execute(query)
-            query = "SELECT id FROM Object_Live WHERE code=%s" % str(self.data.id)
+            query = "SELECT id FROM Object_Live WHERE code='%s'" % 'O' + str(self.data.id)
             c.execute(query)
             self.id_obj = c.fetchone()[0]
             SavePhoto(self.id_obj, str(self.data.id), self._get_district_id(self.data.district_obj))
@@ -252,18 +252,18 @@ class InsertData(ConnectDatabases):
 
 class GetShows(ConnectDatabases):
     def __init__(self, data):
-        super(GetShows, self).__init__()
-        self.code = data
+            super(GetShows, self).__init__()
+            self.code = data
 
-        try:
+        # try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
-            query = "SELECT views FROM Object_Live WHERE code=%s" % self.code
-            c.execute(query)
+            # query = '''SELECT views FROM Object_Live WHERE code= "%s"''' % 'O' + str(self.code)
+            c.execute("""SELECT views FROM Object_Live WHERE code=%s""", ('O' + unicode(self.code),))
             self.data = c.fetchall()
-        except:
-            pass
-        finally:
+        # except:
+        #     pass
+        # finally:
             c.close()
             db.close()
 
@@ -271,7 +271,7 @@ class GetShows(ConnectDatabases):
         if self.data:
             return '%s' % self.data[0]
         else:
-            return None
+            return 0
 
 
 class SetShows(ConnectDatabases):
@@ -284,7 +284,7 @@ class SetShows(ConnectDatabases):
         try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
-            query = "UPDATE image20_testokua.Object_Live SET active=%s WHERE code='%s'" % (self.active, self.code)
+            query = "UPDATE image20_testokua.Object_Live SET active=%s WHERE code='%s'" % (self.active, 'O' + str(self.code))
             c.execute(query)
         except:
             pass

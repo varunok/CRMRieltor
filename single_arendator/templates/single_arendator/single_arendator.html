@@ -185,7 +185,7 @@
                 <div class="col-md-12">
                     <div class="tabs">
                         <ul class="main-tabs">
-                            <li class="tabs-active"><a class="btna" id="get_comment_arendator" href="#">Комментарии <span class="label label-default">10</span></a></li>
+                            <li class="tabs-active"><a class="btna" id="get_comment_arendator" href="#">Комментарии <span class="label label-default">{{ single_obj_comments|length }}</span></a></li>
                             
                             <li><a class="btna" id="get_object_arendator" href="#">Подобрать объект</a></li>
                             
@@ -193,6 +193,10 @@
                             <li><a class="btna" id="get_tasking_arendator" href="#">Задачи <span class="label label-default">10</span></a></li>
                         </ul>
                     </div>
+                </div>
+                <!-- Комментарии-->
+                <div class="col-md-12 tabs-rule">
+                    {% include 'single_arendator/comments.html' %}
                 </div>
                     </div>
                 </div>
@@ -295,7 +299,7 @@
             $(this).parents('ul').children('li').removeClass('tabs-active');
             $(this).parent('li').addClass('tabs-active');
             var get_id = $(this).attr('id');
-            $.get(get_id, {"id_so":{{ single_arendator.id }}}, function(data) {
+            $.get(get_id, {"id_arendator":{{ single_arendator.id }}}, function(data) {
                 $('.tabs-rule').fadeOut('200', function() {
                     $(this).html('');
                     $(this).html(data);
@@ -303,6 +307,42 @@
                 });
             });
         });
+
+        $('.tabs-rule').on('click', '#send_comment', function(event) {
+            event.preventDefault();
+            var text_comment = $('#text_comment').val();
+            var data_comment = {
+                "text_comment": text_comment,
+                "id_user": {{ user.id }},
+                "id_single_obj": {{ single_arendator.id }},
+                "type_tabs": $('.tabs-rule').children().attr('type-tabs')
+            };
+            $.post('add_single_arendator_comment', data_comment, function(data) {
+                var data = jQuery.parseJSON(data);
+                $('.comment_add').children().last().removeClass('last-comments');
+                $('.comment_add').prepend('<div style="display: none;" class="comments-item last-comments"><div class="col-md-1"><div class="comments-avatar"><img src="/media/'+data.image+'" alt="" width="50px;"></div></div><div class="col-md-11"><h4 class="comments-name">'+data.author+'</h4><p class="comments-text">'+data.text+'</p><div class="comments-edit"><a class="a" id="del_comment_'+data.id_comment+'" href="#"><i class="fa fa-times"></i></a></div><div class="comments-time"><i class="fa fa-clock-o"></i>'+data.date+'</div></div></div>')
+                $('.comments-item').fadeIn('slow');
+                if ($('.tabs-rule').children().attr('type-tabs') == 'comments'){
+                    var count_comment = parseInt($('#get_comment').children('span').text())+1;
+                    $('#get_comment').children('span').text(count_comment);
+                }
+            });
+        });
+        $('.tabs-rule').on('click', '.a', function(event) {
+            event.preventDefault();
+            var hide_del_comment = $(this).parents('.comments-item');
+            $.post('del_comment', {"id_comment": $(this).attr('id')}).success( function (data) {
+                hide_del_comment.fadeOut('slow', function () {
+                    this.remove();
+                    if ($('.tabs-rule').children().attr('type-tabs') == 'comments'){
+                        var count_comment = parseInt($('#get_comment').children('span').text())-1;
+                        $('#get_comment').children('span').text(count_comment);
+                    }
+                });
+            })
+        });
     });
     </script>
+    <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
+    <script src="{% static "js/single_arendator.js" %}"></script>
     {% endblock extra_js %}

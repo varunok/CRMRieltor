@@ -61,7 +61,7 @@ class AddressFacilityForm(ModelForm):
             'lot': NumberInput(attrs={'placeholder': 'кол. соток'}),
             'sleeps': NumberInput(attrs={'placeholder': 'Количество'}),
             'title': TextInput(attrs={'placeholder': 'рекламный заголовок'}),
-            'youtube': TextInput(attrs={'рекламный заголовок': '-----'}),
-            'panorama': TextInput(attrs={'рекламный заголовок': 'код'}),
+            'youtube': TextInput(attrs={'placeholder': '-----'}),
+            'panorama': TextInput(attrs={'placeholder': 'код'}),
             # 'image': ClearableFileInput(attrs={'multiple': 'multiple'}),
         }
