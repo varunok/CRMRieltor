@@ -64,9 +64,9 @@ def delivery_email_arendator(request):
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
-        html_message = render_to_string('sender_email/template_email.html', {'temp_email': temp_email,
-                                                                             'request': request_abs_url,
-                                                                             'single_object': single_object})
+        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+                                                                   'request': request_abs_url,
+                                                                   'single_object': single_object})
         arendator_emails = Arendator.objects.filter(id__in=[i for i in list(
             request.POST.getlist('id_a')[0]) if i != ',']).values_list('email', flat=True)
         arendator_emails = [i for i in arendator_emails if i != '']
@@ -81,12 +81,27 @@ def delivery_email_arendator(request):
     return HttpResponse(status=500)
 
 
+def delivery_email_arendator_single(request):
+    if request.method == 'POST':
+        temp_email = get_object_or_404(TemplateEmail, pk=1)
+        objects = ContactOwner.objects.filter(id__in=[i for i in list(
+            request.POST.getlist('id_obj')[0]) if i != ','])
+        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+                                                                   'objects': objects})
+        arendator = Arendator.objects.get(id=request.POST.get('id_a'))
+
+        sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                            [arendator.email], [arendator.email], html_message=html_message)
+        if sending:
+            return HttpResponse(sending)
+        return HttpResponse(status=500)
+
 def delivery_email_buyer(request):
     if request.method == 'POST':
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
-        html_message = render_to_string('sender_email/template_email.html', {'temp_email': temp_email,
+        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                              'request': request_abs_url,
                                                                              'single_object': single_object})
         buyer_emails = Buyer.objects.filter(id__in=[i for i in list(
