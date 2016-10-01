@@ -29,7 +29,7 @@ class ImagesFacility(models.Model):
                               on_delete=models.CASCADE,
                               related_name='photos')
 
-    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj/' + str(uuid.uuid1()))
+    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj')
 
     cover = models.BooleanField(verbose_name=u'Обложка', default=0)
 
