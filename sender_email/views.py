@@ -67,8 +67,7 @@ def delivery_email_arendator(request):
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'request': request_abs_url,
                                                                    'single_object': single_object})
-        arendator_emails = Arendator.objects.filter(id__in=[i for i in list(
-            request.POST.getlist('id_a')[0]) if i != ',']).values_list('email', flat=True)
+        arendator_emails = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('email', flat=True)
         arendator_emails = [i for i in arendator_emails if i != '']
         count_sending = 0
         for arendator_email in arendator_emails:
@@ -84,8 +83,8 @@ def delivery_email_arendator(request):
 def delivery_email_arendator_single(request):
     if request.method == 'POST':
         temp_email = get_object_or_404(TemplateEmail, pk=1)
-        objects = ContactOwner.objects.filter(id__in=[i for i in list(
-            request.POST.getlist('id_obj')[0]) if i != ','])
+        print(request.POST.getlist('id_obj')[0].split(','))
+        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'objects': objects})
         arendator = Arendator.objects.get(id=request.POST.get('id_a'))
@@ -104,8 +103,7 @@ def delivery_email_buyer(request):
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                              'request': request_abs_url,
                                                                              'single_object': single_object})
-        buyer_emails = Buyer.objects.filter(id__in=[i for i in list(
-            request.POST.getlist('id_b')[0]) if i != ',']).values_list('email', flat=True)
+        buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
         buyer_emails = [i for i in buyer_emails if i != '']
         count_sending = 0
         for buyer_email in buyer_emails:
@@ -144,8 +142,7 @@ def delivery_sms_arendator(request):
     if request.method == 'POST':
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         setting_sms = get_object_or_404(SettingSMS, id=1)
-        arendator_phone = Arendator.objects.filter(id__in=[i for i in list(
-            request.POST.getlist('id_a')[0]) if i != ',']).values_list('phone_first', flat=True)
+        arendator_phone = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('phone_first', flat=True)
         print()
         client = Client('http://turbosms.in.ua/api/wsdl.html')
         # auth = client.service.Auth(login='crm', password='sin1984')
