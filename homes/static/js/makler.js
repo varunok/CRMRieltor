@@ -88,5 +88,14 @@ $(document).ready(function() {
             $('.messageServer').css('backgroundColor', '#c9302c');
             $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
         })
+    });
+    $('#search_makler').on('click', function (event) {
+        event.preventDefault();
+        var data = $('#search_form').serialize();
+        $.post('maklers/search_makler', data)
+        .success( function (data) {
+            //('#list_makler').text('');
+            $('#list_makler').html(data);
+        })
     })
 });

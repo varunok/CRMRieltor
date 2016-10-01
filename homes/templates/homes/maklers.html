@@ -33,21 +33,21 @@
                 <div class="col-md-12">
                     <div class="col-md-12 substrate">
                         <div class="row">
-                            <form id="search_form" action="" method="post">
-                                {% csrf_token %}
+                            <form id="search_form" action="" method="GET">
+{#                                {% csrf_token %}#}
                                 <div class="col-md-6">
                                     <h3>ПОИСК</h3>
                                     <div class="search-item">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="search-item">
-                                                    <label for="actual">Номер</label>
-                                                    <input id="search_makler_number" name="makler_number" type="text" placeholder="-----">
+                                                    <label for="search_makler_number">Номер</label>
+                                                    <input id="search_makler_number" value="" name="search_makler_number" type="text" placeholder="-----">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="search-item">
-                                                    <label for="actual">Название</label>
+                                                    <label for="search_cooperation">Название</label>
                                                     <select name="search_cooperation" id="search_cooperation">
                                                         <option selected="selected">-----</option>
                                                         {% for cooperation in list_cooperation %}
@@ -60,7 +60,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 btn-search">
-                                            <a href="#" class="btn btn-blue">Найти маклера</a>
+{#                                            <input id="search_makler" type="submit" class="btn btn-blue" value="Найти маклера">#}
+                                            <a id="search_makler" href="#" class="btn btn-blue">Найти маклера</a>
                                         </div>
                                     </div>
                                 </div>
@@ -126,44 +127,46 @@
                                             <th> </th>
                                         </tr>
                                     </thead>
-                                    {% for makler in maklers %}
-                                        <tr>
-                                            <td class="f-clr-grey">
-                                                {{ makler.id }}
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                {% if makler.cooperation %}
-                                                    {{ makler.cooperation }} 
-                                                {% endif %}
-                                                <span class="makler-type makler-white">
-                                                {% if makler.white_black.id == 1 %}
+                                    <tbody id="list_makler">
+                                        {% for makler in maklers %}
+                                            <tr>
+                                                <td class="f-clr-grey">
+                                                    {{ makler.id }}
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    {% if makler.cooperation %}
+                                                        {{ makler.cooperation }}
+                                                    {% endif %}
                                                     <span class="makler-type makler-white">
-                                                {% elif makler.white_black.id == 2 %}
-                                                    <span class="makler-type makler-black">
-                                                {% else %}
-                                                {% endif %}
-                                                {{ makler.white_black }}
-                                            </span>
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                <i class="fa fa-user"></i>
-                                                {{ makler.name }}
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                <i class="fa fa-phone"></i>
-                                                {{ makler.phone }}
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                {{ makler.agency }}
-                                            </td>
-                                            <td class="f-clr-grey">
-                                                {{ makler.email }}
-                                            </td>
-                                            <td class="edit f-clr-grey">
-                                                <a id-makler='{{ makler.id }}' href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
+                                                    {% if makler.white_black.id == 1 %}
+                                                        <span class="makler-type makler-white">
+                                                    {% elif makler.white_black.id == 2 %}
+                                                        <span class="makler-type makler-black">
+                                                    {% else %}
+                                                    {% endif %}
+                                                    {{ makler.white_black }}
+                                                </span>
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-user"></i>
+                                                    {{ makler.name }}
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    <i class="fa fa-phone"></i>
+                                                    {{ makler.phone }}
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    {{ makler.agency }}
+                                                </td>
+                                                <td class="f-clr-grey">
+                                                    {{ makler.email }}
+                                                </td>
+                                                <td class="edit f-clr-grey">
+                                                    <a id-makler='{{ makler.id }}' href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

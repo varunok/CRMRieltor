@@ -51,7 +51,7 @@ class Makler(models.Model):
                                     null=False,
                                     on_delete=models.PROTECT)
 
-    phone = models.IntegerField(verbose_name=u'Телефон', blank=False, null=True)
+    phone = models.CharField(max_length=15, verbose_name=u'Телефон', blank=False, null=True)
 
     site = models.URLField(verbose_name=u'Сайт', null=True, blank=True)
 

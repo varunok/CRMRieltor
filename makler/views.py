@@ -4,7 +4,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from makler.forms import MaklerForm
-from makler.models import Makler
+from makler.models import Makler, TypeCooperations
 from django.views.generic import ListView
 from homes.views import MaklerList
 from django.core.mail import send_mail
@@ -24,6 +24,17 @@ class MaklerListBlack(MaklerList):
 
     def get_queryset(self):
         return self.qeryset
+
+
+def search_makler(request):
+    if request.method == 'POST':
+        queryset = Makler.objects.all()
+        if request.POST.get('search_makler_number'):
+            queryset = queryset.filter(phone__icontains=request.POST.get('search_makler_number'))
+        if (request.POST.get('search_cooperation')).isdigit():
+            type_coop = TypeCooperations.objects.filter(id=request.POST.get('search_cooperation'))
+            queryset = queryset.filter(cooperation=type_coop)
+        return render(request, 'makler/list_makler.html', {"maklers": queryset})
 
 def add_makler(request):
     if request.method == 'POST':

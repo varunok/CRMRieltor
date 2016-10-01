@@ -30,15 +30,34 @@
 <body>
     <section id="all-offers">
             <section id="content">
-                <h1 class="desc-inner-arend">
+                <h1 class="desc-inner-arend" style="font-size:2.5em;">
                 {% if single_object.title %}
                     {{single_object.title}} 
-                {{ else }}
-                    {% for operation in single_object.list_operations.all %}
-                        {{ operation.id }}
-                    {% endfor %}
                 {% endif %}
-                <span class="price-green">{{ single_object.price_bay }} грн</span></h1>
+                </h1>
+                <div style="width:100%; background-color:#0B87B0;">
+                    <h1 style="float: left; font-size:2em">
+                        <span>ID {{single_object.id}}, </span>
+                        {% if single_object.list_operations %}
+                            {% for operation in single_object.list_operations.all %}
+                                {% if operation.id|floatformat == "2" or operation.id|floatformat == "3" %} 
+                                    <span class="">{{ single_object.price_month|default:'' }} {{nac_carrency}}, </span>
+                                {% endif %}
+                                {% if operation.id|floatformat == "1" or operation.id|floatformat == "4" %} 
+                                    <span class="">{{ single_object.price_bay|default:'' }} грн, </span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {# <span class="">{{ single_object.price_bay }} грн</span> #}
+                        <span> {{single_object.type_facilit|default:''}},</span>
+                        <span> {{single_object.street_obj|default:''}},</span>
+                        <span> {{single_object.number_home|default:''}}</span>
+                        <span>
+                        {% if single_object.number_apartment %}
+                             / {{single_object.number_apartment}}</span>
+                        {% endif %}
+                    </h1>
+                </div>
                 <div class="bc-slider-wrapp">
                     <div class="fotorama" data-nav="thumbs" style="width:1000px;">
                         {% for image in images %}
@@ -51,8 +70,8 @@
                     </div>
                 </div>
                     <table class="arend-info">
-                        <tr>
-                            <td>
+                        <tr style="width:100%; float:left">
+                            <td style="width:30%">
                             <h2>Информация</h2>
                                 <ul>
                                     <li><b>Тип:</b> {{ single_object.type_facilit }}</li>
@@ -81,25 +100,77 @@
 
                                     </div>
                                     </span></li>
-                                    <li><b>Этаж:</b> {{ single_object.floor }}</li>
+                                    <li><b>Этаж:</b> {{ single_object.floor|default:'' }}</li>
                                     <li><b>ID:</b> {{ single_object.id }}</li>
                                     {# <li><b>Тех. план:</b> <a href="#tplan">Посмотреть</a> #}
                                     {# </li> #}
 
                                 </ul>
                             </td>
-                            <td>
+                            <td style="width:40%">
+                                <h2>Дополнительное описание</h2>
+                                <ul>
+                                    <li><b>Станция метро:</b><span> {{single_object.subway_obj|default:''}}</span>
+                                        
+                                    </li>
+                                    <li><b>Строение:</b><span> {{single_object.type_building_data|default:''}}</span>
+                                    </li>
+                                    <li><b>Ремонт:</b><span> {{single_object.repairs|default:''}}</span>
+                                    </li>
+                                    <li><b>Комнати:</b><span> {{single_object.room|default:''}}</span>
+                                    </li>
+                                    <li><b>Участок:</b><span> {{single_object.lot|default:''}}</span>
+                                    </li>
+                                    <li><b>Окна:</b><span> {{single_object.windows|default:''}}</span>
+                                    </li>
+                                    <li><b>Отопление:</b><span> {{single_object.heating|default:''}}</span>
+                                    </li>
+                                    <li><b>Санузел:</b><span> {{single_object.lavatory|default:''}}</span>
+                                    </li>
+                                    <li><b>Мебель:</b><span> {{single_object.furniture|default:''}}</span>
+                                    </li>
+                                    <li><b>Вода:</b><span> {{single_object.the_presence_of_hot_water|default:''}}</span>
+                                    </li>
+                                    <li><b>Спальные места:</b><span> {{single_object.sleeps|default:''}}
+                                    {% for wts in single_object.where_to_stay.all %}
+                                        {{wts}}
+                                    {% endfor %}
+                                    </span>
+                                    </li>
+                                    <li><b>Количество человек:</b><span>
+                                    {% for nop in single_object.number_of_persons.all %}
+                                        {{nop}}
+                                    {% endfor %}
+                                        </span>
+                                    </li>
+                                    <li><b>Техника:</b><span>
+                                    {% for eq in single_object.equipment.all %}
+                                        {{eq}}
+                                    {% endfor %}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td style="width:20%">
                                 <h2>Контакты</h2>
                                 <ul>
-                                    <li><b>Телефон:</b> <span class="text_contact">{{ single_object.phone_owner }}</span></li>
-                                    <li><b>Имя:</b> <span class="text_contact">{{ single_object.name_owner }}</span></li>
+                                    {# <li><b>Телефон:</b> <span class="text_contact"></span></li> #}
+                                    <li><b>Имя:</b> 
+                                        <span class="text_contact">
+                                            {% for ri in single_object.rieltor.all %}
+                                                {{ ri }}
+                                            {% endfor %}
+                                        </span>
+                                    </li>
                                 </ul>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <h2>Описание объекта</h2>
-                                <p>{{single_object.comment}}</p>
+                                <div style="word-wrap: break-word; width:1000px;">
+                                    <p >{{single_object.comment}}</p>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -111,7 +182,7 @@
                         <div id="map" style="width: 490px; height: 335px;"></div>
                     </div>
                     <div class="goog-pan">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sru!2sua!4v1435592990554!6m8!1m7!1s-20QEwJgRbom0qhEx2PsJA!2m2!1d46.449449!2d30.745827!3f339.595546202186!4f14.127417764475013!5f0.7820865974627469" width="490" height="335" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                        {{single_object.panorama|panorama_code|safe}}
                     </div>
                 </div>
 

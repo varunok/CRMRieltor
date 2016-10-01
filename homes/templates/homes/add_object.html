@@ -694,7 +694,9 @@
                 processData: false,
                 contentType: false,
                 success: function(data){
-                    $('.add_imges_row').html('')
+                    {% if not edit %}
+                        $('.add_imges_row').html('');
+                    {% endif %}
                     for (img in data){
                         $('.add_imges_row').append('<div class="col-md-2 load-img" style="margin-top:5px;"><img src="'+data[img]+'" alt="" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
                     }

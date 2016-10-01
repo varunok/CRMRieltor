@@ -2,6 +2,7 @@
 
 
 import uuid
+import os
 from django.db import models
 from setting_street.models import Street, District, Subway
 from django.contrib.auth.models import User
@@ -29,7 +30,7 @@ class ImagesFacility(models.Model):
                               on_delete=models.CASCADE,
                               related_name='photos')
 
-    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj')
+    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj/%Y/%m/%d/%H/%M/')
 
     cover = models.BooleanField(verbose_name=u'Обложка', default=0)
 

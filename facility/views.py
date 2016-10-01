@@ -46,7 +46,7 @@ def save_edit_facility(request):
         form = AddressFacilityForm(request.POST, instance=facility)
         if form.is_valid():
             form.save()
-            phone_numb = ContactOwner.objects.last()
+            phone_numb = ContactOwner.objects.get(id=request.POST.get('edit'))
             phone_owner = PhoneOwner(phone=phone_numb)
             phone_owner.save()
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,

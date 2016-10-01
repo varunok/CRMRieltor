@@ -38,9 +38,9 @@ def send_email_so(request):
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
-        html_message = render_to_string('sender_email/template_email.html', {'temp_email': temp_email,
-                                                                             'request': request_abs_url,
-                                                                             'single_object': single_object})
+        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+                                                                   'request': request_abs_url,
+                                                                   'single_object': single_object})
 
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
                             [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
