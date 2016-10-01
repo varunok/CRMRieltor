@@ -95,6 +95,23 @@ def delivery_email_arendator_single(request):
             return HttpResponse(sending)
         return HttpResponse(status=500)
 
+
+def delivery_email_buyer_single(request):
+    if request.method == 'POST':
+        temp_email = get_object_or_404(TemplateEmail, pk=1)
+        print(request.POST.getlist('id_obj')[0].split(','))
+        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+                                                                   'objects': objects})
+        buyer = Buyer.objects.get(id=request.POST.get('id_b'))
+
+        sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                            [buyer.email], [buyer.email], html_message=html_message)
+        if sending:
+            return HttpResponse(sending)
+        return HttpResponse(status=500)
+
+
 def delivery_email_buyer(request):
     if request.method == 'POST':
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
@@ -168,6 +185,97 @@ def delivery_sms_arendator(request):
         return HttpResponse(status=500)
 
 
+def delivery_sms_arendator_single(request):
+    if request.method == 'POST':
+        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        setting_sms = get_object_or_404(SettingSMS, id=1)
+        arendator = Arendator.objects.get(id=request.POST.get('id_a'))
+        client = Client('http://turbosms.in.ua/api/wsdl.html')
+        auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
+        count_message = 0
+        if auth == u'Вы успешно авторизировались':
+            balance = client.service.GetCreditBalance()
+            if float(balance):
+                result = client.service.SendSMS(sender=setting_sms.sender,
+                                                destination=list_phone_validate([arendator.phone_first]),
+                                                text=link_to_obj(objects, 'arendator'))
+                for i in result['ResultArray'][1:]:
+                    status = client.service.GetMessageStatus(MessageId=i)
+                    if status == u'Отправлено':
+                        count_message += 1
+                return HttpResponse(count_message)
+            else:
+                balance = u'Ваш баланс ' + balance
+                return HttpResponse(balance, status=500)
+        else:
+            return HttpResponse(auth, status=500)
+    else:
+        return HttpResponse(status=500)
+
+
+def delivery_sms_buyer_single(request):
+    if request.method == 'POST':
+        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        setting_sms = get_object_or_404(SettingSMS, id=1)
+        buyer = Buyer.objects.get(id=request.POST.get('id_b'))
+        client = Client('http://turbosms.in.ua/api/wsdl.html')
+        auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
+        count_message = 0
+        if auth == u'Вы успешно авторизировались':
+            balance = client.service.GetCreditBalance()
+            if float(balance):
+                result = client.service.SendSMS(sender=setting_sms.sender,
+                                                destination=list_phone_validate([buyer.phone_first]),
+                                                text=link_to_obj(objects, 'buyer'))
+                for i in result['ResultArray'][1:]:
+                    status = client.service.GetMessageStatus(MessageId=i)
+                    if status == u'Отправлено':
+                        count_message += 1
+                return HttpResponse(count_message)
+            else:
+                balance = u'Ваш баланс ' + balance
+                return HttpResponse(balance, status=500)
+        else:
+            return HttpResponse(auth, status=500)
+    else:
+        return HttpResponse(status=500)
+
+def delivery_sms_buyer(request):
+    """# Auth(xs:string login, xs:string password, )
+       # GetCreditBalance()
+       # GetMessageStatus(xs:string MessageId, )
+       # GetNewMessages()
+       # SendSMS(xs:string sender, xs:string destination, xs:string text, xs:string wappush, )
+    """
+    if request.method == 'POST':
+        single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
+        setting_sms = get_object_or_404(SettingSMS, id=1)
+        buyer_phone = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('phone_first', flat=True)
+        print()
+        client = Client('http://turbosms.in.ua/api/wsdl.html')
+        # auth = client.service.Auth(login='crm', password='sin1984')
+        auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
+        count_message = 0
+        if auth == u'Вы успешно авторизировались':
+            balance = client.service.GetCreditBalance()
+            if float(balance):
+                result = client.service.SendSMS(sender=setting_sms.sender,
+                                                destination=list_phone_validate(buyer_phone),
+                                                text=link_to_single_obj(single_object, 'buyer'))
+                for i in result['ResultArray'][1:]:
+                    status = client.service.GetMessageStatus(MessageId=i)
+                    if status == u'Отправлено':
+                        count_message += 1
+                return HttpResponse(count_message)
+            else:
+                balance = u'Ваш баланс ' + balance
+                return HttpResponse(balance, status=500)
+        else:
+            return HttpResponse(auth, status=500)
+    else:
+        return HttpResponse(status=500)
+
+
 def list_phone_validate(list_phone):
     list_phone = [str(i) for i in list(list_phone)]
     new_list_phone = []
@@ -184,16 +292,36 @@ def list_phone_validate(list_phone):
     return ','.join(new_list_phone)
 
 
-def link_to_single_obj(single_object, type_kontagent):
-    from django.conf import settings
+def link_to_single_obj(single_object, type_kontragent):
+    from setting_globall.models import Franshise
+    franshise = Franshise.objects.get(id=1)
     templ_sms = get_object_or_404(TemplateSms, id=1)
     address = single_object.street_obj
-    if type_kontagent == 'arendator':
+    if type_kontragent == 'arendator':
         price = single_object.price_month
-    elif type_kontagent == 'buyer':
+    elif type_kontragent == 'buyer':
         price = single_object.price_bay
-    link = ''.join([settings.ALLOWED_HOSTS[0], '/objects/data/', str(single_object.id)])
+    link = ''.join([str(franshise.franshise), '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
     link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
-                      str(price), link, templ_sms.signature])
+                     str(price), link, templ_sms.signature])
     return link
+
+
+def link_to_obj(objects, type_kontragent):
+    from setting_globall.models import Franshise
+    franshise = Franshise.objects.get(id=1)
+    templ_sms = get_object_or_404(TemplateSms, id=1)
+    list_obj = []
+    for single_object in objects:
+        address = single_object.street_obj
+        if type_kontragent == 'arendator':
+            price = single_object.price_month
+        elif type_kontragent == 'buyer':
+            price = single_object.price_bay
+        link = ''.join([str(franshise.franshise), '/objects/data/', str(single_object.id)])
+        landmark = single_object.landmark
+        link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
+                        str(price), link, templ_sms.signature])
+        list_obj.append(link)
+    return ', '.join(list_obj)

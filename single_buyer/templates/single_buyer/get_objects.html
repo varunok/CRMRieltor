@@ -57,9 +57,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <input type="text" placeholder="E-mail">
-                                        <a href="#" class="btn btn-green">рассылка</a>
+                                        <a id="delivery_email_buyer_single" href="#" class="btn btn-green">рассылка</a>
                                         <input type="text" placeholder="Телефон">
-                                        <a href="#" class="btn btn-green">рассылка</a>
+                                        <a id="delivery_sms_buyer_single" href="#" class="btn btn-green">рассылка</a>
                                         <div class="delivery-pre">
                                         <a href="#test-popup" data-effect="mfp-zoom-in"><i class="fa fa-question-circle-o"></i> Препросмотр</a>
                                         </div>
@@ -143,7 +143,7 @@
                                                             {% endif %}
                                                         </td>
                                                         <td class="edit">
-                                                            <input type="checkbox">
+                                                            <input value="{{ tie.tie_cont_owner.id }}" type="checkbox">
                                                             <a href="{% url "edit_facility" tie.tie_cont_owner.id %}"> <i class="fa fa-pencil"></i></a> 
                                                             <input type="hidden" class="id_buyer" value="{{id_buyer}}">
                                                             <a id="del_cont_owner" href="#"><i class="fa fa-times"></i></a>

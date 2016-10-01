@@ -263,6 +263,26 @@ $(document).ready(function() {
         })
     });
 
+    $(document).on('click', '#delivery_sms_buyer', function(event) {
+        event.preventDefault();
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет рассылка').fadeIn(1000);
+        data = {
+            'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
+            'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
+        }
+        $.post('delivery_sms_buyer', data)
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            // $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text('Отправлено '+data+' SMS').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+        })
+    });
+
     // END BLOCK BUYER
     
     //  START  Block TASK
