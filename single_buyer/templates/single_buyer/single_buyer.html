@@ -1,6 +1,6 @@
 {% extends "homes/base.html" %}
 
-{% block title %}<title>Объект Арендаторы ID {{single_arendator.id}}</title>{% endblock title %}
+{% block title %}<title>Объект Покупатели ID {{single_buyer.id}}</title>{% endblock title %}
 
 {% load static from staticfiles %}
 {% load sity_franshise %}
@@ -19,8 +19,8 @@
                 <div class="col-md-12">
                     <ol class="breadcrumb">
                         <li><a href="{% url "homes" %}">Главная</a></li>
-                        <li><a href="{% url "arendators" %}">Арендаторы</a></li>
-                        <li class="active">ID {{single_arendator.id}}</li>
+                        <li><a href="{% url "buyers" %}">Покупатели</a></li>
+                        <li class="active">ID {{single_buyer.id}}</li>
                     </ol>
                 </div>
             </div>
@@ -37,54 +37,54 @@
                                     <div class="col-md-12 buyers-info">
                                             <div class="col-md-8">
                                                 <h2 class="buyers-id">
-                                                    <a href="#" id="single_arendator_id" single_arendator_id="{{single_arendator.id}}">ID {{single_arendator.id}}</a> 
-                                                    {% if single_arendator.price_from or single_arendator.price_to %}
-                                                        <span class="buyers-price-arend">
-                                                            {% if single_arendator.price_from %}
-                                                                от {{ single_arendator.price_from }}
+                                                    <a href="#" id="single_buyer_id" single_buyer_id="{{single_buyer.id}}">ID {{single_buyer.id}}</a> 
+                                                    {% if single_buyer.price_from or single_buyer.price_to %}
+                                                        <span class="buyers-price-buy">
+                                                            {% if single_buyer.price_from %}
+                                                                от {{ single_buyer.price_from }}
                                                                 {{ nac_carrency }}
                                                             {% endif %}
-                                                            {% if single_arendator.price_to %}
-                                                                до {{ single_arendator.price_to }}
+                                                            {% if single_buyer.price_to %}
+                                                                до {{ single_buyer.price_to }}
                                                                 {{ nac_carrency }}
                                                             {% endif %}
                                                          </span>
                                                     {% endif %}
                                                 </h2>
                                                 <p class="buyers-more-info">
-                                                    {% if single_arendator.rooms_from or single_arendator.rooms_to %}
+                                                    {% if single_buyer.rooms_from or single_buyer.rooms_to %}
                                                         <i class="fa fa-building"></i>
-                                                        {% if single_arendator.rooms_from %}
-                                                            от {{ single_arendator.rooms_from }}
+                                                        {% if single_buyer.rooms_from %}
+                                                            от {{ single_buyer.rooms_from }}
                                                         {% endif %}
-                                                        {% if single_arendator.rooms_to %}
-                                                            до {{ single_arendator.rooms_to }}
+                                                        {% if single_buyer.rooms_to %}
+                                                            до {{ single_buyer.rooms_to }}
                                                         {% endif %}
                                                         
                                                     
                                                     {% endif %}
-                                                    {% if single_arendator.floors_from or single_arendator.floors_to %}
+                                                    {% if single_buyer.floors_from or single_buyer.floors_to %}
                                                         <i class="fa fa-building-o"></i>
-                                                        {% if single_arendator.floors_from %}
-                                                            {{ single_arendator.floors_from }}
+                                                        {% if single_buyer.floors_from %}
+                                                            {{ single_buyer.floors_from }}
                                                         {% endif %}
-                                                        {% if single_arendator.floors_to %}
-                                                            / {{ single_arendator.floors_to }}
+                                                        {% if single_buyer.floors_to %}
+                                                            / {{ single_buyer.floors_to }}
                                                         {% endif %}
                                                     {% endif %}
-                                                    {% if single_arendator.number_of_persons %}
+                                                    {% if single_buyer.number_of_persons %}
                                                         <i class="fa fa-male"></i>
-                                                        {{ single_arendator.number_of_persons }}
+                                                        {{ single_buyer.number_of_persons }}
                                                     {% endif %}
-                                                    {% if single_arendator.type_client %}
+                                                    {% if single_buyer.type_client %}
                                                         <i class="fa fa-universal-access"></i>
-                                                        {{ single_arendator.type_client }}
+                                                        {{ single_buyer.type_client }}
                                                     {% endif %}
                                                 </p>
                                                 <p class="buyers-local">
                                                     <i class="fa fa-map-marker"></i> 
                                                     <span>г. {% sity_franshise %},
-                                                        {% for district in single_arendator.district_obj.all %}
+                                                        {% for district in single_buyer.district_obj.all %}
                                                             {{ district }} район
                                                         {% endfor %}
                                                     </span>
@@ -92,23 +92,23 @@
                                                     
                                                 </p>
                                                 <p class="buyers-comment">
-                                                    {% if single_arendator.email %}
+                                                    {% if single_buyer.email %}
                                                         <span>E-mail:</span>
-                                                        {{ single_arendator.email }}<br>
+                                                        {{ single_buyer.email }}<br>
                                                     {% endif %}
-                                                    {% if single_arendator.type_stage %}
-                                                        <span>Этап:</span> {{single_arendator.type_stage}}
+                                                    {% if single_buyer.type_stage %}
+                                                        <span>Этап:</span> {{single_buyer.type_stage}}
                                                     {% endif %}
                                                     <div class="object-comment-short" style="margin-top:-2.4%;">
                                                         <div class="object-comment-long">
                                                             <p >
                                                                 <strong>Комментарий:</strong>
-                                                                {{ single_arendator.comment }} {# коментарі до обєкту #}
+                                                                {{ single_buyer.comment }} {# коментарі до обєкту #}
                                                             </p>
                                                         </div>
-                                                    {% if single_arendator.comment %}
+                                                    {% if single_buyer.comment %}
                                                         <span style="font-weight: bold; font-size: 14px;">Комментарий:</span>
-                                                        {{ single_arendator.comment|truncatechars:200 }}
+                                                        {{ single_buyer.comment|truncatechars:200 }}
                                                     {% endif %}
                                                     </div>
                                                 </p>
@@ -116,45 +116,45 @@
                                             <div class="col-md-2 col-sm-6 prop">
                                                 <p class="buyers-prop">
                                                     <i class="fa fa-user"></i>
-                                                    {{ single_arendator.name }}
+                                                    {{ single_buyer.name }}
                                                 </p>
                                                 <p class="buyers-prop-phone">
-                                                    {{ single_arendator.phone_first }}
+                                                    {{ single_buyer.phone_first }}
                                                 </p>
                                                 <p class="buyers-data-call">
                                                     Дата звонка
                                                     <br>
-                                                    <input class="call_date" id="call-date-{{ single_arendator.id }}" value="{{ single_arendator.call_date }}" type="text" placeholder="">
+                                                    <input class="call_date" id="call-date-{{ single_buyer.id }}" value="{{ single_buyer.call_date }}" type="text" placeholder="">
                                                     <script>
-                                                        $("#call-date-{{ single_arendator.id }}").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
+                                                        $("#call-date-{{ single_buyer.id }}").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
                                                     </script>
                                                 </p>
                                                 <p class="buyers-commission">
                                                     <i class="fa fa-user"></i>
-                                                    {% for ri in single_arendator.rieltor.all %}
+                                                    {% for ri in single_buyer.rieltor.all %}
                                                         {{ ri }}
                                                     {% endfor %}
                                                     <br>
                                                     Комиссия: <span>
-                                                    {% if single_arendator.commission %}
-                                                        {{ single_arendator.commission }} {{ nac_carrency }}
+                                                    {% if single_buyer.commission %}
+                                                        {{ single_buyer.commission }} {{ nac_carrency }}
                                                     {% endif %}
                                                     </span>
                                                 </p>
                                             </div>
                                             <div class="col-md-2 col-sm-6 edit">
                                                 <p class="buyers-edit">
-                                                {% if not single_arendator.trash %}
-                                                    <a href="{% url "edit_arendator" single_arendator.id %}"><i class="fa fa-pencil"></i> </a>
+                                                {% if not single_buyer.trash %}
+                                                    <a href="{% url "edit_buyer" single_buyer.id %}"><i class="fa fa-pencil"></i> </a>
                                                 {% else %}
-                                                    <a href=""><i id-obj="{{ single_arendator.id }}" class="fa fa-arrows-alt"></i></a>
+                                                    <a href=""><i id-obj="{{ single_buyer.id }}" class="fa fa-arrows-alt"></i></a>
                                                 {% endif %}
-                                                    <a href="#"><i id-obj="{{ single_arendator.id }}" class="fa fa-times"></i> </a>
+                                                    <a href="#"><i id-obj="{{ single_buyer.id }}" class="fa fa-times"></i> </a>
                                                 </p>
                                                 <p class="buyers-stat">
                                                 <select id="type-state">
                                                     {% for state in list_state %}
-                                                        {% if state.id == single_arendator.type_state.id %}
+                                                        {% if state.id == single_buyer.type_state.id %}
                                                             <option selected="selected" value="{{state.id}}">{{state}}</option>
                                                         {% else %}
                                                             <option value="{{state.id}}">{{state}}</option>
@@ -165,15 +165,15 @@
                                                 <p class="buyers-data-view">
                                                    Сроки
                                                     <br>
-                                                    <input class="call_date" id="term-{{ single_arendator.id }}" value="{{ single_arendator.date_term }}" type="text" placeholder="">
+                                                    <input class="call_date" id="term-{{ single_buyer.id }}" value="{{ single_buyer.date_term }}" type="text" placeholder="">
                                                     <script>
-                                                        $("#term-{{ single_arendator.id }}").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
+                                                        $("#term-{{ single_buyer.id }}").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
                                                     </script>
                                                 </p>
                                                 <p class="buyers-data-update">
                                                    Дата обновления<br> 
                                                     <i class="fa fa-calendar"></i> 
-                                                    {{ single_arendator.review_date }}
+                                                    {{ single_buyer.review_date }}
                                                 </p>
                                             </div>
                                     </div>
@@ -185,18 +185,18 @@
                 <div class="col-md-12">
                     <div class="tabs">
                         <ul class="main-tabs">
-                            <li class="tabs-active"><a class="btna" id="get_comment_arendator" href="#">Комментарии <span class="label label-default">{{ single_obj_comments|length }}</span></a></li>
+                            <li class="tabs-active"><a class="btna" id="get_comment_buyer" href="#">Комментарии <span class="label label-default">{{ single_obj_comments|length }}</span></a></li>
                             
-                            <li><a class="btna" id="get_object_arendator" href="#">Подобрать объект</a></li>
+                            <li><a class="btna" id="get_object_buyer" href="#">Подобрать объект</a></li>
                             
-                            <li><a class="btna" id="get_meeting_arendator" href="#">Встречи <span class="label label-default">{{count_meet}}</span></a></li>
-                            <li><a class="btna" id="get_tasking_arendator" href="#">Задачи <span class="label label-default">{{count_task}}</span></a></li>
+                            <li><a class="btna" id="get_meeting_buyer" href="#">Встречи <span class="label label-default">{{count_meet}}</span></a></li>
+                            <li><a class="btna" id="get_tasking_buyer" href="#">Задачи <span class="label label-default">{{count_task}}</span></a></li>
                         </ul>
                     </div>
                 </div>
                 <!-- Комментарии-->
                 <div class="col-md-12 tabs-rule">
-                    {% include 'single_arendator/comments.html' %}
+                    {% include 'single_buyer/comments.html' %}
                 </div>
                     </div>
                 </div>
@@ -261,10 +261,10 @@
           midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
         });
 
-        $(document).on('change', '#call-date-{{ single_arendator.id }}', function(event) {
+        $(document).on('change', '#call-date-{{ single_buyer.id }}', function(event) {
             event.preventDefault();
             var date = $(this).val();
-            var id = 'peresmotr-'+'{{ single_arendator.id }}';
+            var id = 'peresmotr-'+'{{ single_buyer.id }}';
             var data = {
                 'date': date,
                 'id': id
@@ -272,10 +272,10 @@
             $.get('change_call_date', data);
         });
 
-        $(document).on('change', '#term-{{ single_arendator.id }}', function(event) {
+        $(document).on('change', '#term-{{ single_buyer.id }}', function(event) {
             event.preventDefault();
             var date = $(this).val();
-            var id = '{{ single_arendator.id }}';
+            var id = '{{ single_buyer.id }}';
             var data = {
                 'date': date,
                 'id': id
@@ -286,7 +286,7 @@
         $(document).on('change', '#type-state', function(event) {
             event.preventDefault();
             var type_state = $(this).val();
-            var id = '{{ single_arendator.id }}';
+            var id = '{{ single_buyer.id }}';
             var data = {
                 'type_state': type_state,
                 'id': id
@@ -299,7 +299,7 @@
             $(this).parents('ul').children('li').removeClass('tabs-active');
             $(this).parent('li').addClass('tabs-active');
             var get_id = $(this).attr('id');
-            $.get(get_id, {"id_arendator":{{ single_arendator.id }}}, function(data) {
+            $.get(get_id, {"id_buyer":{{ single_buyer.id }}}, function(data) {
                 $('.tabs-rule').fadeOut('200', function() {
                     $(this).html('');
                     $(this).html(data);
@@ -314,10 +314,10 @@
             var data_comment = {
                 "text_comment": text_comment,
                 "id_user": {{ user.id }},
-                "id_single_obj": {{ single_arendator.id }},
+                "id_single_obj": {{ single_buyer.id }},
                 "type_tabs": $('.tabs-rule').children().attr('type-tabs')
             };
-            $.post('add_single_arendator_comment', data_comment, function(data) {
+            $.post('add_single_buyer_comment', data_comment, function(data) {
                 var data = jQuery.parseJSON(data);
                 $('.comment_add').children().last().removeClass('last-comments');
                 $('.comment_add').prepend('<div style="display: none;" class="comments-item last-comments"><div class="col-md-1"><div class="comments-avatar"><img src="/media/'+data.image+'" alt="" width="50px;"></div></div><div class="col-md-11"><h4 class="comments-name">'+data.author+'</h4><p class="comments-text">'+data.text+'</p><div class="comments-edit"><a class="a" id="del_comment_'+data.id_comment+'" href="#"><i class="fa fa-times"></i></a></div><div class="comments-time"><i class="fa fa-clock-o"></i>'+data.date+'</div></div></div>')
@@ -344,5 +344,5 @@
     });
     </script>
     <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
-    <script src="{% static "js/single_arendator.js" %}"></script>
+    <script src="{% static "js/single_buyer.js" %}"></script>
     {% endblock extra_js %}

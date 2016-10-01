@@ -9,7 +9,7 @@
                                     <div class="col-md-12 buyers-info">
                                             <div class="col-md-8">
                                                 <h2 class="buyers-id">
-                                                    <a href="#">{{ buyer.id }}</a>
+                                                    <a href="{% url "single_buyer" buyer.id %}">{{ buyer.id }}</a>
                                                     {% if buyer.price_from or buyer.price_to %}
                                                         <span class="buyers-price-buy">
                                                             {% if buyer.price_from %}
@@ -119,6 +119,7 @@
                                                 <p class="buyers-edit">
                                                 {% if not buyer.trash %}
                                                     <a href="{% url "edit_buyer" buyer.id %}"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="{% url "single_buyer" buyer.id %}"><i class="fa fa-eye"></i> </a>
                                                 {% else %}
                                                     <a href=""><i id-obj="{{ buyer.id }}" class="fa fa-arrows-alt"></i></a>
                                                 {% endif %}

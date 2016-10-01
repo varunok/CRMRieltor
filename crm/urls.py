@@ -44,6 +44,7 @@ import setting_mail_delivery.urls
 import meeting.urls
 import searching.urls
 import single_arendator.urls
+import single_buyer.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -69,6 +70,7 @@ urlpatterns = [
     url(r'^', include(meeting.urls)),
     url(r'^', include(searching.urls)),
     url(r'^arendators/', include(single_arendator.urls)),
+    url(r'^buyers/', include(single_buyer.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

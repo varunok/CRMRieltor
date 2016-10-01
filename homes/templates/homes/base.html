@@ -62,8 +62,8 @@
                         </div>
                         <div class="nav-panel_date">
                             <div class="calendar">
-                                <div class="day">{{time|date:'d'}}</div>
-                                <div class="month">{{time|date:'b'}}</div>
+                                <div class="day">{% now "d" %}</div>
+                                <div class="month">{% now "b" %}</div>
                             </div>
                             <div class="time" id="time_div"></div>
                         </div>

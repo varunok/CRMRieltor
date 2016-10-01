@@ -277,6 +277,10 @@ $(document).ready(function() {
             $('#add_form_t').children('.task-form').fadeIn('slow');
             $('#add_form_t').trigger('click');
             $('select').select2();
+            var $so = $("#id_task_facility").select2();
+            var id_facility = $('#sisingle_obj_id').attr('sisingle_obj_id');    
+            $so.val(id_facility).trigger("change");
+            // $("#id_task_facility").prop("disabled", true);
         });
     });
 
@@ -310,9 +314,9 @@ $(document).ready(function() {
             });
         })
         .error(function(data) {
-            $('#add_form').html(data.responseText);
+            $('#add_form_t').html(data.responseText);
             $('.task-form').css('top', '10%');
-            $('#add_form').trigger('click');
+            $('#add_form_t').trigger('click');
             $('select').select2();
             wrongForm();
         })
@@ -402,6 +406,11 @@ $(document).ready(function() {
             $('#add_form_m').children('.task-form').fadeIn('slow');
             $('#add_form_m').trigger('click');
             $('select').select2();
+            var $so = $("#id_meet_facility").select2();
+            var id_facility = $('#sisingle_obj_id').attr('sisingle_obj_id');    
+            $so.val(id_facility).trigger("change");
+            // $("#id_meet_facility").prop("disabled", true);
+            
         });
     });
     $('.tabs-rule').on('click','#cancel_add_form', function (event) {
@@ -435,9 +444,9 @@ $(document).ready(function() {
             });
         })
         .error(function(data) {
-            $('#add_form').html(data.responseText);
+            $('#add_form_m').html(data.responseText);
             $('.task-form').css('top', '10%');
-            $('#add_form').trigger('click');
+            $('#add_form_m').trigger('click');
             $('select').select2();
             wrongForm();
         })

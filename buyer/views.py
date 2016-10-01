@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from buyer.forms import BuyerForm
 from homes.views import add_buyer, BuyersList
 from change_form import change_form_text
-from buyer.models import Buyer
+from buyer.models import Buyer, TypeState
 from datetime import datetime
 from django.utils import timezone, dateformat
 from search_buyer import searh
@@ -30,7 +30,7 @@ def save_edit_buyer(request):
         form = BuyerForm(request.POST, instance=buyer)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/arendators')
+            return HttpResponseRedirect('/buyers')
         else:
             form = change_form_text(form)
     else:
@@ -41,11 +41,28 @@ def save_edit_buyer(request):
 def change_call_date(request):
     id_ar = request.GET['id'].split('-')[-1]
     buyer = Buyer.objects.get(id=id_ar)
-    date_request = datetime.strptime(str(request.GET['date']), "%m/%d/%Y")
+    date_request = datetime.strptime(str(request.GET['date']), "%Y-%m-%d")
     date_change = dateformat.format(date_request, 'Y-m-d')
     buyer.call_date = date_change
     buyer.save()
     return HttpResponse("ok")
+
+
+def change_term_date(request):
+    id_ar = request.GET['id']
+    arendator = Buyer.objects.get(id=id_ar)
+    date_request = datetime.strptime(str(request.GET['date']), "%Y-%m-%d")
+    date_change = dateformat.format(date_request, 'Y-m-d')
+    arendator.date_term = date_change
+    arendator.save()
+    return HttpResponse(status=200)
+
+
+def change_type_state(request):
+    id_ar = request.GET['id']
+    type_state = TypeState.objects.get(id=request.GET.get('type_state'))
+    Buyer.objects.update(id=id_ar, type_state=type_state)
+    return HttpResponse(content=b'Ok')
 
 
 class BuyerListSearch(BuyersList):

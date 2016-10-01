@@ -39,7 +39,8 @@ class SingleObjectView(DetailView):
         self.context['images'] = ImagesFacility.objects.all().filter(album=self.context['single_object'].id)
         self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
         self.context['type_actuality'] = TypeActuality.objects.all()
-        self.context['single_obj_comments'] = SingleObjComments.objects.filter(obj_comments=self.context['single_object'].id, type_tabs='comments')
+        self.context['single_obj_comments'] = SingleObjComments.objects.filter(
+            obj_comments=self.context['single_object'].id, type_tabs='comments')
         try:
             self.context['count_arendator'] = Tie.objects.get(tie_cont_owner=self.context['single_object'].id).tie_arenda.all().count()
         except:
@@ -104,6 +105,7 @@ def get_comment(request):
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so']).order_by('-date_comment')
     return render(request, 'single_object/comments.html', {"single_obj_comments": data_comment})
 
+
 def add_obj_comment(request):
     author = User.objects.get(id=request.POST['id_user'])
     author_name = author.get_full_name()
@@ -122,8 +124,7 @@ def add_obj_comment(request):
         "author": comments.author_comment,
         "date": date_comment,
         "image": str(image.image),
-        "id_comment": comments.id
-        })
+        "id_comment": comments.id})
     return HttpResponse(comment_data)
 
 
@@ -137,6 +138,8 @@ def del_comment(request):
 # END BLOCK COMMENTS
 
 # START BLOCK ARENDATOR
+
+
 class AddArendatorToTie(DetailView):
     model = Arendator
     slug_url_kwarg = 'idu'
@@ -182,7 +185,6 @@ class AutomatTie(ListView):
         self.context['show_arendators'] = ShowsArendator.objects.all()
         self.context['error'] = True
         return self.context
-
 
     def get_queryset(self):
         return search_automat(self.request.GET, self.qeryset)
@@ -254,6 +256,8 @@ def clear_all_arendator(request):
 # END BLOCK ARENDATOR
 
 # START BLOCK BUYER
+
+
 class AddBuyerToTie(DetailView):
     model = Buyer
     slug_url_kwarg = 'idu'
@@ -277,7 +281,7 @@ class AddBuyerToTie(DetailView):
         cont_owner = ContactOwner.objects.get(id=self.request.GET.get('id'))
         # self.context['count_arendator'] = Tie.objects.get(tie_cont_owner=cont_owner).tie_arenda.all().count()
         tie_buyer, created = TieBuyer.objects.get_or_create(tie_cont_owner=cont_owner)
-        if TieBuyer.objects.filter(tie_buye=buyer, tie_cont_owner=cont_owner).exists() == False:
+        if not TieBuyer.objects.filter(tie_buye=buyer, tie_cont_owner=cont_owner).exists():
             tie_buyer.tie_buye.add(buyer)
         else:
             return HttpResponse(status=404)
@@ -320,14 +324,14 @@ def get_buyer(request):
     shows = ShowsBuyer.objects.all()
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so']).order_by('-date_comment')
     return render(request, 'single_object/buyers.html', {"ties": ties,
-                                                            "singl_obj": singl_obg,
-                                                            "display": True,
-                                                            "error": True,
-                                                            "type_shows": type_shows,
-                                                            "nac_carrency": nac_carrency,
-                                                            "shows_buyer": shows,
-                                                            "count_buyer": count_buyers,
-                                                            "single_obj_comments": data_comment})
+                                                         "singl_obj": singl_obg,
+                                                         "display": True,
+                                                         "error": True,
+                                                         "type_shows": type_shows,
+                                                         "nac_carrency": nac_carrency,
+                                                         "shows_buyer": shows,
+                                                         "count_buyer": count_buyers,
+                                                         "single_obj_comments": data_comment})
 
 
 def change_shows_buyer(request, id_a):
@@ -380,9 +384,11 @@ class TaskingSingleList(TaskingList):
         self.context['tabs_active_all'] = 1
         self.context['tabs_active_active'] = 0
         self.context['tabs_active_archive'] = 0
-        self.context['count_task_active'] = Tasking.objects.filter(task_trash=False, task_archiv=False, task_facility=self.request.GET.get('id_so')).count()
+        self.context['count_task_active'] = Tasking.objects.filter(task_trash=False,
+                                                                   task_archiv=False, task_facility=self.request.GET.get('id_so')).count()
         self.context['count_task_all'] = Tasking.objects.filter(task_trash=False, task_facility=self.request.GET.get('id_so')).count()
-        self.context['count_task_archive'] = Tasking.objects.filter(task_trash=False, task_archiv=True, task_facility=self.request.GET.get('id_so')).count()
+        self.context['count_task_archive'] = Tasking.objects.filter(task_trash=False,
+                                                                    task_archiv=True, task_facility=self.request.GET.get('id_so')).count()
         return self.context
 
     def get_queryset(self):
@@ -392,6 +398,7 @@ class TaskingSingleList(TaskingList):
 
 class TaskingSingleListActive(TaskingSingleList):
     queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
+
     def get_context_data(self, **kwargs):
         self.context = super(TaskingSingleListActive, self).get_context_data(**kwargs)
         self.context['tabs_active_active'] = 1
@@ -418,7 +425,7 @@ class TaskingSingleListArchive(TaskingSingleList):
         self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
         return self.queryset
 
-#END BLOCK TASKING
+# END BLOCK TASKING
 
 
 # START BLOCK PUBLICATIONS
@@ -486,10 +493,6 @@ class MeetingSingleListArchive(MeetingSingleList):
         return self.queryset
 
 # END BLOCK MEETING
-
-
-
-
 
 
 class DatabasesPrevious(SingleObjectView):

@@ -37,7 +37,7 @@ $(document).ready(function() {
         isRTL: false
     };
     $.timepicker.setDefaults($.timepicker.regional['ru']);
-    $(document).on('click', '#avtomat_add_arendator', function (event) {
+    $(document).on('click', '#avtomat_add_buyer', function (event) {
         event.preventDefault();
         $('#modal_avto').fadeIn('slow');
     });
@@ -49,14 +49,14 @@ $(document).ready(function() {
         event.preventDefault();
         $('#modal_avto').fadeOut('slow');
         var data = $('#avtomat_form').serialize();
-        $.get('automat_tie_arendator', data)
+        $.get('automat_tie_buyer', data)
             .success( function (data) {
             // $('#add_tr').html(' ');
             // $('#add_tr').fadeIn('slow');
             // $('#add_tr').prepend(data);
             // $('.show_tr').fadeIn('slow');
             // var count_ar = parseInt($('#add_tr').children('.show_tr').length);
-            // $('#get_arendator').children('span').text(count_ar);
+            // $('#get_buyer').children('span').text(count_ar);
             $('.tabs-rule').fadeOut('200', function() {
                     $(this).html('');
                     $(this).html(data);
@@ -98,10 +98,10 @@ $(document).ready(function() {
     });
     $(document).on('click', '#del_cont_owner', function(event) {
         event.preventDefault();
-        var id_arendator = $(this).prev('.id_arendator').val();
+        var id_buyer = $(this).prev('.id_buyer').val();
         var id_cont_owner = $(this).next('.id_cont_owner').val();
         var data = {
-            'id_arendator': id_arendator,
+            'id_buyer': id_buyer,
             'id_cont_owner': id_cont_owner
         }
         $.post('del_cont_owner', data)
@@ -120,11 +120,11 @@ $(document).ready(function() {
     $(document).on('change', '.show_cont_owner', function(event) {
         event.preventDefault();
         var show = $(this).val();
-        var id_arendator = $(this).prev('.id_arendator').val();
+        var id_buyer = $(this).prev('.id_buyer').val();
         var id_cont_owner = $(this).next('.id_cont_owner').val();
         var data = {
             'show': show,
-            'id_arendator': id_arendator,
+            'id_buyer': id_buyer,
             'id_cont_owner': id_cont_owner
         }
         $.post('change_show_owner', data)
@@ -143,19 +143,19 @@ $(document).ready(function() {
     $('.tabs-rule').on('click', '#add_task_form_meet', function (event) {
         event.preventDefault();
         data = {
-            'id_so': $('#single_arendator_id').attr('single_arendator_id')
+            'id_so': $('#single_buyer_id').attr('single_buyer_id')
         };
         $.get('get_form_meet', data).success( function (data) {
             $('#add_form_m').html(data);
             $('.task-form').animate({top: '10%'}, 1000);
             $('#add_form_m').children('.task-form').fadeIn('slow');
             $('#add_form_m').trigger('click');
+            var id_buyer = $('#single_buyer_id').attr('single_buyer_id');    
             $('select').select2();
-            $("#id_meet_buyer").prop("disabled", true);
-            var $arendator_id = $("#id_meet_arendator").select2();
-            var id_arendator = $('#single_arendator_id').attr('single_arendator_id');    
-            $arendator_id.val(id_arendator).trigger("change");
-            // $("#id_meet_arendator").prop("disabled", true);
+            $("#id_meet_arendator").prop("disabled", true);
+            var $buyer_id = $("#id_meet_buyer").select2();
+            $buyer_id.val(id_buyer).trigger("change");
+            // $("#id_meet_buyer").prop("disabled", true);
         });
     });
 
@@ -177,10 +177,10 @@ $(document).ready(function() {
             $('.task-form').animate({top: '20%'}, 2000);
             $('.task-form').animate({top: '-700px'}, 500, function () {
                 if ($('#id_meet').length === 0 ) {
-                    $('#get_meeting_arendator').children('.label').text(parseInt($('#get_meeting_arendator').children('.label').text())+1)
+                    $('#get_meeting_buyer').children('.label').text(parseInt($('#get_meeting_buyer').children('.label').text())+1)
                 }
-                var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                $.get('get_meeting_arendator', {"id_arendator": id_arendator}, function(data) {
+                var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                $.get('get_meeting_buyer', {"id_buyer": id_buyer}, function(data) {
                     $('.tabs-rule').fadeOut('200', function() {
                         $(this).html('');
                         $(this).html(data);
@@ -199,8 +199,8 @@ $(document).ready(function() {
     });
     $('.tabs-rule').on('click', '#meets_active', function(event) {
         event.preventDefault();
-        var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-        $.get('get_meetings_active', {"id_arendator":id_arendator}, function(data) {
+        var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+        $.get('get_meetings_active', {"id_buyer":id_buyer}, function(data) {
             $('.tabs-rule').fadeOut('200', function() {
                 $(this).html('');
                 $(this).html(data);
@@ -210,8 +210,8 @@ $(document).ready(function() {
     });
     $('.tabs-rule').on('click', '#meets_archive', function(event) {
         event.preventDefault();
-        var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-        $.get('get_meetings_archive', {"id_arendator":id_arendator}, function(data) {
+        var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+        $.get('get_meetings_archive', {"id_buyer":id_buyer}, function(data) {
             $('.tabs-rule').fadeOut('200', function() {
                 $(this).html('');
                 $(this).html(data);
@@ -222,8 +222,8 @@ $(document).ready(function() {
 
     $('.tabs-rule').on('click', '#meets_all', function(event) {
         event.preventDefault();
-        var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-        $.get('get_meeting_arendator', {"id_arendator":id_arendator}, function(data) {
+        var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+        $.get('get_meeting_buyer', {"id_buyer":id_buyer}, function(data) {
             $('.tabs-rule').fadeOut('200', function() {
                 $(this).html('');
                 $(this).html(data);
@@ -242,9 +242,9 @@ $(document).ready(function() {
             .success( function (data) {
                 meet.fadeOut('slow', function () {
                     meet.remove();
-                    $('#get_meeting_arendator').children('.label').text(parseInt($('#get_meeting_arendator').children('.label').text())-1)
-                    var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                    $.get('get_meeting_arendator', {"id_arendator": id_arendator}, function(data) {
+                    $('#get_meeting_buyer').children('.label').text(parseInt($('#get_meeting_buyer').children('.label').text())-1)
+                    var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                    $.get('get_meeting_buyer', {"id_buyer": id_buyer}, function(data) {
                         $('.tabs-rule').fadeOut('200', function() {
                             $(this).html('');
                             $(this).html(data);
@@ -271,8 +271,8 @@ $(document).ready(function() {
             .success( function (data) {
                 meet.fadeOut('slow', function () {
                     meet.remove();
-                    var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                    $.get('get_meetings_archive', {"id_arendator": id_arendator}, function(data) {
+                    var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                    $.get('get_meetings_archive', {"id_buyer": id_buyer}, function(data) {
                         $('.tabs-rule').fadeOut('200', function() {
                             $(this).html('');
                             $(this).html(data);
@@ -305,7 +305,7 @@ $(document).ready(function() {
     $('.tabs-rule').on('click', '#add_task_form', function (event) {
         event.preventDefault();
         data = {
-            'id_so': $('#single_arendator_id').attr('single_arendator_id')
+            'id_so': $('#single_buyer_id').attr('single_buyer_id')
         };
         $.get('get_form_single_task', data).success( function (data) {
             $('#add_form_t').html(data);
@@ -313,11 +313,11 @@ $(document).ready(function() {
             $('#add_form_t').children('.task-form').fadeIn('slow');
             $('#add_form_t').trigger('click');
             $('select').select2();
-            $("#id_task_buyer").prop("disabled", true);
-            var $arendator_id = $("#id_task_arendator").select2();
-            var id_arendator = $('#single_arendator_id').attr('single_arendator_id');    
-            $arendator_id.val(id_arendator).trigger("change");
-            // $("#id_task_arendator").prop("disabled", true);
+            $("#id_task_arendator").prop("disabled", true);
+            var $buyer_id = $("#id_task_buyer").select2();
+            var id_buyer = $('#single_buyer_id').attr('single_buyer_id');    
+            $buyer_id.val(id_buyer).trigger("change");
+            // $("#id_task_buyer").prop("disabled", true);
         });
     });
     $('.tabs-rule').on('click', '#add_form_t', function(event) {
@@ -333,10 +333,10 @@ $(document).ready(function() {
             $('.task-form').animate({top: '20%'}, 2000);
             $('.task-form').animate({top: '-700px'}, 500, function () {
                 if ($('#id_task').length === 0 ) {
-                    $('#get_tasking_arendator').children('.label').text(parseInt($('#get_tasking_arendator').children('.label').text())+1)
+                    $('#get_tasking_buyer').children('.label').text(parseInt($('#get_tasking_buyer').children('.label').text())+1)
                 }
-                var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                $.get('get_tasking_arendator', {"id_arendator": id_arendator}, function(data) {
+                var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                $.get('get_tasking_buyer', {"id_buyer": id_buyer}, function(data) {
                     $('.tabs-rule').fadeOut('200', function() {
                         $(this).html('');
                         $(this).html(data);
@@ -364,9 +364,9 @@ $(document).ready(function() {
             .success( function (data) {
                 task.fadeOut('slow', function () {
                     task.remove();
-                    $('#get_tasking_arendator').children('.label').text(parseInt($('#get_tasking_arendator').children('.label').text())-1)
-                    var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                    $.get('get_tasking_arendator', {"id_arendator":id_arendator}, function(data) {
+                    $('#get_tasking_buyer').children('.label').text(parseInt($('#get_tasking_buyer').children('.label').text())-1)
+                    var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                    $.get('get_tasking_buyer', {"id_buyer":id_buyer}, function(data) {
                         $('.tabs-rule').fadeOut('200', function() {
                             $(this).html('');
                             $(this).html(data);
@@ -393,8 +393,8 @@ $(document).ready(function() {
             .success( function (data) {
                 task.fadeOut('slow', function () {
                     task.remove();
-                    var id_arendator = $('#single_arendator_id').attr('single_arendator_id');
-                    $.get('get_tasks_archive', {"id_arendator": id_arendator}, function(data) {
+                    var id_buyer = $('#single_buyer_id').attr('single_buyer_id');
+                    $.get('get_tasks_archive', {"id_buyer": id_buyer}, function(data) {
                     $('.tabs-rule').fadeOut('200', function() {
                         $(this).html('');
                         $(this).html(data);

@@ -1,4 +1,4 @@
-{% load dead_line %}
+                            {% load dead_line %}
                             <div class="tasking">
                                 <div class="row">
                                     <h1 class="section-head">Задачи</h1>
@@ -48,7 +48,9 @@
                                                 <td>
                                                     <div class="rieltor">
                                                         <i class="fa fa-user"></i>
-                                                        {{ tasking.rieltor }}
+                                                        {% if tasking.rieltor %}
+                                                            {{ tasking.rieltor }}
+                                                        {% endif %}
                                                     </div>
                                                     <div class="date
                                                      {% if tasking.dead_line|dead_line %}

@@ -1,12 +1,12 @@
  <!-- Арендаторы -->
 
-                    <div type-tabs="arendators" class="object-arendator">
+                    <div type-tabs="buyers" class="object-arendator">
                         <h3 class="arendator-head">Подобрать объект</h3>
                         <div class="row">
                             <div class="col-md-12 arendator-sort">
                                 <form id="cont_form" name="cont_form" style="width:10%; float: left;" >
                                     <input id="id_cont_owner" name="id_cont_owner" type="text" placeholder="ID">
-                                    <input style="position: fixed;" type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                    <input style="position: fixed;" type="hidden" name="id_buyer" id="id_buyer" value="{{id_buyer}}">
                                 </form>
                                     <a href="#" id="add_id_cont_owner" name="add_id_cont_owner" class="btn btn-green">Добавить по ID</a>
                                 {# <select name="" id=""> #}
@@ -14,7 +14,7 @@
                                     {# <option value="">пункт 2</option> #}
                                     {# <option value="">пункт 3</option> #}
                                 {# </select> #}
-                                <a href="#" id="avtomat_add_arendator" class="btn btn-green">автоматически</a>
+                                <a href="#" id="avtomat_add_buyer" class="btn btn-green">автоматически</a>
                                 <div id="modal_avto" style="width: 300px; height: 200px; background-color: #f5f5f5; border-radius: 5px; box-shadow: 1px 1px 5px 1px #0b0b0b; position: fixed; z-index: 10000; left: 40%; top: 40%; display: none; padding: 10px;">
                                 <form id="avtomat_form" name="avtomat_form">
                                     <h3 style="margin-bottom: 0;">Критерии:</h3>
@@ -39,14 +39,14 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <input type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                        <input type="hidden" name="id_buyer" id="id_buyer" value="{{id_buyer}}">
                                         <a id="ok_automat_btn" href="#" class="btn btn-green">OK</a>
                                         <a id="cencel_automat_btn" href="#" class="btn btn-red">Отменить</a>
                                     </div>
                                     </form>
                                 </div>
                                 <form id="clear_form" name="clear_form" style="width:10%; float: left;">
-                                    <input type="hidden" name="id_arendator" id="id_arendator" value="{{id_arendator}}">
+                                    <input type="hidden" name="id_buyer" id="id_buyer" value="{{id_buyer}}">
                                 </form>
                                 <a id="clear_cont_owner" href="#" class="btn btn-red">Очистить</a>
                             </div>
@@ -78,7 +78,7 @@
                                                 <th>Адрес</th>
                                                 <th>Показ</th>
                                                 <th>Контактное лицо</th>
-                                                <th>Месяц</th>
+                                                <th>Викуп</th>
                                                 <th>Комнат</th>
                                                 <th>Тип</th>
                                                 <th>Состояние</th>
@@ -87,8 +87,8 @@
                                         </thead>
                                         <tbody>
                                         {% for tie in ties %}
-                                            {% for arenda in tie.tie_arenda.all %}
-                                                {% if id_arendator.id == tie.tie_arenda.id %}
+                                            {% for arenda in tie.tie_buye.all %}
+                                                {% if id_buyer.id == tie.tie_buye.id %}
                                                     <tr class="success">
                                                         <td>{{tie.tie_cont_owner.id}}</td>
                                                         <td class="f-clr-grey">
@@ -102,15 +102,15 @@
                                                             {% endif %}
                                                         </td>
                                                         <td class="f-clr-grey edit">
-                                                            <input type="hidden" class="id_arendator" value="{{id_arendator}}">
+                                                            <input type="hidden" class="id_buyer" value="{{id_buyer}}">
                                                             
                                                             <select name="" class="show_cont_owner">
                                                                 {% for show in shows %}
                                                                     <option
                                                                     {% for sh in id_show.all %}
                                                                         {% if sh.array_cont_ower.id == tie.tie_cont_owner.id %}
-                                                                            {{sh.type_shows_arendator}}
-                                                                            {% if sh.type_shows_arendator.id == show.id %}
+                                                                            {{sh.type_shows_buyer}}
+                                                                            {% if sh.type_shows_buyer.id == show.id %}
                                                                                 selected="selected"    
                                                                             {% endif %}
                                                                         {% endif %}
@@ -125,7 +125,7 @@
                                                             {{ tie.tie_cont_owner.phone_owner }}
                                                         </td>
                                                         <td class="f-clr-grey">
-                                                            {{ tie.tie_cont_owner.price_month }}
+                                                            {{ tie.tie_cont_owner.price_bay }}
                                                         </td>
                                                         <td class="f-clr-grey">
                                                         {% if tie.tie_cont_owner.rooms %}
@@ -145,7 +145,7 @@
                                                         <td class="edit">
                                                             <input type="checkbox">
                                                             <a href="{% url "edit_facility" tie.tie_cont_owner.id %}"> <i class="fa fa-pencil"></i></a> 
-                                                            <input type="hidden" class="id_arendator" value="{{id_arendator}}">
+                                                            <input type="hidden" class="id_buyer" value="{{id_buyer}}">
                                                             <a id="del_cont_owner" href="#"><i class="fa fa-times"></i></a>
                                                             <input type="hidden" class="id_cont_owner" value="{{tie.tie_cont_owner.id}}">
                                                         </td>
@@ -163,7 +163,7 @@
                                 <h3 class="comments-head">Комментарии</h3>
                                 <div class="row comment_add">
                                     {% for data_comment in single_obj_comments %}
-                                        {% if data_comment.type_tabs == 'arendators' %}
+                                        {% if data_comment.type_tabs == 'buyers' %}
                                             {% include 'single_object/single_comment/single_comment.html' %}
                                         {% endif %}
                                     {% endfor %}

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+import uuid
 from django.db import models
 from setting_street.models import Street, District, Subway
 from django.contrib.auth.models import User
@@ -28,7 +29,7 @@ class ImagesFacility(models.Model):
                               on_delete=models.CASCADE,
                               related_name='photos')
 
-    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj')
+    image = models.ImageField(verbose_name=u'Фото', upload_to='img_obj/' + str(uuid.uuid1()))
 
     cover = models.BooleanField(verbose_name=u'Обложка', default=0)
 
@@ -455,7 +456,7 @@ class AddressFacilityData(models.Model):
                                  verbose_name=u'Валюта',
                                  default=2)
 
-    images_count = models.IntegerField(verbose_name=u'Количество фото', editable=False, default=0)
+    images_count = models.IntegerField(verbose_name=u'Количество фото', editable=True, default=0)
 
     title = models.CharField(max_length=250,
                              verbose_name=u'Заголовок',

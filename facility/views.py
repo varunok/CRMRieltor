@@ -10,7 +10,8 @@ from facility.forms import AddressFacilityForm
 from homes.views import add_object
 from change_form import change_form_text
 from save_photo import save_photo
-from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner
+from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner, ImagesFacility, \
+    AddressFacilityData
 from django.contrib.auth.models import User
 
 
@@ -61,7 +62,7 @@ def save_edit_facility(request):
     else:
         form = AddressFacilityForm()
     return edit_facility(request, request.POST.get('edit'))
-    
+
 
 def check_phone(request):
     if request.method == 'GET':
@@ -81,7 +82,10 @@ def add_img(request):
 def del_img(request):
     if request.method == 'POST':
         try:
-            os.remove(str(request).split('?')[-1][1:-2])
+            ImagesFacility.objects.get(id=request.POST.get('img_id')).delete()
+            count_img = ImagesFacility.objects.filter(album=request.POST.get('obj_id')).count()
+            AddressFacilityData.objects.filter(id=request.POST.get('obj_id')).update(images_count=int(count_img))
+            os.remove(request.POST.get('img')[1:])
             return HttpResponse('delete image')
         except:
             return HttpResponse('wrong delete')
@@ -108,10 +112,10 @@ def handle_uploaded_file(f):
         pass
     list_img = {}
     for ele in f:
-        with open('media/tmpimg/'+f[ele].name, 'wb+') as destination:
+        with open('media/tmpimg/' + f[ele].name, 'wb+') as destination:
             for chunk in f[ele].chunks():
                 destination.write(chunk)
-                list_img[ele] = ('/media/tmpimg/'+f[ele].name)
+                list_img[ele] = ('/media/tmpimg/' + f[ele].name)
     return list_img
 
 
@@ -132,4 +136,8 @@ def trash_obj(request):
 def edit_facility(request, id_obj):
     facility = ContactOwner.objects.get(id=id_obj)
     form = AddressFacilityForm(instance=facility)
-    return render(request, 'homes/add_object.html', {'form': form, 'edit': True, 'id_obj': id_obj})
+    images = ImagesFacility.objects.filter(album=facility)
+    return render(request, 'homes/add_object.html', {'form': form,
+                                                     'edit': True,
+                                                     'id_obj': id_obj,
+                                                     'images': images})

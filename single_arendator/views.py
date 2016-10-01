@@ -11,10 +11,13 @@ from django.views.generic import DetailView
 from arendator.models import Arendator, TypeState
 from facility.models import NationalCarrency
 from extuser.models import MyUser
-from single_arendator.models import SingleArendatorComments, Shows
-from single_object.models import Tie, TypeShows
+from single_arendator.models import SingleArendatorComments
+from single_object.models import Tie, TypeShows, ShowsArendator
 from search_automat import search_automat
-from facility.models import ContactOwner
+from facility.models import ContactOwner, TypeOperations
+from meeting.models import Meeting
+from tasking.models import Tasking
+from homes.views import TaskingList, MeetingList
 
 
 class SingleArendatorView(DetailView):
@@ -29,7 +32,10 @@ class SingleArendatorView(DetailView):
         self.context = super(SingleArendatorView, self).get_context_data(**kwargs)
         self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
         self.context['list_state'] = TypeState.objects.all()
-        self.context['single_obj_comments'] = SingleArendatorComments.objects.filter(obj_comments=self.context['single_arendator'].id, type_tabs='comments')
+        self.context['single_obj_comments'] = SingleArendatorComments.objects.filter(
+            obj_comments=self.context['single_arendator'].id, type_tabs='comments')
+        self.context['count_meet'] = Meeting.objects.filter(meet_trash=False, meet_arendator=self.context['single_arendator'].id).count()
+        self.context['count_task'] = Tasking.objects.filter(task_trash=False, task_arendator=self.context['single_arendator'].id).count()
         return self.context
 
 
@@ -77,23 +83,28 @@ def del_comment(request):
 def get_object_arendator(request):
     ties = Tie.objects.all()
     shows = TypeShows.objects.all()
-    id_show = Shows.objects.all()
+    id_show = ShowsArendator.objects.all()
+    single_obj_comments = SingleArendatorComments.objects.filter(obj_comments=request.GET.get('id_arendator')).order_by('-date_comment')
     return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                  'id_arendator': request.GET.get('id_arendator'),
                                                                  'shows': shows,
-                                                                 'id_show': id_show})
+                                                                 'id_show': id_show,
+                                                                 'single_obj_comments': single_obj_comments})
 
 
 def automat_tie_arendator(request):
-    qeryset = ContactOwner.objects.all().filter(trash=False)
+    list_operations = TypeOperations.objects.filter(type_operations__in=['Аренда', 'Посуточна'])
+    qeryset = ContactOwner.objects.all().filter(trash=False, list_operations__in=list_operations)
     search_automat(request.GET, qeryset)
     ties = Tie.objects.all()
     shows = TypeShows.objects.all()
-    id_show = Shows.objects.all()
+    id_show = ShowsArendator.objects.all()
+    single_obj_comments = SingleArendatorComments.objects.filter(obj_comments=request.GET.get('id_arendator')).order_by('-date_comment')
     return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                  'id_arendator': request.GET.get('id_arendator'),
                                                                  'shows': shows,
-                                                                 'id_show': id_show})
+                                                                 'id_show': id_show,
+                                                                 'single_obj_comments': single_obj_comments})
 
 
 def add_id_cont_owner(request):
@@ -111,11 +122,13 @@ def add_id_cont_owner(request):
         return HttpResponse(status=404, content=b'Обект уже в списке')
     ties = Tie.objects.all()
     shows = TypeShows.objects.all()
-    id_show = Shows.objects.all()
+    id_show = ShowsArendator.objects.all()
+    single_obj_comments = SingleArendatorComments.objects.filter(obj_comments=request.GET.get('id_arendator')).order_by('-date_comment')
     return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                  'id_arendator': request.GET.get('id_arendator'),
                                                                  'shows': shows,
-                                                                 'id_show': id_show})
+                                                                 'id_show': id_show,
+                                                                 'single_obj_comments': single_obj_comments})
 
 
 def clear_cont_owner(request):
@@ -128,11 +141,14 @@ def clear_cont_owner(request):
             pass
         ties = Tie.objects.all()
         shows = TypeShows.objects.all()
-        id_show = Shows.objects.all()
+        id_show = ShowsArendator.objects.all()
+        single_obj_comments = SingleArendatorComments.objects.filter(
+            obj_comments=request.POST.get('id_arendator')).order_by('-date_comment')
         return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                      'id_arendator': request.POST.get('id_arendator'),
                                                                      'shows': shows,
-                                                                     'id_show': id_show})
+                                                                     'id_show': id_show,
+                                                                     'single_obj_comments': single_obj_comments})
 
 
 def del_cont_owner(request):
@@ -142,12 +158,14 @@ def del_cont_owner(request):
         tie.tie_arenda.remove(arend)
         ties = Tie.objects.all()
         shows = TypeShows.objects.all()
-        id_show = Shows.objects.all()
-        print(ties)
+        id_show = ShowsArendator.objects.all()
+        single_obj_comments = SingleArendatorComments.objects.filter(
+            obj_comments=request.POST.get('id_arendator')).order_by('-date_comment')
         return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                      'id_arendator': request.POST.get('id_arendator'),
                                                                      'shows': shows,
-                                                                     'id_show': id_show})
+                                                                     'id_show': id_show,
+                                                                     'single_obj_comments': single_obj_comments})
 
 
 def change_show_owner(request):
@@ -156,7 +174,7 @@ def change_show_owner(request):
             cont_owner = ContactOwner.objects.get(id=request.POST.get('id_cont_owner'))
             arendator = Arendator.objects.get(id=request.POST.get('id_arendator'))
             show = TypeShows.objects.get(id=request.POST.get('show'))
-            new_show, created = Shows.objects.get_or_create(array_arendator=arendator, array_cont_ower=cont_owner)
+            new_show, created = ShowsArendator.objects.get_or_create(array_arendator=arendator, array_cont_ower=cont_owner)
             new_show.type_shows_arendator = show
             new_show.save()
             return HttpResponse(content=b'Изменено')
@@ -164,3 +182,119 @@ def change_show_owner(request):
             return HttpResponse(status=500)
 
 # END BLOCK PICK UP AN OBJECT
+
+
+# START BLOCK MEETING
+class MeetingSingleList(MeetingList):
+    model = Meeting
+    template_name = 'single_arendator/meeting.html'
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleList, self).get_context_data(**kwargs)
+        self.context['tabs_active_all'] = 1
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_archive'] = 0
+        self.context['count_meet_active'] = Meeting.objects.filter(meet_trash=False,
+                                                                   meet_archiv=False,
+                                                                   meet_arendator=self.request.GET.get('id_arendator')).count()
+        self.context['count_meet_all'] = Meeting.objects.filter(meet_trash=False,
+                                                                meet_arendator=self.request.GET.get('id_arendator')).count()
+        self.context['count_meet_archive'] = Meeting.objects.filter(meet_trash=False,
+                                                                    meet_archiv=True,
+                                                                    meet_arendator=self.request.GET.get('id_arendator')).count()
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = Meeting.objects.filter(meet_trash=False, meet_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+
+class MeetingSingleListActive(MeetingSingleList):
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleListActive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 1
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 0
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(meet_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+
+class MeetingSingleListArchive(MeetingSingleList):
+    queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=True)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(MeetingSingleListArchive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 1
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(meet_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+# END BLOCK MEETING
+
+
+# START BLOCK TASKING
+
+
+class TaskingSingleList(TaskingList):
+    model = Tasking
+    template_name = 'single_arendator/tasking.html'
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleList, self).get_context_data(**kwargs)
+        self.context['tabs_active_all'] = 1
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_archive'] = 0
+        self.context['count_task_active'] = Tasking.objects.filter(task_trash=False,
+                                                                   task_archiv=False,
+                                                                   task_arendator=self.request.GET.get('id_arendator')).count()
+        self.context['count_task_all'] = Tasking.objects.filter(task_trash=False,
+                                                                task_arendator=self.request.GET.get('id_arendator')).count()
+        self.context['count_task_archive'] = Tasking.objects.filter(task_trash=False,
+                                                                    task_archiv=True,
+                                                                    task_arendator=self.request.GET.get('id_arendator')).count()
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = Tasking.objects.filter(task_trash=False, task_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+
+class TaskingSingleListActive(TaskingSingleList):
+    queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleListActive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 1
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 0
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(task_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+
+class TaskingSingleListArchive(TaskingSingleList):
+    queryset = Tasking.objects.filter(task_trash=False, task_archiv=True)
+
+    def get_context_data(self, **kwargs):
+        self.context = super(TaskingSingleListArchive, self).get_context_data(**kwargs)
+        self.context['tabs_active_active'] = 0
+        self.context['tabs_active_all'] = 0
+        self.context['tabs_active_archive'] = 1
+        return self.context
+
+    def get_queryset(self):
+        self.queryset = self.queryset.filter(task_arendator=self.request.GET.get('id_arendator'))
+        return self.queryset
+
+# END BLOCK TASKING

@@ -2,8 +2,8 @@
 
 
 from django.conf.urls import url
-from single_arendator.views import SingleArendatorView, add_single_arendator_comment, get_comment_arendator, \
-    del_comment, get_object_arendator, automat_tie_arendator, add_id_cont_owner, clear_cont_owner, \
+from single_buyer.views import SingleBuyerView, add_single_buyer_comment, get_comment_buyer, \
+    del_comment, get_object_buyer, automat_tie_buyer, add_id_cont_owner, clear_cont_owner, \
     del_cont_owner, change_show_owner, MeetingSingleList, MeetingSingleListActive, \
     MeetingSingleListArchive, TaskingSingleList, TaskingSingleListActive, TaskingSingleListArchive
 
@@ -15,17 +15,17 @@ from tasking.views import get_form_task as get_form_single_task, edit_form as ed
 
 
 urlpatterns = [
-    url(r'^(?P<aid>[0-9]+)$', SingleArendatorView.as_view(), name='single_arendator'),
+    url(r'^(?P<aid>[0-9]+)$', SingleBuyerView.as_view(), name='single_buyer'),
 
     # block comment
-    url(r'^get_comment_arendator$', get_comment_arendator, name='get_comment_arendator'),
-    url(r'^add_single_arendator_comment$', add_single_arendator_comment, name='add_single_arendator_comment'),
+    url(r'^get_comment_buyer$', get_comment_buyer, name='get_comment_buyer'),
+    url(r'^add_single_buyer_comment$', add_single_buyer_comment, name='add_single_buyer_comment'),
     url(r'^del_comment$', del_comment, name='del_comment'),
     # end block comment
 
     # block pick up an object
-    url(r'^get_object_arendator$', get_object_arendator, name='get_object_arendator'),
-    url(r'^automat_tie_arendator$', automat_tie_arendator, name='automat_tie_arendator'),
+    url(r'^get_object_buyer$', get_object_buyer, name='get_object_buyer'),
+    url(r'^automat_tie_buyer$', automat_tie_buyer, name='automat_tie_buyer'),
     url(r'^add_id_cont_owner$', add_id_cont_owner, name='add_id_cont_owner'),
     url(r'^clear_cont_owner$', clear_cont_owner, name='clear_cont_owner'),
     url(r'^del_cont_owner$', del_cont_owner, name='del_cont_owner'),
@@ -33,7 +33,7 @@ urlpatterns = [
     # end block pick up an object
 
     # start meeting block
-    url(r'^get_meeting_arendator$', MeetingSingleList.as_view(), name='get_meetings'),
+    url(r'^get_meeting_buyer$', MeetingSingleList.as_view(), name='get_meetings'),
     url(r'^get_meetings_active$', MeetingSingleListActive.as_view(), name='get_meetings_active'),
     url(r'^get_meetings_archive$', MeetingSingleListArchive.as_view(), name='get_meetings_archive'),
     url(r'^get_form_meet$', get_form_meet),
@@ -44,7 +44,7 @@ urlpatterns = [
     # end meeting block
 
     # start block task
-    url(r'^get_tasking_arendator$', TaskingSingleList.as_view(), name='get_tasks'),
+    url(r'^get_tasking_buyer$', TaskingSingleList.as_view(), name='get_tasks'),
     url(r'^get_tasks_active$', TaskingSingleListActive.as_view(), name='get_tasks_active'),
     url(r'^get_tasks_archive$', TaskingSingleListArchive.as_view(), name='get_tasks_archive'),
     url(r'^get_form_single_task$', get_form_single_task),

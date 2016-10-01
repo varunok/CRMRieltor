@@ -17,7 +17,7 @@ def save_photo(request, last_id):
                     img = ImagesFacility(album_id=last_id, image=image, cover=1)
                     img.save()
                     count_image += 1
-                    cover_img=False
+                    cover_img = False
                 else:
                     img = ImagesFacility(album_id=last_id, image=image)
                     img.save()

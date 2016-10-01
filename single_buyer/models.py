@@ -2,18 +2,18 @@
 
 
 from django.db import models
-from arendator.models import Arendator
+from buyer.models import Buyer
 
 
 # Create your models here.
 
 
-class SingleArendatorComments(models.Model):
+class SingleBuyerComments(models.Model):
     class Meta(object):
         verbose_name = u'Коментарий обекта'
         verbose_name_plural = u'Коментарии объектов'
 
-    obj_comments = models.ForeignKey(Arendator,
+    obj_comments = models.ForeignKey(Buyer,
                                      verbose_name=u'Обьект',
                                      on_delete=models.PROTECT)
 

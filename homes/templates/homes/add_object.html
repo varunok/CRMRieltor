@@ -455,7 +455,13 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="row load-img-wrap">
-                                                <div class="add_imges_row"></div>
+                                                <div class="add_imges_row">
+                                                    {% if edit %}
+                                                        {% for image in images %}
+                                                            <div class="col-md-2 load-img" style="margin-top:5px;"><img src="{{MEDIA_URL}}{{image.image}}" alt="{{image.id}}" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -697,9 +703,16 @@
         });
         $('.add_imges_row').on('click', '.load-img-del', function (event) {
             event.preventDefault();
-            data = $(this).parents('.load-img').children('img').attr('src');
+            var img = $(this).parents('.load-img').children('img').attr('src');
+            var img_id = $(this).parents('.load-img').children('img').attr('alt');
+            var obj_id = $('#edit').val();
+            var data = {
+                'img': img,
+                'img_id': img_id,
+                'obj_id': obj_id
+            }
             $(this).parents('.load-img').fadeOut()
-            $.get('del_img', data, deleteImg);
+            $.post('del_img', data, deleteImg);
             function deleteImg() {
                 $(this).parents('.load-img').hide()
             }

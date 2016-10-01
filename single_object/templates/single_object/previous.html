@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load video_tag %}
 <!DOCTYPE HTML>
 
 <html>
@@ -117,7 +118,11 @@
                 {% if single_object.youtube %}
                     <div class="off-video">
                         <h4>Видео</h4>
-                            {{single_object.youtube}}
+                            {% if 'iframe' in single_object.youtube %}
+                                {{single_object.youtube|safe}}
+                            {% else %}
+                                {{single_object.youtube|youtube_code|safe}}
+                            {% endif %} 
                     </div>
                 {% endif %}
                 
