@@ -32,7 +32,8 @@ def backup_global(request):
 def get_backup_global(request):
     # path_to_python = ''
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    cmd = os.path.join(BASE_DIR, 'data/bin/python', './manage.py dbbackup')
+    cmd = ''.join([BASE_DIR, '/data/bin/python', ' manage.py dbbackup'])
+    print(cmd)
     PIPE = subprocess.PIPE
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True)
