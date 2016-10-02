@@ -1,5 +1,7 @@
 {% extends "homes/base.html" %}
 
+{% load static from staticfiles %}
+
 {% block title %}<title>Backup</title>{% endblock title %}
 
 {% block extra_css %}{% endblock extra_css %}
@@ -38,7 +40,7 @@
                         </a>
                     </div>
                     <div class="col-md-6">
-                        <a href="{% url 'setting_globall' %}" class="setting-link">
+                        <a href="{% url 'backup_global' %}" class="setting-link">
                             <div class="setting-section">
                                 <div class="setting-icon col-md-4">
                                     <i class="fa fa-cog"></i>
