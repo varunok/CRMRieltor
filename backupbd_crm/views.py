@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+import os
 import subprocess
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -30,7 +31,8 @@ def backup_global(request):
 
 def get_backup_global(request):
     # path_to_python = ''
-    cmd = './manage.py dbbackup'
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    cmd = os.path.join(BASE_DIR, 'data/bin/python', './manage.py dbbackup')
     PIPE = subprocess.PIPE
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True)
