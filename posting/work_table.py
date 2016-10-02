@@ -151,7 +151,7 @@ class InsertData(ConnectDatabases):
             query = "SELECT id FROM Object_Live WHERE code='%s'" % 'O' + str(self.data.id)
             c.execute(query)
             self.id_obj = c.fetchone()[0]
-            SavePhoto(self.id_obj, str(self.data.id), self._get_district_id(self.data.district_obj))
+            SavePhoto(self.id_obj, 'O' + str(self.data.id), self._get_district_id(self.data.district_obj))
             # c.commit()
         except:
             isPost = False

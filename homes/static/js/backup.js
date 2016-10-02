@@ -7,6 +7,9 @@ $(document).ready(function() {
         if (object_xls_val == 'create'){
             $.post('create_object_xls')
             .success( function (data) {
+                // $('#download_xls').attr('href', data);
+                // $('#download_xls').css('display', 'block');
+                window.location.href = data;
                 $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
                 $('.messageServer').text('Создано').fadeIn(1000).delay(2000).fadeOut(500);
             })

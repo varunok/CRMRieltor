@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import xlwt
-import uuid
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from facility.models import ContactOwner
+from .writeXLS import WriteXLS
+from .backup_objects import title, SaveConOwn
 
 
 def list_backup(request):
@@ -12,29 +12,11 @@ def list_backup(request):
 
 
 def backup_xls(request):
-    if request.method == 'POST':
-        return render(request, 'backupbd_crm/backup_xls.html', {})
+    # if request.method == 'POST':
+    return render(request, 'backupbd_crm/backup_xls.html', {})
 
 
 def create_object_xls(request):
-    facilitis = ContactOwner.objects.all()
-    WriteXLS().write_table(facilitis)
-    return HttpResponse(status=200)
-
-class WriteXLS(object):
-    """docstring for WriteXLS"""
-    def __init__(self):
-        pass
-
-    def write_table(self, data):
-        # try:
-            wb = xlwt.Workbook()
-            ws = wb.add_sheet('Sheet Phone')
-            for obj in data:
-                obj = obj.filter()
-                for elem in obj:
-                    ws.write(data.index(obj), obj.index(elem), str(elem))
-            wb.save(''.join(["object-", str(uuid.uuid1()), "-.xls"]))
-            return True
-        # except:
-            # return None
+    facilitis = SaveConOwn.objects.all()
+    path_to_file = WriteXLS('objects', facilitis, title).write_table()
+    return HttpResponse(path_to_file)
