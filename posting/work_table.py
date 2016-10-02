@@ -53,7 +53,7 @@ class SavePhoto(ConnectDatabases):
         except:
             pass
         self.images_list = []
-        images = ImagesFacility.objects.filter(album=str(self.objectCode))
+        images = ImagesFacility.objects.filter(album=str(self.objectCode[1:]))
         for ele in images:
             img_to = self._copy_image(ele.image).split('/')
             img_to = img_to[-2]+'/'+img_to[-1]
@@ -148,10 +148,11 @@ class InsertData(ConnectDatabases):
                      self._get_riltorId(),
                      self._updateDate())
             c.execute(query)
-            query = "SELECT id FROM Object_Live WHERE code='%s'" % 'O' + str(self.data.id)
+            id_d = u'O' + str(self.data.id)
+            query = "SELECT id FROM Object_Live WHERE code='%s'" % id_d
             c.execute(query)
             self.id_obj = c.fetchone()[0]
-            SavePhoto(self.id_obj, 'O' + str(self.data.id), self._get_district_id(self.data.district_obj))
+            SavePhoto(self.id_obj, id_d, self._get_district_id(self.data.district_obj))
             # c.commit()
         except:
             isPost = False
