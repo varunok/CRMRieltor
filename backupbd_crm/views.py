@@ -41,4 +41,4 @@ def get_backup_global(request):
     print(p)
     p = p.split(' ')[-1]
     path_to_file = ''.join([settings.MEDIA_URL, 'backup_global/', p])
-    return HttpResponse(path_to_file)
+    return HttpResponse(cmd)
