@@ -5386,11 +5386,28 @@ select {
 .setting-section .setting-icon i {
   vertical-align: sub;
 }
+
+.setting-section .setting-icon2 {
+  height: 120px;
+  text-align: center;
+  font-size: 50px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.setting-section .setting-icon2 i {
+  vertical-align: sub;
+}
 .setting-section .setting-text h3 {
   margin: 15px 0;
   text-transform: uppercase;
 }
 .setting-section .setting-text p {
+  margin: 5px 0px;
+}
+.setting-section .setting-text2 h4 {
+  margin: 5px 2px;
+  text-transform: uppercase;
+}
+.setting-section .setting-text2 p {
   margin: 5px 0px;
 }
 
