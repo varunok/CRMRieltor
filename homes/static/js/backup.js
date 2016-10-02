@@ -24,7 +24,7 @@ $(document).ready(function() {
         .success( function (data) {
             $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
             $('.messageServer').text('Создано').fadeIn(1000).delay(2000).fadeOut(500);
-            // window.location.href = data;
+            window.location.href = data;
         })
         .error(function(data) {
             $('.messageServer').css('backgroundColor', '#c9302c');
