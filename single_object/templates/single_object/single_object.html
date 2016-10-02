@@ -241,7 +241,7 @@
         </div>
         </div>
     </section>
-        <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam minima nisi ab dolorem iste optio officia. Maxime ab corporis incidunt inventore explicabo qui velit, ipsa sapiente unde numquam accusamus, earum commodi voluptatibus, odit nemo at eum nulla amet iste pariatur. Voluptatum natus aspernatur quae explicabo, inventore magni, vel quia quos quo itaque adipisci ipsam. At culpa, provident non quos blanditiis nesciunt, eligendi dolor ea, quas est delectus doloribus quaerat dolorem temporibus soluta! Praesentium maxime ut aperiam, iusto natus vitae quod!</div>
+       <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">{{previu_sms}}</div>
 {% endblock content %}
 {% block extra_js %}
     <script>
@@ -273,35 +273,35 @@
     <script>
     $(document).ready(function() {
 
-            function modal_pop(){ 
-                $('.popup-modal').magnificPopup({
-                type: 'inline',
-                preloader: false,
-                focus: '#username',
-                modal: true
+
+
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1]
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+                        }
+                    });
+
+                    $('.delivery-pre').magnificPopup({
+              delegate: 'a',
+              removalDelay: 500, //delay removal by X to allow out-animation
+              callbacks: {
+                beforeOpen: function() {
+                   this.st.mainClass = this.st.el.attr('data-effect');
+                }
+              },
+              midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
             });
-            }
-            $(document).on('click', '.popup-modal-dismiss', function (e) {
-                e.preventDefault();
-                $.magnificPopup.close();
-            });
-        $('.tabs-rule').on('click', '#popupId', function(event) {
-            event.preventDefault();
-            console.log('ok')
-            modal_pop();
-            modal_pop();
-           
-        });
-        $('.delivery-pre').magnificPopup({
-		  delegate: 'a',
-		  removalDelay: 500, //delay removal by X to allow out-animation
-		  callbacks: {
-		    beforeOpen: function() {
-		       this.st.mainClass = this.st.el.attr('data-effect');
-		    }
-		  },
-		  midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-		});
+
+
 		$('#call-phone').on('change', function() {
 			$.get('change_call_date', {"id": {{ single_object.id }}, "data": $(this).val()})
             .success( function(data){

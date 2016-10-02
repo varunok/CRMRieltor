@@ -85,7 +85,7 @@ def delivery_email_arendator_single(request):
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         print(request.POST.getlist('id_obj')[0].split(','))
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
-        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+        html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
                                                                    'objects': objects})
         arendator = Arendator.objects.get(id=request.POST.get('id_a'))
 
@@ -101,7 +101,7 @@ def delivery_email_buyer_single(request):
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         print(request.POST.getlist('id_obj')[0].split(','))
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
-        html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
+        html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
                                                                    'objects': objects})
         buyer = Buyer.objects.get(id=request.POST.get('id_b'))
 
@@ -303,7 +303,7 @@ def link_to_single_obj(single_object, type_kontragent):
         price = single_object.price_bay
     link = ''.join([str(franshise.franshise), '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
-    link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
+    link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                      str(price), link, templ_sms.signature])
     return link
 

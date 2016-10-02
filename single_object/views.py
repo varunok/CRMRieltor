@@ -23,6 +23,7 @@ from tasking.models import Tasking
 from meeting.models import Meeting
 from homes.views import TaskingList, MeetingList
 from setting_globall.models import Franshise
+from sender_email.views import link_to_single_obj
 
 
 class SingleObjectView(DetailView):
@@ -51,6 +52,7 @@ class SingleObjectView(DetailView):
             self.context['count_buyer'] = 0
         self.context['count_task'] = Tasking.objects.filter(task_trash=False, task_facility=self.context['single_object'].id).count()
         self.context['count_meet'] = Meeting.objects.filter(meet_trash=False, meet_facility=self.context['single_object'].id).count()
+        self.context['previu_sms'] = link_to_single_obj(self.context['single_object'], 'arendator')
         return self.context
 
     def get(self, request, *args, **kwargs):
