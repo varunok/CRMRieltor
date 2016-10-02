@@ -37,7 +37,6 @@ def get_backup_global(request):
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True, cwd=BASE_DIR)
     p = p.stdout.read()
-    # print(p)
-    # p = p.split(' ')[-1]
+    p = p.split(' ')[-1]
     path_to_file = ''.join([settings.MEDIA_URL, 'backup_global/', p])
-    return HttpResponse(cmd, p)
+    return HttpResponse(path_to_file)
