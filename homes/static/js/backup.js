@@ -7,8 +7,7 @@ $(document).ready(function() {
         $('.messageServer').html('<div><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Создание</div').fadeIn(500).delay(2000);
         $.post('create_object_xls')
         .success( function (data) {
-            // window.location.href = data;
-
+            window.location.href = data;
             $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
             $('.messageServer').text('Создано').fadeIn(1000).delay(2000).fadeOut(500);
         })
