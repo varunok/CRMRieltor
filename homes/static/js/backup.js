@@ -38,6 +38,27 @@ $(document).ready(function() {
         });
     });
 
+    $(document).on('click', '#backup_dropbox', function(event) {
+        event.preventDefault();
+        var _this = $(this)
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').html('<div><i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Создание</div').fadeIn(500).delay(2000);
+        $.post('backup_dropbox')
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            $('.messageServer').text('Создано').fadeIn(1000).delay(2000).fadeOut(500);
+            _this.parent().removeClass('col-md-6');
+            _this.parent().addClass('col-md-5');
+            $('#backup_global_link').parent().fadeIn('slow');
+            $('#backup_global_link').attr('download', data);
+            // window.location.href = data;
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        });
+    });
+
     // $('#not_click').on('click', function(event) {
     //     event.preventDefault();
     //     /* Act on the event */

@@ -19,6 +19,7 @@ from setting_globall.models import Subscribe
 
 
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
+ALLOWED_HOSTS = settings.ALLOWED_HOSTS[0]
 
 
 def send_email_rieltor(request):
@@ -304,15 +305,13 @@ def list_phone_validate(list_phone):
 
 
 def link_to_single_obj(single_object, type_kontragent):
-    from setting_globall.models import Franshise
-    franshise = Franshise.objects.get(id=1)
     templ_sms = get_object_or_404(TemplateSms, id=1)
     address = single_object.street_obj
     if type_kontragent == 'arendator':
         price = single_object.price_month
     elif type_kontragent == 'buyer':
         price = single_object.price_bay
-    link = ''.join([str(franshise.franshise), '/objects/data/', str(single_object.id)])
+    link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
     link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                      str(price), link, templ_sms.signature])
@@ -320,8 +319,6 @@ def link_to_single_obj(single_object, type_kontragent):
 
 
 def link_to_obj(objects, type_kontragent):
-    from setting_globall.models import Franshise
-    franshise = Franshise.objects.get(id=1)
     templ_sms = get_object_or_404(TemplateSms, id=1)
     list_obj = []
     for single_object in objects:
@@ -330,7 +327,7 @@ def link_to_obj(objects, type_kontragent):
             price = single_object.price_month
         elif type_kontragent == 'buyer':
             price = single_object.price_bay
-        link = ''.join([str(franshise.franshise), '/objects/data/', str(single_object.id)])
+        link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
         landmark = single_object.landmark
         link = '.'.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                         str(price), link, templ_sms.signature])
