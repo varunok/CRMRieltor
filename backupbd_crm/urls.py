@@ -2,7 +2,8 @@
 
 
 from django.conf.urls import url
-from backupbd_crm.views import list_backup, backup_xls, create_object_xls, backup_global, get_backup_global
+from backupbd_crm.views import list_backup, backup_xls, create_object_xls, backup_global, get_backup_global, \
+    restore_file_save, restore_databases
 
 
 urlpatterns = [
@@ -11,4 +12,6 @@ urlpatterns = [
     url(r'^create_object_xls$', create_object_xls),
     url(r'^backup_global$', backup_global, name='backup_global'),
     url(r'^get_backup_global$', get_backup_global, name='get_backup_global'),
+    url(r'^restore_file_save$', restore_file_save),
+    url(r'^restore_databases$', restore_databases),
 ]
