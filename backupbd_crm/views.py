@@ -36,7 +36,7 @@ def get_backup_global(request):
     # path_to_python = ''
     path = ''.join([BASE_DIR, '/media/backup_global/backup.psql'])
     # cmd = ''.join([BASE_DIR, '/../data/bin/python', ' manage.py dbbackup --output-path ', path])
-    cmd = ''.join(['./manage.py dbbackup'])
+    cmd = ''.join(['./manage.py dbbackup --output-path ', path])
     # cmd = ''.join([BASE_DIR, '/../data/bin/python', ' manage.py dbbackup'])
     PIPE = subprocess.PIPE
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,

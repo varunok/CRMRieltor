@@ -211,11 +211,12 @@ def delivery_sms_arendator_single(request):
                 result = client.service.SendSMS(sender=setting_sms.sender,
                                                 destination=list_phone_validate([arendator.phone_first]),
                                                 text=link_to_obj(objects, 'arendator'))
+                print(result)
                 for i in result['ResultArray'][1:]:
                     status = client.service.GetMessageStatus(MessageId=i)
                     if status == u'Отправлено':
                         count_message += 1
-                return HttpResponse(count_message)
+                return HttpResponse(result)
             else:
                 balance = u'Ваш баланс ' + balance
                 return HttpResponse(balance, status=500)
