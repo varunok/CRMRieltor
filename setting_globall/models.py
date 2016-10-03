@@ -43,3 +43,18 @@ class Franshise(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.franshise)
+
+
+class Subscribe(models.Model):
+    # TODO: Define fields here
+
+    class Meta:
+        verbose_name = u"Подпись"
+        verbose_name_plural = u"Подпись"
+
+    name = models.CharField(verbose_name=u"Подпись", max_length=50)
+
+    phone = models.CharField(verbose_name=u"Подпись", max_length=50)
+
+    def __str__(self):
+        return '%s' % self.name

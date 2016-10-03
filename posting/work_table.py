@@ -11,6 +11,7 @@ from setting_globall.models import Franshise
 from facility.models import ImagesFacility
 from watermark.wm import AddWatermark
 from django.utils import timezone, dateformat
+from watermark.models import Watermark
 
 
 
@@ -62,9 +63,13 @@ class SavePhoto(ConnectDatabases):
 
     def _copy_image(self, img):
         img_from = ''.join([os.getcwd(), '/media/', str(img)])
-        img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg' ])
-        # shutil.copy2(img_from, img_to)
-        AddWatermark(img_from, img_to)
+        img_to = ''.join([self.abs_path, '/', self.franshise[0]['franshise'],
+                          '/data/object/live/', str(self.objectId), '/', str(uuid.uuid1()), '.jpg'])
+        on_off, create = Watermark.objects.get_or_create(id=1)
+        if on_off.on_off:
+            AddWatermark(img_from, img_to)
+        else:
+            shutil.copy2(img_from, img_to)
         return img_to
 
 

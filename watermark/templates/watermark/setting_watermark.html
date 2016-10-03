@@ -24,6 +24,15 @@
             <div class="row">
                 <h1 class="section-head">Водяной <span>знак</span></h1>
                     <div class="messageServer"></div>
+                    <br>
+                    <a id="on_off_watermark" href="#" class="btn 
+                    {% if wm.on_off %}
+                        btn-green">Включено
+                    {% else %}
+                        btn-red">Виключено
+                    {% endif %}
+                    </a>
+                    <input type="hidden" value="{% if wm.on_off %}0{% else %}1{% endif %}" id="valu" name="">
                 <div class="section-sort">
                     <a href="#" class="extend-block">
                         <i class=""></i>
@@ -64,7 +73,7 @@
 {% endblock content %}
 {% block extra_js %}
 	<script>
-        $(document).ready(function() {})
+        $(document).ready(function() {
         	$('#send_wm').on('click', function() {
         		// event.preventDefault();
         		$('.refresh').html('<i style="margin-left:60px;" class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>');
@@ -78,5 +87,25 @@
 
         			})
         	});			
+            $('#on_off_watermark').on('click', function(event) {
+                event.preventDefault();
+                var valu = $('#valu').val();
+                $.get('on_off_watermark', {'val': valu}, function(data) {
+                    var valu = $('#valu').val();
+                    if (valu === '0') {
+                        $('#on_off_watermark').removeClass('btn-green');
+                        $('#on_off_watermark').addClass('btn-red');
+                        $('#on_off_watermark').text('Виключено');
+                        $('#valu').val('1');
+                    }
+                    else{
+                        $('#on_off_watermark').removeClass('btn-red');
+                        $('#on_off_watermark').addClass('btn-green');
+                        $('#on_off_watermark').text('Включено');
+                        $('#valu').val('0');
+                    }
+                });
+            });
+        })
     </script>
 {% endblock extra_js %}

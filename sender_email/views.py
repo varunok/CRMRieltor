@@ -14,6 +14,7 @@ from buyer.models import Buyer
 from makler.models import Makler
 from suds.client import Client
 from django.conf import settings
+from setting_globall.models import Subscribe
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 
@@ -38,9 +39,11 @@ def send_email_so(request):
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
+        subs, create = Subscribe.objects.get_or_create(id=1)
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'request': request_abs_url,
-                                                                   'single_object': single_object})
+                                                                   'single_object': single_object,
+                                                                   'subs': subs})
 
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
                             [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
@@ -64,9 +67,11 @@ def delivery_email_arendator(request):
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
+        subs, create = Subscribe.objects.get_or_create(id=1)
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'request': request_abs_url,
-                                                                   'single_object': single_object})
+                                                                   'single_object': single_object,
+                                                                   'subs': subs})
         arendator_emails = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('email', flat=True)
         arendator_emails = [i for i in arendator_emails if i != '']
         count_sending = 0
@@ -83,10 +88,12 @@ def delivery_email_arendator(request):
 def delivery_email_arendator_single(request):
     if request.method == 'POST':
         temp_email = get_object_or_404(TemplateEmail, pk=1)
-        print(request.POST.getlist('id_obj')[0].split(','))
+        # print(request.POST.getlist('id_obj')[0].split(','))
+        subs, create = Subscribe.objects.get_or_create(id=1)
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
         html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
-                                                                   'objects': objects})
+                                                                        'objects': objects,
+                                                                        'subs': subs})
         arendator = Arendator.objects.get(id=request.POST.get('id_a'))
 
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
@@ -99,10 +106,12 @@ def delivery_email_arendator_single(request):
 def delivery_email_buyer_single(request):
     if request.method == 'POST':
         temp_email = get_object_or_404(TemplateEmail, pk=1)
-        print(request.POST.getlist('id_obj')[0].split(','))
+        # print(request.POST.getlist('id_obj')[0].split(','))
+        subs, create = Subscribe.objects.get_or_create(id=1)
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
         html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
-                                                                   'objects': objects})
+                                                                        'objects': objects,
+                                                                        'subs': subs})
         buyer = Buyer.objects.get(id=request.POST.get('id_b'))
 
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
@@ -117,9 +126,11 @@ def delivery_email_buyer(request):
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
+        subs, create = Subscribe.objects.get_or_create(id=1)
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                              'request': request_abs_url,
-                                                                             'single_object': single_object})
+                                                                             'single_object': single_object,
+                                                                             'subs': subs})
         buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
         buyer_emails = [i for i in buyer_emails if i != '']
         count_sending = 0

@@ -46,6 +46,7 @@ import searching.urls
 import single_arendator.urls
 import single_buyer.urls
 import backupbd_crm.urls
+import learning.urls
 
 urlpatterns = [
     url(r'^', include(setting_street.urls)),
@@ -73,6 +74,7 @@ urlpatterns = [
     url(r'^arendators/', include(single_arendator.urls)),
     url(r'^buyers/', include(single_buyer.urls)),
     url(r'^', include(backupbd_crm.urls)),
+    url(r'^', include(learning.urls)),
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin

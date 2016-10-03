@@ -15,5 +15,7 @@ class Watermark(models.Model):
 
     watermark_img = models.ImageField(verbose_name=u'Водяной знак', upload_to='watermark')
 
+    on_off = models.BooleanField(default=True)
+
     def __unicode__(self):
         return self.text

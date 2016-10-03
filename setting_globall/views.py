@@ -4,9 +4,10 @@
 # Create your views here.
 from django.db import DataError
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
-from setting_globall.models import NationalCarrency, ListNationalCarrency, FranshiseSity, Franshise
+from setting_globall.models import NationalCarrency, ListNationalCarrency, FranshiseSity, Franshise, Subscribe
+from setting_globall.forms import SubscribeForm
 
 
 def setting_globall(request):
@@ -71,3 +72,21 @@ def franshise(request):
         return HttpResponse(u'Значение сохранено')
     else:
         return HttpResponse(u'Ошибка', status=404)
+
+
+def get_subscribe(request):
+    subs, create = Subscribe.objects.get_or_create(id=1)
+    form = SubscribeForm(instance=subs)
+    return render(request, 'setting_globall/subscribe.html', {'form': form})
+
+
+def save_subscribe_form(request):
+    subs, create = Subscribe.objects.get_or_create(id=1)
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST, instance=subs)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('setting')
+    else:
+        form = SubscribeForm(instance=subs)
+    return render(request, 'setting_globall/subscribe.html', {'form': form})

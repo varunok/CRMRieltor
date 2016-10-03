@@ -154,12 +154,10 @@
                             <td style="width:20%">
                                 <h2>Контакты</h2>
                                 <ul>
-                                    {# <li><b>Телефон:</b> <span class="text_contact"></span></li> #}
+                                    <li><b>Телефон:</b> <span class="text_contact">{{subs.phone}}</span></li>
                                     <li><b>Имя:</b> 
                                         <span class="text_contact">
-                                            {% for ri in single_object.rieltor.all %}
-                                                {{ ri }}
-                                            {% endfor %}
+                                            {{subs.name}}
                                         </span>
                                     </li>
                                 </ul>
