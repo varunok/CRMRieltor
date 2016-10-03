@@ -216,7 +216,7 @@ def delivery_sms_arendator_single(request):
                     status = client.service.GetMessageStatus(MessageId=i)
                     if status == u'Отправлено':
                         count_message += 1
-                return HttpResponse(setting_sms.sender.encode('utf8'), list_phone_validate([arendator.phone_first]).encode('utf8'), link_to_obj(objects, 'arendator').encode('utf8'))
+                return HttpResponse(''.join([setting_sms.sender.encode('utf8'), list_phone_validate([arendator.phone_first]).encode('utf8'), link_to_obj(objects, 'arendator').encode('utf8')]))
             else:
                 balance = u'Ваш баланс ' + balance
                 return HttpResponse(balance, status=500)
