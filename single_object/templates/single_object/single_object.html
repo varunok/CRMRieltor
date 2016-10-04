@@ -512,13 +512,13 @@
         });
 
         // cliplink
-        var clip_link = document.getElementById('clip_link');
-        var clipboard = new Clipboard(clip_link);
-        $(document).on('click', '#clip_link',function(event){event.preventDefault()});
-            clipboard.on('success', function(e) {
-                $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
-                $('.messageServer').text('Ссилка на обект скопирована в буфер').fadeIn(1000).delay(2000).fadeOut(500);
-            });
+        // var clip_link = document.getElementById('clip_link');
+        // var clipboard = new Clipboard(clip_link);
+        // $(document).on('click', '#clip_link',function(event){event.preventDefault()});
+        //     clipboard.on('success', function(e) {
+        //         $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+        //         $('.messageServer').text('Ссилка на обект скопирована в буфер').fadeIn(1000).delay(2000).fadeOut(500);
+        //     });
     });
     </script>
     <script src="{% static "js/jquery-ui-timepicker-addon.js" %}"></script>
