@@ -173,7 +173,7 @@ class InsertData(ConnectDatabases):
             c.close()
             db.close()
 
-    def _youtube_code(code):
+    def _youtube_code(self, code):
         if 'iframe' in code:
             return code
         iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>'
@@ -186,7 +186,7 @@ class InsertData(ConnectDatabases):
         else:
             return ''
 
-    def _panorama_code(code):
+    def _panorama_code(self, code):
         if 'yandex' in code:
             code = code.replace('690%2C495', '490%2C335')
             return code
