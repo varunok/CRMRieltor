@@ -501,6 +501,6 @@ class MeetingSingleListArchive(MeetingSingleList):
 class DatabasesPrevious(SingleObjectView):
     slug_url_kwarg = 'poid'
     slug_field = 'id'
-    template_name = 'single_object/previous.html'
+    template_name = 'single_object/previews.html'
 
 
