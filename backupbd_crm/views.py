@@ -3,11 +3,13 @@
 
 import os
 import subprocess
+from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from .writeXLS import WriteXLS
 from .backup_objects import title, SaveConOwn
+from setting_globall.models import Franshise
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,17 +36,18 @@ def backup_global(request):
 
 def get_backup_global(request):
     # path_to_python = ''
-    path = ''.join([BASE_DIR, '/media/backup_global/backup.psql'])
-    # cmd = ''.join([BASE_DIR, '/../data/bin/python', ' manage.py dbbackup --output-path ', path])
-    cmd = ''.join(['./manage.py dbbackup --output-path ', path])
+    franshise, created = Franshise.objects.get_or_create(id=1)
+    file_name = '-'.join([str(franshise), str(timezone.now()), 'backup.psql'])
+    path = ''.join([BASE_DIR, '/media/backup_global/', file_name])
+    cmd = ''.join([BASE_DIR, '/../data/bin/python', ' manage.py dbbackup --output-path ', path])
+    # cmd = ''.join(['./manage.py dbbackup --output-path ', path])
     # cmd = ''.join([BASE_DIR, '/../data/bin/python', ' manage.py dbbackup'])
     PIPE = subprocess.PIPE
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True, cwd=BASE_DIR)
     p = p.stdout.read()
-    print(p)
     p = p.split(' ')[-1].strip()
-    path_to_file = ''.join([settings.MEDIA_URL, 'backup_global/', p])
+    path_to_file = ''.join([settings.MEDIA_URL, 'backup_global/', file_name])
     return HttpResponse(path_to_file)
 
 
@@ -81,21 +84,15 @@ def restore_databases(request):
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True, cwd=BASE_DIR)
     p = p.stdout.read()
-    print(p)
     return HttpResponse(p)
 
 
 def backup_dropbox(request):
-    settings.DBBACKUP_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-    settings.DBBACKUP_STORAGE_OPTIONS = {
-        'oauth2_access_token': '8M3Y_7ZcqZYAAAAAAAACWme1Wfl_Xgf7KygE_GRVgFkB7cU_hjNff6HErG3_gQWi',
-    }
     cmd = ''.join(['./manage.py dbbackup'])
     PIPE = subprocess.PIPE
     p = subprocess.Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE,
                          stderr=subprocess.STDOUT, close_fds=True, cwd=BASE_DIR)
     p = p.stdout.read()
-    print(p)
     # p = p.split(' ')[-1].strip()
     # path_to_file = ''.join([settings.MEDIA_URL, 'backup_global/', p])
     return HttpResponse(p)

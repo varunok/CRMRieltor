@@ -55,7 +55,7 @@ class ShowsArendator(models.Model):
         verbose_name_plural = u'Покази арендаторам'
 
     type_shows_arendator = models.ForeignKey(TypeShows, verbose_name=u"Покази Арендаторам",
-                                             null=True, default=1)
+                                             null=True)
 
     array_arendator = models.ForeignKey(Arendator, null=True)
 
@@ -83,7 +83,7 @@ class ShowsBuyer(models.Model):
         verbose_name = u'Показ покупателю'
         verbose_name_plural = u'Покази покупателям'
 
-    type_shows_buyer = models.ForeignKey(TypeShows, verbose_name=u"Покази Покупателю", null=True, default=1)
+    type_shows_buyer = models.ForeignKey(TypeShows, verbose_name=u"Покази Покупателю", null=True)
 
     array_buyer = models.ForeignKey(Buyer, null=True)
 

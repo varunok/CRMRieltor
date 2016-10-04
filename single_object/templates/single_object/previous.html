@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>Title</title>
+    {% block title %}<title>{{single_object.street_obj}} {{single_object.number_home|default:''}}</title>{% endblock title %}
 
     <link href="{% static "css/reset.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
@@ -154,10 +154,10 @@
                             <td style="width:20%">
                                 <h2>Контакты</h2>
                                 <ul>
-                                    <li><b>Телефон:</b> <span class="text_contact">{{subs.phone}}</span></li>
+                                    <li><b>Телефон:</b> <span class="text_contact">{{subscribe.phone}}</span></li>
                                     <li><b>Имя:</b> 
                                         <span class="text_contact">
-                                            {{subs.name}}
+                                            {{subscribe.name}}
                                         </span>
                                     </li>
                                 </ul>
@@ -187,11 +187,7 @@
                 {% if single_object.youtube %}
                     <div class="off-video">
                         <h4>Видео</h4>
-                            {% if 'iframe' in single_object.youtube %}
-                                {{single_object.youtube|safe}}
-                            {% else %}
                                 {{single_object.youtube|youtube_code|safe}}
-                            {% endif %} 
                     </div>
                 {% endif %}
                 

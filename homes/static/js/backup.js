@@ -47,11 +47,6 @@ $(document).ready(function() {
         .success( function (data) {
             $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
             $('.messageServer').text('Создано').fadeIn(1000).delay(2000).fadeOut(500);
-            _this.parent().removeClass('col-md-6');
-            _this.parent().addClass('col-md-5');
-            $('#backup_global_link').parent().fadeIn('slow');
-            $('#backup_global_link').attr('download', data);
-            // window.location.href = data;
         })
         .error(function(data) {
             $('.messageServer').css('backgroundColor', '#c9302c');

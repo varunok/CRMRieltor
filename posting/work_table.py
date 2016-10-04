@@ -12,6 +12,7 @@ from facility.models import ImagesFacility
 from watermark.wm import AddWatermark
 from django.utils import timezone, dateformat
 from watermark.models import Watermark
+from setting_globall.models import Subscribe
 
 
 
@@ -48,11 +49,17 @@ class SavePhoto(ConnectDatabases):
             db.close()
 
     def _get_images(self):
+        self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
+        dir_to_photo = ''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/'])
         try:
-            self.abs_path = '/'.join(os.getcwd().split('/')[0:5])
-            os.makedirs(''.join([self.abs_path, '/', self.franshise[0]['franshise'], '/data/object/live/', str(self.objectId), '/']))
+            os.makedirs(dir_to_photo)
         except:
-            pass
+            try:
+                list_file = os.listdir(dir_to_photo)
+                for ele in list_file:
+                    os.remove(''.join((dir_to_photo, ele)))
+            except:
+                pass
         self.images_list = []
         images = ImagesFacility.objects.filter(album=str(self.objectCode[1:]))
         for ele in images:
@@ -124,6 +131,7 @@ class InsertData(ConnectDatabases):
     def __init__(self, data):
         super(InsertData, self).__init__()
         self.data = data
+        subscribe, created = Subscribe.objects.get_or_create(id=1)
 
         try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
@@ -146,10 +154,10 @@ class InsertData(ConnectDatabases):
                      self._get_rooms(self.data.rooms),
                      self._get_price_bay(self.data.price_bay),
                      self._get_price_month(self.data.price_month),
-                     self._get_name_owner(unicode.encode(unicode(self.data.name_owner), "cp1251")),
-                     self._get_phone_owner(unicode.encode(unicode(self.data.phone_owner), "cp1251")),
-                     self._get_youtube(unicode.encode(unicode(self.data.youtube), "cp1251")),
-                     self._get_panorama(unicode.encode(unicode(self.data.panorama), "cp1251")),
+                     self._get_name_owner(unicode.encode(unicode(subscribe.name), "cp1251")),
+                     self._get_phone_owner(unicode.encode(unicode(subscribe.phone), "cp1251")),
+                     self._youtube_code(self._get_youtube(unicode.encode(unicode(self.data.youtube), "cp1251"))),
+                     self._panorama_code(self._get_panorama(unicode.encode(unicode(self.data.panorama), "cp1251"))),
                      self._get_riltorId(),
                      self._updateDate())
             c.execute(query)
@@ -164,6 +172,31 @@ class InsertData(ConnectDatabases):
         finally:
             c.close()
             db.close()
+
+    def _youtube_code(code):
+        if 'iframe' in code:
+            return code
+        iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>'
+        code = code.split('/')[-1]
+        if '=' in code:
+            code = code.split('=')[-1]
+        code = iframe % code
+        if code:
+            return code
+        else:
+            return ''
+
+    def _panorama_code(code):
+        if 'yandex' in code:
+            code = code.replace('690%2C495', '490%2C335')
+            return code
+        panorama = '<iframe %s width="490" height="335" frameborder="0" style="border:0" allowfullscreen=""></iframe>'
+        codes = code.split(' ')
+        for src in codes:
+            if 'src' in src:
+                src = panorama % src
+                return src
+        return ''
 
     def _updateDate(self):
         return timezone.now() + datetime.timedelta(days=10) 

@@ -170,16 +170,17 @@ def del_cont_owner(request):
 
 def change_show_owner(request):
     if request.method == 'POST':
+        cont_owner = ContactOwner.objects.get(id=request.POST.get('id_cont_owner'))
+        buyer = Buyer.objects.get(id=request.POST.get('id_buyer'))
         try:
-            cont_owner = ContactOwner.objects.get(id=request.POST.get('id_cont_owner'))
-            buyer = Buyer.objects.get(id=request.POST.get('id_buyer'))
             show = TypeShows.objects.get(id=request.POST.get('show'))
             new_show, created = ShowsBuyer.objects.get_or_create(array_buyer=buyer, array_cont_ower=cont_owner)
             new_show.type_shows_buyer = show
             new_show.save()
             return HttpResponse(content=b'Изменено')
         except:
-            return HttpResponse(status=500)
+            ShowsBuyer.objects.get(array_buyer=buyer, array_cont_ower=cont_owner).delete()
+            return HttpResponse(status=500, content=b'Изменено')
 
 # END BLOCK PICK UP AN OBJECT
 

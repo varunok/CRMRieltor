@@ -34,7 +34,8 @@
                     {% endif %}
 {#                    <h1 class="section-head">Сдам <span>квартиру посуточно </span>{{ single_object.list_operations.all|first }}</h1>#}
                     <div class="section-sort">
-                        <a data-clipboard-text="{{request.get_host}}{% url 'databases' single_object.id %}" href="#" id="clip_link"><i class="fa fa-link"></i> Ссылка</a>
+                        {# <a data-clipboard-text="{{request.get_host}}{% url 'databases' single_object.id %}" href="{% url 'databases' single_object.id %}" id="clip_link"><i class="fa fa-link"></i> Ссылка</a> #}
+                        <a href="{% url 'databases' single_object.id %}" target="blank"><i class="fa fa-link"></i> Ссылка</a>
                         <input id="text_email_so" type="text" placeholder="E-mail">
                         <a id="send_email_so" href="#" class="btn btn-green">Отправить</a>
                     </div>

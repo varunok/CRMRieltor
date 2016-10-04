@@ -53,7 +53,7 @@ class SingleObjectView(DetailView):
         self.context['count_task'] = Tasking.objects.filter(task_trash=False, task_facility=self.context['single_object'].id).count()
         self.context['count_meet'] = Meeting.objects.filter(meet_trash=False, meet_facility=self.context['single_object'].id).count()
         self.context['previu_sms'] = link_to_single_obj(self.context['single_object'], 'arendator')
-        # self.context['subs'] = Subscribe.objects.get_or_create(id=1)
+        self.context['subscribe'], created = Subscribe.objects.get_or_create(id=1)
         return self.context
 
     def get(self, request, *args, **kwargs):

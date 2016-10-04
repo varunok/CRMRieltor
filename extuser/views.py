@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
 from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
+from active_franshise import Active
+from setting_globall.models import Franshise
 
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
@@ -33,6 +35,13 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_active:
                 login(request, user)
+                if not Active().franshises():
+                    try:
+                        franshise = Franshise.objects.get(id=1)
+                        franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
+                        return HttpResponseRedirect(franshise_site)
+                    except:
+                        pass
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponseRedirect('/')

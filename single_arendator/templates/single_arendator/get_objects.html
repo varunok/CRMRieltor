@@ -61,7 +61,7 @@
                                         <input type="text" placeholder="Телефон">
                                         <a id="delivery_sms_arendator_single" href="#" class="btn btn-green">рассылка</a>
                                         <div class="delivery-pre">
-                                        <a href="#test-popup" data-effect="mfp-zoom-in"><i class="fa fa-question-circle-o"></i> Препросмотр</a>
+                                        {# <a href="#test-popup" data-effect="mfp-zoom-in"><i class="fa fa-question-circle-o"></i> Препросмотр</a> #}
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,26 @@
                                         {% for tie in ties %}
                                             {% for arenda in tie.tie_arenda.all %}
                                                 {% if id_arendator.id == tie.tie_arenda.id %}
-                                                    <tr class="success">
+                                                 
+                                                    
+                                                                {% for show in shows %}
+                                                                    
+                                                                    {% for sh in id_show.all %}
+                                                                        {% if sh.array_cont_ower.id == show.id %}
+                                                                            {% if sh.type_shows_arendator.id|floatformat == '2' %}
+                                                                    
+                                                                                 <tr class="success">    
+                                                                            {% endif %}
+                                                                        {% endif %}
+                                                                    {% endfor %}
+
+                                                                {% endfor %}
+
+                                                   
+
+
+
+
                                                         <td>{{tie.tie_cont_owner.id}}</td>
                                                         <td class="f-clr-grey">
                                                             {{tie.tie_cont_owner.district_obj}}<br>
@@ -105,11 +124,11 @@
                                                             <input type="hidden" class="id_arendator" value="{{id_arendator}}">
                                                             
                                                             <select name="" class="show_cont_owner">
+                                                                <option value="0">-----</option>
                                                                 {% for show in shows %}
                                                                     <option
                                                                     {% for sh in id_show.all %}
                                                                         {% if sh.array_cont_ower.id == tie.tie_cont_owner.id %}
-                                                                            {{sh.type_shows_arendator}}
                                                                             {% if sh.type_shows_arendator.id == show.id %}
                                                                                 selected="selected"    
                                                                             {% endif %}
