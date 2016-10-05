@@ -2,21 +2,25 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from learning.forms import LearnForm
 from learning.models import Learn
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def get_learn_list(request):
     learning = Learn.objects.all()
     return render(request, 'learning/learn.html', {'learning': learning})
 
 
+@login_required
 def add_learning(request):
     form = LearnForm()
     return render(request, 'learning/add_learning.html', {'form': form})
 
 
+@login_required
 def add_learn_form(request):
     if request.method == 'POST':
         form = LearnForm(request.POST)

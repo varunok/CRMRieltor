@@ -23,7 +23,7 @@ def add_subway(request):
         response_subway = {"name_subway": add_subway.subway}
         json = JsonResponse(response_subway)
         return HttpResponse(json)
-    except Exception, e:
+    except:
         return HttpResponse("Значение присутствует")
 
 

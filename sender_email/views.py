@@ -4,8 +4,7 @@
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.http import HttpResponse
-from django.core.mail import send_mail, send_mass_mail
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from setting_superadmin.models import AllToConnect
 from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
 from single_object.models import ContactOwner
@@ -15,6 +14,7 @@ from makler.models import Makler
 from suds.client import Client
 from django.conf import settings
 from setting_globall.models import Subscribe
+from django.contrib.auth.decorators import login_required
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 
@@ -22,6 +22,7 @@ EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS[0]
 
 
+@login_required
 def send_email_rieltor(request):
     if request.method == 'POST' and request.is_ajax():
         message = request.POST.get('text')
@@ -35,6 +36,7 @@ def send_email_rieltor(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def send_email_so(request):
     if request.method == 'POST':
         request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
@@ -61,6 +63,7 @@ def is_sender_address_valid(sender_address):
     return '%s' % sender_address
 
 
+@login_required
 def delivery_email_arendator(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
@@ -78,7 +81,8 @@ def delivery_email_arendator(request):
         except:
             arendator_emails = []
         if plus_email:
-            arendator_emails.append(plus_email)
+            if plus_email not in arendator_emails:
+                arendator_emails.append(plus_email)
         count_sending = 0
         for arendator_email in arendator_emails:
             sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
@@ -90,8 +94,10 @@ def delivery_email_arendator(request):
     return HttpResponse(status=500)
 
 
+@login_required
 def delivery_email_arendator_single(request):
     if request.method == 'POST':
+        plus_email = request.POST.get('plus_email')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         # print(request.POST.getlist('id_obj')[0].split(','))
         subs, create = Subscribe.objects.get_or_create(id=1)
@@ -105,11 +111,19 @@ def delivery_email_arendator_single(request):
                             [arendator.email], [arendator.email], html_message=html_message)
         if sending:
             return HttpResponse(sending)
+        if plus_email:
+            if str(plus_email) != str(arendator.email):
+                sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                    [plus_email], [plus_email], html_message=html_message)
+                if sending:
+                    return HttpResponse(sending)
         return HttpResponse(status=500)
 
 
+@login_required
 def delivery_email_buyer_single(request):
     if request.method == 'POST':
+        plus_email = request.POST.get('plus_email')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         # print(request.POST.getlist('id_obj')[0].split(','))
         subs, create = Subscribe.objects.get_or_create(id=1)
@@ -123,9 +137,16 @@ def delivery_email_buyer_single(request):
                             [buyer.email], [buyer.email], html_message=html_message)
         if sending:
             return HttpResponse(sending)
+        if plus_email:
+            if str(plus_email) != str(buyer.email):
+                sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
+                                    [plus_email], [plus_email], html_message=html_message)
+                if sending:
+                    return HttpResponse(sending)
         return HttpResponse(status=500)
 
 
+@login_required
 def delivery_email_buyer(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
@@ -134,9 +155,9 @@ def delivery_email_buyer(request):
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
-                                                                             'request': request_abs_url,
-                                                                             'single_object': single_object,
-                                                                             'subs': subs})
+                                                                   'request': request_abs_url,
+                                                                   'single_object': single_object,
+                                                                   'subs': subs})
         try:
             buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
             buyer_emails = [i for i in buyer_emails if i != '']
@@ -155,6 +176,7 @@ def delivery_email_buyer(request):
     return HttpResponse(status=500)
 
 
+@login_required
 def send_email_makler(request):
     if request.method == 'POST':
         emails = Makler.objects.values_list('email', flat=True)
@@ -171,6 +193,7 @@ def send_email_makler(request):
     return HttpResponse(status=500)
 
 
+@login_required
 def delivery_sms_arendator(request):
     """# Auth(xs:string login, xs:string password, )
        # GetCreditBalance()
@@ -212,11 +235,23 @@ def delivery_sms_arendator(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def delivery_sms_arendator_single(request):
     if request.method == 'POST':
-        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        plus_phone = request.POST.get('plus_phone')
+        try:
+            objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        except:
+            return HttpResponse('Не вибрано обектов для рассилки', status=500)
         setting_sms = get_object_or_404(SettingSMS, id=1)
-        arendator = Arendator.objects.get(id=request.POST.get('id_a'))
+        try:
+            arendator = Arendator.objects.get(id=request.POST.get('id_a'))
+            phone_list = [str(arendator.phone_first)]
+        except:
+            phone_list = []
+        if plus_phone:
+            if not str(plus_phone) in phone_list:
+                phone_list.append(plus_phone)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
         auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
         count_message = 0
@@ -224,7 +259,7 @@ def delivery_sms_arendator_single(request):
             balance = client.service.GetCreditBalance()
             if float(balance):
                 result = client.service.SendSMS(sender=setting_sms.sender,
-                                                destination=list_phone_validate([arendator.phone_first]),
+                                                destination=list_phone_validate(phone_list),
                                                 text=link_to_obj(objects, 'arendator'))
                 for i in result['ResultArray'][1:]:
                     status = client.service.GetMessageStatus(MessageId=i)
@@ -240,11 +275,23 @@ def delivery_sms_arendator_single(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def delivery_sms_buyer_single(request):
     if request.method == 'POST':
-        objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        plus_phone = request.POST.get('plus_phone')
+        try:
+            objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
+        except:
+            return HttpResponse('Не вибрано обектов для рассилки', status=500)
         setting_sms = get_object_or_404(SettingSMS, id=1)
-        buyer = Buyer.objects.get(id=request.POST.get('id_b'))
+        try:
+            buyer = Buyer.objects.get(id=request.POST.get('id_b'))
+            phone_list = [str(buyer.phone_first)]
+        except:
+            phone_list = []
+        if plus_phone:
+            if not str(plus_phone) in phone_list:
+                phone_list.append(plus_phone)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
         auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
         count_message = 0
@@ -252,7 +299,7 @@ def delivery_sms_buyer_single(request):
             balance = client.service.GetCreditBalance()
             if float(balance):
                 result = client.service.SendSMS(sender=setting_sms.sender,
-                                                destination=list_phone_validate([buyer.phone_first]),
+                                                destination=list_phone_validate(phone_list),
                                                 text=link_to_obj(objects, 'buyer'))
                 for i in result['ResultArray'][1:]:
                     status = client.service.GetMessageStatus(MessageId=i)
@@ -267,6 +314,8 @@ def delivery_sms_buyer_single(request):
     else:
         return HttpResponse(status=500)
 
+
+@login_required
 def delivery_sms_buyer(request):
     """# Auth(xs:string login, xs:string password, )
        # GetCreditBalance()
@@ -350,6 +399,6 @@ def link_to_obj(objects, type_kontragent):
         link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
         landmark = single_object.landmark
         link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
-                        str(price), link, templ_sms.signature])
+                          str(price), link, templ_sms.signature])
         list_obj.append(link)
     return ', '.join(list_obj)

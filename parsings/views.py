@@ -4,16 +4,16 @@
 import json
 import re
 import datetime
-from textblob import TextBlob
+# from textblob import TextBlob
 from django.utils import timezone
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-
-from setting_globall.models import FranshiseSity
+from django.http import HttpResponse, JsonResponse
+# from setting_globall.models import FranshiseSity
 from parser_olx import ParserOLX, mutable_month, mutable_phone, valid_categories_list
 from makler.models import Makler
 from facility.models import ContactOwner
 from parsings.models import ConfigParserOLX
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -46,10 +46,12 @@ SELECTOR_DATE = config_parser.SELECTOR_DATE
 # SELECTOR_DATE = '//span[@class="pdingleft10 brlefte5"]/text()'
 
 
+@login_required
 def services(request):
     return render(request, 'parsings/services.html', {})
 
 
+@login_required
 def parser_olx(request):
     list_categories_text = ParserOLX(SITE_URL).gettext(SELECTOR_GETTEXT_CATEGORIES)
     print(list_categories_text)
@@ -64,6 +66,7 @@ def parser_olx(request):
                                                         "sity": sity})
 
 
+@login_required
 def parse(request):
     try:
         if request.method == 'POST':
@@ -135,6 +138,7 @@ def parse(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def setting_olx(request):
     try:
         config_parser = ConfigParserOLX.objects.get(id=1)
@@ -144,6 +148,7 @@ def setting_olx(request):
                   {'config_parser': config_parser})
 
 
+@login_required
 def sity_conf(request):
     if request.method == 'POST':
         SITY = ConfigParserOLX.objects.get(id=1)
@@ -154,6 +159,7 @@ def sity_conf(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def site_url(request):
     if request.method == 'POST':
         SITE_URL = ConfigParserOLX(id=1, SITE_URL=request.POST['SITE_URL'])
@@ -165,6 +171,7 @@ def site_url(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def ajax_phone(request):
     if request.method == 'POST':
         AJAX_PHONE = ConfigParserOLX.objects.get(id=1)
@@ -175,6 +182,7 @@ def ajax_phone(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_getlink_categories(request):
     if request.method == 'POST':
         SELECTOR_GETLINK_CATEGORIES = ConfigParserOLX.objects.get(id=1)
@@ -185,6 +193,7 @@ def selector_getlink_categories(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_gettext_categories(request):
     if request.method == 'POST':
         SELECTOR_GETTEXT_CATEGORIES = ConfigParserOLX.objects.get(id=1)
@@ -195,6 +204,7 @@ def selector_gettext_categories(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_getlink_articles(request):
     if request.method == 'POST':
         SELECTOR_GETLINK_ARTICLES = ConfigParserOLX.objects.get(id=1)
@@ -205,6 +215,7 @@ def selector_getlink_articles(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_sity(request):
     if request.method == 'POST':
         SELECTOR_SITY = ConfigParserOLX.objects.get(id=1)
@@ -215,6 +226,7 @@ def selector_sity(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_title(request):
     if request.method == 'POST':
         SELECTOR_TITLE = ConfigParserOLX.objects.get(id=1)
@@ -225,6 +237,7 @@ def selector_title(request):
         return HttpResponse(status=503)
 
 
+@login_required
 def selector_date(request):
     if request.method == 'POST':
         SELECTOR_DATE = ConfigParserOLX.objects.get(id=1)

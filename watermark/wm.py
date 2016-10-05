@@ -53,13 +53,13 @@ class CreateWatermark(object):
 
 
 class AddWatermark(object):
-    def __init__(self, image, to_save):
-        self.to_save = to_save
+    def __init__(self, image, to_save=None):
         self.image = Image.open(image)
-        self._add_watermark(self.image).save(self.to_save)
+        self.to_save = to_save
+        if self.to_save:
+            self._add_watermark(self.image).save(self.to_save)
 
-
-    def _add_watermark(self, image, opacity=1, wm_interval=0):
+    def _add_watermark(self, image, opacity=0.3, wm_interval=0):
         watermark = Image.open('media/watermark/watermark.png')
         assert opacity >= 0 and opacity <= 1
         if opacity < 1:
@@ -70,12 +70,16 @@ class AddWatermark(object):
             alpha = watermark.split()[3]
             alpha = ImageEnhance.Brightness(alpha).enhance(opacity)
             watermark.putalpha(alpha)
-        layer = Image.new('RGBA', image.size, (0,0,0,0))
+        layer = Image.new('RGBA', image.size, (0, 0, 0, 0))
         # for y in range(0, image.size[1], watermark.size[1]+wm_interval):
         #     for x in range(0, image.size[0], watermark.size[0]+wm_interval):
         #         layer.paste(watermark, (x, y))
-        layer.paste(watermark, (image.size[0] - watermark.size[0] , image.size[1] - watermark.size[1]))
-        return Image.composite(layer,  image,  layer)
+        watermark = watermark.resize((image.size[0]/2, image.size[1]/2))
+        layer.paste(watermark, (image.size[0] - watermark.size[0], image.size[1] - watermark.size[1]))
+        return Image.composite(layer, image, layer)
+
+    def watermark_in_photo(self):
+        return self._add_watermark(self.image)
 
 
 # img_title = Image.open('Tryndamere_OriginalSkin_old.jpg')

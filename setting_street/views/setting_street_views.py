@@ -23,7 +23,7 @@ def add_street(request):
     try:
         if Street.objects.get(street__iexact=results.get('name_street')):
             return HttpResponse("Значение присутствует")
-    except Exception, e:
+    except:
         add_type_street = TypesStreet.objects.filter(id=results.get("id_short"))
         add_street = Street(street=results.get('name_street'),
                             type_street_group=add_type_street[0],

@@ -67,6 +67,7 @@ def default_show_activity_index(dateto=DAY_AGO, datefrom=datetime.date(2100, 1, 
     return data
 
 
+@login_required
 def show_activity_index(request):
     dateto = datetime.date(2000, 1, 1)
     datefrom = datetime.date(2100, 1, 1)
@@ -150,13 +151,25 @@ class ObjectListSearch(ObjectList):
     def get_queryset(self):
         return searh(self.request)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ObjectListSearch, self).dispatch(request, *args, **kwargs)
+
 
 class ObjectListSelling(ObjectList):
     qeryset = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ObjectListSelling, self).dispatch(request, *args, **kwargs)
+
 
 class ObjectListArend(ObjectList):
     qeryset = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ObjectListArend, self).dispatch(request, *args, **kwargs)
 
 
 @login_required
@@ -309,6 +322,10 @@ class TaskingList(ListView):
 class TaskingListArchive(TaskingList):
     queryset = Tasking.objects.filter(task_trash=False, task_archiv=True)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingListArchive, self).dispatch(request, *args, **kwargs)
+
 
 @login_required
 def setting(request):
@@ -338,6 +355,10 @@ class MeetingList(ListView):
 
 class MeetingListArchive(MeetingList):
     queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=True)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingListArchive, self).dispatch(request, *args, **kwargs)
 
 
 # @login_required

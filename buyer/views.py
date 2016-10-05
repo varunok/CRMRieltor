@@ -2,7 +2,7 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from buyer.forms import BuyerForm
 from homes.views import add_buyer, BuyersList
 from change_form import change_form_text
@@ -11,8 +11,11 @@ from datetime import datetime
 from django.utils import timezone, dateformat
 from search_buyer import searh
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
+@login_required
 def add_buyer_obj(request):
     if request.method == 'POST':
         form = BuyerForm(request.POST)
@@ -24,6 +27,7 @@ def add_buyer_obj(request):
         return add_buyer(request, form)
 
 
+@login_required
 def save_edit_buyer(request):
     if request.method == 'POST':
         buyer = Buyer.objects.get(id=request.POST.get('edit'))
@@ -38,6 +42,7 @@ def save_edit_buyer(request):
     return edit_buyer(request, request.POST.get('edit'))
 
 
+@login_required
 def change_call_date(request):
     id_ar = request.GET['id'].split('-')[-1]
     buyer = Buyer.objects.get(id=id_ar)
@@ -48,6 +53,7 @@ def change_call_date(request):
     return HttpResponse("ok")
 
 
+@login_required
 def change_term_date(request):
     id_ar = request.GET['id']
     arendator = Buyer.objects.get(id=id_ar)
@@ -58,6 +64,7 @@ def change_term_date(request):
     return HttpResponse(status=200)
 
 
+@login_required
 def change_type_state(request):
     id_ar = request.GET['id']
     type_state = TypeState.objects.get(id=request.GET.get('type_state'))
@@ -72,7 +79,12 @@ class BuyerListSearch(BuyersList):
     def get_queryset(self):
         return searh(self.request)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(BuyerListSearch, self).dispatch(request, *args, **kwargs)
 
+
+@login_required
 def trash_buyer(request):
     if request.method == 'POST':
         id_obj = request.POST.get('trash')
@@ -87,6 +99,7 @@ def trash_buyer(request):
         return HttpResponse("Ошибка")
 
 
+@login_required
 def restore_buyers(request):
     if request.method == 'POST':
         restore_obj = Buyer.objects.get(id=request.POST.get('id_obj'))
@@ -97,6 +110,7 @@ def restore_buyers(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def edit_buyer(request, id_buyer):
     buyer = Buyer.objects.get(id=id_buyer)
     form = BuyerForm(instance=buyer)

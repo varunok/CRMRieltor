@@ -20,10 +20,10 @@ def add_district(request):
     try:
         add_district = District(district=results.get('name_district'))
         add_district.save()
-        response_district = {"name_district":add_district.district}
+        response_district = {"name_district": add_district.district}
         json = JsonResponse(response_district)
         return HttpResponse(json)
-    except Exception, e:
+    except:
         return HttpResponse("Значение присутствует")
 
 

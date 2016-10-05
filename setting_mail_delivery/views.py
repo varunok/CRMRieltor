@@ -5,14 +5,17 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from setting_mail_delivery.models import TemplateSms, TemplateEmail, SettingSMS, SettingEmail
 from setting_mail_delivery.forms import TemplateSmsForm, TemplateEmailForm, SettingSMSForm, SettingEmailForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required
 def setting_mail_delivery(request):
     return render(request, 'setting_mail_delivery/setting_mail_delivery.html')
 
 
+@login_required
 def sms_template(request):
     temp_sms_form, create = TemplateSms.objects.get_or_create(id=1)
     if create:
@@ -22,6 +25,7 @@ def sms_template(request):
     return render(request, 'setting_mail_delivery/sms_template.html', {"form": form})
 
 
+@login_required
 def save_sms_template_form(request):
     temp_sms_form, create = TemplateSms.objects.get_or_create(id=1)
     if request.method == 'POST':
@@ -35,6 +39,7 @@ def save_sms_template_form(request):
     return render(request, 'setting_mail_delivery/sms_template.html', {"form": form})
 
 
+@login_required
 def email_template(request):
     temp_email_form, create = TemplateEmail.objects.get_or_create(id=1)
     if create:
@@ -45,6 +50,7 @@ def email_template(request):
                                                                          "temp_email_form": temp_email_form})
 
 
+@login_required
 def save_email_template_form(request):
     temp_email_form, create = TemplateEmail.objects.get_or_create(id=1)
     if request.method == 'POST':
@@ -59,6 +65,7 @@ def save_email_template_form(request):
                                                                          "temp_email_form": temp_email_form})
 
 
+@login_required
 def sms_setting(request):
     setting_sms, create = SettingSMS.objects.get_or_create(id=1)
     if create:
@@ -68,6 +75,7 @@ def sms_setting(request):
     return render(request, 'setting_mail_delivery/sms_setting.html', {"form": form})
 
 
+@login_required
 def save_sms_setting(request):
     if request.method == 'POST':
         setting_sms, create = SettingSMS.objects.get_or_create(id=1)
@@ -80,6 +88,7 @@ def save_sms_setting(request):
     return render(request, 'setting_mail_delivery/sms_setting.html', {"form": form})
 
 
+@login_required
 def email_setting(request):
     setting_email, create = SettingEmail.objects.get_or_create(id=1)
     if create:
@@ -89,6 +98,7 @@ def email_setting(request):
     return render(request, 'setting_mail_delivery/email_setting.html', {"form": form})
 
 
+@login_required
 def save_email_setting(request):
     if request.method == 'POST':
         setting_email, create = SettingEmail.objects.get_or_create(id=1)

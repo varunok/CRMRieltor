@@ -3,16 +3,18 @@
 
 import psycopg2
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+# from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from facility.models import AddressFacilityData
 from arendator.models import Arendator
 from buyer.models import Buyer
 from makler.models import Makler
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required
 def searching(request):
     search_results_f = SearchPostgres().search_fts(request.GET.get('search_text'), 'facility_addressfacilitydata')
     search_results_co = SearchPostgres().search_fts(request.GET.get('search_text'), 'facility_contactowner')

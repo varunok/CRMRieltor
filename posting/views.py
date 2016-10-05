@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
-from django.shortcuts import render
-from django.http import HttpResponse,  JsonResponse
+from django.http import HttpResponse, JsonResponse
 from work_table import InsertData, SetShows, SearchData
 from facility.models import ContactOwner
-import requests
-from requests.auth import HTTPBasicAuth
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+@login_required
 def posting_true(request):
     if request.method == 'POST':
         single_object = ContactOwner.objects.get(id=request.POST['id_so'])
@@ -24,11 +23,12 @@ def posting_true(request):
                 single_object.save()
                 return HttpResponse(JsonResponse({'data': 'true'}), status=200)
             else:
-                 return HttpResponse(status=500)
+                return HttpResponse(status=500)
     else:
         return HttpResponse(status=500)
 
 
+@login_required
 def posting_false(request):
     if request.method == 'POST':
         single_object = ContactOwner.objects.get(id=request.POST['id_so'])

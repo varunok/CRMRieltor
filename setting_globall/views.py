@@ -8,8 +8,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 from setting_globall.models import NationalCarrency, ListNationalCarrency, FranshiseSity, Franshise, Subscribe
 from setting_globall.forms import SubscribeForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def setting_globall(request):
     class FakeClass(object):
         pass
@@ -35,6 +37,7 @@ def setting_globall(request):
                                                                     'franshise': franshise.franshise})
 
 
+@login_required
 def nat_currency(request):
     if request.method == 'POST':
         try:
@@ -54,6 +57,7 @@ def nat_currency(request):
     return HttpResponse(u'Ошибка', status=404)
 
 
+@login_required
 def sity_franshise(request):
     if request.method == 'POST':
         sity, create = FranshiseSity.objects.get_or_create(id=1)
@@ -64,6 +68,7 @@ def sity_franshise(request):
         return HttpResponse(u'Ошибка', status=404)
 
 
+@login_required
 def franshise(request):
     if request.method == 'POST':
         franshise, create = Franshise.objects.get_or_create(id=1)
@@ -74,12 +79,14 @@ def franshise(request):
         return HttpResponse(u'Ошибка', status=404)
 
 
+@login_required
 def get_subscribe(request):
     subs, create = Subscribe.objects.get_or_create(id=1)
     form = SubscribeForm(instance=subs)
     return render(request, 'setting_globall/subscribe.html', {'form': form})
 
 
+@login_required
 def save_subscribe_form(request):
     subs, create = Subscribe.objects.get_or_create(id=1)
     if request.method == 'POST':

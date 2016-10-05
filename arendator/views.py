@@ -2,7 +2,7 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from arendator.forms import ArendatorForm
 from homes.views import add_arendator, ArendatorsList
 from change_form import change_form_text
@@ -11,8 +11,11 @@ from datetime import datetime
 from django.utils import timezone, dateformat
 from search_arendator import searh
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
+@login_required
 def add_arendator_obj(request):
     if request.method == 'POST':
         form = ArendatorForm(request.POST)
@@ -26,6 +29,7 @@ def add_arendator_obj(request):
     return add_arendator(request, form)
 
 
+@login_required
 def save_edit_arendator(request):
     if request.method == 'POST':
         arendator = Arendator.objects.get(id=request.POST.get('edit'))
@@ -40,6 +44,7 @@ def save_edit_arendator(request):
     return edit_arendator(request, request.POST.get('edit'))
 
 
+@login_required
 def change_call_date(request):
     id_ar = request.GET['id'].split('-')[-1]
     arendator = Arendator.objects.get(id=id_ar)
@@ -50,6 +55,7 @@ def change_call_date(request):
     return HttpResponse("ok")
 
 
+@login_required
 def change_term_date(request):
     id_ar = request.GET['id']
     arendator = Arendator.objects.get(id=id_ar)
@@ -60,6 +66,7 @@ def change_term_date(request):
     return HttpResponse(status=200)
 
 
+@login_required
 def change_type_state(request):
     id_ar = request.GET['id']
     type_state = TypeState.objects.get(id=request.GET.get('type_state'))
@@ -74,7 +81,12 @@ class ArendatorListSearch(ArendatorsList):
     def get_queryset(self):
         return searh(self.request)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ArendatorListSearch, self).dispatch(request, *args, **kwargs)
 
+
+@login_required
 def trash_arendator(request):
     if request.method == 'POST':
         id_obj = request.POST.get('trash')
@@ -89,6 +101,7 @@ def trash_arendator(request):
         return HttpResponse("Ошибка")
 
 
+@login_required
 def restore_arendator(request):
     if request.method == 'POST':
         restore_obj = Arendator.objects.get(id=request.POST.get('id_obj'))
@@ -99,6 +112,7 @@ def restore_arendator(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def edit_arendator(request, id_arendator):
     arendator = Arendator.objects.get(id=id_arendator)
     form = ArendatorForm(instance=arendator)

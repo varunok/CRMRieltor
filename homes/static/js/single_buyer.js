@@ -448,6 +448,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_email': $('#plus_email').val(),
             'id_obj': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_b': $('#single_buyer_id').attr('single_buyer_id'),
         }
@@ -467,6 +468,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_phone': $('#plus_phone').val(),
             'id_obj': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_b': $('#single_buyer_id').attr('single_buyer_id'),
         }

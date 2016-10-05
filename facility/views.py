@@ -13,12 +13,14 @@ from save_photo import save_photo
 from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner, ImagesFacility, \
     AddressFacilityData
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Create your views here.
 
 
+@login_required
 def add_facility(request):
     if request.method == 'POST':
         form = AddressFacilityForm(request.POST, request.FILES)
@@ -40,6 +42,7 @@ def add_facility(request):
         return add_object(request, form)
 
 
+@login_required
 def save_edit_facility(request):
     if request.method == 'POST':
         facility = ContactOwner.objects.get(id=request.POST.get('edit'))
@@ -64,6 +67,7 @@ def save_edit_facility(request):
     return edit_facility(request, request.POST.get('edit'))
 
 
+@login_required
 def check_phone(request):
     if request.method == 'GET':
         seek_obj = DatabasePhoneOwner.objects.filter(db_phone_owner__icontains=request.GET['check'])
@@ -73,12 +77,14 @@ def check_phone(request):
     return HttpResponse(JsonResponse(dict_obj))
 
 
+@login_required
 def add_img(request):
     if request.method == 'POST':
         img_list = handle_uploaded_file(request.FILES)
     return HttpResponse(JsonResponse(img_list))
 
 
+@login_required
 def del_img(request):
     if request.method == 'POST':
         try:
@@ -93,6 +99,7 @@ def del_img(request):
         HttpResponse(status=200)
 
 
+@login_required
 def restore_obj(request):
     if request.method == 'POST':
         restore_obj = ContactOwner.objects.get(id=request.POST.get('id_obj'))
@@ -103,6 +110,7 @@ def restore_obj(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def handle_uploaded_file(f):
     try:
         list_tmp_img = os.listdir('media/tmpimg/')
@@ -116,9 +124,11 @@ def handle_uploaded_file(f):
             for chunk in f[ele].chunks():
                 destination.write(chunk)
                 list_img[ele] = ('/media/tmpimg/' + f[ele].name)
+                # AddWatermark(list_img[ele], list_img[ele])
     return list_img
 
 
+@login_required
 def trash_obj(request):
     if request.method == 'POST':
         id_obj = request.POST.get('trash')
@@ -133,6 +143,7 @@ def trash_obj(request):
         return HttpResponse("Ошибка")
 
 
+@login_required
 def edit_facility(request, id_obj):
     facility = ContactOwner.objects.get(id=id_obj)
     form = AddressFacilityForm(instance=facility)

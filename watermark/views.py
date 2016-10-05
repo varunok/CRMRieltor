@@ -5,8 +5,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from watermark.models import Watermark
 from wm import CreateWatermark
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def setting_watermark(request):
     try:
         wm = Watermark.objects.filter(id=1).get()
@@ -18,6 +20,7 @@ def setting_watermark(request):
     return render(request, 'watermark/setting_watermark.html', {'wm': wm})
 
 
+@login_required
 def create_watermark(request):
     if request.method == 'POST':
         if CreateWatermark(request.POST['wm']).isCreated:
@@ -29,6 +32,7 @@ def create_watermark(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def on_off_watermark(request):
     val = request.GET.get('val').strip()
     if val == '1':
