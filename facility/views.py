@@ -110,7 +110,6 @@ def restore_obj(request):
         return HttpResponse(status=500)
 
 
-@login_required
 def handle_uploaded_file(f):
     try:
         list_tmp_img = os.listdir('media/tmpimg/')
