@@ -137,7 +137,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
-            'plus_email': $('#plus_email').val();
+            'plus_email': $('#plus_email').val(),
             'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -158,7 +158,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
-            'plus_phone': $('#plus_phone').val();
+            'plus_phone': $('#plus_phone').val(),
             'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -270,7 +270,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
-            'plus_email': $('#plus_email').val();
+            'plus_email': $('#plus_email').val(),
             'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -291,7 +291,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
-            'plus_phone': $('#plus_phone').val();
+            'plus_phone': $('#plus_phone').val(),
             'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
