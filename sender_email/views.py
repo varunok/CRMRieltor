@@ -72,8 +72,11 @@ def delivery_email_arendator(request):
                                                                    'request': request_abs_url,
                                                                    'single_object': single_object,
                                                                    'subs': subs})
-        arendator_emails = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('email', flat=True)
-        arendator_emails = [i for i in arendator_emails if i != '']
+        try:
+            arendator_emails = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('email', flat=True)
+            arendator_emails = [i for i in arendator_emails if i != '']
+        except:
+            arendator_emails = []
         if plus_email:
             arendator_emails.append(plus_email)
         count_sending = 0
@@ -134,8 +137,11 @@ def delivery_email_buyer(request):
                                                                              'request': request_abs_url,
                                                                              'single_object': single_object,
                                                                              'subs': subs})
-        buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
-        buyer_emails = [i for i in buyer_emails if i != '']
+        try:
+            buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
+            buyer_emails = [i for i in buyer_emails if i != '']
+        except:
+            buyer_emails = []
         if plus_email:
             buyer_emails.append(plus_email)
         count_sending = 0
@@ -176,7 +182,10 @@ def delivery_sms_arendator(request):
         plus_phone = request.POST.get('plus_phone')
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         setting_sms = get_object_or_404(SettingSMS, id=1)
-        arendator_phone = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('phone_first', flat=True)
+        try:
+            arendator_phone = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('phone_first', flat=True)
+        except:
+            arendator_phone = []
         if plus_phone:
             arendator_phone.append(plus_phone)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
@@ -269,7 +278,10 @@ def delivery_sms_buyer(request):
         plus_phone = request.POST.get('plus_phone')
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         setting_sms = get_object_or_404(SettingSMS, id=1)
-        buyer_phone = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('phone_first', flat=True)
+        try:
+            buyer_phone = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('phone_first', flat=True)
+        except:
+            buyer_phone = []
         if plus_phone:
             buyer_phone.append(plus_phone)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
