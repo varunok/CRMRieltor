@@ -65,13 +65,13 @@ class Buyer(models.Model):
                                     null=True,
                                     related_name='t_client_b')
 
-    phone_first = models.IntegerField(verbose_name=u'Телефон - 1',
-                                      blank=True,
-                                      null=True)
+    phone_first = models.CharField(max_length=15, verbose_name=u'Телефон - 1',
+                                   blank=True,
+                                   null=True)
 
-    phone_second = models.IntegerField(verbose_name=u'Телефон - 2',
-                                       blank=True,
-                                       null=True)
+    phone_second = models.CharField(max_length=15, verbose_name=u'Телефон - 2',
+                                    blank=True,
+                                    null=True)
 
     comment = models.TextField(verbose_name=u'Коментарий',
                                blank=True,

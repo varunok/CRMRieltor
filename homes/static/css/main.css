@@ -1348,6 +1348,24 @@ table th[class*="col-"] {
   background-color: #e8e8e8;
 }
 
+.table > thead > tr > td.primary,
+.table > thead > tr > th.primary, .table > thead > tr.primary > td, .table > thead > tr.primary > th,
+.table > tbody > tr > td.primary,
+.table > tbody > tr > th.primary,
+.table > tbody > tr.primary > td,
+.table > tbody > tr.primary > th,
+.table > tfoot > tr > td.primary,
+.table > tfoot > tr > th.primary,
+.table > tfoot > tr.primary > td,
+.table > tfoot > tr.primary > th {
+  background-color: #337ab7;
+}
+
+.table-hover > tbody > tr > td.primary:hover,
+.table-hover > tbody > tr > th.primary:hover, .table-hover > tbody > tr.primary:hover > td, .table-hover > tbody > tr:hover > .primary, .table-hover > tbody > tr.primary:hover > th {
+  background-color: #337ab7;
+}
+
 .table > thead > tr > td.success,
 .table > thead > tr > th.success, .table > thead > tr.success > td, .table > thead > tr.success > th,
 .table > tbody > tr > td.success,

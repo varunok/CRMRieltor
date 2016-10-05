@@ -54,10 +54,20 @@ $(document).ready(function() {
         });
     });
     $(document).on('change', '.id_shows', function (event) {
+        var _this = $(this).parents('.color');
         var id_a = $(this).attr('id-arendator-sin');
         var id_o = $('#sisingle_obj_id').attr('sisingle_obj_id');
         var id_show = $(this).val();
-        $.get('change_shows/a-'+id_a+'='+'o-'+id_o+'='+'s-'+id_show);
+        $.get('change_shows/a-'+id_a+'='+'o-'+id_o+'='+'s-'+id_show)
+        .success( function (data) {
+            _this.removeClass().addClass(table_color(id_show)+' color');
+            $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+        });
     });
     $(document).on('click', '#avtomat_add_arendator', function (event) {
         event.preventDefault();
@@ -127,6 +137,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_email': $('#plus_email').val();
             'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -147,6 +158,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_phone': $('#plus_phone').val();
             'id_a': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -176,10 +188,20 @@ $(document).ready(function() {
         });
     });
     $(document).on('change', '.id_shows_buyer', function (event) {
+        var _this = $(this).parents('.color');
         var id_a = $(this).attr('id-buyer-sin');
         var id_o = $('#sisingle_obj_id').attr('sisingle_obj_id');
         var id_show = $(this).val();
-        $.get('change_shows_buyer/a-'+id_a+'='+'o-'+id_o+'='+'s-'+id_show);
+        $.get('change_shows_buyer/a-'+id_a+'='+'o-'+id_o+'='+'s-'+id_show)
+        .success( function (data) {
+            _this.removeClass().addClass(table_color(id_show)+' color');
+            $('.messageServer').css('backgroundColor', '#5bc0de');
+            $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+        });
     });
     $(document).on('click', '#avtomat_add_buyer', function (event) {
         event.preventDefault();
@@ -248,6 +270,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_email': $('#plus_email').val();
             'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -268,6 +291,7 @@ $(document).ready(function() {
         $('.messageServer').css('backgroundColor', '#FCCD1B');
         $('.messageServer').text('Идет рассылка').fadeIn(1000);
         data = {
+            'plus_phone': $('#plus_phone').val();
             'id_b': $("input:checkbox:checked").map(function() {return this.value;}).get().join(),
             'id_so': $('#sisingle_obj_id').attr('sisingle_obj_id'),
         }
@@ -587,6 +611,14 @@ $(document).ready(function() {
         $('.task-form').animate({top: '10%'},120);
         $('.task-form').animate({top: '11%'},150);
         $('.task-form').animate({top: '10%'},150);
+    }
+
+    function table_color(arg){
+        if(arg === '1'){return 'info'}
+        else if(arg === '2'){return 'warning'}
+        else if(arg === '3'){return 'danger'}
+        else if(arg === '4'){return 'success'}
+        else {return ' '}
     }
 
 });

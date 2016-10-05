@@ -89,26 +89,24 @@
                                         {% for tie in ties %}
                                             {% for arenda in tie.tie_arenda.all %}
                                                 {% if id_arendator.id == tie.tie_arenda.id %}
-                                                 
-                                                    
-                                                                {% for show in shows %}
-                                                                    
-                                                                    {% for sh in id_show.all %}
-                                                                        {% if sh.array_cont_ower.id == show.id %}
-                                                                            {% if sh.type_shows_arendator.id|floatformat == '2' %}
-                                                                    
-                                                                                 <tr class="success">    
-                                                                            {% endif %}
-                                                                        {% endif %}
-                                                                    {% endfor %}
-
-                                                                {% endfor %}
-
-                                                   
-
-
-
-
+                                                    <tr class="color">
+                                                    {% for show in shows %}
+                                                        {% for sh in id_show.all %}
+                                                            {% if sh.array_cont_ower.id == tie.tie_cont_owner.id %}
+                                                                {% if sh.type_shows_arendator.id == show.id %}
+                                                                    {% if show.id|floatformat == '1' %}
+                                                                        <tr class="info color">
+                                                                    {% elif show.id|floatformat == '2' %}
+                                                                        <tr class="warning color">
+                                                                    {% elif show.id|floatformat == '3' %}
+                                                                        <tr class="danger color">
+                                                                    {% elif show.id|floatformat == '4' %}
+                                                                        <tr class="success color">
+                                                                    {% endif %}    
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endfor %}
                                                         <td>{{tie.tie_cont_owner.id}}</td>
                                                         <td class="f-clr-grey">
                                                             {{tie.tie_cont_owner.district_obj}}<br>

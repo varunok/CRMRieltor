@@ -1,10 +1,31 @@
                                     {% if error %}
-                                        <tr id="show_tr-{{ arendator.id }}" class="show_tr"
+                                        <tr id="show_tr-{{ arendator.id }}" class="show_tr color
+                                                    {% for show in type_shows %}
+                                                    {% for sh in shows_arendator %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
+                                                            {% if arendator.id|floatformat == sh.array_arendator|floatformat %}
+                                                                {% if show == sh.type_shows_arendator %}
+                                                                    {% if show.id|floatformat == '1' %}
+                                                                        info
+                                                                    {% elif show.id|floatformat == '2' %}
+                                                                       warning
+                                                                    {% elif show.id|floatformat == '3' %}
+                                                                        danger
+                                                                    {% elif show.id|floatformat == '4' %}
+                                                                       success
+                                                                    {% endif %} 
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% endfor %}
+                                                    "
                                             {% if display %}
                                                 style="">
                                             {% else %}
                                                 style="display: none">
                                             {% endif %}
+
                                             <td>{{ arendator.id }}</td>
                                             <td class="f-clr-green">
                                                 {% if arendator.type_state %}
@@ -12,7 +33,7 @@
                                                     {{ arendator.type_state }}
                                                 {% endif %}
                                             </td>
-                                            <td class="f-clr-grey edit warning">
+                                            <td class="f-clr-grey edit">
                                                 <select name="" class="id_shows" id-arendator-sin="{{ arendator.id }}">
                                                     {% for show in type_shows %}
                                                         <option

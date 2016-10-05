@@ -119,6 +119,7 @@ $(document).ready(function() {
     });
     $(document).on('change', '.show_cont_owner', function(event) {
         event.preventDefault();
+        var _this = $(this).parents('.color');
         var show = $(this).val();
         var id_buyer = $(this).prev('.id_buyer').val();
         var id_cont_owner = $(this).next('.id_cont_owner').val();
@@ -129,6 +130,7 @@ $(document).ready(function() {
         }
         $.post('change_show_owner', data)
         .success( function (data) {
+            _this.removeClass().addClass(table_color(show)+' color');
             $('.messageServer').css('backgroundColor', '#5bc0de');
             $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
         })
@@ -137,6 +139,14 @@ $(document).ready(function() {
             $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
         });
     });
+
+    function table_color(arg){
+        if(arg === '1'){return 'info'}
+        else if(arg === '2'){return 'warning'}
+        else if(arg === '3'){return 'danger'}
+        else if(arg === '4'){return 'success'}
+        else {return ' '}
+    }
 
 
     // START BLOCK MEET
