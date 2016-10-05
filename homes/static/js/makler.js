@@ -41,6 +41,24 @@ $(document).ready(function() {
         });
     });
 
+    $('table').on('click', '.fa-times', function (event) {
+        event.preventDefault();
+        var id = $(this).parents('a').prev().attr('id-makler');
+        var _this = $(this).parents('tr');
+        $.post('maklers/del_makler', {'id':id})
+        .success( function (data) {
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
+            _this.fadeOut('slow', function() {
+                
+            });
+        })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
+    });
+
     $('#add_form').on('click', '#edit_form_makler', function (event) {
         event.preventDefault();
         var msg   = $('#send_form').serialize();

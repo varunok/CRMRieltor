@@ -92,3 +92,13 @@ def save_edit_makler(request, id):
             return render(request, 'makler/edit_makler.html', {"form": form, "id_makler": post}, status=404)
     else:
         return HttpResponse(status=404)
+
+
+@login_required
+def del_makler(request):
+    if request.method == 'POST':
+        try:
+            Makler.objects.get(id=request.POST.get('id')).delete()
+        except:
+            return HttpResponse(status=500)
+        return HttpResponse(content=b'Успешно удалено', status=200)
