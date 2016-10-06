@@ -60,7 +60,7 @@ class Meeting(models.Model):
                                       verbose_name=u'ID(O) Объект',
                                       blank=True,
                                       null=True,
-                                      on_delete=models.PROTECT)
+                                      on_delete=models.CASCADE)
 
     meet_arendator = models.ForeignKey(Arendator,
                                        verbose_name=u'ID(A) Арендатор',
