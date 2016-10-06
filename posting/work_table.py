@@ -15,7 +15,6 @@ from watermark.models import Watermark
 from setting_globall.models import Subscribe
 
 
-
 class ConnectDatabases(object):
     """docstring for ConnectDatabases"""
     def __init__(self):

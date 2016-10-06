@@ -58,19 +58,19 @@ class Tasking(models.Model):
                                       verbose_name=u'ID(O) Объект',
                                       blank=True,
                                       null=True,
-                                      on_delete=models.PROTECT)
+                                      on_delete=models.CASCADE)
 
     task_arendator = models.ForeignKey(Arendator,
                                        verbose_name=u'ID(A) Арендатор',
                                        blank=True,
                                        null=True,
-                                       on_delete=models.PROTECT)
+                                       on_delete=models.CASCADE)
 
     task_buyer = models.ForeignKey(Buyer,
                                    verbose_name=u'ID(P) Покупатель',
                                    blank=True,
                                    null=True,
-                                   on_delete=models.PROTECT)
+                                   on_delete=models.CASCADE)
 
     task_text = models.TextField(verbose_name=u'Текст', blank=True, null=True)
 

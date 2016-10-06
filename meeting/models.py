@@ -66,13 +66,13 @@ class Meeting(models.Model):
                                        verbose_name=u'ID(A) Арендатор',
                                        blank=True,
                                        null=True,
-                                       on_delete=models.PROTECT)
+                                       on_delete=models.CASCADE)
 
     meet_buyer = models.ForeignKey(Buyer,
                                    verbose_name=u'ID(P) Покупатель',
                                    blank=True,
                                    null=True,
-                                   on_delete=models.PROTECT)
+                                   on_delete=models.CASCADE)
 
     meet_trash = models.BooleanField(verbose_name='В корзину', default=False)
 
