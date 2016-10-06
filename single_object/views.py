@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.utils import timezone, dateformat
 from datetime import datetime
 from django.utils import formats
-from django.http import HttpResponse,  JsonResponse, HttpResponseNotFound, Http404
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -63,7 +63,12 @@ class SingleObjectView(DetailView):
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(SingleObjectView, self).dispatch(request, *args, **kwargs)
 
+
+@login_required
 def change_call_date(request):
     # try:
         date_request = datetime.strptime(str(request.GET['data']), "%Y-%m-%d")
@@ -77,6 +82,7 @@ def change_call_date(request):
     #     return HttpResponse("error")
 
 
+@login_required
 def change_review_date(request):
     date_request = datetime.strptime(str(request.GET['data']), "%Y-%m-%d")
     date_change = dateformat.format(date_request, 'Y-m-d')
@@ -87,6 +93,7 @@ def change_review_date(request):
     return HttpResponse(formatted_datetime)
 
 
+@login_required
 def change_actuality(request):
     con_owner = ContactOwner.objects.get(id=request.GET['id'])
     actual = TypeActuality.objects.get(id=request.GET['data'])
@@ -96,6 +103,7 @@ def change_actuality(request):
     return HttpResponse(formatted_datetime)
 
 
+@login_required
 def repeat_obj(request):
     single_obj = ContactOwner.objects.get(id=request.GET.get('id_so'))
     single_obj.save()
@@ -104,11 +112,13 @@ def repeat_obj(request):
 
 
 # START BLOCK COMMENTS
+@login_required
 def get_comment(request):
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so']).order_by('-date_comment')
     return render(request, 'single_object/comments.html', {"single_obj_comments": data_comment})
 
 
+@login_required
 def add_obj_comment(request):
     author = User.objects.get(id=request.POST['id_user'])
     author_name = author.get_full_name()
@@ -131,6 +141,7 @@ def add_obj_comment(request):
     return HttpResponse(comment_data)
 
 
+@login_required
 def del_comment(request):
     if request.method == 'POST':
         id_comment = request.POST.get('id_comment').split('_')[-1]
@@ -174,6 +185,10 @@ class AddArendatorToTie(DetailView):
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AddArendatorToTie, self).dispatch(request, *args, **kwargs)
+
 
 class AutomatTie(ListView):
     model = Arendator
@@ -197,6 +212,7 @@ class AutomatTie(ListView):
         return super(AutomatTie, self).dispatch(request, *args, **kwargs)
 
 
+@login_required
 def get_arendator(request):
     ties = Tie.objects.all()
     singl_obg = ContactOwner.objects.get(id=request.GET.get('id_so'))
@@ -220,6 +236,7 @@ def get_arendator(request):
                                                             "id_so": request.GET.get('id_so')})
 
 
+@login_required
 def change_shows(request, id_a):
     id_a, id_o, id_show = id_a.split('=')
     id_a = id_a.split('-')[-1]
@@ -238,6 +255,7 @@ def change_shows(request, id_a):
         return HttpResponse(status=500, content=b'Изменено')
 
 
+@login_required
 def delete_tie_arendator(request, did):
     try:
         tie = Tie.objects.get(tie_cont_owner=request.POST.get('id'))
@@ -250,6 +268,7 @@ def delete_tie_arendator(request, did):
         return HttpResponse(status=404)
 
 
+@login_required
 def clear_all_arendator(request):
     try:
         tie = Tie.objects.get(tie_cont_owner=request.POST.get('id'))
@@ -293,6 +312,10 @@ class AddBuyerToTie(DetailView):
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AddBuyerToTie, self).dispatch(request, *args, **kwargs)
+
 
 class AutomatTieBuyer(ListView):
     model = Buyer
@@ -316,6 +339,7 @@ class AutomatTieBuyer(ListView):
         return super(AutomatTieBuyer, self).dispatch(request, *args, **kwargs)
 
 
+@login_required
 def get_buyer(request):
     ties = TieBuyer.objects.all()
     singl_obg = ContactOwner.objects.get(id=request.GET.get('id_so'))
@@ -338,6 +362,7 @@ def get_buyer(request):
                                                          "single_obj_comments": data_comment})
 
 
+@login_required
 def change_shows_buyer(request, id_a):
     try:
         id_a, id_o, id_show = id_a.split('=')
@@ -355,6 +380,7 @@ def change_shows_buyer(request, id_a):
         return HttpResponse('error')
 
 
+@login_required
 def delete_tie_buyer(request, did):
     try:
         tie = TieBuyer.objects.get(tie_cont_owner=request.POST.get('id'))
@@ -367,6 +393,7 @@ def delete_tie_buyer(request, did):
         return HttpResponse(status=404)
 
 
+@login_required
 def clear_all_buyer(request):
     try:
         tie = TieBuyer.objects.get(tie_cont_owner=request.POST.get('id'))
@@ -399,6 +426,10 @@ class TaskingSingleList(TaskingList):
         self.queryset = Tasking.objects.filter(task_trash=False, task_facility=self.request.GET.get('id_so'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleList, self).dispatch(request, *args, **kwargs)
+
 
 class TaskingSingleListActive(TaskingSingleList):
     queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
@@ -413,6 +444,10 @@ class TaskingSingleListActive(TaskingSingleList):
     def get_queryset(self):
         self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
         return self.queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleListActive, self).dispatch(request, *args, **kwargs)
 
 
 class TaskingSingleListArchive(TaskingSingleList):
@@ -429,10 +464,15 @@ class TaskingSingleListArchive(TaskingSingleList):
         self.queryset = self.queryset.filter(task_facility=self.request.GET.get('id_so'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleListArchive, self).dispatch(request, *args, **kwargs)
+
 # END BLOCK TASKING
 
 
 # START BLOCK PUBLICATIONS
+@login_required
 def get_publication(request):
     from posting.work_table import GetShows
     len_shows = GetShows(request.GET['id_so']).data_return()
@@ -466,6 +506,10 @@ class MeetingSingleList(MeetingList):
         self.queryset = Meeting.objects.filter(meet_trash=False, meet_facility=self.request.GET.get('id_so'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleList, self).dispatch(request, *args, **kwargs)
+
 
 class MeetingSingleListActive(MeetingSingleList):
     queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=False)
@@ -480,6 +524,10 @@ class MeetingSingleListActive(MeetingSingleList):
     def get_queryset(self):
         self.queryset = self.queryset.filter(meet_facility=self.request.GET.get('id_so'))
         return self.queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleListActive, self).dispatch(request, *args, **kwargs)
 
 
 class MeetingSingleListArchive(MeetingSingleList):
@@ -496,6 +544,10 @@ class MeetingSingleListArchive(MeetingSingleList):
         self.queryset = self.queryset.filter(meet_facility=self.request.GET.get('id_so'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleListArchive, self).dispatch(request, *args, **kwargs)
+
 # END BLOCK MEETING
 
 
@@ -503,5 +555,3 @@ class DatabasesPrevious(SingleObjectView):
     slug_url_kwarg = 'poid'
     slug_field = 'id'
     template_name = 'single_object/previews.html'
-
-

@@ -24,7 +24,7 @@ def who_online(request):
             dict_users[user_r.id] = {}
             user_r.last_login = str(user_r.last_login).split('.')[0]
             date_old = datetime.strptime(str(user_r.last_login), "%Y-%m-%d %H:%M:%S")
-            dt = str(timezone.now()-date_old).split(',')
+            dt = str(timezone.now() - date_old).split(',')
             if len(dt) > 1:
                 dict_users[user_r.id]["login"] = user_r.last_login
             else:
@@ -32,9 +32,9 @@ def who_online(request):
                 if int(dt[1]) < 15 and int(dt[0]) == 0:
                     dict_users[user_r.id]["login"] = 'online'
                 elif int(dt[1]) >= 15:
-                    dict_users[user_r.id]["login"] = str(timezone.now()-date_old).split('.')[0]
+                    dict_users[user_r.id]["login"] = str(timezone.now() - date_old).split('.')[0]
                 elif int(dt[0]):
-                    dict_users[user_r.id]["login"] = str(timezone.now()-date_old).split('.')[0]
+                    dict_users[user_r.id]["login"] = str(timezone.now() - date_old).split('.')[0]
         return HttpResponse(JsonResponse(dict_users))
     except:
         return HttpResponse('error')

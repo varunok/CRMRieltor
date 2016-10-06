@@ -11,8 +11,10 @@ from buyer.models import Buyer
 from tasking.forms import TaskingForm
 from tasking.models import UserFullName, Tasking
 from search_task import search
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def get_form_task(request, form=TaskingForm()):
     form.fields['task_facility'].queryset = ContactOwner.objects.filter(trash=False)
     form.fields['task_arendator'].queryset = Arendator.objects.filter(trash=False)
@@ -25,6 +27,7 @@ def get_form_task(request, form=TaskingForm()):
     return render(request, 'tasking/form.html', {"form": form})
 
 
+@login_required
 def save_form_tasking(request):
     if request.method == 'POST':
         if request.POST.get('edit'):
@@ -39,6 +42,7 @@ def save_form_tasking(request):
     return get_form_task(request, form)
 
 
+@login_required
 def save_edit_form_tasking(request):
     if request.method == 'POST':
         tasking = Tasking.objects.get(id=request.POST.get('edit'))
@@ -51,16 +55,19 @@ def save_edit_form_tasking(request):
     return get_form_task(request, form)
 
 
+@login_required
 def single_task(request, task):
     return render(request, 'tasking/single_task.html', {"tasking": task})
 
 
+@login_required
 def search_task(request):
     if request.method == 'POST':
         tasking_list = search(request.POST)
         return render(request, 'tasking/obj_tasking.html', {"tasking_list": tasking_list})
 
 
+@login_required
 def edit_form(request):
     if request.method == 'POST':
         tasking = Tasking.objects.get(id=request.POST.get('id'))
@@ -68,6 +75,7 @@ def edit_form(request):
         return render(request, 'tasking/form.html', {"form": form, "edit": True, 'id_task': tasking.id})
 
 
+@login_required
 def to_archive(request):
     if request.method == 'POST':
         task = Tasking.objects.get(id=request.POST['id'])
@@ -78,6 +86,7 @@ def to_archive(request):
         return HttpResponse(status=500)
 
 
+@login_required
 def to_trash(request):
     if request.method == 'POST':
         Tasking.objects.get(id=request.POST['id']).delete()

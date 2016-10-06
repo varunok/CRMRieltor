@@ -3,7 +3,7 @@
 
 # Create your views here.
 from django.shortcuts import render
-from django.http import HttpResponse,  JsonResponse
+from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 from django.utils import timezone, dateformat
 from django.contrib.auth.models import User
@@ -18,6 +18,8 @@ from facility.models import ContactOwner, TypeOperations
 from meeting.models import Meeting
 from tasking.models import Tasking
 from homes.views import TaskingList, MeetingList
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class SingleArendatorView(DetailView):
@@ -38,13 +40,19 @@ class SingleArendatorView(DetailView):
         self.context['count_task'] = Tasking.objects.filter(task_trash=False, task_arendator=self.context['single_arendator'].id).count()
         return self.context
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(SingleArendatorView, self).dispatch(request, *args, **kwargs)
+
 
 # START BLOCK COMMENTS
+@login_required
 def get_comment_arendator(request):
     data_comment = SingleArendatorComments.objects.filter(obj_comments=request.GET['id_arendator']).order_by('-date_comment')
     return render(request, 'single_object/comments.html', {"single_obj_comments": data_comment})
 
 
+@login_required
 def add_single_arendator_comment(request):
     author = User.objects.get(id=request.POST['id_user'])
     author_name = author.get_full_name()
@@ -68,6 +76,7 @@ def add_single_arendator_comment(request):
     return HttpResponse(comment_data)
 
 
+@login_required
 def del_comment(request):
     if request.method == 'POST':
         id_comment = request.POST.get('id_comment').split('_')[-1]
@@ -80,6 +89,7 @@ def del_comment(request):
 
 
 # START BLOCK PICK UP AN OBJECT
+@login_required
 def get_object_arendator(request):
     ties = Tie.objects.all()
     shows = TypeShows.objects.all()
@@ -92,6 +102,7 @@ def get_object_arendator(request):
                                                                  'single_obj_comments': single_obj_comments})
 
 
+@login_required
 def automat_tie_arendator(request):
     list_operations = TypeOperations.objects.filter(type_operations__in=['Аренда', 'Посуточна'])
     qeryset = ContactOwner.objects.all().filter(trash=False, list_operations__in=list_operations)
@@ -107,6 +118,7 @@ def automat_tie_arendator(request):
                                                                  'single_obj_comments': single_obj_comments})
 
 
+@login_required
 def add_id_cont_owner(request):
     if ContactOwner.objects.filter(id=request.GET.get('id_cont_owner')).exists():
         cont_owner = ContactOwner.objects.get(id=request.GET.get('id_cont_owner'))
@@ -131,6 +143,7 @@ def add_id_cont_owner(request):
                                                                  'single_obj_comments': single_obj_comments})
 
 
+@login_required
 def clear_cont_owner(request):
     if request.method == 'POST':
         try:
@@ -151,6 +164,7 @@ def clear_cont_owner(request):
                                                                      'single_obj_comments': single_obj_comments})
 
 
+@login_required
 def del_cont_owner(request):
     if request.method == 'POST':
         tie = Tie.objects.get(tie_cont_owner=request.POST.get('id_cont_owner'))
@@ -168,6 +182,7 @@ def del_cont_owner(request):
                                                                      'single_obj_comments': single_obj_comments})
 
 
+@login_required
 def change_show_owner(request):
     if request.method == 'POST':
         cont_owner = ContactOwner.objects.get(id=request.POST.get('id_cont_owner'))
@@ -209,6 +224,10 @@ class MeetingSingleList(MeetingList):
         self.queryset = Meeting.objects.filter(meet_trash=False, meet_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleList, self).dispatch(request, *args, **kwargs)
+
 
 class MeetingSingleListActive(MeetingSingleList):
     queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=False)
@@ -224,6 +243,10 @@ class MeetingSingleListActive(MeetingSingleList):
         self.queryset = self.queryset.filter(meet_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleListActive, self).dispatch(request, *args, **kwargs)
+
 
 class MeetingSingleListArchive(MeetingSingleList):
     queryset = Meeting.objects.filter(meet_trash=False, meet_archiv=True)
@@ -238,6 +261,10 @@ class MeetingSingleListArchive(MeetingSingleList):
     def get_queryset(self):
         self.queryset = self.queryset.filter(meet_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(MeetingSingleListArchive, self).dispatch(request, *args, **kwargs)
 
 # END BLOCK MEETING
 
@@ -268,6 +295,10 @@ class TaskingSingleList(TaskingList):
         self.queryset = Tasking.objects.filter(task_trash=False, task_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleList, self).dispatch(request, *args, **kwargs)
+
 
 class TaskingSingleListActive(TaskingSingleList):
     queryset = Tasking.objects.filter(task_trash=False, task_archiv=False)
@@ -283,6 +314,10 @@ class TaskingSingleListActive(TaskingSingleList):
         self.queryset = self.queryset.filter(task_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleListActive, self).dispatch(request, *args, **kwargs)
+
 
 class TaskingSingleListArchive(TaskingSingleList):
     queryset = Tasking.objects.filter(task_trash=False, task_archiv=True)
@@ -297,5 +332,9 @@ class TaskingSingleListArchive(TaskingSingleList):
     def get_queryset(self):
         self.queryset = self.queryset.filter(task_arendator=self.request.GET.get('id_arendator'))
         return self.queryset
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(TaskingSingleListArchive, self).dispatch(request, *args, **kwargs)
 
 # END BLOCK TASKING
