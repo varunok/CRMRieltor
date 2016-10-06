@@ -20,7 +20,10 @@ class ConnectDatabases(object):
     def __init__(self):
         self.franshise = Franshise.objects.values()
         self.franshise_colaps = self.franshise[0]['franshise'].replace('.', '')
-        DATABASE = ''.join([settings.DATABASES_POST['DATABASE'], self.franshise_colaps])
+        if settings.DATABASES_POST['DATABASE']:
+            DATABASE = settings.DATABASES_POST['DATABASE']
+        else:
+            DATABASE = ''.join(['image20_', self.franshise_colaps])
         self.textusername = settings.DATABASES_POST['USER']
         self.textpassword = settings.DATABASES_POST['PASS']
         self.texthostname = settings.DATABASES_POST['HOST']
