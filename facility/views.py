@@ -35,7 +35,8 @@ def add_facility(request):
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
                                           db_phone_owner=phone_numb.phone_owner_plus)
             db_phone.save()
-            save_photo(request, phone_numb.id)
+            dir_img = request.session['dir_img']
+            save_photo(request, phone_numb.id, dir_img)
             return HttpResponseRedirect('/objects/')
         else:
             form = change_form_text(form)
@@ -58,7 +59,8 @@ def save_edit_facility(request):
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
                                           db_phone_owner=phone_numb.phone_owner_plus)
             db_phone.save()
-            save_photo(request, phone_numb.id)
+            dir_img = request.session['dir_img']
+            save_photo(request, phone_numb.id, dir_img)
             return HttpResponseRedirect('/objects/')
         else:
             form = change_form_text(form)
@@ -80,7 +82,8 @@ def check_phone(request):
 @login_required
 def add_img(request):
     if request.method == 'POST':
-        img_list = handle_uploaded_file(request.FILES)
+        dir_img = request.session['dir_img']
+        img_list = handle_uploaded_file(request.FILES, dir_img)
     return HttpResponse(JsonResponse(img_list))
 
 
@@ -91,10 +94,11 @@ def del_img(request):
             ImagesFacility.objects.get(id=request.POST.get('img_id')).delete()
             count_img = ImagesFacility.objects.filter(album=request.POST.get('obj_id')).count()
             AddressFacilityData.objects.filter(id=request.POST.get('obj_id')).update(images_count=int(count_img))
-            os.remove(request.POST.get('img')[1:])
-            return HttpResponse('delete image')
         except:
+            os.remove(request.POST.get('img')[1:])
             return HttpResponse('wrong delete')
+        os.remove(request.POST.get('img')[1:])
+        return HttpResponse('deleted image')
     else:
         HttpResponse(status=200)
 
@@ -110,19 +114,24 @@ def restore_obj(request):
         return HttpResponse(status=500)
 
 
-def handle_uploaded_file(f):
+def handle_uploaded_file(f, dir_img):
     try:
-        list_tmp_img = os.listdir('media/tmpimg/')
-        for ele in list_tmp_img:
-            os.remove(''.join(('media/tmpimg/', ele)))
+        os.mkdir('media/tmpimg/' + dir_img)
     except:
         pass
+    path_to_file = ''.join(['media/tmpimg/', dir_img, '/'])
+    # try:
+    #     list_tmp_img = os.listdir('media/tmpimg/')
+    #     for ele in list_tmp_img:
+    #         os.remove(''.join(('media/tmpimg/', ele)))
+    # except:
+    #     pass
     list_img = {}
     for ele in f:
-        with open('media/tmpimg/' + f[ele].name, 'wb+') as destination:
+        with open(path_to_file + f[ele].name, 'wb+') as destination:
             for chunk in f[ele].chunks():
                 destination.write(chunk)
-                list_img[ele] = ('/media/tmpimg/' + f[ele].name)
+                list_img[ele] = ('/' + path_to_file + f[ele].name)
                 # AddWatermark(list_img[ele], list_img[ele])
     return list_img
 

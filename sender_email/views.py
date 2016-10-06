@@ -14,6 +14,7 @@ from makler.models import Makler
 from suds.client import Client
 from django.conf import settings
 from setting_globall.models import Subscribe
+from setting_globall.models import NationalCarrency
 from django.contrib.auth.decorators import login_required
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
@@ -377,9 +378,13 @@ def link_to_single_obj(single_object, type_kontragent):
     templ_sms = get_object_or_404(TemplateSms, id=1)
     address = single_object.street_obj
     if type_kontragent == 'arendator':
-        price = single_object.price_month
+        try:
+            nat_curr = NationalCarrency.objects.get(id=1)
+        except:
+            nat_curr = ''
+        price = str(single_object.price_month) + str(nat_curr.currency)
     elif type_kontragent == 'buyer':
-        price = single_object.price_bay
+        price = str(single_object.price_bay)+'$'
     link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
     link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
@@ -393,9 +398,13 @@ def link_to_obj(objects, type_kontragent):
     for single_object in objects:
         address = single_object.street_obj
         if type_kontragent == 'arendator':
-            price = single_object.price_month
+            try:
+                nat_curr = NationalCarrency.objects.get(id=1)
+            except:
+                nat_curr = ''
+            price = str(single_object.price_month) + str(nat_curr.currency)
         elif type_kontragent == 'buyer':
-            price = single_object.price_bay
+            price = str(single_object.price_bay)+'$'
         link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
         landmark = single_object.landmark
         link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),

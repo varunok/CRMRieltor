@@ -6,7 +6,7 @@
 {% if edit %}
     Редактирование объекта  ID {{id_obj}}
 {% else %}
-   Добавление объекта 
+   Добавление объекта
 {% endif %}
 </title>{% endblock title %}
 
@@ -37,7 +37,7 @@
                         <h1 class="section-head">Адрес <span>объекта</span></h1>
                         {% if edit %}
                             <input type="hidden" name="edit" id="edit" value="{{ id_obj }}">
-                        {% endif %}     
+                        {% endif %}
                         <div class="section-sort">
                             <input name="add_facility" type="submit" class="btn btn-green" value=
                             {% if edit %}
@@ -198,7 +198,7 @@
                                     <div class="search-item">
                                         <label for="idobj">E-mail
 {#                                        {% if form.email_owner %}#}
-                                                <i style="color:#f1300a">{{ form.email_owner.errors }}</i>
+                                                <i style="color:#f1300a"></i>
 {#                                            {% endif %}#}
                                         </label>
 
@@ -694,9 +694,6 @@
                 processData: false,
                 contentType: false,
                 success: function(data){
-                    {% if not edit %}
-                        $('.add_imges_row').html('');
-                    {% endif %}
                     for (img in data){
                         $('.add_imges_row').append('<div class="col-md-2 load-img" style="margin-top:5px;"><img src="'+data[img]+'" alt="" width="100px" height="100px"><a href="#"><i class="fa fa-times load-img-del"></i></a></div>')
                     }

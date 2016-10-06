@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+import uuid
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -177,6 +178,7 @@ def add_object(request, form=AddressFacilityForm()):
     street_list = Street.objects.all()
     district_list = District.objects.all()
     subway_list = Subway.objects.all()
+    request.session['dir_img'] = str(uuid.uuid1())
     return render(request,
                   'homes/add_object.html', {'form': form,
                                             'street_list': street_list,

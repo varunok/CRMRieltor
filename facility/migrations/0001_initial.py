@@ -306,6 +306,7 @@ class Migration(migrations.Migration):
                 ('contact_owner', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430', blank=True, to='facility.TypeContactOwner', null=True)),
             ],
             options={
+                'ordering': ['id'],
                 'verbose_name': '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430',
                 'verbose_name_plural': '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0435\u0432',
             },
@@ -430,5 +431,9 @@ class Migration(migrations.Migration):
             model_name='phoneowner',
             name='phone',
             field=models.ForeignKey(blank=True, to='facility.ContactOwner', null=True),
+        ),
+        migrations.AlterUniqueTogether(
+            name='contactowner',
+            unique_together=set([('name_owner', 'phone_owner')]),
         ),
     ]
