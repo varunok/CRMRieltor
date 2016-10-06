@@ -53,7 +53,10 @@
                                         <td>{{exu.email}}({{exu.username}})</td>
                                         <td>{{exu.date_joined}}</td>
                                         {% if user.is_superuser %}
-                                            <td class="col-md-1 up_div"><i id="del_user" value="{{ exu.id }}" class="fa fa-times fa-2x setting_street"></i></td>
+                                            <td class="col-md-1 up_div">
+                                                <a href="{% url "edit_user" exu.id %}"><i class="fa fa-pencil fa-2x"></i></a>
+                                                <i id="del_user" value="{{ exu.id }}" class="fa fa-times fa-2x setting_street"></i>
+                                            </td>
                                         {% endif %}
                                     </tr>
                                 {% endif %}

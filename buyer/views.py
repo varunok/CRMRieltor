@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from buyer.forms import BuyerForm
 from homes.views import add_buyer, BuyersList
-from change_form import change_form_text
+
 from buyer.models import Buyer, TypeState
 from datetime import datetime
 from django.utils import timezone, dateformat
@@ -22,9 +22,9 @@ def add_buyer_obj(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/buyers')
-        else:
-            form = change_form_text(form)
-        return add_buyer(request, form)
+    else:
+        form = BuyerForm()
+    return add_buyer(request, form)
 
 
 @login_required
@@ -35,8 +35,6 @@ def save_edit_buyer(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/buyers')
-        else:
-            form = change_form_text(form)
     else:
         form = BuyerForm()
     return edit_buyer(request, request.POST.get('edit'))

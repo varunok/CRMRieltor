@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from arendator.forms import ArendatorForm
 from homes.views import add_arendator, ArendatorsList
-from change_form import change_form_text
 from arendator.models import Arendator, TypeState
 from datetime import datetime
 from django.utils import timezone, dateformat
@@ -19,11 +18,10 @@ from django.utils.decorators import method_decorator
 def add_arendator_obj(request):
     if request.method == 'POST':
         form = ArendatorForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/arendators')
-        else:
-            form = change_form_text(form)
     else:
         form = ArendatorForm()
     return add_arendator(request, form)
@@ -37,8 +35,6 @@ def save_edit_arendator(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/arendators')
-        else:
-            form = change_form_text(form)
     else:
         form = ArendatorForm()
     return edit_arendator(request, request.POST.get('edit'))

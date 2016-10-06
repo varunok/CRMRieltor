@@ -76,7 +76,9 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="tarea">Имя</label>
+                                        <label for="tarea">Имя<i style="color:#f1300a">
+                                        {{ form.name.errors.as_text }}</i>
+                                        </label>
                                         {{ form.name }}
                                     </div>
                                 </div>
@@ -98,7 +100,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="price">Телефон 1<i style="color:#f1300a">
-                                            {{ form.phone_first.errors }}</i>
+                                            {{ form.phone_first.errors.as_text }}</i>
                                         </label>
                                         {{ form.phone_first }}
                                     </div>
@@ -106,7 +108,7 @@
                                         <div class="col-md-12">
                                             <div class="search-item">
                                                 <label for="price">Телефон 2<i style="color:#f1300a">
-                                                    {{ form.phone_second.errors }}</i>
+                                                    {{ form.phone_second.errors.as_text }}</i>
                                                 </label>
                                                 {{ form.phone_second }}
                                             </div>
@@ -164,7 +166,9 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
-                                    <label for="tarea">Комнаты</label>
+                                    <label for="tarea">Комнаты<i style="color:#f1300a">
+                                        {{ form.room.errors.as_text }}</i>
+                                    </label>
                                     {{ form.room }}
                                 </div>
                             </div>

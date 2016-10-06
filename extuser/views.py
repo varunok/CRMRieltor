@@ -82,7 +82,6 @@ def add_user(request):
         if request.POST.get('add_user') is not None:
             if request.user.is_superuser:
                 result = request.POST
-                print(result)
                 new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
                 new_user.save()
                 add_img = MyUser(image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
@@ -93,8 +92,41 @@ def add_user(request):
 
 
 @login_required
+def edit_user(request, id):
+    user_edit = MyUser.objects.get(id=id)
+    return render(request, 'extuser/edit_user.html', {'user_edit': user_edit})
+
+
+@login_required
+def save_edit_user(request):
+    if request.method == 'POST':
+        User.objects.filter(id=request.POST.get('id_user')).update(first_name=request.POST.get('first_name'),
+                                                                   last_name=request.POST.get('last_name'),
+                                                                   email=request.POST.get('email'))
+        return HttpResponseRedirect('setting_user')
+
+
+@login_required
+def edit_pass(request, id, error=None):
+    user_edit = MyUser.objects.get(id=id)
+    return render(request, 'extuser/reset_pass.html', {'user_edit': user_edit, 'error': error})
+
+
+@login_required
+def save_edit_pass(request, id):
+    if request.method == 'POST':
+        if request.POST.get('new_password1') == request.POST.get('new_password2'):
+            user = User.objects.get(id=id)
+            user.set_password(request.POST.get('new_password1'))
+            user.save()
+            RecoveryPass.objects.filter(email=user.email).update(password=request.POST.get('new_password1'))
+            return edit_user(request, id)
+        return edit_pass(request, id, error=True)
+
+
+@login_required
 def user_list(request):
-    exuser = User.objects.all()
+    exuser = User.objects.filter(is_active=True)
     return render(request, 'extuser/setting_user.html', { 'time': timezone.now(), "exuser": exuser})
 
 

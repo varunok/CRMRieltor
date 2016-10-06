@@ -5,6 +5,7 @@ from django.db import models
 from setting_street.models import District
 from facility.models import TypeRepairs, TypeFacility, TypeRooms, TypeNumberOfPerson
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
@@ -65,6 +66,11 @@ class ArendatorManager(models.Manager):
         return self.get(name=name, phone_first=phone_first)
 
 
+def validate_isnumber(value):
+    if not value.isdigit():
+        raise ValidationError(u'%s не числовое значение' % value)
+
+
 class Arendator(models.Model):
     class Meta(object):
         verbose_name = u'Арендатор'
@@ -93,7 +99,8 @@ class Arendator(models.Model):
 
     name = models.CharField(max_length=250,
                             verbose_name=u'Имя',
-                            blank=True)
+                            blank=False,
+                            null=True)
 
     type_state = models.ForeignKey(TypeState,
                                    verbose_name=u'Состояние',
@@ -107,12 +114,14 @@ class Arendator(models.Model):
                                     related_name='t_client')
 
     phone_first = models.CharField(max_length=15, verbose_name=u'Телефон - 1',
-                                   blank=True,
-                                   null=True)
+                                   blank=False,
+                                   null=True,
+                                   validators=[validate_isnumber])
 
     phone_second = models.CharField(max_length=15, verbose_name=u'Телефон - 2',
                                     blank=True,
-                                    null=True)
+                                    null=True,
+                                    validators=[validate_isnumber])
 
     comment = models.TextField(verbose_name=u'Коментарий',
                                blank=True,
@@ -136,7 +145,7 @@ class Arendator(models.Model):
                                                 blank=True)
 
     room = models.ManyToManyField(TypeRooms,
-                                  blank=True,
+                                  blank=False,
                                   verbose_name=u'Комнаты')
 
     rooms_from = models.IntegerField(verbose_name=u'Комнат От', blank=True, null=True)
@@ -193,3 +202,6 @@ class Arendator(models.Model):
 
     def __unicode__(self):
         return '%s' % self.id
+
+
+
