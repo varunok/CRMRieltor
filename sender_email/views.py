@@ -382,13 +382,13 @@ def link_to_single_obj(single_object, type_kontragent):
             nat_curr = NationalCarrency.objects.get(id=1)
         except:
             nat_curr = ''
-        price = str(single_object.price_month) + str(nat_curr.currency)
+        price = str(single_object.price_month) + nat_curr.currency
     elif type_kontragent == 'buyer':
         price = str(single_object.price_bay)+'$'
     link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
     link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
-                     str(price), link, templ_sms.signature])
+                     price, link, templ_sms.signature])
     return link
 
 
@@ -402,12 +402,12 @@ def link_to_obj(objects, type_kontragent):
                 nat_curr = NationalCarrency.objects.get(id=1)
             except:
                 nat_curr = ''
-            price = str(single_object.price_month) + str(nat_curr.currency)
+            price = str(single_object.price_month) + nat_curr.currency
         elif type_kontragent == 'buyer':
             price = str(single_object.price_bay)+'$'
         link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
         landmark = single_object.landmark
         link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
-                          str(price), link, templ_sms.signature])
+                          price, link, templ_sms.signature])
         list_obj.append(link)
     return ', '.join(list_obj)

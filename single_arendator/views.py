@@ -153,10 +153,7 @@ def clear_cont_owner(request):
 
 def del_cont_owner(request):
     if request.method == 'POST':
-        try:
-            tie = Tie.objects.get(tie_cont_owner=request.POST.get('id_cont_owner'))
-        except:
-            tie = Tie.objects.get(tie_cont_owner_id=request.POST.get('id_cont_owner'))
+        tie = Tie.objects.get(tie_cont_owner=request.POST.get('id_cont_owner'))
         arend = tie.tie_arenda.get(id=request.POST.get('id_arendator'))
         tie.tie_arenda.remove(arend)
         ties = Tie.objects.all()

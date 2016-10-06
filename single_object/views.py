@@ -221,20 +221,21 @@ def get_arendator(request):
 
 
 def change_shows(request, id_a):
+    id_a, id_o, id_show = id_a.split('=')
+    id_a = id_a.split('-')[-1]
+    id_o = id_o.split('-')[-1]
+    id_show = id_show.split('-')[-1]
+    arendator = Arendator.objects.get(id=id_a)
+    cont_owner = ContactOwner.objects.get(id=id_o)
     try:
-        id_a, id_o, id_show = id_a.split('=')
-        id_a = id_a.split('-')[-1]
-        id_o = id_o.split('-')[-1]
-        id_show = id_show.split('-')[-1]
         type_shows = TypeShows.objects.get(id=id_show)
-        arendator = Arendator.objects.get(id=id_a)
-        cont_owner = ContactOwner.objects.get(id=id_o)
         show_ar, created = ShowsArendator.objects.get_or_create(array_arendator=arendator, array_cont_ower=cont_owner)
         show_ar.type_shows_arendator = type_shows
         show_ar.save()
         return HttpResponse('ok')
     except:
-        return HttpResponse('error')
+        ShowsArendator.objects.get(array_arendator=arendator, array_cont_ower=cont_owner).delete()
+        return HttpResponse(status=500, content=b'Изменено')
 
 
 def delete_tie_arendator(request, did):

@@ -88,7 +88,7 @@
                                         <tbody>
                                         {% for tie in ties %}
                                             {% for arenda in tie.tie_arenda.all %}
-                                                {% if id_arendator.id == tie.tie_arenda.id %}
+                                                {% if id_arendator|floatformat == arenda|floatformat %}
                                                     <tr class="color">
                                                     {% for show in shows %}
                                                         {% for sh in id_show.all %}
