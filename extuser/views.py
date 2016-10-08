@@ -35,8 +35,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None and user.is_active:
                 login(request, user)
-                acti = Active()
-                if not acti.franshises():
+                if not Active().franshises():
                     try:
                         franshise = Franshise.objects.get(id=1)
                         franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
