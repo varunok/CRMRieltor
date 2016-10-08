@@ -19,7 +19,7 @@ class ConnectDatabases(object):
     """docstring for ConnectDatabases"""
     def __init__(self):
         self.franshise = Franshise.objects.values()
-        self.franshise_colaps = self.franshise[0]['franshise'].replace('.', '')
+        self.franshise_colaps = self.franshise[0]['franshise'].replace('.', '').replace('-', '')
         if settings.DATABASES_POST['DATABASE']:
             DATABASE = settings.DATABASES_POST['DATABASE']
         else:
