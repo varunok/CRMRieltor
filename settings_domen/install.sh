@@ -124,10 +124,14 @@ rm tmp.fcgi
 rm tmp.py
 rm tmp2.py
 
-ln -s $short_name/$short_name/media
+ln -s /hsphere/local/home/image2007/$short_name/$short_name/media
 ln -s /hsphere/local/home/image2007/crm_rieltor/homes/static
 
+echo 'Dump databases'
 psql image20_$full_name_not_dot -W Mongo2nips  -U image20_rieltor < ../crm_rieltor/settings_domen/dump.psql
+echo 'Done'
+
+rm install.sh
 
 
 # pg_dump image20_dom6usatbakrmdnua -U image20_rieltor > dump.psql
