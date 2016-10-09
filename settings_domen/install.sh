@@ -1,6 +1,7 @@
 #!/bin/bash
 site=$1
 full_name=$1
+full_name_not_dot=${full_name//./}
 full_name=${full_name:4}
 short_name=${site:4}
 short_name=${short_name//./}
@@ -32,7 +33,7 @@ echo 'Created'
 
 echo 'Create' ${short_name}'.fcgi'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fcgi>tmp.fcgi
-sed 's/crm/'$short_name'/g' tmp.fsgi>$short_name.fcgi
+sed 's/crm/'$short_name'/g' tmp.fcgi>$short_name.fcgi
 echo 'Created'
 
 echo 'Create' $short_name 'directory'
@@ -123,9 +124,14 @@ rm tmp.fcgi
 rm tmp.py
 rm tmp2.py
 
+ln -s $short_name/$short_name/media
+ln -s /hsphere/local/home/image2007/crm_rieltor/homes/static
+
+psql image20_$full_name_not_dot -W Mongo2nips  -U image20_rieltor < dump.psql
 
 
-
+# pg_dump image20_dom6usatbakrmdnua -U image20_rieltor > dump.psql
+#  psql image20_dom6usatbakrmdnua  -U image20_rieltor < dump.psql
 
 
 
