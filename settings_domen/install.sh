@@ -1,6 +1,7 @@
 #!/bin/bash
 site=$1
 full_name=$1
+full_name=${full_name:4}
 short_name=${site:4}
 short_name=${short_name//./}
 
@@ -29,10 +30,10 @@ echo 'Create .htaccess'
 sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/.htaccess>.htaccess
 echo 'Created'
 
-echo 'Create' ${short_name}'.fsgi'
-sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fsgi>tmp.fsgi
-sed 's/crm/'$short_name'/g' tmp.fsgi>$short_name.fsgi
-rm tmp.fsgi
+echo 'Create' ${short_name}'.fcgi'
+sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fcgi>tmp.fcgi
+sed 's/crm/'$short_name'/g' tmp.fsgi>$short_name.fcgi
+rm tmp.fcgi
 echo 'Created'
 
 echo 'Create' $short_name 'directory'
@@ -80,7 +81,7 @@ ln -s /hsphere/local/home/image2007/crm_rieltor/posting
 ln -s /hsphere/local/home/image2007/crm_rieltor/searching
 ln -s /hsphere/local/home/image2007/crm_rieltor/send_messege_user
 ln -s /hsphere/local/home/image2007/crm_rieltor/sender_email
-ln -s /hsphere/local/home/image2007/crm_rieltor/setting_global
+ln -s /hsphere/local/home/image2007/crm_rieltor/setting_globall
 ln -s /hsphere/local/home/image2007/crm_rieltor/setting_street
 ln -s /hsphere/local/home/image2007/crm_rieltor/single_arendator
 ln -s /hsphere/local/home/image2007/crm_rieltor/single_buyer
@@ -118,7 +119,7 @@ cp ../crm_rieltor/crm/urls.py $short_name/$short_name/urls.py
 echo 'Created'
 
 echo 'Create backup_dropbox_settings.py'
-sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/wsgi.py>$short_name/$short_name/$wsgi.py
+sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/wsgi.py>$short_name/$short_name/wsgi.py
 echo 'Created'
 
 
