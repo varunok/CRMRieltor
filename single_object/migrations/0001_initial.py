@@ -8,8 +8,8 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('arendator', '0001_initial'),
-        ('facility', '0001_initial'),
+        ('arendator', '0002_auto_20161001_0716'),
+        ('facility', '0003_auto_20160930_0509'),
         ('buyer', '0001_initial'),
     ]
 
@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             name='ShowsArendator',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('array_arendator', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='arendator.Arendator', null=True)),
-                ('array_cont_ower', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='facility.ContactOwner', null=True)),
+                ('array_arendator', models.ForeignKey(to='arendator.Arendator', null=True)),
+                ('array_cont_ower', models.ForeignKey(to='facility.ContactOwner', null=True)),
             ],
             options={
                 'verbose_name': '\u041f\u043e\u043a\u0430\u0437 \u0430\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u0430\u043c',
@@ -30,8 +30,8 @@ class Migration(migrations.Migration):
             name='ShowsBuyer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('array_buyer', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='buyer.Buyer', null=True)),
-                ('array_cont_ower', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='facility.ContactOwner', null=True)),
+                ('array_buyer', models.ForeignKey(to='buyer.Buyer', null=True)),
+                ('array_cont_ower', models.ForeignKey(to='facility.ContactOwner', null=True)),
             ],
             options={
                 'verbose_name': '\u041f\u043e\u043a\u0430\u0437 \u043f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044e',
@@ -92,11 +92,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='showsbuyer',
             name='type_shows_buyer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, default=1, verbose_name='\u041f\u043e\u043a\u0430\u0437\u0438 \u041f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044e', to='single_object.TypeShows', null=True),
+            field=models.ForeignKey(default=1, verbose_name='\u041f\u043e\u043a\u0430\u0437\u0438 \u041f\u043e\u043a\u0443\u043f\u0430\u0442\u0435\u043b\u044e', to='single_object.TypeShows', null=True),
         ),
         migrations.AddField(
             model_name='showsarendator',
             name='type_shows_arendator',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, default=1, verbose_name='\u041f\u043e\u043a\u0430\u0437\u0438 \u0410\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u0430\u043c', to='single_object.TypeShows', null=True),
+            field=models.ForeignKey(default=1, verbose_name='\u041f\u043e\u043a\u0430\u0437\u0438 \u0410\u0440\u0435\u043d\u0434\u0430\u0442\u043e\u0440\u0430\u043c', to='single_object.TypeShows', null=True),
         ),
     ]

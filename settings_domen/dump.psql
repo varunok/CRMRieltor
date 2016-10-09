@@ -910,7 +910,7 @@ ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('auth_user_id_seq', 11, true);
+SELECT pg_catalog.setval('auth_user_id_seq', 12, true);
 
 
 --
@@ -1309,7 +1309,7 @@ ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 247, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 250, true);
 
 
 --
@@ -1492,7 +1492,7 @@ ALTER SEQUENCE extuser_myuser_id_seq OWNED BY extuser_myuser.id;
 -- Name: extuser_myuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('extuser_myuser_id_seq', 7, true);
+SELECT pg_catalog.setval('extuser_myuser_id_seq', 8, true);
 
 
 --
@@ -1533,7 +1533,7 @@ ALTER SEQUENCE extuser_recoverypass_id_seq OWNED BY extuser_recoverypass.id;
 -- Name: extuser_recoverypass_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('extuser_recoverypass_id_seq', 6, true);
+SELECT pg_catalog.setval('extuser_recoverypass_id_seq', 7, true);
 
 
 --
@@ -5392,10 +5392,8 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-7	pbkdf2_sha256$20000$XSstsEq0hpB3$ViYnC9lvl8Jwwz+y3fNQjcy0veDrPV80XvROE2iDStA=	2016-10-06 21:25:24.450887+03	f	parfenova_nata@mail.ru	Наташа	Парфенова 	parfenova_nata@mail.ru	f	f	2016-10-06 21:25:24.451021+03
 2	pbkdf2_sha256$20000$8TGB0kkosSMW$pgoKnFrleSLHLbwQegzojYjja76sErSSrAHFqap5lHc=	2016-10-06 21:38:06+03	t	image2007@bk.ru	Вячеслав	Рекечинский	image2007@bk.ru	t	t	2016-09-26 16:32:55+03
-1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-06 22:57:59+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	f	2016-09-12 00:20:42+03
-11	pbkdf2_sha256$20000$3jhR3kHYUJWZ$bLsPVx/ZUpoQxLZwyEYYyhD0kfbw9Djj4GlovuRNLZQ=	2016-10-06 21:31:50.087679+03	f	ofis@usatba-krm.dn.ua	Наташа		ofis@usatba-krm.dn.ua	f	t	2016-10-06 21:31:50.087812+03
+1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 00:00:09+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
 \.
 
 
@@ -5726,6 +5724,9 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 245	2016-10-06 22:55:24.631552+03	3	3	3		32	1
 246	2016-10-06 22:55:24.636513+03	1	1	3		32	1
 247	2016-10-06 22:56:35.228326+03	1	varunok	2	Изменен is_active.	4	1
+248	2016-10-09 23:22:28.998565+03	11	ofis@usatba-krm.dn.ua	3		4	1
+249	2016-10-09 23:22:29.004917+03	7	parfenova_nata@mail.ru	3		4	1
+250	2016-10-09 23:59:25.999916+03	12	varunok@protonmail.com	3		4	1
 \.
 
 
@@ -5907,8 +5908,6 @@ lhzp2j5esnsbxdnbm61kiharo77c0wac	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU
 COPY extuser_myuser (id, image, type_user_id, user_id) FROM stdin;
 1	avatar/iam_xT6xOdG.jpg	2	1
 2	avatar/admin-photo_HRGFvAo.jpg	2	2
-6	avatar/Screenshot_112.png	1	7
-7	avatar/Screenshot_5213.png	1	11
 \.
 
 
@@ -5923,6 +5922,7 @@ COPY extuser_recoverypass (id, email, password) FROM stdin;
 4	ofis@dom.zt.ua	123456
 5	parfenova_nata@mail.ru	sin1984
 6	ofis@usatba-krm.dn.ua	123456
+7	varunok@protonmail.com	3344
 \.
 
 
@@ -6470,7 +6470,7 @@ COPY send_messege_user_usermessage (id, message, time_message, read, from_user_i
 --
 
 COPY setting_globall_franshise (id, franshise) FROM stdin;
-1	dom.zt.ua
+1	gek.cv.ua
 \.
 
 
