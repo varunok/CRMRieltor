@@ -1,7 +1,9 @@
 #!/bin/bash
 site=$1
-short_name=$1
+full_name=$1
+short_name=${site:4}
 short_name=${short_name//./}
+
 
 
 echo 'Create python virtualenv...'
@@ -30,6 +32,7 @@ echo 'Created'
 echo 'Create' ${short_name}'.fsgi'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fsgi>tmp.fsgi
 sed 's/crm/'$short_name'/g' tmp.fsgi>$short_name.fsgi
+rm tmp.fsgi
 echo 'Created'
 
 echo 'Create' $short_name 'directory'
@@ -61,6 +64,7 @@ cp ../crm_rieltor/settings_domen/phantomjs $short_name/media/phantomjs
 cp -r ../crm_rieltor/templates $short_name/templates 
 echo 'Created'
 echo 'Create simlink'
+cd $short_name
 ln -s /hsphere/local/home/image_2007/crm_rieltor/arendator
 ln -s /hsphere/local/home/image_2007/crm_rieltor/backupbd_crm
 ln -s /hsphere/local/home/image_2007/crm_rieltor/buyer
@@ -85,6 +89,7 @@ ln -s /hsphere/local/home/image_2007/crm_rieltor/tasking
 ln -s /hsphere/local/home/image_2007/crm_rieltor/trash_object
 ln -s /hsphere/local/home/image_2007/crm_rieltor/watermark
 ln -s /hsphere/local/home/image_2007/crm_rieltor/who_online
+cd ..
 echo 'Created'
 
 echo 'Create cron.py'
@@ -102,7 +107,9 @@ echo 'Created'
 
 echo 'Create backup_dropbox_settings.py'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/settings.py>tmp.py
-sed 's/crm/'$short_name'/g' tmp.py>$settings.py
+sed 's/full_name/'$site'/g' tmp.py>tmp2.py
+sed 's/crm/'$short_name'/g' tmp2.py>$settings.py
+rm tmp.py
 echo 'Created'
 
 echo 'Create urls.py'
