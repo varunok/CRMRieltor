@@ -22,7 +22,7 @@ else
     exit 0
 fi
 echo 'Start install packages'
-pip install $requirements
+pip install -r $requirements
 echo 'installed packages'
 
 echo 'Create .htaccess'
@@ -65,30 +65,30 @@ cp -r ../crm_rieltor/templates $short_name/templates
 echo 'Created'
 echo 'Create simlink'
 cd $short_name
-ln -s /hsphere/local/home/image_2007/crm_rieltor/arendator
-ln -s /hsphere/local/home/image_2007/crm_rieltor/backupbd_crm
-ln -s /hsphere/local/home/image_2007/crm_rieltor/buyer
-ln -s /hsphere/local/home/image_2007/crm_rieltor/extuser
-ln -s /hsphere/local/home/image_2007/crm_rieltor/facility
-ln -s /hsphere/local/home/image_2007/crm_rieltor/homes
-ln -s /hsphere/local/home/image_2007/crm_rieltor/learning
-ln -s /hsphere/local/home/image_2007/crm_rieltor/makler
-ln -s /hsphere/local/home/image_2007/crm_rieltor/meeting
-ln -s /hsphere/local/home/image_2007/crm_rieltor/notes
-ln -s /hsphere/local/home/image_2007/crm_rieltor/parsings
-ln -s /hsphere/local/home/image_2007/crm_rieltor/posting
-ln -s /hsphere/local/home/image_2007/crm_rieltor/searching
-ln -s /hsphere/local/home/image_2007/crm_rieltor/send_messege_user
-ln -s /hsphere/local/home/image_2007/crm_rieltor/sender_email
-ln -s /hsphere/local/home/image_2007/crm_rieltor/setting_global
-ln -s /hsphere/local/home/image_2007/crm_rieltor/setting_street
-ln -s /hsphere/local/home/image_2007/crm_rieltor/single_arendator
-ln -s /hsphere/local/home/image_2007/crm_rieltor/single_buyer
-ln -s /hsphere/local/home/image_2007/crm_rieltor/single_object
-ln -s /hsphere/local/home/image_2007/crm_rieltor/tasking
-ln -s /hsphere/local/home/image_2007/crm_rieltor/trash_object
-ln -s /hsphere/local/home/image_2007/crm_rieltor/watermark
-ln -s /hsphere/local/home/image_2007/crm_rieltor/who_online
+ln -s /hsphere/local/home/image2007/crm_rieltor/arendator
+ln -s /hsphere/local/home/image2007/crm_rieltor/backupbd_crm
+ln -s /hsphere/local/home/image2007/crm_rieltor/buyer
+ln -s /hsphere/local/home/image2007/crm_rieltor/extuser
+ln -s /hsphere/local/home/image2007/crm_rieltor/facility
+ln -s /hsphere/local/home/image2007/crm_rieltor/homes
+ln -s /hsphere/local/home/image2007/crm_rieltor/learning
+ln -s /hsphere/local/home/image2007/crm_rieltor/makler
+ln -s /hsphere/local/home/image2007/crm_rieltor/meeting
+ln -s /hsphere/local/home/image2007/crm_rieltor/notes
+ln -s /hsphere/local/home/image2007/crm_rieltor/parsings
+ln -s /hsphere/local/home/image2007/crm_rieltor/posting
+ln -s /hsphere/local/home/image2007/crm_rieltor/searching
+ln -s /hsphere/local/home/image2007/crm_rieltor/send_messege_user
+ln -s /hsphere/local/home/image2007/crm_rieltor/sender_email
+ln -s /hsphere/local/home/image2007/crm_rieltor/setting_global
+ln -s /hsphere/local/home/image2007/crm_rieltor/setting_street
+ln -s /hsphere/local/home/image2007/crm_rieltor/single_arendator
+ln -s /hsphere/local/home/image2007/crm_rieltor/single_buyer
+ln -s /hsphere/local/home/image2007/crm_rieltor/single_object
+ln -s /hsphere/local/home/image2007/crm_rieltor/tasking
+ln -s /hsphere/local/home/image2007/crm_rieltor/trash_object
+ln -s /hsphere/local/home/image2007/crm_rieltor/watermark
+ln -s /hsphere/local/home/image2007/crm_rieltor/who_online
 cd ..
 echo 'Created'
 
@@ -108,8 +108,9 @@ echo 'Created'
 echo 'Create backup_dropbox_settings.py'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/settings.py>tmp.py
 sed 's/full_name/'$site'/g' tmp.py>tmp2.py
-sed 's/crm/'$short_name'/g' tmp2.py>$settings.py
+sed 's/crm/'$short_name'/g' tmp2.py>$short_name/$short_name/settings.py
 rm tmp.py
+rm tmp2.py
 echo 'Created'
 
 echo 'Create urls.py'
@@ -117,7 +118,7 @@ cp ../crm_rieltor/crm/urls.py $short_name/$short_name/urls.py
 echo 'Created'
 
 echo 'Create backup_dropbox_settings.py'
-sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/wsgi.py>$wsgi.py
+sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/wsgi.py>$short_name/$short_name/$wsgi.py
 echo 'Created'
 
 
