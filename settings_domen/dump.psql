@@ -5393,7 +5393,11 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 2	pbkdf2_sha256$20000$8TGB0kkosSMW$pgoKnFrleSLHLbwQegzojYjja76sErSSrAHFqap5lHc=	2016-10-06 21:38:06+03	t	image2007@bk.ru	Вячеслав	Рекечинский	image2007@bk.ru	t	t	2016-09-26 16:32:55+03
+<<<<<<< HEAD
 1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 00:00:09+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
+=======
+1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 00:36:01+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
+>>>>>>> c02179663eb1a4ed972cf28c731c415a865aa578
 \.
 
 
@@ -5418,7 +5422,6 @@ COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 
 COPY buyer_buyer (id, commission, name, phone_first, phone_second, comment, email, rooms_from, rooms_to, floors_from, floors_to, area_from, area_to, price_from, price_to, date_term, review_date, call_date, time_trash, name_user_trash, trash, add_date, number_of_persons_id, type_client_id, type_stage_id, type_state_id, fts) FROM stdin;
-1	2000	Мирам	972443790	\N	Нажмите на «плей» и ждите начала трансляции. Если трансляция еще не началась, вы увидите черный экран с надписью о времени начала трансляции. Если трансляция началась, вы увидите видео.\r\nЕсли вы зашли на страницу трансляции заранее и запустили видео, вещание на вашей странице должно начаться автоматически.\r\nЕсли время начала трансляции уже прошло, а трансляция не запускается автоматически, обновите страницу (Ctrl+F5) или полностью закройте вкладку и зайдите еще раз по ссылке. После этого запустите видео еще раз, нажав на «плей».		1	2	\N	\N	\N	\N	\N	\N	\N	2016-10-06	2016-09-27	2016-10-06 13:28:27.816337+03	Андрій Варунок	t	2016-09-27 13:59:44.87778+03	\N	3	\N	2	'ctrl':60A 'f5':61A 'автоматическ':46A,57A 'ваш':42A 'вещан':40A 'виде':29A,39A,75A 'вкладк':65A 'врем':48A 'времен':21A 'должн':44A 'ждит':6A 'зайд':67A 'закройт':64A 'запуска':56A 'запуст':38A,74A 'заран':36A 'зашл':32A 'мир':1A 'надпис':19A 'нажа':78A 'нажм':2A 'нача':7A,13A,22A,26A,45A,49A 'обнов':58A 'пле':4A,80A 'полност':63A 'прошл':52A 'ссылк':71A 'страниц':34A,43A,59A 'трансляц':8A,10A,23A,25A,35A,50A,54A 'увид':15A,28A 'черн':16A 'экра':17A
 \.
 
 
@@ -5435,7 +5438,6 @@ COPY buyer_buyer_district_obj (id, buyer_id, district_id) FROM stdin;
 --
 
 COPY buyer_buyer_loyality (id, buyer_id, userfullname_id) FROM stdin;
-1	1	2
 \.
 
 
@@ -5452,7 +5454,6 @@ COPY buyer_buyer_repairs (id, buyer_id, typerepairs_id) FROM stdin;
 --
 
 COPY buyer_buyer_rieltor (id, buyer_id, userfullname_id) FROM stdin;
-1	1	2
 \.
 
 
@@ -5829,52 +5830,6 @@ COPY django_cron_cronjoblog (id, code, start_time, end_time, is_success, message
 --
 
 COPY django_migrations (id, app, name, applied) FROM stdin;
-29	setting_street	0001_initial	2016-09-28 06:43:53.452715+03
-30	setting_globall	0001_initial	2016-09-28 06:43:53.501398+03
-31	contenttypes	0001_initial	2016-09-28 06:43:53.519983+03
-32	contenttypes	0002_remove_content_type_name	2016-09-28 06:44:45.953487+03
-33	auth	0001_initial	2016-09-28 06:44:45.96126+03
-34	auth	0002_alter_permission_name_max_length	2016-09-28 06:44:45.96817+03
-35	auth	0003_alter_user_email_max_length	2016-09-28 06:44:45.975276+03
-36	auth	0004_alter_user_username_opts	2016-09-28 06:44:45.982508+03
-37	auth	0005_alter_user_last_login_null	2016-09-28 06:44:45.989596+03
-38	auth	0006_require_contenttypes_0002	2016-09-28 06:44:45.996757+03
-39	facility	0001_initial	2016-09-28 06:44:46.003912+03
-40	facility	0002_auto_20160928_0624	2016-09-28 06:44:46.012197+03
-41	facility	0002_auto_20160928_0701	2016-09-28 07:02:02.847606+03
-42	admin	0001_initial	2016-09-30 05:11:19.364026+03
-43	arendator	0001_initial	2016-09-30 05:11:19.991594+03
-44	buyer	0001_initial	2016-09-30 05:17:55.790873+03
-45	single_object	0001_initial	2016-09-30 05:18:00.503628+03
-46	facility	0003_auto_20160930_0509	2016-09-30 05:18:01.679707+03
-47	arendator	0002_auto_20161001_0716	2016-10-01 07:19:37.729079+03
-48	extuser	0001_initial	2016-10-01 07:20:39.968447+03
-49	makler	0001_initial	2016-10-01 07:20:39.976776+03
-50	meeting	0001_initial	2016-10-01 07:20:39.983884+03
-51	notes	0001_initial	2016-10-01 07:20:39.993816+03
-52	parsings	0001_initial	2016-10-01 07:20:40.004137+03
-53	send_messege_user	0001_initial	2016-10-01 07:20:40.012225+03
-54	sessions	0001_initial	2016-10-01 07:20:40.019658+03
-55	setting_mail_delivery	0001_initial	2016-10-01 07:20:40.026847+03
-56	setting_superadmin	0001_initial	2016-10-01 07:20:40.034716+03
-60	watermark	0001_initial	2016-10-01 07:20:40.06656+03
-61	single_arendator	0001_initial	2016-10-01 07:26:47.168755+03
-62	facility	0004_auto_20161001_0736	2016-10-01 07:36:39.800965+03
-63	single_arendator	0002_auto_20161001_0736	2016-10-01 07:36:42.292266+03
-64	single_buyer	0001_initial	2016-10-01 07:38:26.481879+03
-65	django_cron	0001_initial	2016-10-02 23:57:30.23867+03
-66	django_cron	0002_remove_max_length_from_CronJobLog_message	2016-10-02 23:57:30.437047+03
-67	facility	0005_auto_20161002_2356	2016-10-02 23:57:31.403196+03
-68	makler	0002_auto_20161002_2356	2016-10-02 23:57:32.396585+03
-69	tasking	0001_initial	2016-10-02 23:57:55.375501+03
-70	setting_globall	0002_subscribe	2016-10-03 08:36:43.924781+03
-71	watermark	0002_watermark_on_off	2016-10-03 08:36:44.031783+03
-72	learning	0001_initial	2016-10-03 08:38:55.380584+03
-73	arendator	0003_auto_20161006_1339	2016-10-06 13:40:11.576731+03
-74	buyer	0002_auto_20161006_1340	2016-10-06 13:40:34.94053+03
-75	buyer	0003_auto_20161006_1839	2016-10-06 18:40:36.448763+03
-76	arendator	0004_auto_20161006_1839	2016-10-06 18:40:50.187366+03
-77	single_object	0002_auto_20161006_1839	2016-10-06 18:41:08.197317+03
 \.
 
 
@@ -5883,21 +5838,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
-4d1k7n23lpumg5g4n2oaufl6l01jb6sk	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-09-26 00:21:12.237+03
-v7kyuhef4010otb0q4hmggwist32u5gx	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-10 14:45:41.272+03
-ytblnwhvp92zk7l6s2cyhq1n2wce5jqa	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-10 16:31:13.827771+03
-xwyu71h63u5x5jqzoi39jiprrpll6z03	ZDY5NmZjYjRmMGNkYmU2NWQwYzNlOGM4YjE4NzU4OGEwZWUwOTc5ODp7ImRpcl9pbWciOiI4ZjQ1NmFmMi04YjY0LTExZTYtYTEyZS0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI3M2JkMDgxODgyYzY5YjI1ZDg5YWQ1N2Y1YzViOTkwOWIyNzgwNTc4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiMSJ9	2016-10-20 04:31:09.987235+03
-rbnn251r7aebdnypxj46k23zp0qob1kp	MTY0OGU2ZjA0ZDJhOTdhYWMzNjBlMWUyYWRmYmU1MzY3M2Y2NTc3Njp7Il9hdXRoX3VzZXJfaGFzaCI6ImY5OGQ4YWNjYjI2ZTRjY2ZlZWJhZWYxZDE4NWY2ZGUzODYxN2Y1YzEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI1In0=	2016-10-20 14:52:36.28019+03
-imilomj76fcaykm8x669wya36t94jzou	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-14 11:42:43.049264+03
-zcty8tss18al09psjymph5swr921p7d1	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-14 22:14:25.162238+03
-p1gauackdcptj5uo32lkespqqbrlt1uk	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-14 22:21:02.533627+03
-qa4u0wvlsqsk9kgkt8p64cufcgfo7aud	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-15 07:51:31.464441+03
-dk1xk6s1o7jxtknbajuso21ee76z0yyk	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-17 22:31:00.446888+03
-53c20xv9q1tbu759s6ykdd4921tx93d2	NzYzZDI5OWNiNTQwNjI5Yjk0ZGNmY2M1NjA0MzI5N2I2MWI0NzBiYzp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2lkIjoiMiIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2016-10-18 23:20:55.688482+03
-cwm59h2fqswrzzp7ythlpwqg7wfemxa1	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-19 11:18:37.498652+03
-u7otyjdhkbqk2uhhx11z8fnycir7zolz	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-19 23:12:59.864562+03
-p7jl7xch8jpomhj07w6uuk3xovscy8ub	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-20 21:14:33.127542+03
-lhzp2j5esnsbxdnbm61kiharo77c0wac	NDU0ZTVhMTk4NDEyMjM1NGZhYjcyOTlmOTNiYjhmZjBkOTU0ZGMyOTp7Il9hdXRoX3VzZXJfaGFzaCI6Ijg0ODczMGEzZTgxN2Y1MzdjMzk3ZjY5YmE0MWExYmY2MTZmMDk2MDgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=	2016-10-20 21:20:09.757724+03
+k1s613ii7kofvbutk98n07vazj2r9ryo	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-24 00:14:50.392335+03
 \.
 
 
@@ -5917,12 +5858,15 @@ COPY extuser_myuser (id, image, type_user_id, user_id) FROM stdin;
 
 COPY extuser_recoverypass (id, email, password) FROM stdin;
 1	image2007@bk.ru	sin1984
+<<<<<<< HEAD
 2	ofis@rieltory.biz	qazqaz
 3	sin@gek.od.ua	qazqaz
 4	ofis@dom.zt.ua	123456
 5	parfenova_nata@mail.ru	sin1984
 6	ofis@usatba-krm.dn.ua	123456
 7	varunok@protonmail.com	3344
+=======
+>>>>>>> c02179663eb1a4ed972cf28c731c415a865aa578
 \.
 
 
@@ -6006,146 +5950,6 @@ COPY facility_contactowner (addressfacilitydata_ptr_id, agency, name_owner, revi
 --
 
 COPY facility_databasephoneowner (id, db_id_owner, db_phone_owner) FROM stdin;
-1	1	09648743535
-2	1	0964563434
-3	2	3424324242
-4	2	
-5	3	0964874353
-6	3	2131231
-7	4	3424324242
-8	4	0964563434
-9	5	123123123
-10	5	0964563434
-11	6	12323332323232
-12	6	231321313
-13	7	34534535
-14	7	
-15	8	12313123131
-16	8	
-17	9	2324324324
-18	9	
-19	10	34324243242
-20	10	
-21	11	21324324
-22	11	0964563434
-23	11	21324324
-24	11	0964563434
-25	12	1111111111
-26	12	0964563434
-27	12	1111111111
-28	12	0964563434
-29	13	333333333
-30	13	0964563434
-31	13	333333333
-32	13	0964563434
-33	14	55555555
-34	14	0964563434
-35	14	55555555
-36	14	0964563434
-37	14	55555555
-38	14	0964563434
-39	14	55555555
-40	14	0964563434
-41	14	55555555
-42	14	0964563434
-43	15	234242
-44	15	234234
-45	1	0972443790
-46	1	
-47	2	0972442790
-48	2	
-49	3	0843535
-50	3	
-51	3	0843535
-52	3	
-53	3	0843535
-54	3	
-55	10	0972442790
-56	10	
-57	11	0972443790
-58	11	
-59	11	0972443790
-60	11	
-61	12	5435435353
-62	12	
-63	12	5435435353
-64	12	
-65	13	0501725574
-66	13	
-67	13	0501725574
-68	13	
-69	13	0501725574
-70	13	
-71	13	0501725574
-72	13	
-73	13	0501725574
-74	13	
-75	13	0501725574
-76	13	
-77	13	0501725574
-78	13	
-79	2	32112321
-80	2	
-81	2	32112321
-82	2	
-83	2	32112321
-84	2	
-85	2	32112321
-86	2	
-87	3	0843535
-88	3	
-89	10	0972442790
-90	10	
-91	10	0972442790
-92	10	
-93	14	2423423423
-94	14	
-95	15	3424
-96	15	
-97	15	3424
-98	15	
-99	16	324234
-100	16	
-101	17	098353454
-102	17	
-103	18	321231
-104	18	
-105	18	321231
-106	18	
-107	18	321231
-108	18	
-109	18	321231
-110	18	
-111	18	321231
-112	18	
-113	19	232323
-114	19	
-115	20	2323
-116	20	
-117	21	2323
-118	21	
-119	22	3243423
-120	22	
-121	22	3243423
-122	22	
-123	23	232312
-124	23	
-125	23	232312
-126	23	
-127	24	23233
-128	24	
-129	25	23233
-130	25	
-131	26	2234324
-132	26	
-133	27	232323
-134	27	
-135	27	232323
-136	27	
-137	28	23123
-138	28	
-139	29	2323123
-140	29	
 \.
 
 
@@ -6626,7 +6430,6 @@ COPY single_arendator_singlearendatorcomments (id, comment, date_comment, author
 --
 
 COPY single_buyer_singlebuyercomments (id, obj_comments_id, comment, date_comment, author_comment, image, type_tabs) FROM stdin;
-1	1	ettete	2016-10-01 07:52:23.397826+03	Андрій Варунок	avatar/iam_xT6xOdG.jpg	comments
 \.
 
 
