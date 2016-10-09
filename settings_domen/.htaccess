@@ -3,4 +3,4 @@ AddHandler fastcgi-script .fcgi
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ usatbakrmdnua.fcgi/$1 [QSA,L]
+RewriteRule ^(.*)$ crm.fcgi/$1 [QSA,L]
