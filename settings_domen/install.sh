@@ -34,6 +34,7 @@ echo 'Created'
 echo 'Create' ${short_name}'.fcgi'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fcgi>tmp.fcgi
 sed 's/crm/'$short_name'/g' tmp.fcgi>$short_name.fcgi
+chmod 755 $short_name.fcgi
 echo 'Created'
 
 echo 'Create' $short_name 'directory'
@@ -61,6 +62,7 @@ mkdir $short_name/media/restore
 mkdir $short_name/media/temp_email_logo
 mkdir $short_name/media/tmpimg
 mkdir $short_name/media/watermark
+cp admin-photo_HRGFvAo.jpg $short_name/media/avatar/
 cp ../crm_rieltor/settings_domen/phantomjs $short_name/media/phantomjs 
 cp -r ../crm_rieltor/templates $short_name/templates 
 echo 'Created'
@@ -83,6 +85,8 @@ ln -s /hsphere/local/home/image2007/crm_rieltor/send_messege_user
 ln -s /hsphere/local/home/image2007/crm_rieltor/sender_email
 ln -s /hsphere/local/home/image2007/crm_rieltor/setting_globall
 ln -s /hsphere/local/home/image2007/crm_rieltor/setting_street
+ln -s /hsphere/local/home/image2007/crm_rieltor/setting_superadmin
+ln -s /hsphere/local/home/image2007/crm_rieltor/setting_mail_delivery
 ln -s /hsphere/local/home/image2007/crm_rieltor/single_arendator
 ln -s /hsphere/local/home/image2007/crm_rieltor/single_buyer
 ln -s /hsphere/local/home/image2007/crm_rieltor/single_object
@@ -90,6 +94,7 @@ ln -s /hsphere/local/home/image2007/crm_rieltor/tasking
 ln -s /hsphere/local/home/image2007/crm_rieltor/trash_object
 ln -s /hsphere/local/home/image2007/crm_rieltor/watermark
 ln -s /hsphere/local/home/image2007/crm_rieltor/who_online
+ln -s /hsphere/local/home/image2007/crm_rieltor/static
 cd ..
 echo 'Created'
 
@@ -109,7 +114,7 @@ echo 'Created'
 echo 'Create backup_dropbox_settings.py'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/settings.py>tmp.py
 sed 's/full_name/'$site'/g' tmp.py>tmp2.py
-sed 's/crm/'$short_name'/g' tmp2.py>$short_name/$short_name/settings.py
+sed 's/carma/'$short_name'/g' tmp2.py>$short_name/$short_name/settings.py
 echo 'Created'
 
 echo 'Create urls.py'
@@ -124,7 +129,7 @@ rm tmp.fcgi
 rm tmp.py
 rm tmp2.py
 
-ln -s /hsphere/local/home/image2007/$short_name/$short_name/media
+ln -s /hsphere/local/home/image2007/$site/$short_name/media
 ln -s /hsphere/local/home/image2007/crm_rieltor/homes/static
 
 echo 'Dump databases'
