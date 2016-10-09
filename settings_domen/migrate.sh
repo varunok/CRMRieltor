@@ -27,32 +27,31 @@ python manage.py makemigrations tasking
 python manage.py makemigrations trash_object
 python manage.py makemigrations watermark
 python manage.py makemigrations who_online
-python manage.py makemigrations static
 
-python manage.py migrate arendator
-python manage.py migrate backupbd_crm
-python manage.py migrate buyer
-python manage.py migrate extuser
-python manage.py migrate facility
-python manage.py migrate homes
-python manage.py migrate learning
-python manage.py migrate makler
-python manage.py migrate meeting
-python manage.py migrate notes
-python manage.py migrate parsings
-python manage.py migrate posting
-python manage.py migrate searching
-python manage.py migrate send_messege_user
-python manage.py migrate sender_email
-python manage.py migrate setting_globall
-python manage.py migrate setting_street
-python manage.py migrate setting_superadmin
-python manage.py migrate setting_mail_delivery
-python manage.py migrate single_arendator
-python manage.py migrate single_buyer
-python manage.py migrate single_object
-python manage.py migrate tasking
-python manage.py migrate trash_object
-python manage.py migrate watermark
-python manage.py migrate who_online
-python manage.py migrate static
+
+python manage.py migrate arendator --fake
+python manage.py migrate backupbd_crm --fake
+python manage.py migrate buyer --fake
+python manage.py migrate extuser --fake
+python manage.py migrate facility --fake
+python manage.py migrate homes --fake
+python manage.py migrate learning --fake
+python manage.py migrate makler --fake
+python manage.py migrate meeting --fake
+python manage.py migrate notes --fake
+python manage.py migrate parsings --fake
+python manage.py migrate posting --fake
+python manage.py migrate searching --fake
+python manage.py migrate send_messege_user --fake
+python manage.py migrate sender_email --fake
+python manage.py migrate setting_globall --fake
+python manage.py migrate setting_street --fake
+python manage.py migrate setting_superadmin --fake
+python manage.py migrate setting_mail_delivery --fake
+python manage.py migrate single_arendator --fake
+python manage.py migrate single_buyer --fake
+python manage.py migrate single_object --fake
+python manage.py migrate tasking --fake
+python manage.py migrate trash_object --fake
+python manage.py migrate watermark --fake
+python manage.py migrate who_online --fake
