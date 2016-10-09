@@ -33,7 +33,6 @@ echo 'Created'
 echo 'Create' ${short_name}'.fcgi'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/crm.fcgi>tmp.fcgi
 sed 's/crm/'$short_name'/g' tmp.fsgi>$short_name.fcgi
-rm tmp.fcgi
 echo 'Created'
 
 echo 'Create' $short_name 'directory'
@@ -110,8 +109,6 @@ echo 'Create backup_dropbox_settings.py'
 sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/settings.py>tmp.py
 sed 's/full_name/'$site'/g' tmp.py>tmp2.py
 sed 's/crm/'$short_name'/g' tmp2.py>$short_name/$short_name/settings.py
-rm tmp.py
-rm tmp2.py
 echo 'Created'
 
 echo 'Create urls.py'
@@ -121,6 +118,10 @@ echo 'Created'
 echo 'Create backup_dropbox_settings.py'
 sed 's/crm/'$short_name'/g' ../crm_rieltor/settings_domen/wsgi.py>$short_name/$short_name/wsgi.py
 echo 'Created'
+
+rm tmp.fcgi
+rm tmp.py
+rm tmp2.py
 
 
 
