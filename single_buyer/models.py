@@ -15,7 +15,7 @@ class SingleBuyerComments(models.Model):
 
     obj_comments = models.ForeignKey(Buyer,
                                      verbose_name=u'Обьект',
-                                     on_delete=models.PROTECT)
+                                     on_delete=models.CASCADE)
 
     comment = models.TextField(verbose_name='Коментарий')
 

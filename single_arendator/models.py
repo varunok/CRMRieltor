@@ -15,7 +15,7 @@ class SingleArendatorComments(models.Model):
 
     obj_comments = models.ForeignKey(Arendator,
                                      verbose_name=u'Обьект',
-                                     on_delete=models.PROTECT)
+                                     on_delete=models.CASCADE)
 
     comment = models.TextField(verbose_name='Коментарий')
 
