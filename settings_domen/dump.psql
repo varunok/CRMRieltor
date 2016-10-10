@@ -372,7 +372,7 @@ ALTER SEQUENCE arendator_arendator_id_seq OWNED BY arendator_arendator.id;
 -- Name: arendator_arendator_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('arendator_arendator_id_seq', 5, true);
+SELECT pg_catalog.setval('arendator_arendator_id_seq', 6, true);
 
 
 --
@@ -536,7 +536,7 @@ ALTER SEQUENCE arendator_arendator_room_id_seq OWNED BY arendator_arendator_room
 -- Name: arendator_arendator_room_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('arendator_arendator_room_id_seq', 6, true);
+SELECT pg_catalog.setval('arendator_arendator_room_id_seq', 7, true);
 
 
 --
@@ -1437,7 +1437,7 @@ ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 77, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 104, true);
 
 
 --
@@ -3830,7 +3830,7 @@ ALTER SEQUENCE single_arendator_singlearendatorcomments_id_seq OWNED BY single_a
 -- Name: single_arendator_singlearendatorcomments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('single_arendator_singlearendatorcomments_id_seq', 1, false);
+SELECT pg_catalog.setval('single_arendator_singlearendatorcomments_id_seq', 1, true);
 
 
 --
@@ -5393,11 +5393,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 2	pbkdf2_sha256$20000$8TGB0kkosSMW$pgoKnFrleSLHLbwQegzojYjja76sErSSrAHFqap5lHc=	2016-10-06 21:38:06+03	t	image2007@bk.ru	Вячеслав	Рекечинский	image2007@bk.ru	t	t	2016-09-26 16:32:55+03
-<<<<<<< HEAD
-1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 00:00:09+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
-=======
-1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 00:36:01+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
->>>>>>> c02179663eb1a4ed972cf28c731c415a865aa578
+1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-10-10 03:46:44+03	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
 \.
 
 
@@ -5838,7 +5834,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
-k1s613ii7kofvbutk98n07vazj2r9ryo	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-10-24 00:14:50.392335+03
+k1s613ii7kofvbutk98n07vazj2r9ryo	ZTFhNjEzOWY4YjIzMjdmMTY0ZmVjYzZhODY4M2YyNjliNjBhNmRkOTp7ImRpcl9pbWciOiJiMWIwZGQxMi04ZTdkLTExZTYtYWU3Mi0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI3M2JkMDgxODgyYzY5YjI1ZDg5YWQ1N2Y1YzViOTkwOWIyNzgwNTc4IiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9	2016-10-24 03:08:38.670008+03
 \.
 
 
@@ -5858,15 +5854,6 @@ COPY extuser_myuser (id, image, type_user_id, user_id) FROM stdin;
 
 COPY extuser_recoverypass (id, email, password) FROM stdin;
 1	image2007@bk.ru	sin1984
-<<<<<<< HEAD
-2	ofis@rieltory.biz	qazqaz
-3	sin@gek.od.ua	qazqaz
-4	ofis@dom.zt.ua	123456
-5	parfenova_nata@mail.ru	sin1984
-6	ofis@usatba-krm.dn.ua	123456
-7	varunok@protonmail.com	3344
-=======
->>>>>>> c02179663eb1a4ed972cf28c731c415a865aa578
 \.
 
 
