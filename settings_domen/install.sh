@@ -2,9 +2,11 @@
 site=$1
 full_name=$1
 full_name_not_dot=${full_name//./}
+full_name_not_dot=${full_name_not_dot//-/}
 full_name=${full_name:4}
 short_name=${site:4}
 short_name=${short_name//./}
+short_name=${short_name//-/}
 
 
 
@@ -62,7 +64,7 @@ mkdir $short_name/media/restore
 mkdir $short_name/media/temp_email_logo
 mkdir $short_name/media/tmpimg
 mkdir $short_name/media/watermark
-cp admin-photo_HRGFvAo.jpg $short_name/media/avatar/
+cp ../crm_rieltor/settings_domen/admin-photo_HRGFvAo.jpg $short_name/media/avatar/
 cp ../crm_rieltor/settings_domen/phantomjs $short_name/media/phantomjs 
 cp -r ../crm_rieltor/templates $short_name/templates 
 echo 'Created'
@@ -116,6 +118,7 @@ sed 's/site/'$site'/g' ../crm_rieltor/settings_domen/settings.py>tmp.py
 sed 's/full_name/'$site'/g' tmp.py>tmp2.py
 sed 's/carma/'$short_name'/g' tmp2.py>$short_name/$short_name/settings.py
 echo 'Created'
+touch $short_name/$short_name/__init__.py
 
 echo 'Create urls.py'
 cp ../crm_rieltor/crm/urls.py $short_name/$short_name/urls.py

@@ -2,7 +2,7 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from learning.forms import LearnForm
 from learning.models import Learn
 from django.contrib.auth.decorators import login_required
@@ -31,3 +31,11 @@ def add_learn_form(request):
     else:
         form = LearnForm()
     return render(request, 'learning/add_learning.html', {'form': form})
+
+
+@login_required
+def del_learn(request):
+    if request.method == 'POST':
+        Learn.objects.get(id=request.POST.get('id')).delete()
+        return HttpResponse(status=200)
+    return HttpResponse(status=500)

@@ -43,11 +43,18 @@
                 </div>
             </div>
             {% for learn in learning %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="section-head">{{learn.title}}</h2>
+                <div id="{{learn.id}}" class="row" style="border: 2px solid silver">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h2 class="section-head" >{{learn.title}}</h2>
+                        <div class="" style="float: right">
+                            <a href="#">
+                                {% if user.is_superuser %}
+                                    <i class="fa fa-times fa-2x"></i>
+                                {% endif %}
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="text-align: center;">
                         {% if 'iframe' in learn.youtube %}
                                 {{learn.youtube|safe}}
                             {% else %}
@@ -61,5 +68,29 @@
             {% endfor %}
         </div>
     </section>
+    <div class="messageServer"></div>
 
 {% endblock content %}
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.fa-times', function(event) {
+            event.preventDefault();
+            var id = $(this).parents('.row').attr('id');
+            var _this = $(this).parents('.row')
+            $.post('del_learn', {'id': id})
+            .success( function (data) {
+                _this.fadeOut('slow', function() {
+                    _this.remove();
+                });
+                $('.messageServer').css('backgroundColor', '#5bc0de');
+                $('.messageServer').text('Удалено').fadeIn(1000).delay(2000).fadeOut(500);
+            })
+            .error(function(data) {
+                $('.messageServer').css('backgroundColor', '#c9302c');
+                $('.messageServer').text(data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+            });
+        });
+    })
+</script>
+{% endblock extra_js %}
