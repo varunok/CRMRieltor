@@ -94,7 +94,7 @@ def add_user(request):
 
 @login_required
 def edit_user(request, id):
-    user_edit = MyUser.objects.get(id=id)
+    user_edit = MyUser.objects.get(pk=id)
     return render(request, 'extuser/edit_user.html', {'user_edit': user_edit})
 
 
