@@ -40,7 +40,7 @@ def send_email_rieltor(request):
 @login_required
 def send_email_so(request):
     if request.method == 'POST':
-        request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
+        request_abs_url = request.build_absolute_uri('objects/data')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)
