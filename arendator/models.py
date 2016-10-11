@@ -145,7 +145,7 @@ class Arendator(models.Model):
                                                 blank=True)
 
     room = models.ManyToManyField(TypeRooms,
-                                  blank=False,
+                                  blank=True,
                                   verbose_name=u'Комнаты')
 
     rooms_from = models.IntegerField(verbose_name=u'Комнат От', blank=True, null=True)
