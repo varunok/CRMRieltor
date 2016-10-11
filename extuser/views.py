@@ -85,7 +85,7 @@ def add_user(request):
                 result = request.POST
                 new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
                 new_user.save()
-                add_img = MyUser(image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
+                add_img = MyUser(id=new_user.id, image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
                 add_img.save()
                 recovery = RecoveryPass(email=result.get('email'), password=result.get('password'))
                 recovery.save()
@@ -94,7 +94,7 @@ def add_user(request):
 
 @login_required
 def edit_user(request, id):
-    user_edit = MyUser.objects.get(id=id)
+    user_edit = MyUser.objects.get(pk=id)
     return render(request, 'extuser/edit_user.html', {'user_edit': user_edit})
 
 
