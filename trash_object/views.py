@@ -11,6 +11,7 @@ from buyer.models import Buyer
 from send_messege_user.models import UserMessage
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from posting.work_table import NotPost
 
 # Create your views here.
 
@@ -56,6 +57,7 @@ def del_obj(request):
     if request.method == 'POST':
         id_obj = request.POST.get('del')
         ContactOwner.objects.get(id=id_obj).delete()
+        NotPost(id_obj)
         return HttpResponse(u"Обьект удален")
     else:
         return HttpResponse(u"Ошибка удаления")
