@@ -24,6 +24,10 @@ def youtube_code(code):
 @register.filter(name='panorama_code')
 def panorama_code(code):
     if 'yandex' in code:
+        code_copy = code.split('&')
+        code_2 = '%'.join(code.split('&')[1].split('%')[0:2])
+        code_copy[1] = code_2
+        code = '&'.join(code_copy)
         if '690%2C495' in code:
             code = code.replace('690%2C495', '490%2C335')
             return code
