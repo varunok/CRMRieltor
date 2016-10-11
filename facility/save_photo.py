@@ -12,7 +12,15 @@ from django.core.files import File
 def save_photo(request, last_id, dir_img):
     images = request.FILES.getlist('image', [])
     dir_img = ''.join(['media/tmpimg/', dir_img, '/'])
-    list_tmp_img = os.listdir(dir_img)
+    try:
+        list_tmp_img = os.listdir(dir_img)
+    except:
+        list_tmp_img = ImagesFacility.objects.filter(id=last_id)[0]
+        if list_tmp_img:
+            list_tmp_img.cover = 0
+            return True
+        else:
+            return False
     # cover_img = True
     for image in list_tmp_img:
         if str(image) in list_tmp_img:
