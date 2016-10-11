@@ -2,6 +2,7 @@
 
 
 import os
+import uuid
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 # from django import forms
@@ -156,6 +157,7 @@ def edit_facility(request, id_obj):
     facility = ContactOwner.objects.get(id=id_obj)
     form = AddressFacilityForm(instance=facility)
     images = ImagesFacility.objects.filter(album=facility)
+    request.session['dir_img'] = str(uuid.uuid1())
     return render(request, 'homes/add_object.html', {'form': form,
                                                      'edit': True,
                                                      'id_obj': id_obj,
