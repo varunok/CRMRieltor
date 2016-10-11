@@ -16,6 +16,9 @@ def save_photo(request, last_id, dir_img):
         list_tmp_img = os.listdir(dir_img)
     except:
         try:
+            list_tmp_img = ImagesFacility.objects.filter(album_id=last_id, cover=True)
+            if list_tmp_img:
+                return False
             list_tmp_img = ImagesFacility.objects.filter(album_id=last_id)[0]
         except:
             return False
