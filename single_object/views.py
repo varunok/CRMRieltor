@@ -555,3 +555,6 @@ class DatabasesPrevious(SingleObjectView):
     slug_url_kwarg = 'poid'
     slug_field = 'id'
     template_name = 'single_object/previews.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(SingleObjectView, self).dispatch(request, *args, **kwargs)
