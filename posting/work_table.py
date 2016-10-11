@@ -325,7 +325,25 @@ class SetShows(ConnectDatabases):
         try:
             db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
             c = db.cursor()
-            query = "UPDATE image20_testokua.Object_Live SET active=%s WHERE code='%s'" % (self.active, 'O' + str(self.code))
+            query = "UPDATE Object_Live SET active=%s WHERE code='%s'" % (self.active, 'O' + str(self.code))
+            c.execute(query)
+        except:
+            pass
+        finally:
+            c.close()
+            db.close()
+
+
+class NotPost(ConnectDatabases):
+    """docstring for ClassName"""
+    def __init__(self, data):
+        super(NotPost, self).__init__()
+        self.code = data
+
+        try:
+            db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
+            c = db.cursor()
+            query = "DELETE FROM Object_Live WHERE code='%s'" % ('O' + str(self.code))
             c.execute(query)
         except:
             pass

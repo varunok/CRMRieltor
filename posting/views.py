@@ -2,7 +2,7 @@
 
 
 from django.http import HttpResponse, JsonResponse
-from work_table import InsertData, SetShows, SearchData
+from work_table import InsertData, SetShows, SearchData, NotPost
 from facility.models import ContactOwner
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -35,6 +35,7 @@ def posting_false(request):
         single_object.public = False
         single_object.save()
         SetShows(request.POST['id_so'], 'false')
+        NotPost(request.POST['id_so'])
         return HttpResponse(JsonResponse({'data': 'false'}), status=200)
     else:
         return HttpResponse(status=500)
