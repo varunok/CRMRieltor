@@ -110,7 +110,7 @@ $(document).ready(function() {
     $('#search_makler').on('click', function (event) {
         event.preventDefault();
         var data = $('#search_form').serialize();
-        $.post('maklers/search_makler', data)
+        $.post('search_makler', data)
         .success( function (data) {
             //('#list_makler').text('');
             $('#list_makler').html(data);

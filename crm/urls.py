@@ -61,7 +61,7 @@ urlpatterns = [
     url(r'^', include(send_messege_user.urls)),
     url(r'^arendators/', include(arendator.urls)),
     url(r'^buyers/', include(buyer.urls)),
-    url(r'^maklers/', include(makler.urls)),
+    url(r'^', include(makler.urls)),
     url(r'^', include(setting_superadmin.urls)),
     url(r'^tasking/', include(tasking.urls)),
     url(r'^', include(parsings.urls)),
