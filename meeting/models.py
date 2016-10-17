@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from facility.models import ContactOwner
@@ -36,6 +37,7 @@ class Meeting(models.Model):
         ordering = ['meet_date']
 
     meet_date = models.DateTimeField(verbose_name=u'Дата')
+    # meet_date = models.DateTimeField(verbose_name=u'Дата', default=datetime.now().strftime('%d-%m-%Y %H:%M'))
 
     rieltor = models.ForeignKey(UserFullName,
                                 blank=True,

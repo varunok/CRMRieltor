@@ -68,7 +68,7 @@ def is_sender_address_valid(sender_address):
 def delivery_email_arendator(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
-        request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
+        request_abs_url = request.build_absolute_uri('data')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)
@@ -151,7 +151,7 @@ def delivery_email_buyer_single(request):
 def delivery_email_buyer(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
-        request_abs_url = request.build_absolute_uri('media').replace('objects/', '')
+        request_abs_url = request.build_absolute_uri('data')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)

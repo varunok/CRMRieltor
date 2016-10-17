@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    {% block title %}<title>{{single_object.street_obj}} {{single_object.number_home|default:''}}</title>{% endblock title %}
+    {% block title %}<title>{{single_object.street_obj}} </title>{% endblock title %}
     <script src="{% static "js/jquery-2.2.4.min.js" %}"></script>
     <script src="{% static "js/slider.js" %}"></script>
     <script type="text/javascript" src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
@@ -59,12 +59,7 @@
                         {% endif %}
                         {# <span class="">{{ single_object.price_bay }} грн</span> #}
                         <span> {{single_object.type_facilit|default:''}},</span>
-                        <span> {{single_object.street_obj|default:''}},</span>
-                        <span> {{single_object.number_home|default:''}}</span>
-                        <span>
-                        {% if single_object.number_apartment %}
-                             / {{single_object.number_apartment}}</span>
-                        {% endif %}
+                        <span> {{single_object.street_obj|default:''}}</span>
                     </h2>
                 </div>
             </div>

@@ -294,7 +294,7 @@ $(document).ready(function() {
             .error(function(data) {});
         }
     });
-    $('.tabs-rule').on('click', '.fa-pencil', function(event){
+    $('.tabs-rule').on('click', '.met', function(event){
         event.preventDefault();
         var id_meet = $(this).parents('td').attr('id-meet');
         if (id_meet) {
@@ -416,7 +416,7 @@ $(document).ready(function() {
             .error(function(data) {});
         }
     });
-    $('.tabs-rule').on('click', '.fa-pencil', function(event){
+    $('.tabs-rule').on('click', '.tsk', function(event){
         event.preventDefault();
         var id_task = $(this).parents('td').attr('id-task');
         $.post('edit_form_task', {"id": id_task})
