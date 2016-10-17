@@ -31,7 +31,7 @@
                                 <br>
                             </td>
                             <td width="300" valign="top">
-                                <b>№ дома:</b> {{single_object.number_home|default:''}}
+                                {# <b>№ дома:</b> {{single_object.number_home|default:''}} #}
                                 {# <br> <b>№квартиры/офиса:</b> {{single_object.number_apartment|default:''}} #}
                                 <br> <b>Тип помещения:</b> {{single_object.type_facilit|default:''}}
                                 <br> <b>Ремонт:</b> {{single_object.repairs|default:''}}
@@ -56,8 +56,18 @@
                                 <br> <b>Цена, выкуп:</b> {{single_object.price_bay|default:'0'}}
                                 <br> <b>Комнат:</b> {{single_object.rooms|default:''}}
                                 <br> <b>Окон:</b> {{single_object.windows|default:''}}
-                                <br> <b>Комментарий:</b> {{single_object.comment|truncatechars:50|default:''}}
+                                {# <br> <b>Комментарий:</b> {{single_object.comment|truncatechars:50|default:''}} #}
                                 <br> <b>Видео:</b> <a href="http://youtu.be/lZMwoU075xQ" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=ru&amp;q=http://youtu.be/lZMwoU075xQ&amp;source=gmail&amp;ust=1465368829274000&amp;usg=AFQjCNHtaeTq3_D0A-FuEN9N8hxtdoPQsw">{{single_object.youtube|convert_frame}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>КОММЕНТАРИЙ:<span style="color: #767676"></span></h2>
+                <table cellpadding="0" cellspacing="5" width="620" style="background: #edf1f2; border: 1px solid #e8e8e8; word-break: break-all;">
+                    <tbody style="width: 100%;">
+                        <tr >
+                            <td >
+                                <b>Комментарий:</b><p>{{single_object.comment|default:''}}</p>
                             </td>
                         </tr>
                     </tbody>

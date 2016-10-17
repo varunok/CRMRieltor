@@ -221,13 +221,13 @@
                     <div class="tabs">
                         <ul class="main-tabs">
                             <li class="tabs-active"><a class="btna" id="get_comment" href="">Комментарии <span class="label label-default">{{ single_obj_comments|length }}</span></a></li>
-                            {% for type_operation in single_object.list_operations.all %}
-                                {% if type_operation.id == 2 or type_operation.id == 3 %}
-                                    <li ><a class="btna" id="get_arendator" href="">Арендаторы <span class="label label-default">{{ count_arendator }}</span></a></li>
-                                {% else %}
-                                    <li><a class="btna" id="get_buyer" href="">Покупатели <span class="label label-default">{{ count_buyer }}</span></a></li>
-                                {% endif %}
-                            {% endfor %}
+                            {# {% for type_operation in single_object.list_operations.all %} #}
+                                {# {% if type_operation.id == 2 or type_operation.id == 3 %} #}
+                            <li ><a class="btna" id="get_arendator" href="">Арендаторы <span class="label label-default">{{ count_arendator }}</span></a></li>
+                                {# {% else %} #}
+                            <li><a class="btna" id="get_buyer" href="">Покупатели <span class="label label-default">{{ count_buyer }}</span></a></li>
+                                {# {% endif %} #}
+                            {# {% endfor %} #}
 
                             <li><a class="btna" id="get_publication" href="#">Публикации</a></li>
                             <li><a class="btna" id="get_meetings" href="">Встречи <span class="label label-default">{{count_meet}}</span></a></li>

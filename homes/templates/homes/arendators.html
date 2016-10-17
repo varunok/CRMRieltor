@@ -284,7 +284,7 @@
                     {% if arendator.trash == 0 %}
                         {% if arendator.loyality.get.id == '' %}
                             {% include 'homes/obj_arendator.html' %}
-                        {% elif arendator.loyality.get.id == user.id or user.is_superuser %}
+                        {% elif arendator.loyality.get.id == user.id or user.is_superuser or user.myuser.type_user.id == 1%}
                             {% include 'homes/obj_arendator.html' %}
                         {% endif %}
                     {% endif %}

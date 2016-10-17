@@ -269,7 +269,7 @@ class BuyersList(ListView):
         self.context = super(BuyersList, self).get_context_data(**kwargs)
         self.context['time'] = timezone.now()
         self.context['nac_carrency'] = NationalCarrency.objects.filter(id=1)[0]
-        self.context['count_arendator'] = len(Buyer.objects.all().filter(trash=False))
+        self.context['count_buyer'] = Buyer.objects.all().filter(trash=False).count()
         self.context['user_list'] = MyUser.objects.all()
         self.context['list_district'] = District.objects.all()
         self.context['list_state'] = TypeState.objects.all()

@@ -284,7 +284,7 @@
                     {% if buyer.trash == 0 %}
                         {% if buyer.loyality.get.id == '' %}
                             {% include 'homes/obj_buyer.html' %}
-                        {% elif buyer.loyality.get.id == user.id or user.is_superuser %}
+                        {% elif buyer.loyality.get.id == user.id or user.is_superuser or user.myuser.type_user.id == 1%}
                             {% include 'homes/obj_buyer.html' %}
                         {% endif %}
                     {% endif %}

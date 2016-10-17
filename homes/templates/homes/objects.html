@@ -343,7 +343,7 @@
                     {% if object_data.trash == 0 %}
                         {% if object_data.loyality.get.id == '' %}
                             {% include 'homes/obj_facility.html' %}
-                        {% elif object_data.loyality.get.id == user.id or user.is_superuser %}
+                        {% elif object_data.loyality.get.id == user.id or user.is_superuser or user.myuser.type_user.id == 1 %}
                             {% include 'homes/obj_facility.html' %}
                         {% endif %}
                     {% endif %}
