@@ -63,7 +63,7 @@
             </div>
         </div>
     </section>
-
+<div class="messageServer"></div>
 {% endblock content %}
 {% block extra_js %}
 <script>
@@ -80,10 +80,21 @@
             var name_street = $('#name_street').val();
             if (name_street) {
                 $('#name_street').val('');
-                $.get('add_street', {"id_short": short_street, "name_street": name_street}, function(data) {
+                $.get('add_street', {"id_short": short_street, "name_street": name_street})
+                .success( function (data) {
+                    $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                    $('.messageServer').text('Добавлено').fadeIn(1000).delay(2000).fadeOut(500);
                     var data = jQuery.parseJSON(data);
                     $('.list_street').prepend('<tr><td class="col-md-1">'+data.type_street+'</td><td>'+data.name_street+'</td><td class="col-md-1"><i class="fa fa-times fa-2x setting_street"></i></td></tr>')
-                });
+                })
+                .error(function(data) {
+                    var data = jQuery.parseJSON(data.responseText);
+                    // console.log(data)
+                    $('.messageServer').css('backgroundColor', '#c9302c');
+                    $('.messageServer').text(data.error).fadeIn(1000).delay(2000).fadeOut(500);
+                })
+                    
+                
             }
         });
         $('.list_street').on('click', '.setting_street', function() {

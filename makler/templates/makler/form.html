@@ -39,6 +39,28 @@
                     <br>
                     <br>
                     <div class="col-md-12">
+                        <label for="phone">Телефон 2
+                            {% if form.phone_second.errors %}
+                                <span style="color: #cc0000"> {{ form.phone_second.errors.as_text }} </span>
+                            {% endif %}
+                            </label>
+                            {{ form.phone_second }}
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-md-12">
+                        <label for="phone">Телефон 3
+                            {% if form.phone_third.errors %}
+                                <span style="color: #cc0000"> {{ form.phone_third.errors.as_text }} </span>
+                            {% endif %}
+                            </label>
+                            {{ form.phone_third }}
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-md-12">
                         <label for="site">Сайт</label>
                         {% if form.site.errors.as_text %}
                                 <span style="color: #cc0000"> {{ form.site.errors.as_text }} </span>
@@ -84,3 +106,21 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+    $('#id_phone').change(function(event) {
+        if (this.value.match(/[^0-9\.\+]/g)) {
+            this.value = this.value.replace(/[^0-9\.\+]/g, '');
+        }
+    });
+    $('#id_phone_second').change(function(event) {
+        if (this.value.match(/[^0-9\.\+]/g)) {
+            this.value = this.value.replace(/[^0-9\.\+]/g, '');
+        }
+    });
+    $('#id_phone_third').change(function(event) {
+        if (this.value.match(/[^0-9\.\+]/g)) {
+            this.value = this.value.replace(/[^0-9\.\+]/g, '');
+        }
+    });
+</script>

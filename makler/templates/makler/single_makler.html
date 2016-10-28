@@ -21,8 +21,21 @@
         {{ makler.name }}
     </td>
     <td class="f-clr-grey">
+        #1
         <i class="fa fa-phone"></i>
         {{ makler.phone }}
+        {% if makler.phone_second %}
+            <br>
+            #2
+            <i class="fa fa-phone"></i>
+            {{ makler.phone_second }}
+        {% endif %}
+        {% if makler.phone_third %}
+            <br>
+            #3
+            <i class="fa fa-phone"></i>
+            {{ makler.phone_third }}
+        {% endif %}
     </td>
     <td class="f-clr-grey">
         {{ makler.agency }}

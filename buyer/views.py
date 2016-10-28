@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from buyer.forms import BuyerForm
 from homes.views import add_buyer, BuyersList
 
-from buyer.models import Buyer, TypeState
+from buyer.models import Buyer, TypeState, UserFullName
 from datetime import datetime
 from django.utils import timezone, dateformat
 from search_buyer import searh
@@ -112,4 +112,6 @@ def restore_buyers(request):
 def edit_buyer(request, id_buyer):
     buyer = Buyer.objects.get(id=id_buyer)
     form = BuyerForm(instance=buyer)
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     return render(request, 'homes/add_buyer.html', {'form': form, 'edit': True, 'id_buyer': id_buyer})

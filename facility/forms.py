@@ -2,7 +2,7 @@
 
 
 from django import forms
-from facility.models import AddressFacilityData, ContactOwner
+from facility.models import AddressFacilityData, ContactOwner, UserFullName
 from django.forms import ModelForm, Select, Textarea, TextInput, SelectMultiple, RadioSelect, CheckboxInput, \
     ClearableFileInput, NumberInput
 
@@ -21,10 +21,10 @@ class AddressFacilityForm(ModelForm):
             'price_month', 'list_operations', 'contact_owner', 'agency', 'name_owner', 'review_date', 'call_date',
             'email_owner', 'vip_owner', 'phone_owner', 'phone_owner_plus', 'type_building_data', 'repairs', 'landmark',
             'number_of_floors', 'floors_up', 'first_floor', 'last_floor', 'floor', 'area_badroom', 'area_extra_room',
-            'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment', 'rieltor', 'loyality',
+            'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment',
             'actuality', 'condition', 'commission', 'currency', 'number_of_persons', 'equipment',
             'the_presence_of_hot_water', 'lot', 'sleeps', 'where_to_stay', 'prepayment', 'windows', 'heating',
-            'lavatory', 'furniture', 'room', 'title', 'youtube', 'panorama')
+            'lavatory', 'furniture', 'room', 'title', 'youtube', 'panorama', 'rieltor', 'loyality')
         widgets = {
             'street_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'currency': Select(attrs={'class': 'add'}),

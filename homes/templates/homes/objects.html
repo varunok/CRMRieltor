@@ -32,12 +32,13 @@
                     </div>
                 </div>
                 <div class="col-md-12">
+                <form id="search_form" action="" method="GET">
                     <div class="col-md-12 substrate">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="typeobj">Тип объекта</label>
-                                    <select id="type_facility" class="multiple" multiple="multiple" placeholder="-----">
+                                    <select id="type_facility" name="type_facility" class="multiple" multiple="multiple" placeholder="-----">
                                         {% for facility in type_facility %}
                                             <option value="{{ facility }}">{{ facility.type_facility }}</option>
                                         {% endfor %}
@@ -51,15 +52,15 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input id="price_on" type="text" placeholder="От">
+                                                    <input id="price_on" name="price_on" type="text" placeholder="От">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="price_for" type="text" placeholder="До">
+                                                    <input id="price_for" name="price_for" type="text" placeholder="До">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <select name="" id="currency" style="min-width: 100%">
+                                            <select name="currency" id="currency" style="min-width: 100%">
                                                 {% for carrency in list_carrency %}
                                                     <option value="{{ carrency.id }}">{{ carrency.currency }}</option>
                                                 {% endfor %}
@@ -71,8 +72,8 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="actual">Актуальность</label>
-                                    <select id="actuality">
-                                        <option selected="selected">-----</option>
+                                    <select id="actuality" name="actuality">
+                                        <option value="" selected="selected">-----</option>
                                         {% for actuality in type_actuality %}
                                             <option value="{{ actuality.id }}">{{ actuality.type_actuality }}</option>
                                         {% endfor %}
@@ -84,7 +85,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="tarea">Район</label>
-                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="district">
+                                    <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="district" name="district">
                                         {% for district in list_district %}
                                             <option value="{{ district }}">{{ district.district }}</option>
                                         {% endfor %}
@@ -96,10 +97,10 @@
                                     <label for="price">Площадь</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input id="area_for" type="text" placeholder="От">
+                                            <input id="area_for" name="area_for" type="text" placeholder="От">
                                         </div>
                                         <div class="col-md-6">
-                                            <input id="area_to" type="text" placeholder="До">
+                                            <input id="area_to" name="area_to" type="text" placeholder="До">
                                         </div>
                                     </div>
                                 </div>
@@ -107,8 +108,8 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="stat">Состояние</label>
-                                    <select id="condition">
-                                        <option selected="selected">-----</option>
+                                    <select id="condition" name="condition">
+                                        <option value="" selected="selected">-----</option>
                                         {% for condition in list_conditions %}
                                             <option value="{{ condition.id }}">{{ condition }}</option>
                                         {% endfor %}
@@ -120,19 +121,54 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="idobj">ID Объекта</label>
-                                    <input type="text" placeholder="-----" id="id_obj">
+                                    <input type="text" placeholder="-----" id="id_obj" name="id_obj">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Телефон</label>
-                                    <input type="text" placeholder="-----" id="phone_obj">
+                                    <input type="text" placeholder="-----" id="phone_obj" name="phone_obj">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Пересмотр <i class="fa fa-calendar"></i></label>
-                                    <input id="peresmotr" type="text" placeholder="-----" >
+                                    <input id="peresmotr" name="peresmotr" type="text" placeholder="-----" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="rieltor">Риелтор</label>
+                                    <select id="rieltor" name="rieltor" class="multiple" multiple="multiple">
+                                        {% for user in users  %}
+                                            <option value="{{ user.id }}">{{ user }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="list_subway">Метро</label>
+                                    <select id="list_subway" name="list_subway" class="multiple" multiple="multiple">
+                                        {% for subway in list_subway  %}
+                                            <option value="{{ subway }}">{{ subway }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="price">Первый \ Последний</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="checkbox" name="first_floor" id="first_floor">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="checkbox" name="last_floor" id="last_floor">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,10 +179,10 @@
                                         <label for="typeobj">Этажность</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input id="floor_for" type="text" placeholder="От">
+                                                <input id="floor_for" name="floor_for" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input id="floor_to" type="text" placeholder="До">
+                                                <input id="floor_to" name="floor_to" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -154,8 +190,8 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="typeobj">Комнаты</label>
-                                        <select id="list_rooms">
-                                            <option selected="selected">-----</option>
+                                        <select id="list_rooms" name="list_rooms">
+                                            <option value="" selected="selected">-----</option>
                                             {% for rooms in list_rooms  %}
                                                 <option value="{{ rooms.id }}">{{ rooms }}</option>
                                             {% endfor %}
@@ -165,8 +201,8 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="street">Улица</label>
-                                        <select id="street_obj">
-                                            <option selected="selected">-----</option>
+                                        <select id="street_obj" name="street_obj">
+                                            <option value="" selected="selected">-----</option>
                                             {% for street in list_street %}
                                                 <option value="{{ street }}">{{ street }}</option>
                                             {% endfor %}
@@ -180,10 +216,10 @@
                                         <label for="">Этаж</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input id="floor_ot" type="text" placeholder="От">
+                                                <input id="floor_ot" name="floor_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input id="floor_do" type="text" placeholder="До">
+                                                <input id="floor_do" name="floor_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -193,10 +229,10 @@
                                         <label for="">Комнат</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input id="rooms_ot" type="text" placeholder="От">
+                                                <input id="rooms_ot" name="rooms_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input id="rooms_do" type="text" placeholder="До">
+                                                <input id="rooms_do" name="rooms_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -204,7 +240,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="stat">Номер дома</label>
-                                        <input id="number_home" type="text" placeholder="-----">
+                                        <input id="number_home" name="number_home" type="text" placeholder="-----">
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +248,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Контактное лицо</label>
-                                        <input id="name_owner" type="text" placeholder="-----">
+                                        <input id="name_owner" name="name_owner" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -220,10 +256,10 @@
                                         <label for="phone">Кухня</label>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <input id="kitchen_ot" type="text" placeholder="От">
+                                                <input id="kitchen_ot" name="kitchen_ot" type="text" placeholder="От">
                                             </div>
                                             <div class="col-md-6">
-                                                <input id="kitchen_do" type="text" placeholder="До">
+                                                <input id="kitchen_do" name="kitchen_do" type="text" placeholder="До">
                                             </div>
                                         </div>
                                     </div>
@@ -231,8 +267,8 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Тип строения</label>
-                                        <select id="type_building">
-                                            <option selected="selected">-----</option>
+                                        <select id="type_building" name="type_building">
+                                            <option value="" selected="selected">-----</option>
                                             {% for type_building in type_building_list %}
                                                 <option value="{{type_building}}">{{ type_building }}</option>
                                             {% endfor %}
@@ -244,7 +280,7 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="">Комментарий</label>
-                                        <input id="comments" type="text" placeholder="-----">
+                                        <input id="comments" name="comments" type="text" placeholder="-----">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -255,16 +291,137 @@
                                                     VIP 
                                                     <i class="fa fa-star"></i>
                                                 </label>
-                                                <input id="vip_status" type="checkbox">
+                                                <input id="vip_status" name="vip_status" type="checkbox">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="search-item">
-                                                <label for="price">На сайте <i class="fa fa-globe"></i></label>
-                                                <input id="public_status" type="checkbox">
+                                                <label for="public_status">На сайте <i class="fa fa-globe"></i></label>
+                                                <input id="public_status" name="public_status" type="checkbox">
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="extended-search" style="height: 0px">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="number_of_persons">Количество человек</label>
+                                        <select id="number_of_persons" name="number_of_persons" class="multiple" multiple="multiple" placeholder="-----">
+                                        {% for number_of_person in type_number_of_person %}
+                                            <option value="{{ number_of_person.id }}">{{ number_of_person.type_number_of_persons }}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="number">Участок</label>
+                                        <input type="number" name="lot" id="lot">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="type_windows">Окна</label>
+                                        <select id="type_windows" name="type_windows" class="" placeholder="-----">
+                                            <option value="">-----</option>
+                                            {% for windows in type_windows %}
+                                                <option value="{{ windows.id }}">{{ windows.type_windows }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="type_equipment">Техника</label>
+                                        <select id="type_equipment" name="type_equipment" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for equipment in type_equipment %}
+                                                <option value="{{ equipment.id }}">{{ equipment.type_equipment }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="sleeps">Спальные места</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="number" name="sleeps" id="sleeps">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select id="type_where_to_stay" name="type_where_to_stay" class="multiple" multiple="multiple" placeholder="-----">
+                                                    {% for where_to_stay in type_where_to_stay %}
+                                                        <option value="{{ where_to_stay.id }}">{{ where_to_stay.type_where_to_stay }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="stat">Отопление</label>
+                                        <select id="type_heating" name="type_heating" placeholder="-----">
+                                            <option value="">-----</option>
+                                            {% for heating in type_heating %}
+                                                <option value="{{ heating.id }}">{{ heating.type_heating }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="idobj">Вода</label>
+                                        <select id="type_the_presence_of_hot_water" name="type_the_presence_of_hot_water" class="multiple" multiple="multiple" placeholder="-----">
+                                            {% for the_presence_of_hot_water in type_the_presence_of_hot_water %}
+                                                <option value="{{ the_presence_of_hot_water.id }}">{{ the_presence_of_hot_water.type_the_presence_of_hot_water }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="phone">Предоплата</label>
+                                        <select id="type_prepayment" name="type_prepayment" placeholder="-----">
+                                            <option value="">-----</option>
+                                            {% for prepayment in type_prepayment %}
+                                                <option value="{{ prepayment.id }}">{{ prepayment.type_prepayment }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="idobj">
+                                            <span>Санузел</span>
+                                            <span style="margin-left: 130px;">Мебель</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <select id="type_lavatory" name="type_lavatory" placeholder="-----" class="add">
+                                                    <option value="">-----</option>
+                                                    {% for lavatory in type_lavatory %}
+                                                        <option value="{{ lavatory.id }}">{{ lavatory.type_lavatory }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select id="type_furniture" name="type_furniture" placeholder="-----" class="add">
+                                                    <option value="">-----</option>
+                                                    {% for furniture in type_furniture %}
+                                                        <option value="{{ furniture.id }}">{{ furniture.type_furniture }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
                                 </div>
                             </div>
                         </div>
@@ -275,6 +432,7 @@
                             </div>
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
             <div class="row search-object">
@@ -382,7 +540,7 @@
         $("#stat").selectmenu();
         $("#street").selectmenu();
         $("#typebuild").selectmenu();
-        $("#peresmotr").datepicker();
+        $("#peresmotr").datepicker({monthNames: ['Январь', 'Февраль', 'Март', 'Апрель','Май', 'Июнь', 'Июль', 'Август', 'Сентябрь','Октябрь', 'Ноябрь', 'Декабрь'], dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], firstDay: 1}).datepicker();
         $(".multiple").select2();
         $(".extend-block").click(function() {
             var x = $(".extended-search").css('height');
@@ -415,66 +573,68 @@
             });
             $('#search_obj').on('click', function (event) {
                 event.preventDefault();
-                var type_facility = $('#type_facility').val();
-                var price_on = $('#price_on').val();
-                var price_for = $('#price_for').val();
-                var currency = $('#currency').val();
-                var actuality = $('#actuality').val();
-                var district = $('#district').val();
-                var area_for = $('#area_for').val();
-                var area_to = $('#area_to').val();
-                var condition = $('#condition').val();
-                var id_obj = $('#id_obj').val();
-                var phone_obj = $('#phone_obj').val();
-                var peresmotr = $('#peresmotr').val();
-                var floor_for = $('#floor_for').val();
-                var floor_to = $('#floor_to').val();
-                var list_rooms = $('#list_rooms').val();
-                var street_obj = $('#street_obj').val();
-                var floor_ot = $('#floor_ot').val();
-                var floor_do = $('#floor_do').val();
-                var rooms_ot = $('#rooms_ot').val();
-                var rooms_do = $('#rooms_do').val();
-                var number_home = $('#number_home').val();
-                var name_owner = $('#name_owner').val();
-                var kitchen_ot = $('#kitchen_ot').val();
-                var kitchen_do = $('#kitchen_do').val();
-                var type_building = $('#type_building').val();
-                var comments = $('#comments').val();
-                var vip_status = $('#vip_status').prop("checked");
-                var public_status = $('#public_status').prop("checked");
-                var list_data = {
-                    "search": true,
-                    "type_facility": type_facility,
-                    "price_on": price_on,
-                    "price_for": price_for,
-                    "carrency": currency,
-                    "actuality": actuality,
-                    "district": district,
-                    "area_for": area_for,
-                    "area_to": area_to,
-                    "condition": condition,
-                    "id_obj": id_obj,
-                    "phone_obj": phone_obj,
-                    "peresmotr": peresmotr,
-                    "floor_for": floor_for,
-                    "floor_to" : floor_to,
-                    "list_rooms": list_rooms,
-                    "street_obj": street_obj,
-                    "floor_ot": floor_ot,
-                    "floor_do": floor_do,
-                    "rooms_ot": rooms_ot,
-                    "rooms_do": rooms_do,
-                    "number_home":number_home,
-                    "name_owner": name_owner,
-                    "kitchen_ot": kitchen_ot,
-                    "kitchen_do": kitchen_do,
-                    "type_building": type_building,
-                    "comments": comments,
-                    "vip_status": vip_status,
-                    "public_status": public_status
-                };
-                $.get('search_obj', list_data, function (data) {
+                var msg   = $('#search_form').serialize();
+                // var type_facility = $('#type_facility').val();
+                // var price_on = $('#price_on').val();
+                // var price_for = $('#price_for').val();
+                // var currency = $('#currency').val();
+                // var actuality = $('#actuality').val();
+                // var district = $('#district').val();
+                // var area_for = $('#area_for').val();
+                // var area_to = $('#area_to').val();
+                // var condition = $('#condition').val();
+                // var id_obj = $('#id_obj').val();
+                // var phone_obj = $('#phone_obj').val();
+                // var peresmotr = $('#peresmotr').val();
+                // var floor_for = $('#floor_for').val();
+                // var floor_to = $('#floor_to').val();
+                // var list_rooms = $('#list_rooms').val();
+                // var street_obj = $('#street_obj').val();
+                // var floor_ot = $('#floor_ot').val();
+                // var floor_do = $('#floor_do').val();
+                // var rooms_ot = $('#rooms_ot').val();
+                // var rooms_do = $('#rooms_do').val();
+                // var number_home = $('#number_home').val();
+                // var name_owner = $('#name_owner').val();
+                // var kitchen_ot = $('#kitchen_ot').val();
+                // var kitchen_do = $('#kitchen_do').val();
+                // var type_building = $('#type_building').val();
+                // var comments = $('#comments').val();
+                // var vip_status = $('#vip_status').prop("checked");
+                // var public_status = $('#public_status').prop("checked");
+                // var list_data = {
+                //     "search": true,
+                //     "type_facility": type_facility,
+                //     "price_on": price_on,
+                //     "price_for": price_for,
+                //     "carrency": currency,
+                //     "actuality": actuality,
+                //     "district": district,
+                //     "area_for": area_for,
+                //     "area_to": area_to,
+                //     "condition": condition,
+                //     "id_obj": id_obj,
+                //     "phone_obj": phone_obj,
+                //     "peresmotr": peresmotr,
+                //     "floor_for": floor_for,
+                //     "floor_to" : floor_to,
+                //     "list_rooms": list_rooms,
+                //     "street_obj": street_obj,
+                //     "floor_ot": floor_ot,
+                //     "floor_do": floor_do,
+                //     "rooms_ot": rooms_ot,
+                //     "rooms_do": rooms_do,
+                //     "number_home":number_home,
+                //     "name_owner": name_owner,
+                //     "kitchen_ot": kitchen_ot,
+                //     "kitchen_do": kitchen_do,
+                //     "type_building": type_building,
+                //     "comments": comments,
+                //     "vip_status": vip_status,
+                //     "public_status": public_status
+                // };
+                console.log(msg)
+                $.get('search_obj', msg, function (data) {
                     $('.search-object').html(data)
                 })
             });

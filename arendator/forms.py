@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 
 
+from django import forms
 from django.forms import ModelForm, Textarea, SelectMultiple, TextInput
-from arendator.models import Arendator
+from arendator.models import Arendator, UserFullName
 
 
 class ArendatorForm(ModelForm):
+    loyality = forms.ModelMultipleChoiceField(queryset=UserFullName.objects.filter(is_active=True), required=False)
+    loyality.widget.attrs['multiple'] = 'true'
+    loyality.widget.attrs['class'] = 'tarea-multiple'
+
     class Meta(object):
         model = Arendator
         fields = (
-            'rieltor', 'loyality', 'commission', 'name', 'type_state', 'type_client', 'phone_first', 'phone_second',
+            'rieltor', 'commission', 'name', 'type_state', 'type_client', 'phone_first', 'phone_second',
             'comment', 'email', 'district_obj', 'room', 'repairs', 'type_building_data', 'rooms_from', 'rooms_to',
             'floors_from', 'floors_to', 'area_from', 'area_to', 'price_from', 'price_to', 'date_term',
             'number_of_persons', 'type_stage')

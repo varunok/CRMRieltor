@@ -28,7 +28,6 @@ class Street(models.Model):
         verbose_name_plural = u"Улицы"
 
     street = models.CharField(max_length=50,
-                              unique=True,
                               verbose_name=u'Улица')
 
     full_street = models.CharField(max_length=80,

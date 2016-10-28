@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from arendator.forms import ArendatorForm
 from homes.views import add_arendator, ArendatorsList
-from arendator.models import Arendator, TypeState
+from arendator.models import Arendator, TypeState, UserFullName
 from datetime import datetime
 from django.utils import timezone, dateformat
 from search_arendator import searh
@@ -112,4 +112,6 @@ def restore_arendator(request):
 def edit_arendator(request, id_arendator):
     arendator = Arendator.objects.get(id=id_arendator)
     form = ArendatorForm(instance=arendator)
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     return render(request, 'homes/add_arendator.html', {'form': form, 'edit': True, 'id_arendator': id_arendator})

@@ -18,7 +18,9 @@ from buyer.forms import BuyerForm
 from arendator.models import Arendator, TypeState, TypeClient, TypeStage
 from buyer.models import Buyer
 from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeFacility, \
-    TypeActuality, TypeCondition, TypeRooms, TypeBuilding, TypeRepairs, TypeNumberOfPerson
+    TypeActuality, TypeCondition, TypeRooms, TypeBuilding, TypeRepairs, TypeNumberOfPerson, \
+    TypeWindows, TypeEquipment, TypeWhereToStay, TypeHeating, TypeThePresenceOfHotWater, \
+    TypePrepayment, TypeLavatory, TypeFurniture
 from setting_globall.models import NationalCarrency
 from search_home import searh
 from extuser.models import MyUser
@@ -127,9 +129,20 @@ class ObjectList(ListView):
         self.context['type_actuality'] = TypeActuality.objects.all()
         self.context['list_district'] = District.objects.all()
         self.context['list_street'] = Street.objects.all()
+        self.context['list_subway'] = Subway.objects.all()
         self.context['list_conditions'] = TypeCondition.objects.all()
         self.context['list_rooms'] = TypeRooms.objects.all()
         self.context['type_building_list'] = TypeBuilding.objects.all()
+        self.context['type_number_of_person'] = TypeNumberOfPerson.objects.all()
+        self.context['type_windows'] = TypeWindows.objects.all()
+        self.context['type_equipment'] = TypeEquipment.objects.all()
+        self.context['type_where_to_stay'] = TypeWhereToStay.objects.all()
+        self.context['type_heating'] = TypeHeating.objects.all()
+        self.context['type_the_presence_of_hot_water'] = TypeThePresenceOfHotWater.objects.all()
+        self.context['type_prepayment'] = TypePrepayment.objects.all()
+        self.context['type_lavatory'] = TypeLavatory.objects.all()
+        self.context['type_furniture'] = TypeFurniture.objects.all()
+        self.context['users'] = UserFullName.objects.filter(is_active=True)
         return self.context
 
     def get_queryset(self):
@@ -175,6 +188,8 @@ class ObjectListArend(ObjectList):
 
 @login_required
 def add_object(request, form=AddressFacilityForm()):
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     street_list = Street.objects.all()
     district_list = District.objects.all()
     subway_list = Subway.objects.all()
@@ -197,6 +212,7 @@ class MaklerList(ListView):
     paginate_by = 10
     context_object_name = 'maklers'
     template_name = 'homes/maklers.html'
+    ordering = ['id']
     # qeryset = Makler.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -253,6 +269,8 @@ class ArendatorsList(ListView):
 
 @login_required
 def add_arendator(request, form=ArendatorForm()):
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     return render(request, 'homes/add_arendator.html', {'time': timezone.now(),
                                                         'form': form})
 
@@ -296,6 +314,8 @@ class BuyersList(ListView):
 
 @login_required
 def add_buyer(request, form=BuyerForm()):
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     return render(request, 'homes/add_buyer.html', {'time': timezone.now(),
                                                     'form': form})
 

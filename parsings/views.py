@@ -107,7 +107,7 @@ def parse(request):
                                 phone = mutable_phone(phone['value'])
                             except:
                                 phone = ['000000']
-                            if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=[int(i) for i in phone]):
+                            if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=phone):
                                 dict_article[id_article] = {
                                     'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
                                     'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
@@ -120,7 +120,7 @@ def parse(request):
                                     'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
                                     'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
                             elif request.POST['id_except'] == '3' and not Makler.objects.filter(
-                                    phone__in=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                    phone__in=phone) and not ContactOwner.objects.filter(
                                     phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
                                     phone_owner_plus=[int(i) for i in phone]):
                                 dict_article[id_article] = {

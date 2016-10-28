@@ -632,6 +632,19 @@
     </script>
     <script>
     $(document).ready(function() {
+
+        $('#id_phone_owner').change(function(event) {
+            if (this.value.match(/[^0-9\.\+]/g)) {
+                this.value = this.value.replace(/[^0-9\.\+]/g, '');
+            }
+        });
+
+        $('#id_phone_owner_plus').change(function(event) {
+            if (this.value.match(/[^0-9\.\+]/g)) {
+                this.value = this.value.replace(/[^0-9\.\+]/g, '');
+            }
+        });
+
         $('#id_phone_owner').on('keyup', function () {
             if ($(this).val()){
                 $.get('check_phone', {'check': $(this).val()}, function (data) {

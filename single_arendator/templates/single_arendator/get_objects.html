@@ -161,7 +161,7 @@
                                                         </td>
                                                         <td class="edit">
                                                             <input value="{{ tie.tie_cont_owner.id }}" type="checkbox">
-                                                            <a href="{% url "edit_facility" tie.tie_cont_owner.id %}"> <i class="fa fa-pencil"></i></a> 
+                                                            {# <a href="{% url "edit_facility" tie.tie_cont_owner.id %}"> <i class="fa fa-pencil"></i></a>  #}
                                                             <input type="hidden" class="id_arendator" value="{{id_arendator}}">
                                                             <a id="del_cont_owner" href="#"><i class="fa fa-times"></i></a>
                                                             <input type="hidden" class="id_cont_owner" value="{{tie.tie_cont_owner.id}}">
