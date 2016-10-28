@@ -12,7 +12,7 @@ $(document).ready(function() {
     
     $('#add_form').on('click', '#cancel_add_makler', function (event) {
         event.preventDefault();
-        $('.makler-form').animate({top: '-700px'}, 1000)
+        $('.makler-form').animate({top: '-860px'}, 1000)
     });   
     
     $('#add_form').on('click', '#send_form_makler', function (event) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
         // console.log(msg)
         $.post('maklers/add_makler', msg)
             .success( function (data) {
-                $('.makler-form').animate({top: '-700px'}, 1000);
+                $('.makler-form').animate({top: '-860px'}, 1000);
                 $('.add_apend_makler').append(data);
                 // $('.add_apend_makler').children('tr').fadeIn('slow')
         })
@@ -65,7 +65,7 @@ $(document).ready(function() {
         var id = $(this).attr('id-makler-btn');
         $.post('maklers/save_edit_makler/'+id, msg)
         .success( function (data) {
-            $('.makler-form').animate({top: '-700px'}, 1000);
+            $('.makler-form').animate({top: '-860px'}, 1000);
             $('[id-makler="'+id+'"]').parents('tr').replaceWith(data);
         })
         .error(function(data) {
@@ -110,10 +110,19 @@ $(document).ready(function() {
     $('#search_makler').on('click', function (event) {
         event.preventDefault();
         var data = $('#search_form').serialize();
+        $('.messageServer').css('backgroundColor', '#FCCD1B');
+        $('.messageServer').text('Идет поиск').fadeIn(1000);
         $.post('search_makler', data)
         .success( function (data) {
             //('#list_makler').text('');
+            $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+            $('.messageServer').text('Поиск завершен').fadeIn(1000).delay(2000).fadeOut(500);
             $('#list_makler').html(data);
         })
+        .error(function(data) {
+            $('.messageServer').css('backgroundColor', '#c9302c');
+            $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+        })
     })
+    
 });

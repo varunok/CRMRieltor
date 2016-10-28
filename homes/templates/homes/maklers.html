@@ -129,43 +129,7 @@
                                     </thead>
                                     <tbody id="list_makler">
                                         {% for makler in maklers %}
-                                            <tr>
-                                                <td class="f-clr-grey">
-                                                    {{ makler.id }}
-                                                </td>
-                                                <td class="f-clr-grey">
-                                                    {% if makler.cooperation %}
-                                                        {{ makler.cooperation }}
-                                                    {% endif %}
-                                                    <span class="makler-type makler-white">
-                                                    {% if makler.white_black.id == 1 %}
-                                                        <span class="makler-type makler-white">
-                                                    {% elif makler.white_black.id == 2 %}
-                                                        <span class="makler-type makler-black">
-                                                    {% else %}
-                                                    {% endif %}
-                                                    {{ makler.white_black }}
-                                                </span>
-                                                </td>
-                                                <td class="f-clr-grey">
-                                                    <i class="fa fa-user"></i>
-                                                    {{ makler.name }}
-                                                </td>
-                                                <td class="f-clr-grey">
-                                                    <i class="fa fa-phone"></i>
-                                                    {{ makler.phone }}
-                                                </td>
-                                                <td class="f-clr-grey">
-                                                    {{ makler.agency }}
-                                                </td>
-                                                <td class="f-clr-grey">
-                                                    {{ makler.email }}
-                                                </td>
-                                                <td class="edit f-clr-grey">
-                                                    <a id-makler='{{ makler.id }}' href="#"> <i class="fa fa-pencil"></i></a> 
-                                                    <a href="#"><i class="fa fa-times"></i></a>
-                                                </td>
-                                            </tr>
+                                            {% include 'makler/single_makler.html' %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -229,6 +193,11 @@
 
         });
 
+    });
+    $('#search_makler_number').change(function(event) {
+        if (this.value.match(/[^0-9\.\+]/g)) {
+            this.value = this.value.replace(/[^0-9\.\+]/g, '');
+        }
     });
     </script>
     <script src="{% static "js/makler.js" %}"></script>

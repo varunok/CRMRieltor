@@ -8,7 +8,7 @@ from makler.models import Makler
 class MaklerForm(ModelForm):
     class Meta:
         model = Makler
-        fields = ('name', 'agency', 'cooperation', 'email', 'phone', 'site', 'white_black', 'rieltor')
+        fields = ('name', 'agency', 'cooperation', 'email', 'phone', 'phone_second', 'phone_third', 'site', 'white_black', 'rieltor')
         widgets = {
             'phone': TextInput(attrs={}),
             'email': TextInput(attrs={}),

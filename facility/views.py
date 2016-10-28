@@ -12,7 +12,7 @@ from homes.views import add_object
 from change_form import change_form_text
 from save_photo import save_photo
 from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner, ImagesFacility, \
-    AddressFacilityData
+    AddressFacilityData, UserFullName
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -156,6 +156,8 @@ def trash_obj(request):
 def edit_facility(request, id_obj):
     facility = ContactOwner.objects.get(id=id_obj)
     form = AddressFacilityForm(instance=facility)
+    form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+    form.fields['loyality'].queryset = UserFullName.objects.filter(is_active=True)
     images = ImagesFacility.objects.filter(album=facility)
     request.session['dir_img'] = str(uuid.uuid1())
     return render(request, 'homes/add_object.html', {'form': form,

@@ -53,6 +53,10 @@ class Makler(models.Model):
 
     phone = models.CharField(max_length=15, verbose_name=u'Телефон', blank=False, null=True)
 
+    phone_second = models.CharField(max_length=15, verbose_name=u'Телефон 2', blank=True, null=True)
+
+    phone_third = models.CharField(max_length=15, verbose_name=u'Телефон 3', blank=True, null=True)
+
     site = models.URLField(verbose_name=u'Сайт', null=True, blank=True)
 
     email = models.EmailField(verbose_name=u'Email', null=True, blank=True)

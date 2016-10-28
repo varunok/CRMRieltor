@@ -100,10 +100,12 @@ def delivery_email_arendator_single(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
+        request_abs_url = request.build_absolute_uri('data')
         # print(request.POST.getlist('id_obj')[0].split(','))
         subs, create = Subscribe.objects.get_or_create(id=1)
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
         html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
+                                                                        'request': request_abs_url,
                                                                         'objects': objects,
                                                                         'subs': subs})
         arendator = Arendator.objects.get(id=request.POST.get('id_a'))
@@ -126,10 +128,12 @@ def delivery_email_buyer_single(request):
     if request.method == 'POST':
         plus_email = request.POST.get('plus_email')
         temp_email = get_object_or_404(TemplateEmail, pk=1)
+        request_abs_url = request.build_absolute_uri('data')
         # print(request.POST.getlist('id_obj')[0].split(','))
         subs, create = Subscribe.objects.get_or_create(id=1)
         objects = ContactOwner.objects.filter(id__in=request.POST.getlist('id_obj')[0].split(','))
         html_message = render_to_string('sender_email/list_mail.html', {'temp_email': temp_email,
+                                                                        'request': request_abs_url,
                                                                         'objects': objects,
                                                                         'subs': subs})
         buyer = Buyer.objects.get(id=request.POST.get('id_b'))

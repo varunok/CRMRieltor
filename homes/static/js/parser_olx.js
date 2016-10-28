@@ -4,7 +4,14 @@
 $(document).ready(function() {
     $('#parse').on('click', function (event) {
         event.preventDefault();
-        var msg   = $('#parse_form').serialize();
+        var msg   = $('#parse_form').serializeArray();
+        // var msg   = $('#parse_form').serialize();
+        for (var item in msg)
+        {
+          if (msg[item].name == 'id_page') {
+            msg[item].value = '1';
+          }
+        }
         $('#include_parse_text').html('');
         $('#more_icon').html('');
         $('#wait_icon').html('<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>');

@@ -3,10 +3,14 @@
 
 from django import forms
 from django.forms import ModelForm, Textarea, SelectMultiple, TextInput
-from buyer.models import Buyer
+from buyer.models import Buyer, UserFullName
 
 
 class BuyerForm(ModelForm):
+    loyality = forms.ModelMultipleChoiceField(queryset=UserFullName.objects.filter(is_active=True), required=False)
+    loyality.widget.attrs['multiple'] = 'true'
+    loyality.widget.attrs['class'] = 'tarea-multiple'
+
     class Meta(object):
         model = Buyer
         fields = (

@@ -2,10 +2,9 @@
 
 
 from django.shortcuts import render
-from django.utils import timezone, dateformat
 from django.contrib.auth.decorators import login_required
 
 
 @login_required
 def setting_list_street(request):
-    return render(request, 'setting_street/setting_list_street.html', {'time': timezone.now()})
+    return render(request, 'setting_street/setting_list_street.html', {})

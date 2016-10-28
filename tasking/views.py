@@ -72,6 +72,8 @@ def edit_form(request):
     if request.method == 'POST':
         tasking = Tasking.objects.get(id=request.POST.get('id'))
         form = TaskingForm(instance=tasking)
+        form.fields['rieltor'].queryset = UserFullName.objects.filter(is_active=True)
+        form.fields['access'].queryset = UserFullName.objects.filter(is_active=True)
         return render(request, 'tasking/form.html', {"form": form, "edit": True, 'id_task': tasking.id})
 
 
