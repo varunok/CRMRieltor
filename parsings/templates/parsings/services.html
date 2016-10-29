@@ -38,6 +38,21 @@
                         </div>
                     </a>
                 </div>
+                {% if hi_dn_ua %}
+                    <div class="col-md-6">
+                        <a href="{% url "parser_hi_dn_ua" %}" class="setting-link">
+                            <div class="setting-section">
+                                <div class="setting-icon col-md-4">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
+                                <div class="setting-text col-md-8">
+                                    <h3>Парсер hi.dn.ua</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>
