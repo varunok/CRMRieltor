@@ -14,6 +14,7 @@ from makler.models import Makler
 from facility.models import ContactOwner
 from parsings.models import ConfigParserOLX
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 # Create your views here.
 
@@ -48,7 +49,11 @@ SELECTOR_DATE = config_parser.SELECTOR_DATE
 
 @login_required
 def services(request):
-    return render(request, 'parsings/services.html', {})
+    if settings.ALLOWED_HOSTS[0] == 'dom6.usatba-krm.dn.ua':
+        hi_dn_ua = True
+    else:
+        hi_dn_ua = False
+    return render(request, 'parsings/services.html', {'hi_dn_ua': hi_dn_ua})
 
 
 @login_required
@@ -64,6 +69,7 @@ def parser_olx(request):
     dict_categories_text = valid_categories_list(dict_categories_text)
     return render(request, 'parsings/parser_olx.html', {"list_categories_text": dict_categories_text,
                                                         "sity": sity})
+
 
 
 @login_required
@@ -247,3 +253,38 @@ def selector_date(request):
     else:
         return HttpResponse(status=503)
 
+@login_required
+def parser_hi_dn_ua(request):
+    return render(request, 'parsings/parser_hi_dn_ua.html', {})
+
+
+@login_required
+def parsehidnua(request):
+    if request.method == 'POST':
+        pages = ParserOLX('http://hi.dn.ua/index.php?option=com_sobi2&catid=56').getlink('//ul[@class="pagination"]/li/strong/a//@href')
+        site = ParserOLX('http://hi.dn.ua/index.php?option=com_sobi2&catid=56').gettext(selector='//td//text()')
+        if int(request.POST['id_page']) > 1:
+            site = ParserOLX(pages[int(request.POST['id_page'])-2]).gettext(selector='//td//text()')
+        dict_article = {}
+        for articles in site:
+            if u'Тел.:' in articles:
+                article = articles.split(u'Тел.:')[0]
+                phone = articles.split(u'Тел.:')[-1][1:]
+                try:
+                    phone = ''.join(mutable_phone(phone))
+                except:
+                    phone = '000000'
+                if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=[phone]):
+                    dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
+                elif request.POST['id_except'] == '2' and not ContactOwner.objects.filter(
+                                    phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                    phone_owner_plus=[int(i) for i in phone]):
+                    dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
+                elif request.POST['id_except'] == '3' and not Makler.objects.filter(
+                                    phone__in=[phone]) and not ContactOwner.objects.filter(
+                                    phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
+                                    phone_owner_plus=[int(i) for i in phone]):
+                    dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
+    dict_article['id_page'] = int(request.POST['id_page']) + 1
+    return HttpResponse(JsonResponse(dict_article))
+    # return HttpResponse(content=b'ok')
