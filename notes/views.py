@@ -27,7 +27,7 @@ def note_add(request):
         datarequest = {'response': True,
                        'name': name,
                        'id': notes_add.id,
-                       'date': dateformat.format(datetime.now(), "d E Y H:i")}
+                       'date': dateformat.format(notes_add.date, "d E Y H:i")}
         json = JsonResponse(datarequest)
         return HttpResponse(json)
     else:
