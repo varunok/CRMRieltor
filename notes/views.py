@@ -11,7 +11,6 @@ from .models import Notes
 
 
 # Create your views here.
-formatted_date = dateformat.format(datetime.now(), "d E Y H:i")
 
 
 @login_required
@@ -28,7 +27,7 @@ def note_add(request):
         datarequest = {'response': True,
                        'name': name,
                        'id': notes_add.id,
-                       'date': formatted_date}
+                       'date': dateformat.format(datetime.now(), "d E Y H:i")}
         json = JsonResponse(datarequest)
         return HttpResponse(json)
     else:
@@ -73,6 +72,6 @@ def note_edit(request):
                                                 name=name,
                                                 date=timezone.now())
         result = Notes.objects.filter(id=id_numb).values()[0]
-        result['date'] = formatted_date
+        result['date'] = dateformat.format(datetime.now(), "d E Y H:i")
         json = JsonResponse(result)
         return HttpResponse(json)
