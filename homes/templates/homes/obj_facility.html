@@ -190,8 +190,11 @@
                                                     <p class="object-data-update">
                                                        Дата обновления<br>
                                                         <i class="fa fa-calendar"></i>
-                                                        {{ object_data.date_of_renovation|date:'d E Y' }}
+                                                        {{ object_data.date_of_renovation|date:'d E Y' }} 
                                                     </p>
+                                                    {% if object_data.date_added|new_obj %}
+                                                        <div style="background-color:#40D3B7; color:#fff; position: absolute; padding: 5px; border-radius: 5px;margin-left: 75px; margin-top: 1px;">Новый</div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

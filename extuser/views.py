@@ -15,6 +15,7 @@ from django.conf import settings
 from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS, SettingEmail
 from active_franshise import Active
 from setting_globall.models import Franshise
+from django.core.files import File
 
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
@@ -104,6 +105,16 @@ def save_edit_user(request):
         User.objects.filter(id=request.POST.get('id_user')).update(first_name=request.POST.get('first_name'),
                                                                    last_name=request.POST.get('last_name'),
                                                                    email=request.POST.get('email'))
+        path_to_file = ''.join(['media/avatar/'])
+        f = request.FILES
+        for ele in f:
+            with open(path_to_file + f[ele].name, 'wb+') as destination:
+                for chunk in f[ele].chunks():
+                    destination.write(chunk)
+        reopen = open(path_to_file + f[ele].name, 'rb')
+        image_file = File(reopen)
+        image_file.name = image_file.name[6:]
+        MyUser.objects.filter(id=request.POST.get('id_user')).update(image=image_file)
         return HttpResponseRedirect('setting_user')
 
 
