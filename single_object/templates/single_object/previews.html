@@ -184,7 +184,7 @@
                         zoom: 9
                     });
 
-                    ymaps.geocode('{{sity}}, {{ single_object.street_obj }}, {{single_object.number_home}}', {
+                    ymaps.geocode('{{sity.sity}}, {{ single_object.street_obj }}, {{single_object.number_home}}', {
                         results: 1
                     }).then(function (res) {
                         var firstGeoObject = res.geoObjects.get(0),
