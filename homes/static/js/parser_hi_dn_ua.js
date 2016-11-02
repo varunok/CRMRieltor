@@ -20,7 +20,7 @@ $(document).ready(function() {
             for(var i in data){
                 // $('#include_parse_text').append("<div></div><a href='"+data[i].sity+"'>"+data[i].sity+"</a></div>");
                 if (i != 'id_page'){
-                    $('#include_parse_text').append("<tr><td>"+data[i].article+"</td><td>"+data[i].phone+"</td></tr>");
+                    $('#include_parse_text').append("<tr><td>"+data[i].article+"</td><td>"+data[i].phone+"</td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
                 }
             }
             $('#more_icon').html('<a href="#" class="btn btn-green"><i class="fa fa-plus fa-4x fa-fw"></i></a>');
@@ -42,7 +42,7 @@ $(document).ready(function() {
             for(var i in data){
                 // $('#include_parse_text').append("<div></div><a href='"+data[i].sity+"'>"+data[i].sity+"</a></div>");
                 if (i != 'id_page'){
-                    $('#include_parse_text').append("<tr><td>"+data[i].article+"</td><td>"+data[i].phone+"</td></tr>");
+                    $('#include_parse_text').append("<tr><td>"+data[i].article+"</td><td>"+data[i].phone+"</td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
                 }
             }
             $('#more_icon').html('<a href="#" class="btn btn-green"><i class="fa fa-plus fa-4x fa-fw"></i></a>');
@@ -51,5 +51,9 @@ $(document).ready(function() {
         .error(function(data) {
             $('#wait_icon').html('ERROR');
         });
+    });
+    $(document).on('click', '.done', function(event) {
+        event.preventDefault();
+        $(this).parents('tr').addClass('success')
     });
 })

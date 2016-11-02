@@ -261,13 +261,28 @@ def parser_hi_dn_ua(request):
 @login_required
 def parsehidnua(request):
     if request.method == 'POST':
-        pages = ParserOLX('http://hi.dn.ua/index.php?option=com_sobi2&catid=56').getlink('//ul[@class="pagination"]/li/strong/a//@href')
-        site = ParserOLX('http://hi.dn.ua/index.php?option=com_sobi2&catid=56').gettext(selector='//td//text()')
+        id_part = int(request.POST.get('id_part'))
+        if id_part == 1:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=56'
+        elif id_part == 2:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=9'
+        elif id_part == 3:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=11'
+        elif id_part == 4:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=12'
+        elif id_part == 5:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=13'
+        elif id_part == 6:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=19'
+        elif id_part == 7:
+            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=55'
+        pages = ParserOLX(link).getlink('//ul[@class="pagination"]/li/strong/a//@href')
+        site = ParserOLX(link).gettext(selector='//td//text()')
         if int(request.POST['id_page']) > 1:
             site = ParserOLX(pages[int(request.POST['id_page'])-2]).gettext(selector='//td//text()')
         dict_article = {}
         for articles in site:
-            if u'Тел.:' in articles:
+            if u'Тел.:' in articles or u'Тел. :' in articles:
                 article = articles.split(u'Тел.:')[0]
                 phone = articles.split(u'Тел.:')[-1][1:]
                 try:

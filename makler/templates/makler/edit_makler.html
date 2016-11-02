@@ -4,94 +4,78 @@
                 <form id="send_form" action="makler/add_makler" method="post">
                 {% csrf_token %}
                     <h3 style="padding-left: 20px" class="section-head">Добавить маклера</h3>
-                    <div class="col-md-12">
-                        <label for="name">Имя</label>
-                        {{ form.name }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">Имя</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name-agency">Название Агенства</label>
+                            {{ form.agency }}
+                        </div>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="name-agency">Название Агенства</label>
-                        {{ form.agency }}
-                    </div>
-                    <br><br><br>
-                    <div class="col-md-12">
-                        <label for="white">Тип маклера</label>
-                        {% if form.white_black.errors %}
-                            <span style="color: #cc0000">{{ form.white_black.errors.as_text }}</span>
-                        {% endif %}
-                        {{ form.white_black }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="phone">Телефон
-                            {% if form.phone.errors %}
-                                <span style="color: #cc0000"> {{ form.phone.errors.as_text }} </span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="white">Тип маклера</label>
+                            {% if form.white_black.errors %}
+                                <span style="color: #cc0000">{{ form.white_black.errors.as_text }}</span>
                             {% endif %}
+                            {{ form.white_black }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone">Телефон
+                                {% if form.phone.errors %}
+                                    <span style="color: #cc0000"> {{ form.phone.errors.as_text }} </span>
+                                {% endif %}
+                                </label>
+                                {{ form.phone }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="phone">Телефон 2
+                                {% if form.phone_second.errors %}
+                                    <span style="color: #cc0000"> {{ form.phone_second.errors.as_text }} </span>
+                                {% endif %}
+                                </label>
+                                {{ form.phone_second }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone">Телефон 3
+                                {% if form.phone_third.errors %}
+                                    <span style="color: #cc0000"> {{ form.phone_third.errors.as_text }} </span>
+                                {% endif %}
+                                </label>
+                                {{ form.phone_third }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="site">Сайт</label>
+                            {% if form.site.errors.as_text %}
+                                    <span style="color: #cc0000"> {{ form.site.errors.as_text }} </span>
+                            {% endif %}
+                            {{ form.site }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Email
+                                {% if form.email.errors.as_text %}
+                                    <span style="color: #cc0000"> {{ form.email.errors.as_text }} </span>
+                                {% endif %}
                             </label>
-                            {{ form.phone }}
+                            {{ form.email }}
+                        </div>
                     </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="phone">Телефон 2
-                            {% if form.phone_second.errors %}
-                                <span style="color: #cc0000"> {{ form.phone_second.errors.as_text }} </span>
-                            {% endif %}
-                            </label>
-                            {{ form.phone_second }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="phone">Телефон 3
-                            {% if form.phone_third.errors %}
-                                <span style="color: #cc0000"> {{ form.phone_third.errors.as_text }} </span>
-                            {% endif %}
-                            </label>
-                            {{ form.phone_third }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="site">Сайт</label>
-                        {% if form.site.errors.as_text %}
-                                <span style="color: #cc0000"> {{ form.site.errors.as_text }} </span>
-                        {% endif %}
-                        {{ form.site }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="email">Email
-                            {% if form.email.errors.as_text %}
-                                <span style="color: #cc0000"> {{ form.email.errors.as_text }} </span>
-                            {% endif %}
-                        </label>
-                        {{ form.email }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="cooperation">Сотрудничество</label>
-                        {{ form.cooperation }}
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="col-md-12">
-                        <label for="rieltor">Риелтор</label>
-                        {{ form.email.rieltor.as_text }}
-                        {{ form.rieltor }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="cooperation">Сотрудничество</label>
+                            {{ form.cooperation }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rieltor">Риелтор</label>
+                            {{ form.email.rieltor.as_text }}
+                            {{ form.rieltor }}
+                        </div>
                     </div>
                     <br>
                     <br>
@@ -100,7 +84,7 @@
                     <div class="row">
                         <div class="col-md-6"><a id-makler-btn="{{ id_makler }}" id="edit_form_makler" class="btn btn-green" href="">Сохранить</a></div>
 {#                        <div class="col-md-6"><input class="btn btn-green" type="submit"></div>#}
-                            <div class="col-md-6"><a id="cancel_add_makler" class="btn btn-red" href="">Отменить</a></div>
+                            <div class="col-md-6" style="text-align: right;"><a id="cancel_add_makler" class="btn btn-red" href="">Отменить</a></div>
                     </div>
 
             </div>
