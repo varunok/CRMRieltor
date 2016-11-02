@@ -22,7 +22,7 @@ from search_automat_buyer import search_automat_buyer
 from tasking.models import Tasking
 from meeting.models import Meeting
 from homes.views import TaskingList, MeetingList
-from setting_globall.models import Franshise, Subscribe
+from setting_globall.models import Franshise, Subscribe, FranshiseSity
 from sender_email.views import link_to_single_obj
 
 
@@ -36,9 +36,9 @@ class SingleObjectView(DetailView):
 
     def get_context_data(self, **kwargs):
         self.context = super(SingleObjectView, self).get_context_data(**kwargs)
-        self.context['time'] = timezone.now()
         self.context['images'] = ImagesFacility.objects.all().filter(album=self.context['single_object'].id)
         self.context['nac_carrency'] = NationalCarrency.objects.get(id=1)
+        self.context['sity'] = FranshiseSity.objects.get(id=1)
         self.context['type_actuality'] = TypeActuality.objects.all()
         self.context['single_obj_comments'] = SingleObjComments.objects.filter(
             obj_comments=self.context['single_object'].id, type_tabs='comments')
