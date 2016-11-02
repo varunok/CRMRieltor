@@ -4,6 +4,7 @@
 import datetime
 from django import template
 from django.utils import timezone
+import datetime
 
 register = template.Library()
 
@@ -23,5 +24,18 @@ def dead_line(date_arg):
                 return True
         else:
             return False
+    else:
+        return False
+
+@register.filter(name='new_obj')
+def new_obj(date_arg):
+    if date_arg:
+        if type(date_arg) != datetime.datetime:
+            date_arg = datetime.datetime.combine(date_arg, datetime.time())
+        date_arg = date_arg + datetime.timedelta(minutes=5)
+        if timezone.now() > date_arg:
+            return False
+        else:
+            return True
     else:
         return False

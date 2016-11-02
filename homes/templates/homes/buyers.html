@@ -289,23 +289,28 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-                {% if paginator.num_pages > 1 %}
-                    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-                        <div class="col-md-12 section-pagination">
-                            <ul class="pagination">
-                                <li><a href="{% url request.path|cut:'/' %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a></li>
-                                {% for p in paginator.page_range %}
-                                    <li
-                                        {% if request.GET.page|first == p|floatformat %}
-                                            class="active"
-                                        {% endif %}>
-                                        <a href="{% url request.path|cut:'/' %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}</a>
-                                    </li>
-                                {% endfor %}
-                                <li><a href="{% url request.path|cut:'/' %}?page={{ paginator.num_pages}}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a></li>
-                            </ul>
-                        </div>
-                    {% endwith %}
+                {% if  is_paginated %}
+                    <div class="col-md-12 section-pagination">
+                        <ul class="pagination">
+                        <li><a href="?page=1">&laquo;&laquo;</a></li>
+                            <!--Если есть предыдущая страница - то делаю ссылку "назад"-->
+                    {% if  page_obj.has_previous %}
+                            <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% endif %}
+                            {% for p in paginator.page_range %}
+                                <li
+                                    {% if page_obj.number == p %}
+                                        class="active"
+                                    {% endif %}>
+                                    <a href="{% url request.path|cut:'/' %}?page={{ p }}">{{ p }}</a>
+                                </li>
+                            {% endfor %}
+                    {% if  page_obj.has_next %}
+                              <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% endif %}
+                        <li><a href="?page={{ paginator.num_pages}}">&raquo;&raquo;</a></li>
+                        </ul>
+                    </div>
                 {% endif %}
             </div>
         </div>

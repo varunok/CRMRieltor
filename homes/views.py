@@ -113,7 +113,7 @@ class ObjectList(ListView):
     paginate_by = 10
     context_object_name = 'contact_owner'
     template_name = 'homes/objects.html'
-    qeryset = ContactOwner.objects.all().filter(trash=False).order_by('id')
+    qeryset = ContactOwner.objects.all().filter(trash=False).order_by('-id')
 
     def get_context_data(self, **kwargs):
         self.context = super(ObjectList, self).get_context_data(**kwargs)
@@ -171,7 +171,7 @@ class ObjectListSearch(ObjectList):
 
 
 class ObjectListSelling(ObjectList):
-    qeryset = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False)
+    qeryset = ContactOwner.objects.filter(list_operations__in=[1, 4], trash=False).order_by('-id')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -179,7 +179,7 @@ class ObjectListSelling(ObjectList):
 
 
 class ObjectListArend(ObjectList):
-    qeryset = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False)
+    qeryset = ContactOwner.objects.filter(list_operations__in=[2, 3], trash=False).order_by('-id')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
