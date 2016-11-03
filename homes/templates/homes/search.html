@@ -67,20 +67,30 @@
                         {% include 'homes/obj_facility.html' %}
                     {% endif %}
                 {% endfor %}
-                {% if paginator.num_pages > 1 %}
-                    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-                        <div class="col-md-12 section-pagination">
-                            <ul class="pagination">
-                                <li><a id="page_one" href="#">&laquo;</a></li>
-                                {% for p in paginator.page_range %}
-                                    <li {% if request.GET.page|first == p|floatformat %}class="active"{% endif %}>
-                                        <a class="pages" href="#">{{ p }}</a>
-                                    </li>
-                                {% endfor %}
-                                <li><a id="page_last" href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                    {% endwith %}
+
+
+                {% if  is_paginated %}
+                    <div class="col-md-12 section-pagination">
+                        <ul class="pagination">
+                        <li><a id="page_one" href="#">&laquo;&laquo;</a></li>
+                            <!--Если есть предыдущая страница - то делаю ссылку "назад"-->
+                    {% if  page_obj.has_previous %}
+                            {# <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li> #}
+                    {% endif %}
+                            {% for p in paginator.page_range %}
+                                <li
+                                    {% if page_obj.number == p %}
+                                        class="active"
+                                    {% endif %}>
+                                    <a class="pages" href="">{{ p }}</a>
+                                </li>
+                            {% endfor %}
+                    {% if  page_obj.has_next %}
+                              {# <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li> #}
+                    {% endif %}
+                        <li><a id="page_last" href="#">&raquo;&raquo;</a></li>
+                        </ul>
+                    </div>
                 {% endif %}
 
 <script>
