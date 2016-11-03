@@ -28,11 +28,16 @@ def franshise_second():
         return ''
 
 
-@register.simple_tag(name='franshise_len')
-def franshise_len():
-    try:
-        franshise = Franshise.objects.get(id=1)
-        franshise =  franshise.franshise.split('.')[0]
-        return len(franshise)
-    except:
-        return ''
+# @register.simple_tag(name='franshiselen')
+# def franshiselen():
+#     return False
+    # try:
+    #     franshise = Franshise.objects.get(id=1)
+    #     franshise = franshise.franshise.split('.')[0]
+    #     print(len(franshise))
+    #     if len(franshise) > 13:
+    #         return True
+    #     else:
+    #         return False
+    # except:
+    #     return False
