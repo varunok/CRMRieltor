@@ -16,6 +16,7 @@ from setting_mail_delivery.models import TemplateEmail, TemplateSms, SettingSMS,
 from active_franshise import Active
 from setting_globall.models import Franshise
 from django.core.files import File
+from django.db import IntegrityError
 
 EMAIL_HOST_USER = settings.EMAIL_HOST_USER
 
@@ -37,13 +38,13 @@ def login_user(request):
             if user is not None and user.is_active:
                 login(request, user)
                 if not user.is_superuser:
-                    if not Active().franshises():
                         try:
-                            franshise = Franshise.objects.get(id=1)
-                            franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
-                            return HttpResponseRedirect(franshise_site)
+                            if not Active().franshises():
+                                franshise = Franshise.objects.get(id=1)
+                                franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
+                                return HttpResponseRedirect(franshise_site)
                         except:
-                            pass
+                            return HttpResponse(content=b'ERROR. Обратитесь к администратору.')
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponseRedirect('/')
@@ -75,22 +76,32 @@ class RegisterFormView(FormView):
 @login_required
 def register(request):
     type_user = UsersGroupExtUser.objects.all()
-    return render(request, 'extuser/register.html', {'time': timezone.now(), 'type_user': type_user})
+    return render(request, 'extuser/register.html', {'type_user': type_user})
 
 
 @login_required
 def add_user(request):
     if request.method == 'POST':
         if request.POST.get('add_user') is not None:
-            if request.user.is_superuser:
-                result = request.POST
-                new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
-                new_user.save()
-                add_img = MyUser(id=new_user.id, image=request.FILES['photo'], user_id=new_user.id, type_user_id=result.get('type_user'))
-                add_img.save()
-                recovery = RecoveryPass(email=result.get('email'), password=result.get('password'))
-                recovery.save()
-                return user_list(request)
+            if request.user.is_superuser or request.user.myuser.type_user.id == 1:
+                try:
+                    result = request.POST
+                    new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
+                    new_user.save()
+                    if not request.FILES.get('photo'):
+                        reopen = open('media/avatar/avatar_zaglushka.jpg', 'rb')
+                        image_file = File(reopen)
+                    else:
+                        image_file = request.FILES.get('photo')
+                    add_img = MyUser(id=new_user.id, image=image_file, user_id=new_user.id, type_user_id=result.get('type_user'))
+                    add_img.save()
+                    recovery = RecoveryPass(email=result.get('email'), password=result.get('password'))
+                    recovery.save()
+                except IntegrityError:
+                    type_user = UsersGroupExtUser.objects.all()
+                    return render(request, 'extuser/register.html', {'type_user': type_user,
+                                                                     'user_is': True})
+            return user_list(request)
 
 
 @login_required
