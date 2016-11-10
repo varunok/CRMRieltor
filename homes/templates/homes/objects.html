@@ -127,7 +127,7 @@
                             <div class="col-md-4">
                                 <div class="search-item">
                                     <label for="phone">Телефон</label>
-                                    <input type="text" placeholder="-----" id="phone_obj" name="phone_obj">
+                                    <input class="allownumericwithoutdecimal" type="text" placeholder="-----" id="phone_obj" name="phone_obj">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -652,6 +652,18 @@
                     $('.messageServer').css('backgroundColor', '#c9302c');
                     $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
                 });
+            });
+
+            $(".allownumericwithoutdecimal").on('keyup', function () {
+             $(this).val($.trim($(this).val()));
+             if ($.isNumeric($(this).val())){
+
+             }else{
+                 var numbs = $(this).val();
+                 numbs = numbs.slice(0, numbs.length-1);
+                 $(this).val(numbs)
+
+             }
             });
 
             $('#clean_list').on('click', function (event) {
