@@ -642,6 +642,16 @@
                 $.get('search_obj', msg, function (data) {
                     $('.search-object').html(data)
                 })
+                .success( function (data) {
+                        $('.search-object').html(data)
+                        $('.messageServer').animate({backgroundColor: '#5bc0de'}, 1000);
+                        $('.messageServer').text('Поиск завершен').fadeIn(1000).delay(2000).fadeOut(500);
+
+                })
+                .error(function(data) {
+                    $('.messageServer').css('backgroundColor', '#c9302c');
+                    $('.messageServer').text('Ошибка').fadeIn(1000).delay(2000).fadeOut(500);
+                });
             });
 
             $('#clean_list').on('click', function (event) {
@@ -656,6 +666,8 @@
                 $(this).parents('.wrap-obj').fadeOut('slow');
                 $.post('trash_obj', {"trash": idobj_trash, "iduser":{{ user.id }}}, messageServer);
             });
+
+
             function messageServer(data) {
                 if (data==='Ошибка'){
                     $('.messageServer').css('backgroundColor', '#c9302c');
