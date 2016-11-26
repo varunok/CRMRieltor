@@ -1,0 +1,93 @@
+{% extends "homes/base.html" %}
+
+{% block title %}<title>Доступы</title>{% endblock title %}
+
+{% block extra_css %}{% endblock extra_css %}
+
+
+{% block content %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <li><a href="{% url "homes" %}">Главная</a></li>
+                            <li><a href="{% url "setting_globall" %}">Настройки</a></li>
+                            <li class="active">Доступы</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                            <h1 class="section-head">Доступы</h1>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                {% for name in users %}
+                                    <th>{{ name.get_full_name }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for facility in facilitys %}
+                                <tr class="check-list">
+                                    <td>Объект ID {{ facility.id }}</td>
+                                    {% for name in users %}
+                                        {% if facility.loyality.all %}
+                                            <td>
+                                                <input type="checkbox" class="checkedbox" id="{{ name.id }}" value="{{ facility.id }}"
+                                                    {% for access_name in facility.loyality.all %}
+                                                        {% if name.id == access_name.id %}
+                                                            checked
+                                                        {% endif %}
+                                                    {% endfor %}>
+                                            </td>
+                                        {% else %}
+                                            <td><input class="checkedbox" type="checkbox" id="{{ name.id }}" value="{{ facility.id }}"></td>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+{% endblock content %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function() {
+            $('.check-list').on('change', '.checkedbox', function(){
+                var msg = JSON.stringify({
+                    'checked': $(this).prop("checked"),
+                    'id_user': $(this).attr("id"),
+                    'id_facility': $(this).attr("value")
+                });
+                $('.checkedbox').attr('disabled', "disabled");
+                $('.messageServer').animate({backgroundColor: '#FCCD1B'}, 500);
+                $('.messageServer').text('Обработка').fadeIn(300).delay(100);
+                $.post('change_access_facility', msg)
+                .success( function (data) {
+                    var data = jQuery.parseJSON(data);
+                    $('.messageServer').animate({backgroundColor: '#5bc0de'}, 500);
+                    $('.messageServer').text('Пользователь: '+data.user+". "+data.message+". Объект: ID "+data.id_facility).fadeIn(1000).delay(3000).fadeOut(500);
+                    $('.checkedbox').removeAttr('disabled');
+                })
+                .error(function(data) {
+                    $('.messageServer').animate({backgroundColor: '#c9302c'}, 500);
+                    $('.messageServer').text('Ошибка '+data.status+'. '+data.responseText).fadeIn(1000).delay(2000).fadeOut(500);
+                    $('.checkedbox').removeAttr('disabled');
+        });
+            })
+        })
+    </script>
+{% endblock extra_js %}
