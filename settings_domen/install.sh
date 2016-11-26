@@ -65,6 +65,7 @@ mkdir $short_name/media/temp_email_logo
 mkdir $short_name/media/tmpimg
 mkdir $short_name/media/watermark
 cp ../crm_rieltor/settings_domen/admin-photo_HRGFvAo.jpg $short_name/media/avatar/
+cp ../crm_rieltor/settings_domen/avatar_zaglushka.jpg $short_name/media/avatar/
 cp ../crm_rieltor/settings_domen/phantomjs $short_name/media/phantomjs 
 cp -r ../crm_rieltor/templates $short_name/templates 
 echo 'Created'

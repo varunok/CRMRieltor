@@ -289,14 +289,14 @@ def parsehidnua(request):
                     phone = ''.join(mutable_phone(phone))
                 except:
                     phone = '000000'
-                if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__in=[phone]):
+                if request.POST['id_except'] == '1' and not Makler.objects.filter(phone__istartswith=phone):
                     dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
                 elif request.POST['id_except'] == '2' and not ContactOwner.objects.filter(
                                     phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
                                     phone_owner_plus=[int(i) for i in phone]):
                     dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
                 elif request.POST['id_except'] == '3' and not Makler.objects.filter(
-                                    phone__in=[phone]) and not ContactOwner.objects.filter(
+                                    phone__istartswith=phone) and not ContactOwner.objects.filter(
                                     phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
                                     phone_owner_plus=[int(i) for i in phone]):
                     dict_article[site.index(articles)] = {'phone': phone.encode('utf8'), 'article': article.encode('utf8')}
