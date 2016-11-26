@@ -1,4 +1,4 @@
-{% load dead_line %}
+{% load dead_line %}{% load dead_line %}
                                                     <tr>
                                                          <td class="f-clr-grey">
                                                             {{ meeting.id }}
@@ -85,8 +85,11 @@
                                                                 O{{ meeting.meet_facility_id }}
                                                             {% endif %}
                                                         </td>
-                                                        <td class="edit f-clr-grey">
-                                                            <a href="#"> <i class="fa fa-play"></i></a>
-                                                            <a href="#"> <i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-times"></i></a>
+                                                        <td class="edit f-clr-grey" id-meet="{{ meeting.id }}">
+                                                            {% if not meeting.meet_archiv %}
+                                                                <a href="#"> <i class="fa fa-play"></i></a>
+                                                            {% endif %}
+                                                            <a href="#"> <i class="fa fa-pencil"></i></a>
+                                                            <a href="#"><i class="fa fa-times"></i></a>
                                                         </td>
                                                     </tr>

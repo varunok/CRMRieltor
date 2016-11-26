@@ -278,17 +278,24 @@
                             {% endwith %}
                         </ul>
                     </div>
-
                 </div>
+
                 {% for arendator in arendator_list %}
                     {% if arendator.trash == 0 %}
                         {% if arendator.loyality.get.id == '' %}
                             {% include 'homes/obj_arendator.html' %}
-                        {% elif arendator.loyality.get.id == user.id or user.is_superuser or user.myuser.type_user.id == 1%}
+                        {% elif user.is_superuser or user.myuser.type_user.id == 1 %}
                             {% include 'homes/obj_arendator.html' %}
+                        {% elif arendator.loyality.all %}
+                            {% for name in arendator.loyality.all %}
+                                {% if name.id ==  user.id %}
+                                    {% include 'homes/obj_arendator.html' %}
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+
                 {% if  is_paginated %}
                     <div class="col-md-12 section-pagination">
                         <ul class="pagination">

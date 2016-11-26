@@ -36,15 +36,15 @@ def login_user(request):
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             if user is not None and user.is_active:
-                login(request, user)
                 if not user.is_superuser:
-                        try:
-                            if not Active().franshises():
-                                franshise = Franshise.objects.get(id=1)
-                                franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
-                                return HttpResponseRedirect(franshise_site)
-                        except:
-                            return HttpResponse(content=b'ERROR. Обратитесь к администратору.')
+                    try:
+                        if not Active().franshises():
+                            franshise = Franshise.objects.get(id=1)
+                            franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
+                            return HttpResponseRedirect(franshise_site)
+                    except:
+                        return HttpResponse(content=b'ERROR. Обратитесь к администратору.')
+                login(request, user)
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponseRedirect('/')
@@ -115,17 +115,19 @@ def save_edit_user(request):
     if request.method == 'POST':
         User.objects.filter(id=request.POST.get('id_user')).update(first_name=request.POST.get('first_name'),
                                                                    last_name=request.POST.get('last_name'),
-                                                                   email=request.POST.get('email'))
-        path_to_file = ''.join(['media/avatar/'])
-        f = request.FILES
-        for ele in f:
-            with open(path_to_file + f[ele].name, 'wb+') as destination:
-                for chunk in f[ele].chunks():
-                    destination.write(chunk)
-        reopen = open(path_to_file + f[ele].name, 'rb')
-        image_file = File(reopen)
-        image_file.name = image_file.name[6:]
-        MyUser.objects.filter(id=request.POST.get('id_user')).update(image=image_file)
+                                                                   email=request.POST.get('email'),
+                                                                   username=request.POST.get('email'))
+        if request.FILES.get('photo'):
+            path_to_file = ''.join(['media/avatar/'])
+            f = request.FILES
+            for ele in f:
+                with open(path_to_file + f[ele].name, 'wb+') as destination:
+                    for chunk in f[ele].chunks():
+                        destination.write(chunk)
+            reopen = open(path_to_file + f[ele].name, 'rb')
+            image_file = File(reopen)
+            image_file.name = image_file.name[6:]
+            MyUser.objects.filter(id=request.POST.get('id_user')).update(image=image_file)
         return HttpResponseRedirect('setting_user')
 
 

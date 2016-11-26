@@ -40,6 +40,8 @@ $(document).ready(function() {
     };
     $.timepicker.setDefaults($.timepicker.regional['ru']);
 
+    $('tr').attr('style', '');
+
     $('#add_task_form').on('click', function (event) {
         event.preventDefault();
         $.get('tasking/get_form_task').success( function (data) {
