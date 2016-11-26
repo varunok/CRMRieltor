@@ -336,6 +336,10 @@ class TaskingList(ListView):
         self.context['complexity_list'] = TypeComplexity.objects.all()
         return self.context
 
+    # def get_queryset(self):
+    #     self.queryset = Tasking.objects.filter(task_trash=False, task_archiv=False, access=self.request.user.id)
+    #     return self.queryset
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(TaskingList, self).dispatch(request, *args, **kwargs)
@@ -369,6 +373,10 @@ class MeetingList(ListView):
         self.context['rieltor_list'] = UserFullName.objects.filter(is_active=True)
         self.context['status_list'] = TypeStatus.objects.all()
         return self.context
+
+    # def get_queryset(self):
+    #     self.queryset = Meeting.objects.filter(task_trash=False, task_archiv=False, access=self.request.user.id)
+    #     return self.queryset
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
