@@ -18,7 +18,6 @@ from django.utils.decorators import method_decorator
 def add_arendator_obj(request):
     if request.method == 'POST':
         form = ArendatorForm(request.POST)
-        print(form.errors)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/arendators')
