@@ -370,7 +370,9 @@ def list_phone_validate(list_phone):
     list_phone = [str(i) for i in list(list_phone)]
     new_list_phone = []
     for phone in list_phone:
-        if len(phone) == 12 and int(phone[0]) == 3:
+        if phone[0:2] == '+7':
+            new_list_phone.append(''.join([phone]))
+        elif len(phone) == 12 and int(phone[0]) == 3:
             new_list_phone.append(''.join(['+', phone]))
         elif len(phone) == 11 and int(phone[0]) == 8:
             new_list_phone.append(''.join(['+3', phone]))
