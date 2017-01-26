@@ -3,7 +3,7 @@
  	setInterval(function () {
 		get_online(get_date());
 		get_messege();
-    },10000);
+    },60000);
 
     var get_date = function(){
  		var date = new Date();
@@ -14,7 +14,7 @@
 		var minutes = date.getMinutes();
 		var seconds = date.getSeconds();
 		var dates = year + '-' + (month+1) + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-		return dates;    	
+		return dates;
     };
 
  	var get_online = function(dates) {$.get('who_online',{"date": dates}, function(data) {
@@ -24,10 +24,10 @@
  	 				if (data[i].login==='online') {
  	 					online.push(data[i].login)
  	 				}
- 	 				
+
  	 			}
  	 			$('.len_online').text(online.length)
- 	 		});	
+ 	 		});
  	};
 
  	var get_messege = function (){
@@ -71,4 +71,3 @@
         });
     });
 });
-                                    
