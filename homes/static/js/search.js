@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.fa-search').on('click keypress', function(event) {
+    $('.fa-search.base').on('click keypress', function(event) {
         event.preventDefault();
         SendSearch();
     });

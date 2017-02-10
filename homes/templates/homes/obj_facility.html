@@ -1,6 +1,11 @@
 {% load static from staticfiles %}
 {% load sity_franshise %}
 {% load dead_line %}
+<style>
+    .point{
+        cursor: pointer;
+    }
+</style>
                     <div class="wrap-obj">
                         <div class="col-md-12">
                             <div class="col-md-12 object-card">
@@ -67,42 +72,24 @@
                                                         {% endif %}
                                                     </p>
                                                     <p class="object-more-info">
-                                                        {% if object_data.floor or object_data.floors_up %}
-                                                            <i class="fa fa-building-o"></i>
-                                                            {% if object_data.floors_up %}
-                                                                {{ object_data.floors_up }}
-                                                            {% endif %}
-                                                            {% if object_data.floor %}
-                                                                {% if object_data.floors_up == None %}
-                                                                    --
-                                                                {% endif %}
-                                                                / {{ object_data.floor }}
-
-                                                            {% endif %}
+                                                        {% if object_data.floor or object_data.floors_up or object_data.number_of_floors or object_data.rooms %}
+                                                            <i class="fa fa-building-o" title="Этажность от/Этажность до/Этаж/Комнат"></i>
+                                                            <span class="point" title="Этажность от">{{ object_data.number_of_floors|default:'--' }}</span>
+                                                            /
+                                                            <span class="point" title="Этажность до">{{ object_data.floors_up|default:'--' }}</span>
+                                                            /
+                                                            <span class="point" title="Этаж">{{ object_data.floor|default:'--' }}</span>
+                                                            /
+                                                            <span class="point" title="Комнат">{{ object_data.rooms|default:'--' }}</span>
                                                         {% endif %}
                                                         <i class="fa fa-expand"></i>
-                                                        {% if object_data.total_area %}
-                                                            {{ object_data.total_area }}
-                                                        {% else %}
-                                                            0
-                                                        {% endif %}
-                                                        {% if object_data.area_badroom %}
-                                                            / {{ object_data.area_badroom }}
-                                                        {% else %}
-                                                            / 0
-                                                        {% endif %}
-                                                        {% if object_data.area_living_room %}
-                                                            / {{ object_data.area_living_room }}
-                                                        {% else %}
-                                                            / 0
-                                                        {% endif %}
+                                                        <span class="point" title="Общая площадь">{{ object_data.total_area|default:'0' }}</span>
+                                                        /
+                                                        <span class="point" title="Спальня площадь">{{ object_data.area_badroom|default:'0' }}</span>
+                                                        /
+                                                        <span class="point" title="Гостинная площадь">{{ object_data.area_living_room|default:'0' }}</span>
                                                         <i class="fa fa-shopping-basket"></i>
-                                                        {% if object_data.area_kitchen %}
-                                                            {{ object_data.area_kitchen }} кв.
-                                                        {% else %}
-                                                            0 кв.
-                                                        {% endif %}
-
+                                                        <span class="point" title="Кухня площадь">{{ object_data.area_kitchen|default:'0' }} кв</span>
                                                     </p>
                                                     <p class="object-local">
                                                         <i class="fa fa-map-marker"></i>

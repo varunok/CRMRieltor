@@ -55,19 +55,21 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-6">
-                    <a href="sms_setting" class="setting-link">
-                        <div class="setting-section">
-                            <div class="setting-icon col-md-4">
-                                <i class="fa fa-cog fa-spin"></i>
+                {% if request.user.is_superuser %}
+                    <div class="col-md-6">
+                        <a href="sms_setting" class="setting-link">
+                            <div class="setting-section">
+                                <div class="setting-icon col-md-4">
+                                    <i class="fa fa-cog fa-spin"></i>
+                                </div>
+                                <div class="setting-text col-md-8">
+                                    <h3>Настройка рассылок SMS</h3>
+                                    <p></p>
+                                </div>
                             </div>
-                            <div class="setting-text col-md-8">
-                                <h3>Настройка рассылок SMS</h3>
-                                <p></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {% endif %}
                 {# <div class="col-md-6"> #}
                     {# <a href="email_setting" class="setting-link"> #}
                         {# <div class="setting-section"> #}
