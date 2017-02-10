@@ -910,7 +910,7 @@ ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('auth_user_id_seq', 14, true);
+SELECT pg_catalog.setval('auth_user_id_seq', 13, true);
 
 
 --
@@ -1309,7 +1309,7 @@ ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 296, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 250, true);
 
 
 --
@@ -1437,7 +1437,7 @@ ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 131, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 133, true);
 
 
 --
@@ -1533,7 +1533,7 @@ ALTER SEQUENCE extuser_recoverypass_id_seq OWNED BY extuser_recoverypass.id;
 -- Name: extuser_recoverypass_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('extuser_recoverypass_id_seq', 9, true);
+SELECT pg_catalog.setval('extuser_recoverypass_id_seq', 8, true);
 
 
 --
@@ -1670,7 +1670,7 @@ ALTER SEQUENCE facility_addressfacilitydata_equipment_id_seq OWNED BY facility_a
 -- Name: facility_addressfacilitydata_equipment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_equipment_id_seq', 56, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_equipment_id_seq', 21, true);
 
 
 --
@@ -1698,7 +1698,7 @@ ALTER SEQUENCE facility_addressfacilitydata_id_seq OWNED BY facility_addressfaci
 -- Name: facility_addressfacilitydata_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_id_seq', 37, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_id_seq', 29, true);
 
 
 --
@@ -1739,7 +1739,7 @@ ALTER SEQUENCE facility_addressfacilitydata_list_operations_id_seq OWNED BY faci
 -- Name: facility_addressfacilitydata_list_operations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_list_operations_id_seq', 78, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_list_operations_id_seq', 58, true);
 
 
 --
@@ -1780,7 +1780,7 @@ ALTER SEQUENCE facility_addressfacilitydata_loyality_id_seq OWNED BY facility_ad
 -- Name: facility_addressfacilitydata_loyality_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_loyality_id_seq', 59, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_loyality_id_seq', 19, true);
 
 
 --
@@ -1821,7 +1821,7 @@ ALTER SEQUENCE facility_addressfacilitydata_number_of_persons_id_seq OWNED BY fa
 -- Name: facility_addressfacilitydata_number_of_persons_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_number_of_persons_id_seq', 16, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_number_of_persons_id_seq', 9, true);
 
 
 --
@@ -1862,7 +1862,7 @@ ALTER SEQUENCE facility_addressfacilitydata_rieltor_id_seq OWNED BY facility_add
 -- Name: facility_addressfacilitydata_rieltor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_addressfacilitydata_rieltor_id_seq', 38, true);
+SELECT pg_catalog.setval('facility_addressfacilitydata_rieltor_id_seq', 18, true);
 
 
 --
@@ -1970,7 +1970,7 @@ ALTER SEQUENCE facility_databasephoneowner_id_seq OWNED BY facility_databasephon
 -- Name: facility_databasephoneowner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_databasephoneowner_id_seq', 180, true);
+SELECT pg_catalog.setval('facility_databasephoneowner_id_seq', 140, true);
 
 
 --
@@ -2012,7 +2012,7 @@ ALTER SEQUENCE facility_imagesfacility_id_seq OWNED BY facility_imagesfacility.i
 -- Name: facility_imagesfacility_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_imagesfacility_id_seq', 136, true);
+SELECT pg_catalog.setval('facility_imagesfacility_id_seq', 63, true);
 
 
 --
@@ -2052,7 +2052,7 @@ ALTER SEQUENCE facility_phoneowner_id_seq OWNED BY facility_phoneowner.id;
 -- Name: facility_phoneowner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('facility_phoneowner_id_seq', 68, true);
+SELECT pg_catalog.setval('facility_phoneowner_id_seq', 48, true);
 
 
 --
@@ -2773,7 +2773,7 @@ ALTER SEQUENCE learning_learn_id_seq OWNED BY learning_learn.id;
 -- Name: learning_learn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('learning_learn_id_seq', 2, true);
+SELECT pg_catalog.setval('learning_learn_id_seq', 3, true);
 
 
 --
@@ -2824,7 +2824,7 @@ ALTER SEQUENCE makler_makler_id_seq OWNED BY makler_makler.id;
 -- Name: makler_makler_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('makler_makler_id_seq', 36, true);
+SELECT pg_catalog.setval('makler_makler_id_seq', 10, true);
 
 
 --
@@ -3580,7 +3580,7 @@ ALTER SEQUENCE setting_street_district_id_seq OWNED BY setting_street_district.i
 -- Name: setting_street_district_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('setting_street_district_id_seq', 6, true);
+SELECT pg_catalog.setval('setting_street_district_id_seq', 1, true);
 
 
 --
@@ -3622,7 +3622,7 @@ ALTER SEQUENCE setting_street_street_id_seq OWNED BY setting_street_street.id;
 -- Name: setting_street_street_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('setting_street_street_id_seq', 13, true);
+SELECT pg_catalog.setval('setting_street_street_id_seq', 1, true);
 
 
 --
@@ -3662,7 +3662,7 @@ ALTER SEQUENCE setting_street_subway_id_seq OWNED BY setting_street_subway.id;
 -- Name: setting_street_subway_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('setting_street_subway_id_seq', 4, true);
+SELECT pg_catalog.setval('setting_street_subway_id_seq', 1, true);
 
 
 --
@@ -4006,7 +4006,7 @@ ALTER SEQUENCE single_object_singleobjcomments_id_seq OWNED BY single_object_sin
 -- Name: single_object_singleobjcomments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: image20_rieltor
 --
 
-SELECT pg_catalog.setval('single_object_singleobjcomments_id_seq', 5, true);
+SELECT pg_catalog.setval('single_object_singleobjcomments_id_seq', 2, true);
 
 
 --
@@ -5394,8 +5394,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-2	pbkdf2_sha256$20000$8TGB0kkosSMW$pgoKnFrleSLHLbwQegzojYjja76sErSSrAHFqap5lHc=	2016-10-31 19:14:02+02	t	image2007@bk.ru	Вячеслав	Рекечинский	image2007@bk.ru	t	t	2016-09-26 16:32:55+03
-1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-11-03 23:53:00+02	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
+1	pbkdf2_sha256$20000$Z5usqjsMJcDj$Z9MPf4jV+vntNWB35XnLIRXd6nNYJGTjEcZLBT1GWTs=	2016-12-10 14:49:43+02	t	varunok	Андрій	Варунок	varunok13@gmail.com	t	t	2016-09-12 00:20:42+03
+2	pbkdf2_sha256$20000$8TGB0kkosSMW$pgoKnFrleSLHLbwQegzojYjja76sErSSrAHFqap5lHc=	2016-10-29 11:36:27+03	t	image2007@bk.ru	Вячеслав	Рекечинский	image2007@bk.ru	t	t	2016-09-26 16:32:55+03
+13	pbkdf2_sha256$20000$BxReMHKszTUr$rwl47ikcB6Q30aspLy8V9Rs/9MiQxzthaJxiw3lOODs=	2016-10-29 11:36:53+03	f	bizflat@mail.ru	Сергей		bizflat@mail.ru	f	t	2016-10-29 11:12:23.156549+03
 \.
 
 
@@ -5726,52 +5727,6 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 248	2016-10-09 23:22:28.998565+03	11	ofis@usatba-krm.dn.ua	3		4	1
 249	2016-10-09 23:22:29.004917+03	7	parfenova_nata@mail.ru	3		4	1
 250	2016-10-09 23:59:25.999916+03	12	varunok@protonmail.com	3		4	1
-251	2016-11-03 23:39:51.637686+02	36	36	3		57	1
-252	2016-11-03 23:39:51.643039+02	35	35	3		57	1
-253	2016-11-03 23:39:51.646258+02	34	34	3		57	1
-254	2016-11-03 23:39:51.649417+02	33	33	3		57	1
-255	2016-11-03 23:39:51.652628+02	32	32	3		57	1
-256	2016-11-03 23:39:51.656292+02	31	31	3		57	1
-257	2016-11-03 23:39:51.660925+02	30	30	3		57	1
-258	2016-11-03 23:39:51.664962+02	29	29	3		57	1
-259	2016-11-03 23:39:51.668451+02	28	28	3		57	1
-260	2016-11-03 23:39:51.671566+02	27	27	3		57	1
-261	2016-11-03 23:39:51.674688+02	26	26	3		57	1
-262	2016-11-03 23:39:51.677801+02	25	25	3		57	1
-263	2016-11-03 23:39:51.681+02	24	24	3		57	1
-264	2016-11-03 23:39:51.684129+02	23	23	3		57	1
-265	2016-11-03 23:39:51.687225+02	22	22	3		57	1
-266	2016-11-03 23:39:51.690358+02	21	21	3		57	1
-267	2016-11-03 23:39:51.693473+02	20	20	3		57	1
-268	2016-11-03 23:39:51.696598+02	19	19	3		57	1
-269	2016-11-03 23:39:51.699716+02	18	18	3		57	1
-270	2016-11-03 23:39:51.702851+02	17	17	3		57	1
-271	2016-11-03 23:39:51.705946+02	16	16	3		57	1
-272	2016-11-03 23:39:51.709076+02	15	15	3		57	1
-273	2016-11-03 23:39:51.712193+02	14	14	3		57	1
-274	2016-11-03 23:39:51.715289+02	13	13	3		57	1
-275	2016-11-03 23:39:51.718413+02	12	12	3		57	1
-276	2016-11-03 23:39:51.721512+02	11	11	3		57	1
-277	2016-11-03 23:39:51.724624+02	10	10	3		57	1
-278	2016-11-03 23:41:28.315794+02	37	37	3		32	1
-279	2016-11-03 23:41:28.320874+02	36	36	3		32	1
-280	2016-11-03 23:41:28.325632+02	35	35	3		32	1
-281	2016-11-03 23:41:28.329739+02	34	34	3		32	1
-282	2016-11-03 23:41:28.33393+02	33	33	3		32	1
-283	2016-11-03 23:41:28.337009+02	32	32	3		32	1
-284	2016-11-03 23:41:28.339807+02	31	31	3		32	1
-285	2016-11-03 23:41:28.342482+02	30	30	3		32	1
-286	2016-11-03 23:42:01.705132+02	13	ул.социалистическая	3		9	1
-287	2016-11-03 23:42:01.710271+02	12	ул.основа	3		9	1
-288	2016-11-03 23:42:01.713599+02	11	бул.профсоюзный	3		9	1
-289	2016-11-03 23:42:01.716797+02	10	ул.профсоюзный бульвар	3		9	1
-290	2016-11-03 23:42:01.72015+02	9	ул.тобольская	3		9	1
-291	2016-11-03 23:42:01.723185+02	8	ул.нариманова	3		9	1
-292	2016-11-03 23:42:01.726346+02	7	ул.Пушкинский въезд	3		9	1
-293	2016-11-03 23:42:01.729269+02	6	ул.отакара яроша	3		9	1
-294	2016-11-03 23:42:01.732261+02	1	ул.Шевченка	3		9	1
-295	2016-11-03 23:44:56.098306+02	13	missis.golota@mail.ru	3		4	1
-296	2016-11-03 23:47:24.699327+02	14	varunok@test	3		4	1
 \.
 
 
@@ -5874,33 +5829,35 @@ COPY django_cron_cronjoblog (id, code, start_time, end_time, is_success, message
 --
 
 COPY django_migrations (id, app, name, applied) FROM stdin;
-105	setting_street	0001_initial	2016-10-28 05:04:51.845191+03
-106	setting_globall	0001_initial	2016-10-28 05:04:51.890947+03
-107	contenttypes	0001_initial	2016-10-28 05:04:51.897386+03
-108	contenttypes	0002_remove_content_type_name	2016-10-28 05:04:51.903703+03
-109	auth	0001_initial	2016-10-28 05:04:51.910163+03
-110	auth	0002_alter_permission_name_max_length	2016-10-28 05:04:51.916623+03
-111	auth	0003_alter_user_email_max_length	2016-10-28 05:04:51.923009+03
-112	auth	0004_alter_user_username_opts	2016-10-28 05:04:51.929346+03
-113	auth	0005_alter_user_last_login_null	2016-10-28 05:04:51.935736+03
-114	auth	0006_require_contenttypes_0002	2016-10-28 05:04:51.942198+03
-115	facility	0001_initial	2016-10-28 05:04:51.948579+03
-116	arendator	0001_initial	2016-10-28 05:04:51.95493+03
-117	buyer	0001_initial	2016-10-28 05:05:02.016876+03
-118	extuser	0001_initial	2016-10-28 05:05:06.231751+03
-119	learning	0001_initial	2016-10-28 05:05:16.456748+03
-120	makler	0001_initial	2016-10-28 05:05:20.535272+03
-121	meeting	0001_initial	2016-10-28 05:05:27.024092+03
-122	notes	0001_initial	2016-10-28 05:05:30.573357+03
-123	parsings	0001_initial	2016-10-28 05:05:33.871414+03
-124	send_messege_user	0001_initial	2016-10-28 05:05:41.657265+03
-125	setting_superadmin	0001_initial	2016-10-28 05:05:57.445367+03
-126	setting_mail_delivery	0001_initial	2016-10-28 05:06:00.68888+03
-127	single_arendator	0001_initial	2016-10-28 05:06:04.675938+03
-128	single_buyer	0001_initial	2016-10-28 05:06:08.542407+03
-129	single_object	0001_initial	2016-10-28 05:06:16.649987+03
-130	tasking	0001_initial	2016-10-28 05:06:25.286963+03
-131	watermark	0001_initial	2016-10-28 05:06:30.892309+03
+105	setting_street	0001_initial	2016-10-11 16:06:27.942666+03
+106	setting_globall	0001_initial	2016-10-11 16:06:28.016734+03
+107	contenttypes	0001_initial	2016-10-11 16:06:28.028205+03
+108	contenttypes	0002_remove_content_type_name	2016-10-11 16:06:28.035843+03
+109	auth	0001_initial	2016-10-11 16:06:28.04458+03
+110	auth	0002_alter_permission_name_max_length	2016-10-11 16:06:28.052049+03
+111	auth	0003_alter_user_email_max_length	2016-10-11 16:06:28.059783+03
+112	auth	0004_alter_user_username_opts	2016-10-11 16:06:28.067874+03
+113	auth	0005_alter_user_last_login_null	2016-10-11 16:06:28.075146+03
+114	auth	0006_require_contenttypes_0002	2016-10-11 16:06:28.083503+03
+115	facility	0001_initial	2016-10-11 16:06:28.094205+03
+116	arendator	0001_initial	2016-10-11 16:06:28.102332+03
+117	buyer	0001_initial	2016-10-11 16:06:40.254796+03
+118	extuser	0001_initial	2016-10-11 16:06:45.146157+03
+119	learning	0001_initial	2016-10-11 16:06:58.768381+03
+120	makler	0001_initial	2016-10-11 16:07:04.543284+03
+121	meeting	0001_initial	2016-10-11 16:07:12.220868+03
+122	notes	0001_initial	2016-10-11 16:07:16.333785+03
+123	parsings	0001_initial	2016-10-11 16:07:20.125596+03
+124	send_messege_user	0001_initial	2016-10-11 16:07:30.061418+03
+125	setting_superadmin	0001_initial	2016-10-11 16:07:48.974699+03
+126	setting_mail_delivery	0001_initial	2016-10-11 16:07:53.626666+03
+127	single_arendator	0001_initial	2016-10-11 16:07:58.15119+03
+128	single_buyer	0001_initial	2016-10-11 16:08:02.943386+03
+129	single_object	0001_initial	2016-10-11 16:08:13.545722+03
+130	tasking	0001_initial	2016-10-11 16:08:23.335825+03
+131	watermark	0001_initial	2016-10-11 16:08:29.654946+03
+132	makler	0002_auto_20161028_0445	2016-10-28 04:45:11.772986+03
+133	setting_street	0002_auto_20161028_0445	2016-10-28 04:45:17.59021+03
 \.
 
 
@@ -5910,13 +5867,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
 k1s613ii7kofvbutk98n07vazj2r9ryo	ZTFhNjEzOWY4YjIzMjdmMTY0ZmVjYzZhODY4M2YyNjliNjBhNmRkOTp7ImRpcl9pbWciOiJiMWIwZGQxMi04ZTdkLTExZTYtYWU3Mi0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI3M2JkMDgxODgyYzY5YjI1ZDg5YWQ1N2Y1YzViOTkwOWIyNzgwNTc4IiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCJ9	2016-10-24 03:08:38.670008+03
-2580hxlbyyl3y0sr00h3iiehyoxh1bog	MjFjNTQ4NWY5Mjk2MTRiYmM4ZGQ1N2FiOTU2NWVmN2YwZTM4NmUxYTp7ImRpcl9pbWciOiIwMDczOWQwMC1hMWE2LTExZTYtYmJhYi0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI3YjY4ZGEyMzc1NDg3NjY3NjkxOTg3ZmYxY2UzNWI2M2MxOTg0M2VmIiwiX2F1dGhfdXNlcl9pZCI6IjEzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQifQ==	2016-11-17 11:15:02.886968+02
-kyuc0h4bqaqrj47s0ktuq4vanexbvxwj	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-11-08 18:36:57.953037+02
-fffe83rsz6un9zg6c0uk0z0b9zvbj9zz	MWM0ZjJlY2MxZWE1NGU1YzkwOGM5ODRkODYwYmRkYTEwMGZjMzgxZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjdiNjhkYTIzNzU0ODc2Njc2OTE5ODdmZjFjZTM1YjYzYzE5ODQzZWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxMyJ9	2016-11-08 21:07:46.643251+02
-7ai45viflpet48q77f7q4birknzp1ba2	Y2IxMWI3YTRiM2ViZWE4ODI0MDc2NzdlODQzN2NjYmVkMGE3YmE4Zjp7ImRpcl9pbWciOiJkODg3NWFkYS05YzI3LTExZTYtYjhhOS0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI4NDg3MzBhM2U4MTdmNTM3YzM5N2Y2OWJhNDFhMWJmNjE2ZjA5NjA4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiMiJ9	2016-11-10 12:29:23.372352+02
-x0u5plzmnz0eaeo14rinb2k3sp9fne7r	YzZkNWViNzQ5NTUwZDI3NGQxNjU0MjJiYTA5NTIyZGMxMDc2OGMwNDp7ImRpcl9pbWciOiIzMjA0NDE4YS05ZGMzLTExZTYtOTc3Ni0wMDExNDNkNDA5N2IiLCJfYXV0aF91c2VyX2hhc2giOiI3YjY4ZGEyMzc1NDg3NjY3NjkxOTg3ZmYxY2UzNWI2M2MxOTg0M2VmIiwiX2F1dGhfdXNlcl9pZCI6IjEzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQifQ==	2016-11-12 13:33:56.671843+02
-48t48fe0akv8bxlc763oefj5hqgn104m	MWM0ZjJlY2MxZWE1NGU1YzkwOGM5ODRkODYwYmRkYTEwMGZjMzgxZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjdiNjhkYTIzNzU0ODc2Njc2OTE5ODdmZjFjZTM1YjYzYzE5ODQzZWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxMyJ9	2016-11-16 16:54:20.538317+02
-4j90mdqpu7qzrv8zdwzzhnuc2jm8cyia	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-11-17 23:38:39.054884+02
+inanrfaj8v0lo32r7n1k4875dvyg8t7p	YmUxODIwNmE5YjgyZDFkZjhkN2Q1MTkwYTNjZmViY2ZmNWJkNzU1YTp7Il9hdXRoX3VzZXJfaGFzaCI6IjczYmQwODE4ODJjNjliMjVkODlhZDU3ZjVjNWI5OTA5YjI3ODA1NzgiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-12-24 14:43:20.252187+02
 \.
 
 
@@ -5927,6 +5878,7 @@ x0u5plzmnz0eaeo14rinb2k3sp9fne7r	YzZkNWViNzQ5NTUwZDI3NGQxNjU0MjJiYTA5NTIyZGMxMDc
 COPY extuser_myuser (id, image, type_user_id, user_id) FROM stdin;
 1	avatar/iam_xT6xOdG.jpg	2	1
 2	avatar/admin-photo_HRGFvAo.jpg	2	2
+13	avatar/Screenshot_1.png	1	13
 \.
 
 
@@ -5936,8 +5888,7 @@ COPY extuser_myuser (id, image, type_user_id, user_id) FROM stdin;
 
 COPY extuser_recoverypass (id, email, password) FROM stdin;
 1	image2007@bk.ru	sin1984
-8	missis.golota@mail.ru	123456
-9	varunok@test	111111
+8	bizflat@mail.ru	111111
 \.
 
 
@@ -6021,46 +5972,6 @@ COPY facility_contactowner (addressfacilitydata_ptr_id, agency, name_owner, revi
 --
 
 COPY facility_databasephoneowner (id, db_id_owner, db_phone_owner) FROM stdin;
-141	30	0954582171
-142	30	
-143	30	0954582171
-144	30	
-145	31	0503011917
-146	31	
-147	31	0503011917
-148	31	
-149	31	0503011917
-150	31	
-151	32	0675797522
-152	32	
-153	33	0930209076
-154	33	
-155	33	0930209076
-156	33	
-157	32	0675797522
-158	32	
-159	31	0503011917
-160	31	
-161	32	0675797522
-162	32	
-163	34	0989441544
-164	34	
-165	34	0989441544
-166	34	
-167	35	0675700289
-168	35	
-169	34	0989441544
-170	34	
-171	35	0675700289
-172	35	
-173	35	0675700289
-174	35	
-175	36	0662829820
-176	36	
-177	35	0675700289
-178	35	
-179	37	0960057708
-180	37	0665834057
 \.
 
 
@@ -6292,6 +6203,7 @@ COPY facility_typewindows (id, type_windows) FROM stdin;
 --
 
 COPY learning_learn (id, title, youtube) FROM stdin;
+3	1 урок CRM - Настройки 	<iframe width="560" height="315" src="https://www.youtube.com/embed/rREuopsPpeU?list=PL4iIfvYp8DfRO6OaHXmcbgmloDIRgfz5J" frameborder="0" allowfullscreen></iframe>
 \.
 
 
@@ -6366,7 +6278,7 @@ COPY notes_notes (id, text, name, date) FROM stdin;
 --
 
 COPY parsings_configparserolx (id, "SITY", "SITE_URL", "AJAX_PHONE", "SELECTOR_GETLINK_CATEGORIES", "SELECTOR_GETTEXT_CATEGORIES", "SELECTOR_GETLINK_ARTICLES", "SELECTOR_SITY", "SELECTOR_TITLE", "SELECTOR_DATE") FROM stdin;
-1	kharkov	http://olx.ua	/ajax/misc/contact/phone/	//div[@id="bottom1"]//ul//a/@href	//div[@id="bottom1"]//ul//li//a//span[@class="block link category-name"]//span/text()	//a[@class="marginright5 link linkWithHash detailsLink"]/@href	//strong[@class="c2b small"]/text()	//h1[@class="brkword lheight28"]/text()	//span[@class="pdingleft10 brlefte5"]/text()
+1	ust-kamenogorsk	http://olx.kz	/ajax/misc/contact/phone/	//div[@id="bottom1"]//ul//a/@href	//div[@id="bottom1"]//ul//li//a//span[@class="block link category-name"]//span/text()	//a[@class="marginright5 link linkWithHash detailsLink"]/@href	//a[@class="show-map-link"]//strong/text()	//div[@class="offer-titlebox"]//h1/text()	//div[@class="offer-titlebox__details"]//em/text()
 \.
 
 
@@ -6383,7 +6295,7 @@ COPY send_messege_user_usermessage (id, message, time_message, read, from_user_i
 --
 
 COPY setting_globall_franshise (id, franshise) FROM stdin;
-1	domik-bc.kiev.ua
+1	bizflat.kz
 \.
 
 
@@ -6392,7 +6304,7 @@ COPY setting_globall_franshise (id, franshise) FROM stdin;
 --
 
 COPY setting_globall_franshisesity (id, sity) FROM stdin;
-1	Харьков
+1	Усть - каменогорск
 \.
 
 
@@ -6412,8 +6324,8 @@ COPY setting_globall_listnationalcarrency (id, currency_glob) FROM stdin;
 --
 
 COPY setting_globall_nationalcarrency (id, currency) FROM stdin;
-1	грн
 2	$
+1	тнг
 \.
 
 
@@ -6422,7 +6334,7 @@ COPY setting_globall_nationalcarrency (id, currency) FROM stdin;
 --
 
 COPY setting_globall_subscribe (id, name, phone) FROM stdin;
-1	Юля	0954582171
+1	Сергей	87715120044 
 \.
 
 
@@ -6449,7 +6361,7 @@ COPY setting_mail_delivery_settingsms (id, sender, login, password) FROM stdin;
 --
 
 COPY setting_mail_delivery_templateemail (id, title, logo, text, sender_address, signature) FROM stdin;
-1	Подготовка объявления от dom.zt.ua	temp_email_logo/Kennen_6.jpg		ofis@dom.zt.ua	 Мы ответим на все вопросы на телефоны 0972443790
+1	Подготовка объявления от bizflat.kz	temp_email_logo/Kennen_6.jpg		ofis@bizflat.kz	 Мы ответим на все вопросы на телефоны   87715120044 
 \.
 
 
@@ -6458,7 +6370,7 @@ COPY setting_mail_delivery_templateemail (id, title, logo, text, sender_address,
 --
 
 COPY setting_mail_delivery_templatesms (id, title, text, signature) FROM stdin;
-1	Подборка 	Вы можете 	InfoNomer2
+1	Подборка 		InfoNomer2
 \.
 
 
@@ -6467,12 +6379,6 @@ COPY setting_mail_delivery_templatesms (id, title, text, signature) FROM stdin;
 --
 
 COPY setting_street_district (id, district) FROM stdin;
-1	Голосіївский
-2	шевченковский
-3	павлово поле
-4	киевский
-5	холодногорский
-6	червонозаводской
 \.
 
 
@@ -6490,9 +6396,6 @@ COPY setting_street_street (id, street, full_street, type_street_group_id) FROM 
 
 COPY setting_street_subway (id, subway) FROM stdin;
 1	awdaw
-2	Ботанический сад
-3	пушкинская
-4	холодная гора
 \.
 
 
@@ -6520,7 +6423,7 @@ COPY setting_street_typesstreet (id, type_street, short_name) FROM stdin;
 --
 
 COPY setting_superadmin_alltocall (id, phone, email, skype, group_vk, image) FROM stdin;
-1	+380964874353	varunok@protonmail.com	gekodua	https://vk.com/feed	admin_futer_avatar/1.png
+1	+380972443790	image2007@bk.ru	gekodua	https://vk.com/sin84	admin_futer_avatar/1.png
 \.
 
 
@@ -6649,7 +6552,7 @@ COPY tasking_typecomplexity (id, complexity) FROM stdin;
 --
 
 COPY watermark_watermark (id, text, watermark_img, on_off) FROM stdin;
-1	domik-bc.kiev.ua	watermark/watermark.png	t
+1	bizflat.kz	watermark/watermark.png	t
 \.
 
 
