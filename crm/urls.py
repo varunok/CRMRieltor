@@ -20,6 +20,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import setting_street.urls
 import extuser.urls
@@ -80,6 +81,11 @@ urlpatterns = [
     # admin
     url(r'^admin/', admin.site.urls),
     # end admin
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += staticfiles_urlpatterns()
+]
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += [
+    url(r'^static/(?P<path>.*)$', views.serve),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

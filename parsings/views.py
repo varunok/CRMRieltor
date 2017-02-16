@@ -5,31 +5,26 @@ import json
 import re
 import datetime
 # from textblob import TextBlob
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 # from setting_globall.models import FranshiseSity
+from django.views.generic import CreateView
+from django.views.generic import DetailView
+from django.views.generic import TemplateView
+from django.views.generic import View
+
 from parser_olx import ParserOLX, mutable_month, mutable_phone, valid_categories_list
 from makler.models import Makler
 from facility.models import ContactOwner
-from parsings.models import ConfigParserOLX
+from parsings.models import ConfigParserOLXSolo
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-# Create your views here.
 
-try:
-    config_parser = ConfigParserOLX.objects.get(id=1)
-except:
-    class config_parser():
-        SITE_URL = 'http://google.com'
-        AJAX_PHONE = '/ajax'
-        SELECTOR_GETLINK_ARTICLES = '//a/@href'
-        SELECTOR_GETLINK_CATEGORIES = '//a/@href'
-        SELECTOR_GETTEXT_CATEGORIES = '//text()'
-        SELECTOR_SITY = '//text()'
-        SELECTOR_TITLE = '//text()'
-        SELECTOR_DATE = '//text()'
+config_parser = ConfigParserOLXSolo.objects.get()
 
 
 SITE_URL = config_parser.SITE_URL
@@ -45,7 +40,8 @@ SELECTOR_TITLE = config_parser.SELECTOR_TITLE
 # SELECTOR_TITLE = '//div[@class="offer-titlebox"]//h1/text()'
 SELECTOR_DATE = config_parser.SELECTOR_DATE
 # SELECTOR_DATE = '//div[@class="offer-titlebox__details"]//em/text()'
-
+SELECTOR_PRICE = config_parser.SELECTOR_PRICE
+# '//div[@class="price-label"]//strong/text()'
 
 @login_required
 def services(request):
@@ -59,11 +55,10 @@ def services(request):
 @login_required
 def parser_olx(request):
     list_categories_text = ParserOLX(SITE_URL).gettext(SELECTOR_GETTEXT_CATEGORIES)
-    print(list_categories_text)
     for cat in list_categories_text:
         dict_categories_text = dict(zip([list_categories_text.index(j) for j in list_categories_text], list_categories_text))
     try:
-        sity = ConfigParserOLX.objects.get(id=1)
+        sity = ConfigParserOLXSolo.objects.get()
     except:
         sity = ''
     dict_categories_text = valid_categories_list(dict_categories_text)
@@ -74,11 +69,13 @@ def parser_olx(request):
 
 @login_required
 def parse(request):
-    try:
+    # try:
         if request.method == 'POST':
+            price_to_b = request.POST.get('price_to', None)
+            price_for_b = request.POST.get('price_for', None)
             if request.POST['id_sity']:
-                sity = ConfigParserOLX.objects.get(id=1)
-                sity = sity.SITY
+                sity = ConfigParserOLXSolo.objects.get()
+                sity = sity.CITY
                 day_art = timezone.now() - datetime.timedelta(days=int(request.POST['id_term']))
                 parse_categories = ParserOLX(SITE_URL).getlink(SELECTOR_GETLINK_CATEGORIES)[
                     int(request.POST['id_categories'])]
@@ -106,6 +103,22 @@ def parse(request):
                         datetime_art = datetime.datetime(int(date_art[0]), int(date_art[1]), int(date_art[2]),
                                                          hour=int(time_art[0]), minute=int(time_art[1]))
                         if datetime_art > day_art:
+                            price = page_article.gettext(SELECTOR_PRICE)
+                            p = re.compile(ur'\d+')
+                            price_i = p.findall(''.join(price))
+                            if price_i:
+                                price_i = price_int(''.join(price_i))
+                            if isinstance(price_i, int):
+                                if price_to_b:
+                                    price_to = price_int(price_to_b)
+                                    if isinstance(price_to, int):
+                                        if price_i < price_to:
+                                            continue
+                                if price_for_b:
+                                    price_for = price_int(price_for_b)
+                                    if isinstance(price_for, int):
+                                        if price_i > price_for:
+                                            continue
                             phone = ParserOLX(SITE_URL + AJAX_PHONE + id_article[2:]).gettext()
                             phone = ''.join(phone)
                             try:
@@ -118,20 +131,30 @@ def parse(request):
                                     'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
                                     'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
                                     'link': article,
-                                    'phone': phone}
+                                    'phone': phone,
+                                    'price': price
+                                    }
                             elif request.POST['id_except'] == '2' and not ContactOwner.objects.filter(
                                     phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
                                     phone_owner_plus=[int(i) for i in phone]):
                                 dict_article[id_article] = {
                                     'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
-                                    'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
+                                    'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
+                                    'link': article,
+                                    'price': price,
+                                    'phone': phone
+                                }
                             elif request.POST['id_except'] == '3' and not Makler.objects.filter(
                                     phone__in=phone) and not ContactOwner.objects.filter(
                                     phone_owner=[int(i) for i in phone]) and not ContactOwner.objects.filter(
                                     phone_owner_plus=[int(i) for i in phone]):
                                 dict_article[id_article] = {
                                     'sity': page_article.gettext(SELECTOR_SITY)[0].split(',')[0].split(' ')[-1],
-                                    'title': page_article.gettext(SELECTOR_TITLE)[0].strip(), 'link': article, 'phone': phone}
+                                    'title': page_article.gettext(SELECTOR_TITLE)[0].strip(),
+                                    'link': article,
+                                    'phone': phone,
+                                    'price': price
+                                }
                         else:
                             count_braek += 1
                     if count_braek > 10:
@@ -140,118 +163,49 @@ def parse(request):
                 return HttpResponse(JsonResponse(dict_article))
         else:
             return HttpResponse(status=503)
-    except:
-        return HttpResponse(status=503)
+    # except:
+    #     return HttpResponse(status=503)
 
 
-@login_required
-def setting_olx(request):
+def price_int(num):
     try:
-        config_parser = ConfigParserOLX.objects.get(id=1)
+        num = int(num)
+        return num
     except:
-        config_parser = ''
-    return render(request, 'parsings/setting_olx.html',
-                  {'config_parser': config_parser})
+        return None
+
+class SettingOlxTemplateView(TemplateView):
+    template_name = 'parsings/setting_olx.html'
 
 
-@login_required
-def sity_conf(request):
-    if request.method == 'POST':
-        SITY = ConfigParserOLX.objects.get(id=1)
-        SITY.SITY = request.POST['sity_conf']
-        SITY.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
+class SettingOlx(View):
+    def get(self, request):
+        return HttpResponse(self.get_queryset())
 
+    def post(self, request, *args, **kwargs):
+        try:
+            self.config_save(json.loads(request.body))
+            return HttpResponse(status=200)
+        except:
+            return HttpResponse(status=404)
 
-@login_required
-def site_url(request):
-    if request.method == 'POST':
-        SITE_URL = ConfigParserOLX(id=1, SITE_URL=request.POST['SITE_URL'])
-        # SITE_URL = ConfigParserOLX.objects.get(id=1)
-        # SITE_URL.SITE_URL = request.POST['SITE_URL']
-        SITE_URL.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
+    def config_save(self, data):
+        config = ConfigParserOLXSolo.objects.get()
+        config.CITY=data.get('CITY')
+        config.SITE_URL=data.get('SITE_URL')
+        config.AJAX_PHONE=data.get('AJAX_PHONE')
+        config.SELECTOR_GETLINK_CATEGORIES=data.get('SELECTOR_GETLINK_CATEGORIES')
+        config.SELECTOR_GETTEXT_CATEGORIES=data.get('SELECTOR_GETTEXT_CATEGORIES')
+        config.SELECTOR_GETLINK_ARTICLES=data.get('SELECTOR_GETLINK_ARTICLES')
+        config.SELECTOR_SITY=data.get('SELECTOR_SITY')
+        config.SELECTOR_TITLE=data.get('SELECTOR_TITLE')
+        config.SELECTOR_DATE=data.get('SELECTOR_DATE')
+        config.SELECTOR_PRICE=data.get('SELECTOR_PRICE')
+        config.save()
 
+    def get_queryset(self):
+        return serializers.serialize("json", [ConfigParserOLXSolo.objects.get()])
 
-@login_required
-def ajax_phone(request):
-    if request.method == 'POST':
-        AJAX_PHONE = ConfigParserOLX.objects.get(id=1)
-        AJAX_PHONE.AJAX_PHONE = request.POST['AJAX_PHONE']
-        AJAX_PHONE.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_getlink_categories(request):
-    if request.method == 'POST':
-        SELECTOR_GETLINK_CATEGORIES = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_GETLINK_CATEGORIES.SELECTOR_GETLINK_CATEGORIES = request.POST['SELECTOR_GETLINK_CATEGORIES']
-        SELECTOR_GETLINK_CATEGORIES.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_gettext_categories(request):
-    if request.method == 'POST':
-        SELECTOR_GETTEXT_CATEGORIES = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_GETTEXT_CATEGORIES.SELECTOR_GETTEXT_CATEGORIES = request.POST['SELECTOR_GETTEXT_CATEGORIES']
-        SELECTOR_GETTEXT_CATEGORIES.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_getlink_articles(request):
-    if request.method == 'POST':
-        SELECTOR_GETLINK_ARTICLES = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_GETLINK_ARTICLES.SELECTOR_GETLINK_ARTICLES = request.POST['SELECTOR_GETLINK_ARTICLES']
-        SELECTOR_GETLINK_ARTICLES.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_sity(request):
-    if request.method == 'POST':
-        SELECTOR_SITY = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_SITY.SELECTOR_SITY = request.POST['SELECTOR_SITY']
-        SELECTOR_SITY.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_title(request):
-    if request.method == 'POST':
-        SELECTOR_TITLE = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_TITLE.SELECTOR_TITLE = request.POST['SELECTOR_TITLE']
-        SELECTOR_TITLE.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
-
-
-@login_required
-def selector_date(request):
-    if request.method == 'POST':
-        SELECTOR_DATE = ConfigParserOLX.objects.get(id=1)
-        SELECTOR_DATE.SELECTOR_DATE = request.POST['SELECTOR_DATE']
-        SELECTOR_DATE.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=503)
 
 @login_required
 def parser_hi_dn_ua(request):
