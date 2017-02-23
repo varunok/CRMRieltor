@@ -74,8 +74,19 @@
                         <label class="col-md-6" for="">Город</label>
                         <select name="id_sity" id="id_sity">
                             <option value=""></option>
-                            <option value="{{ sity.SITY }}">{{ sity.SITY }}</option>
+                            <option value="{{ sity.CITY }}">{{ sity.CITY }}</option>
                         </select>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-md-3">
+                        <label class="col-md-6" for="">Цена от</label>
+                        <input type="text" style="max-width: 225px;" name="price_to" id="price_to">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-md-6" for="">Цена до</label>
+                        <input type="text" style="max-width: 225px;" name="price_for" id="price_for">
                     </div>
                     <br>
                     <br>
@@ -100,6 +111,7 @@
                                 <th class="col-md-2">Город</th>
                                 <th>Заголовок</th>
                                 <th>Телефон</th>
+                                <th>Цена</th>
                                 <th class="col-md-1">Ссилка</th>
                                 <th>Действие</th>
                             </tr>

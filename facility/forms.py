@@ -24,7 +24,8 @@ class AddressFacilityForm(ModelForm):
             'area_kitchen', 'area_living_room', 'total_area', 'payments', 'rooms', 'comment',
             'actuality', 'condition', 'commission', 'currency', 'number_of_persons', 'equipment',
             'the_presence_of_hot_water', 'lot', 'sleeps', 'where_to_stay', 'prepayment', 'windows', 'heating',
-            'lavatory', 'furniture', 'room', 'title', 'youtube', 'panorama', 'rieltor', 'loyality')
+            'lavatory', 'furniture', 'room', 'title', 'youtube', 'panorama', 'rieltor', 'loyality', 'literal',
+            'phone_owner_plus2', 'name_owner_ext', 'name_owner_ext2', 'price_day')
         widgets = {
             'street_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'currency': Select(attrs={'class': 'add'}),
@@ -34,6 +35,7 @@ class AddressFacilityForm(ModelForm):
             'district_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'subway_obj': Select(attrs={'class': 'js-example-basic-single'}),
             'number_home': TextInput(attrs={'placeholder': 'Дом'}),
+            'literal': TextInput(attrs={'placeholder': 'Буквенный индекс'}),
             'number_apartment': TextInput(attrs={'placeholder': 'Квартира'}),
             'list_operations': SelectMultiple(attrs={'class': 'tarea-multiple', 'multiple': 'multiple'}),
             'rieltor': SelectMultiple(attrs={'class': 'tarea-multiple', 'multiple': 'multiple'}),

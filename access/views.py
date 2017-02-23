@@ -20,7 +20,7 @@ from django.core import serializers
 def access(request):
     users = User.objects.filter(is_active=True).order_by('id')
     facilitys = ContactOwner.objects.all().filter(trash=False).order_by('id')
-    return render(request, 'access.html', {"users": users,
+    return render(request, 'access/access.html', {"users": users,
                                            "facilitys": facilitys})
 
 
@@ -61,7 +61,7 @@ def change_access_facility(request):
 
 class AccessMixin(object):
     def serialize_response(self, data, fields=None, *args, **kwargs):
-        paginator = ''.join(('{"paginator": "', render_to_string('paginator.html', {'data': data}), '"}'))
+        paginator = ''.join(('{"paginator": "', render_to_string('access/paginator.html', {'data': data}), '"}'))
         paginator = paginator.replace('\n', '')
         object = serializers.serialize("json", data, fields=fields)
         object = ''.join((object[:-1], ', ', paginator, ']'))

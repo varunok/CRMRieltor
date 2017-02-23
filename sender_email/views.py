@@ -16,6 +16,7 @@ from django.conf import settings
 from setting_globall.models import Subscribe
 from setting_globall.models import NationalCarrency
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 # from crm.settings import EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 
@@ -72,10 +73,15 @@ def delivery_email_arendator(request):
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)
+        if settings.ALLOWED_HOSTS[0] == 'dom6.xata-spb.ru':
+            spb = True
+        else:
+            spb = False
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'request': request_abs_url,
                                                                    'single_object': single_object,
-                                                                   'subs': subs})
+                                                                   'subs': subs,
+                                                                   'spb': spb})
         try:
             arendator_emails = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('email', flat=True)
             arendator_emails = [i for i in arendator_emails if i != '']
@@ -163,10 +169,15 @@ def delivery_email_buyer(request):
         temp_email = get_object_or_404(TemplateEmail, pk=1)
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         subs, create = Subscribe.objects.get_or_create(id=1)
+        if settings.ALLOWED_HOSTS[0] == 'dom6.xata-spb.ru':
+            spb = True
+        else:
+            spb = False
         html_message = render_to_string('sender_email/mail.html', {'temp_email': temp_email,
                                                                    'request': request_abs_url,
                                                                    'single_object': single_object,
-                                                                   'subs': subs})
+                                                                   'subs': subs,
+                                                                   'spb': spb})
         try:
             buyer_emails = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('email', flat=True)
             buyer_emails = [i for i in buyer_emails if i != '']
@@ -214,12 +225,15 @@ def delivery_sms_arendator(request):
         plus_phone = request.POST.get('plus_phone')
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         setting_sms = get_object_or_404(SettingSMS, id=1)
+        arendator_phone = []
         try:
-            arendator_phone = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('phone_first', flat=True)
+            arendator_phone_q = Arendator.objects.filter(id__in=request.POST.getlist('id_a')[0].split(',')).values_list('phone_first', flat=True)
         except:
-            arendator_phone = []
+            arendator_phone_q = []
         if plus_phone:
-            arendator_phone.append(plus_phone)
+            # arendator_phone.append(plus_phone)
+            arendator_phone = [plus_phone]
+        arendator_phone.extend(arendator_phone_q)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
         # auth = client.service.Auth(login='crm', password='sin1984')
         auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
@@ -234,7 +248,9 @@ def delivery_sms_arendator(request):
                     status = client.service.GetMessageStatus(MessageId=i)
                     if status == u'Отправлено':
                         count_message += 1
-                return HttpResponse(count_message)
+                    else:
+                        count_message = result
+                return HttpResponse(unicode(count_message))
             else:
                 balance = u'Ваш баланс ' + balance
                 return HttpResponse(balance, status=500)
@@ -336,12 +352,15 @@ def delivery_sms_buyer(request):
         plus_phone = request.POST.get('plus_phone')
         single_object = ContactOwner.objects.get(id=request.POST.get('id_so'))
         setting_sms = get_object_or_404(SettingSMS, id=1)
+        buyer_phone = []
         try:
-            buyer_phone = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('phone_first', flat=True)
+            buyer_phone_q = Buyer.objects.filter(id__in=request.POST.getlist('id_b')[0].split(',')).values_list('phone_first', flat=True)
         except:
-            buyer_phone = []
+            buyer_phone_q = []
         if plus_phone:
-            buyer_phone.append(plus_phone)
+            # buyer_phone.append(plus_phone)
+            buyer_phone = [plus_phone]
+        buyer_phone.extend(buyer_phone_q)
         client = Client('http://turbosms.in.ua/api/wsdl.html')
         # auth = client.service.Auth(login='crm', password='sin1984')
         auth = client.service.Auth(login=setting_sms.login, password=setting_sms.password)
@@ -375,7 +394,10 @@ def list_phone_validate(list_phone):
         elif len(phone) == 12 and int(phone[0]) == 3:
             new_list_phone.append(''.join(['+', phone]))
         elif len(phone) == 11 and int(phone[0]) == 8:
-            new_list_phone.append(''.join(['+3', phone]))
+            if settings.ALLOWED_HOSTS[0] == 'dom6.xata-spb.ru':
+                new_list_phone.append(''.join(['+7', phone]))
+            else:
+                new_list_phone.append(''.join(['+3', phone]))
         elif len(phone) == 10 and int(phone[0]) == 0:
             new_list_phone.append(''.join(['+38', phone]))
         elif len(phone) == 9:
@@ -397,8 +419,12 @@ def link_to_single_obj(single_object, type_kontragent):
         price = str(single_object.price_bay)+'$'
     link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
     landmark = single_object.landmark
+    if settings.ALLOWED_HOSTS[0] == 'dom6.xata-spb.ru':
+        phone = single_object.phone_owner
+    else:
+        phone = ''
     link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
-                     price, link, templ_sms.signature])
+                     price, link, phone, templ_sms.signature])
     return link
 
 

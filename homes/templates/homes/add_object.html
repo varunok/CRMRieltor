@@ -1,6 +1,54 @@
 {% extends "homes/base.html" %}
 
-{% block extra_css %}{% endblock extra_css %}
+{% block extra_css %}
+    <style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+{#        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */#}
+    }
+
+    /* Tooltip text */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 450px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -220px;
+
+        /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    /* Tooltip arrow */
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+    </style>
+{% endblock extra_css %}
 
 {% block title %}<title>
 {% if edit %}
@@ -30,7 +78,7 @@
     </section>
     <section class="content">
         <div class="container">
-            <form action="add_facility" method="post" enctype="multipart/form-data">
+            <form action="add_facility" method="post" enctype="multipart/form-data" autocomplete="off">
                 {% csrf_token %}
                 <div class="row section-search">
                     <div class="col-md-12">
@@ -83,10 +131,13 @@
                                     <div class="search-item">
                                         <label for="price">Номер</label>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 {{ form.number_home }}
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                                {{ form.literal }}
+                                            </div>
+                                            <div class="col-md-4">
                                                 {{ form.number_apartment }}
                                             </div>
                                         </div>
@@ -123,6 +174,12 @@
                                         {{ form.subway_obj }}
                                     </div>
                                     <br>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="stat" class="" style="color: #007fff">Цена(посуточно)</label>
+                                        {{ form.price_day }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -184,11 +241,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="phone">Дата звонка <i class="fa fa-calendar"></i>&ensp;
-{#                                            {% if form.review_date.value == '' %}#}
-{#                                                <i style="color:#f1300a">&bull; &nbsp;{{ form.review_date.errors }}</i>#}
-{#                                            {% endif %}#}
-                                        </label>
+                                        <label for="phone">Дата звонка <i class="fa fa-calendar"></i>&ensp;</label>
                                         {{ form.call_date }}
                                     </div>
                                 </div>
@@ -196,21 +249,37 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="idobj">E-mail
-{#                                        {% if form.email_owner %}#}
-                                                <i style="color:#f1300a"></i>
-{#                                            {% endif %}#}
-                                        </label>
-
-                                        {{ form.email_owner }}
+                                        <label for="tarea">Имя</label>
+                                        {{ form.name_owner_ext }}
                                     </div>
-                                    <br>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="tarea">Доп. телефон</label>
                                         {{ form.phone_owner_plus }}
                                         <div class="owner_respon" id="id_owner_respon_plus"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="idobj">E-mail</label>
+                                        {{ form.email_owner }}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="tarea">Имя</label>
+                                        {{ form.name_owner_ext2 }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="tarea">Доп. телефон</label>
+                                        {{ form.phone_owner_plus2 }}
+                                        <div class="owner_respon" id="id_owner_respon_plus2"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -435,11 +504,17 @@
                                     <div class="row">
                                     <div class="col-md-12">
                                         <div class="search-item">
-                                            <label for=" ">Панорама</label>
-                                                {{ form.panorama }}
-                                            </div>
-                                            <br>
+                                            <label for=" " class="tooltip">Панорама
+                                                <i class="fa fa-question fa-2x" aria-hidden="true"></i>
+                                                <span class="tooltiptext">
+                                                    Вставлять только "Вставить на сайт". <br>
+                                                    НЕ "Поделиться ссылкой:"!!!
+                                                </span>
+                                            </label>
+                                            {{ form.panorama }}
                                         </div>
+                                            <br>
+                                    </div>
                                 </div>
                                 </div>
                                 <div class="col-md-8">
@@ -644,6 +719,11 @@
                 this.value = this.value.replace(/[^0-9\.\+]/g, '');
             }
         });
+        $('#id_phone_owner_plus2').change(function(event) {
+            if (this.value.match(/[^0-9\.\+]/g)) {
+                this.value = this.value.replace(/[^0-9\.\+]/g, '');
+            }
+        });
 
         $('#id_phone_owner').on('keyup', function () {
             if ($(this).val()){
@@ -662,13 +742,18 @@
                 })
             }
         });
+        $(document).on('focus', '#id_phone_owner_plus2', function () {
+            if ($('#id_owner_respon_plus2').children('p').html()){
+                $('#id_owner_respon_plus2').css('display', 'block');
+            }
+        });
         $(document).on('focus', '#id_phone_owner_plus', function () {
             if ($('#id_owner_respon_plus').children('p').html()){
                 $('#id_owner_respon_plus').css('display', 'block');
             }
         });
 
-                $('#id_phone_owner_plus').on('keyup', function () {
+        $('#id_phone_owner_plus').on('keyup', function () {
             if ($(this).val()){
                 $.get('check_phone', {'check': $(this).val()}, function (data) {
                     var data = jQuery.parseJSON(data);
@@ -681,6 +766,23 @@
                     }
                     $('#id_phone_owner_plus').on('focusout', function () {
                         $('#id_owner_respon_plus').css('display', 'none');
+                    })
+                })
+            }
+        });
+        $('#id_phone_owner_plus2').on('keyup', function () {
+            if ($(this).val()){
+                $.get('check_phone', {'check': $(this).val()}, function (data) {
+                    var data = jQuery.parseJSON(data);
+                    $('#id_owner_respon_plus2').html('');
+                    for (i in data){
+                        $('#id_owner_respon_plus2').append('<p style="margin:0px;">'+'ID '+i+' ----- тел.: '+data[i]+'</p>');
+                    }
+                    if ($('#id_owner_respon_plus2').text()){
+                        $('#id_owner_respon_plus2').css('display', 'block');
+                    }
+                    $('#id_phone_owner_plus2').on('focusout', function () {
+                        $('#id_owner_respon_plus2').css('display', 'none');
                     })
                 })
             }

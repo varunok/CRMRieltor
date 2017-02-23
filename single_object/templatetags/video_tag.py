@@ -23,26 +23,30 @@ def youtube_code(code):
 
 @register.filter(name='panorama_code')
 def panorama_code(code):
-    if 'yandex' in code:
-        code_copy = code.split('&')
-        code_2 = '%'.join(code.split('&')[1].split('%')[0:2])
-        code_copy[1] = code_2
-        code = '&'.join(code_copy)
-        if '690%2C495' in code:
-            code = code.replace('690%2C495', '490%2C335')
-            return code
-        if '300%2C300' in code:
-            code = code.replace('300%2C300', '490%2C335')
-            return code
-        else:
-            return code
-    panorama = '<iframe %s width="490" height="335" frameborder="0" style="border:0" allowfullscreen=""></iframe>'
-    codes = code.split(' ')
-    for src in codes:
-        if 'src' in src:
-            src = panorama % src
-            return src
+    try:
+        if 'yandex' in code:
+            code_copy = code.split('&')
+            code_2 = '%'.join(code.split('&')[1].split('%')[0:2])
+            code_copy[1] = code_2
+            code = '&'.join(code_copy)
+            if '690%2C495' in code:
+                code = code.replace('690%2C495', '490%2C335')
+                return code
+            if '300%2C300' in code:
+                code = code.replace('300%2C300', '490%2C335')
+                return code
+            else:
+                return code
+        panorama = '<iframe %s width="490" height="335" frameborder="0" style="border:0" allowfullscreen=""></iframe>'
+        codes = code.split(' ')
+        for src in codes:
+            if 'src' in src:
+                src = panorama % src
+                return src
+    except IndexError:
+        return code
     return ''
+
 
 
 @register.filter(name='convert_frame')

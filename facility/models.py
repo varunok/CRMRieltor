@@ -328,6 +328,11 @@ class AddressFacilityData(models.Model):
                                       blank=True,
                                       null=True)
 
+    literal = models.CharField(max_length=10,
+                               verbose_name=u'Буквенный индекс',
+                               blank=True,
+                               null=True)
+
     number_apartment = models.CharField(max_length=10,
                                         verbose_name=u'Номер квартиры',
                                         blank=True,
@@ -338,6 +343,9 @@ class AddressFacilityData(models.Model):
 
     price_month = models.IntegerField(default=0,
                                       verbose_name=u'Цена(месяц)')
+
+    price_day = models.IntegerField(default=0,
+                                    verbose_name=u'Цена(посуточно)')
 
     list_operations = models.ManyToManyField(TypeOperations,
                                              verbose_name=u'Тип операции',
@@ -556,6 +564,14 @@ class ContactOwner(AddressFacilityData):
                                   verbose_name=u'Имя владельца',
                                   blank=True)
 
+    name_owner_ext = models.CharField(max_length=250,
+                                  verbose_name=u'Имя владельца доп.',
+                                  blank=True)
+
+    name_owner_ext2 = models.CharField(max_length=250,
+                                  verbose_name=u'Имя владельца доп.2',
+                                  blank=True)
+
     review_date = models.DateField(verbose_name=u'Пересмотр Дата',
                                    blank=True,
                                    null=True)
@@ -585,6 +601,11 @@ class ContactOwner(AddressFacilityData):
                                    max_length=16)
 
     phone_owner_plus = models.CharField(verbose_name=u'Допол. Телефон',
+                                        blank=True,
+                                        null=True,
+                                        max_length=16)
+
+    phone_owner_plus2 = models.CharField(verbose_name=u'Допол. Телефон-2',
                                         blank=True,
                                         null=True,
                                         max_length=16)

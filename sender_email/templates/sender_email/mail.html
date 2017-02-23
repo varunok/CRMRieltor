@@ -35,6 +35,9 @@
                                 <br> <b>Тип помещения:</b> {{single_object.type_facilit|default:''}}
                                 <br> <b>Ремонт:</b> {{single_object.repairs|default:''}}
                                 <br> <b>Этаж:</b> {{single_object.floor|default:''}}
+                                {% if spb %}
+                                    <br> <b>Телефон:</b> {{single_object.phone_owner|default:''}}
+                                {% endif %}
                                 <br>
                             </td>
                         </tr>

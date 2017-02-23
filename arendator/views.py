@@ -43,7 +43,7 @@ def save_edit_arendator(request):
 def change_call_date(request):
     id_ar = request.GET['id'].split('-')[-1]
     arendator = Arendator.objects.get(id=id_ar)
-    date_request = datetime.strptime(str(request.GET['date']), "%Y-%m-%d")
+    date_request = datetime.strptime(str(request.GET['date']), "%m/%d/%Y")
     date_change = dateformat.format(date_request, 'Y-m-d')
     arendator.call_date = date_change
     arendator.save()

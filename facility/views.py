@@ -36,6 +36,9 @@ def add_facility(request):
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
                                           db_phone_owner=phone_numb.phone_owner_plus)
             db_phone.save()
+            db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                          db_phone_owner=phone_numb.phone_owner_plus2)
+            db_phone.save()
             dir_img = request.session['dir_img']
             save_photo(request, phone_numb.id, dir_img)
             return HttpResponseRedirect('/objects/')
@@ -59,6 +62,9 @@ def save_edit_facility(request):
             db_phone.save()
             db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
                                           db_phone_owner=phone_numb.phone_owner_plus)
+            db_phone.save()
+            db_phone = DatabasePhoneOwner(db_id_owner=phone_numb.id,
+                                          db_phone_owner=phone_numb.phone_owner_plus2)
             db_phone.save()
             dir_img = request.session['dir_img']
             save_photo(request, phone_numb.id, dir_img)

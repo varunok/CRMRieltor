@@ -87,13 +87,47 @@
                                                     {% if single_object.vip_owner %}
                                                     	<i class="fa fa-star"></i>
                                                     {% endif %}
-                                                    <span class="object-price-buy">
-                                                    	{{ single_object.price_bay }}$
-                                                    </span>
-                                                    <span class="object-price-arend">
-                                                    	{{ single_object.price_month }}
-                                                    	{{ nac_carrency }}
-                                                    </span>
+                                                    {% if single_object.name_owner_ext or single_object.phone_owner_plus %}
+                                                            <span>
+                                                                <p class="object-prop" style="margin-left: 140px;">
+                                                                    <i class="fa fa-user-plus"></i>
+                                                                    {{ single_object.name_owner_ext }}
+                                                                </p>
+                                                                <p class="object-prop-phone" style="margin-left: 140px;margin-top: 2px; font-size: 14px; font-weight: bold; color: black; top: 22px">
+                                                                    {{ single_object.phone_owner_plus }}
+                                                                </p>
+                                                            </span>
+                                                        {% endif %}
+                                                        {% if single_object.name_owner_ext2 or single_object.phone_owner_plus2 %}
+                                                            <span>
+                                                                <p class="object-prop" style="margin-left: 320px;">
+                                                                    <i class="fa fa-user-plus"></i>
+                                                                    {{ single_object.name_owner_ext2 }}
+                                                                </p>
+                                                                <p class="object-prop-phone" style="margin-left: 320px;margin-top: 2px; font-size: 14px; font-weight: bold; color: black; top: 22px">
+                                                                    {{ single_object.phone_owner_plus2 }}
+                                                                </p>
+                                                            </span>
+                                                        {% endif %}
+                                                    {% if single_object.price_bay %}
+                                                            <span class="object-price-buy"> {# object price #}
+                                                                {{ single_object.price_bay }}$
+                                                            {#{{ object_data.currency }}#}
+                                                            </span>
+                                                        {% endif %}
+                                                        {% if single_object.price_month %}
+                                                            <span class="object-price-arend">
+                                                                {{ single_object.price_month }} {# object price arend #}
+                                                                {{ nac_carrency }}
+                                                            </span>
+                                                        {% endif %}
+                                                        {% if single_object.price_day %}
+                                                            <span class="object-price-arend" style="background-color: #007fff; top: 56px;">
+                                                                {{ single_object.price_day }} {# object price arend #}
+                                                                {{ nac_carrency }}
+                                                            </span>
+                                                        {% endif %}
+                                                    <span>{{ single_object.contact_owner|default:'' }}</span>
                                                 </h2>
                                                 <p class="object-type">
                                                 	{{ single_object.type_facilit }}
@@ -163,7 +197,7 @@
                                                     <i class="fa fa-user"></i>
                                                     {{ single_object.name_owner }} 
                                                 </p>
-                                                <p class="object-prop-phone">
+                                                <p class="object-prop-phone" style="font-size: 14px; font-weight: bold; color: black;">
                                                     {{ single_object.phone_owner }}
                                                 </p>
                                                 <p class="object-data-call">

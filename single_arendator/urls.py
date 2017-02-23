@@ -2,6 +2,8 @@
 
 
 from django.conf.urls import url
+
+from arendator.views import change_call_date
 from single_arendator.views import SingleArendatorView, add_single_arendator_comment, get_comment_arendator, \
     del_comment, get_object_arendator, automat_tie_arendator, add_id_cont_owner, clear_cont_owner, \
     del_cont_owner, change_show_owner, MeetingSingleList, MeetingSingleListActive, \
@@ -21,6 +23,7 @@ urlpatterns = [
     url(r'^get_comment_arendator$', get_comment_arendator, name='get_comment_arendator'),
     url(r'^add_single_arendator_comment$', add_single_arendator_comment, name='add_single_arendator_comment'),
     url(r'^del_comment$', del_comment, name='del_comment'),
+    url(r'^change_call_date$', change_call_date),
     # end block comment
 
     # block pick up an object

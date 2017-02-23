@@ -20,7 +20,7 @@ from buyer.models import Buyer
 from facility.models import AddressFacilityData, ContactOwner, ImagesFacility, TypeFacility, \
     TypeActuality, TypeCondition, TypeRooms, TypeBuilding, TypeRepairs, TypeNumberOfPerson, \
     TypeWindows, TypeEquipment, TypeWhereToStay, TypeHeating, TypeThePresenceOfHotWater, \
-    TypePrepayment, TypeLavatory, TypeFurniture
+    TypePrepayment, TypeLavatory, TypeFurniture, TypeOperations
 from setting_globall.models import NationalCarrency
 from search_home import searh
 from extuser.models import MyUser
@@ -110,7 +110,7 @@ def show_activity_index(request):
 class ObjectList(ListView):
     """docstring for ObjectList"""
     model = ContactOwner
-    paginate_by = 10
+    paginate_by = 30
     context_object_name = 'contact_owner'
     template_name = 'homes/objects.html'
     qeryset = ContactOwner.objects.all().filter(trash=False).order_by('-id')
@@ -142,6 +142,7 @@ class ObjectList(ListView):
         self.context['type_prepayment'] = TypePrepayment.objects.all()
         self.context['type_lavatory'] = TypeLavatory.objects.all()
         self.context['type_furniture'] = TypeFurniture.objects.all()
+        self.context['list_operations'] = TypeOperations.objects.all()
         self.context['users'] = UserFullName.objects.filter(is_active=True)
         return self.context
 
@@ -161,6 +162,14 @@ class ObjectList(ListView):
 class ObjectListSearch(ObjectList):
     """docstring for ObjectListSearch"""
     template_name = "homes/search.html"
+
+    def get_context_data(self, **kwargs):
+        self.context = super(ObjectListSearch, self).get_context_data(**kwargs)
+        print(self.object_list)
+        self.context['all_contact_owner'] = self.object_list
+        self.context['all_contact_owner_se'] = self.object_list.filter(list_operations__in=[1, 4], trash=False)
+        self.context['all_contact_owner_ad'] = self.object_list.filter(list_operations__in=[2, 3], trash=False)
+        return self.context
 
     def get_queryset(self):
         return searh(self.request)
