@@ -1,6 +1,7 @@
-settings.py
+local_settings.py
 *.pyc
-.idea/
-*/migrations/
-#setting_street/migrations/
+*.mo
 media/
+.DS_Store
+.env/
+.idea/
