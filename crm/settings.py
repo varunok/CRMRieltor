@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'learning',
     'access',
     'solo',
+    'watson',
 ]
 
 CRON_CLASSES = [

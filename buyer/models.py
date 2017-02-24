@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from setting_street.models import District
 from facility.models import TypeRepairs, TypeFacility, TypeRooms, TypeNumberOfPerson
@@ -161,3 +160,6 @@ class Buyer(models.Model):
 
     def __unicode__(self):
         return '%s' % self.id
+
+    def get_absolute_url(self):
+        return reverse('single_buyer', args=[self.id])

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from setting_street.models import District
 from facility.models import TypeRepairs, TypeFacility, TypeRooms, TypeNumberOfPerson
@@ -200,8 +199,11 @@ class Arendator(models.Model):
 
     add_date = models.DateTimeField(verbose_name=u'Дата добавления', auto_now_add=True)
 
+
+
     def __unicode__(self):
         return '%s' % self.id
 
-
+    def get_absolute_url(self):
+        return reverse('single_arendator', args=[self.id])
 

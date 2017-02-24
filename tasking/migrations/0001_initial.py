@@ -9,10 +9,10 @@ import django.contrib.auth.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('arendator', '0002_auto_20161001_0716'),
+        ('arendator', '0002_auto_20160912_0018'),
         ('auth', '0006_require_contenttypes_0002'),
-        ('facility', '0003_auto_20160930_0509'),
-        ('buyer', '0001_initial'),
+        ('facility', '0001_initial'),
+        ('buyer', '0002_auto_20160912_0018'),
     ]
 
     operations = [
@@ -24,10 +24,8 @@ class Migration(migrations.Migration):
                 ('task_text', models.TextField(null=True, verbose_name='\u0422\u0435\u043a\u0441\u0442', blank=True)),
                 ('task_trash', models.BooleanField(default=False, verbose_name=b'\xd0\x92 \xd0\xba\xd0\xbe\xd1\x80\xd0\xb7\xd0\xb8\xd0\xbd\xd1\x83')),
                 ('task_archiv', models.BooleanField(default=False, verbose_name=b'\xd0\x92 \xd0\xb0\xd1\x80\xd1\x85\xd0\xb8\xd0\xb2')),
-                ('add_date', models.DateTimeField(auto_now_add=True, verbose_name='\u0414\u0430\u0442\u0430 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f')),
             ],
             options={
-                'ordering': ['dead_line'],
                 'verbose_name': '\u0417\u0430\u0434\u0430\u0447\u0430',
                 'verbose_name_plural': '\u0417\u0430\u0434\u0430\u0447\u0438',
             },

@@ -2,16 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import django.db.models.deletion
 import django.contrib.auth.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('arendator', '0002_auto_20161001_0716'),
         ('auth', '0006_require_contenttypes_0002'),
-        ('facility', '0003_auto_20160930_0509'),
         ('setting_street', '0001_initial'),
     ]
 
@@ -40,7 +37,6 @@ class Migration(migrations.Migration):
                 ('time_trash', models.DateTimeField(null=True, verbose_name='\u0412\u0440\u0435\u043c\u044f \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u044f', blank=True)),
                 ('name_user_trash', models.CharField(max_length=100, null=True, verbose_name='\u041a\u0442\u043e \u0443\u0434\u0430\u043b\u0438\u043b', blank=True)),
                 ('trash', models.BooleanField(default=False, verbose_name='\u041a\u043e\u0440\u0437\u0438\u043d\u0430')),
-                ('add_date', models.DateTimeField(auto_now_add=True, verbose_name='\u0414\u0430\u0442\u0430 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u0438\u044f')),
                 ('district_obj', models.ManyToManyField(related_name='districts_b', verbose_name='\u0420\u0430\u0439\u043e\u043d', to='setting_street.District', blank=True)),
             ],
             options={
@@ -64,49 +60,5 @@ class Migration(migrations.Migration):
             model_name='buyer',
             name='loyality',
             field=models.ManyToManyField(related_name='loyal_b', verbose_name='\u041b\u043e\u044f\u043b\u044c\u043d\u043e\u0441\u0442\u044c', to='buyer.UserFullName', blank=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='number_of_persons',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a', blank=True, to='facility.TypeNumberOfPerson', null=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='repairs',
-            field=models.ManyToManyField(to='facility.TypeRepairs', verbose_name='\u0420\u0435\u043c\u043e\u043d\u0442', blank=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='rieltor',
-            field=models.ManyToManyField(related_name='rielt_b', verbose_name='\u0420\u0438\u0435\u043b\u0442\u043e\u0440', to='buyer.UserFullName', blank=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='room',
-            field=models.ManyToManyField(to='facility.TypeRooms', verbose_name='\u041a\u043e\u043c\u043d\u0430\u0442\u044b', blank=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='type_building_data',
-            field=models.ManyToManyField(to='facility.TypeFacility', verbose_name='\u0422\u0438\u043f \u043e\u0431\u044a\u0435\u043a\u0442\u0430', blank=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='type_client',
-            field=models.ForeignKey(related_name='t_client_b', blank=True, to='arendator.TypeClient', null=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='type_stage',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u042d\u0442\u0430\u043f', blank=True, to='arendator.TypeStage', null=True),
-        ),
-        migrations.AddField(
-            model_name='buyer',
-            name='type_state',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='\u0421\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435', blank=True, to='arendator.TypeState', null=True),
-        ),
-        migrations.AlterUniqueTogether(
-            name='buyer',
-            unique_together=set([('name', 'phone_first')]),
         ),
     ]

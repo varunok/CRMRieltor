@@ -127,6 +127,11 @@
                                                     <p class="object-local">
                                                         <i class="fa fa-map-marker"></i>
                                                         {{ object_data.street_obj }},
+                                                        {{ object_data.number_home|default:'' }}
+                                                        {{ object_data.literal|default:'' }}
+                                                        {% if object_data.literal or object_data.number_home %}
+                                                            ,
+                                                        {% endif %}
                                                         <span>
                                                             г.{% sity_franshise %}
                                                             {% if object_data.district_obj  %}

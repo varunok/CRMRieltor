@@ -3,6 +3,8 @@
 
 import uuid
 import os
+
+from django.core.urlresolvers import reverse
 from django.db import models
 from setting_street.models import Street, District, Subway
 from django.contrib.auth.models import User
@@ -610,19 +612,22 @@ class ContactOwner(AddressFacilityData):
                                         null=True,
                                         max_length=16)
 
-    trash = models.BooleanField(verbose_name='Корзина', default=False)
+    trash = models.BooleanField(verbose_name=u'Корзина', default=False)
 
-    time_trash = models.DateTimeField(verbose_name='Время удаления',
+    time_trash = models.DateTimeField(verbose_name=u'Время удаления',
                                       blank=True,
                                       null=True)
 
     name_user_trash = models.CharField(max_length=100,
                                        blank=True,
                                        null=True,
-                                       verbose_name='Кто удалил')
+                                       verbose_name=u'Кто удалил')
 
     def __unicode__(self):
         return '%s' % self.id
+
+    def get_absolute_url(self):
+        return reverse('single_obj', args=[self.id])
 
 
 class PhoneOwner(models.Model):

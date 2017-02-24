@@ -110,7 +110,7 @@ def show_activity_index(request):
 class ObjectList(ListView):
     """docstring for ObjectList"""
     model = ContactOwner
-    paginate_by = 30
+    paginate_by = 15
     context_object_name = 'contact_owner'
     template_name = 'homes/objects.html'
     qeryset = ContactOwner.objects.all().filter(trash=False).order_by('-id')
