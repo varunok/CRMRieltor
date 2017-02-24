@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+try:
+    from add_settings import *
+except ImportError:
+    pass
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,6 +35,8 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -68,8 +75,7 @@ INSTALLED_APPS = [
     'learning',
     'access',
     'solo',
-    'watson',
-]
+] + ADD_INSTALLED_APPS
 
 CRON_CLASSES = [
     "crm.cron.Backup",
@@ -190,3 +196,5 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+
