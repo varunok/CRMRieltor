@@ -24,7 +24,7 @@ cd $short_site
 
 ln -s /hsphere/local/home/image2007/crm_rieltor/crm/add_settings.py
 
-
+deactivate
 echo $site' done'
 
 done
