@@ -183,6 +183,19 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="search-item">
+                                    <label for="">Комнат</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input id="rooms_ot" name="rooms_ot" type="text" placeholder="От">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input id="rooms_do" name="rooms_do" type="text" placeholder="До">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="extended-search" style="height: 0px">
                             <div class="row">
@@ -238,15 +251,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="search-item">
-                                        <label for="">Комнат</label>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input id="rooms_ot" name="rooms_ot" type="text" placeholder="От">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input id="rooms_do" name="rooms_do" type="text" placeholder="До">
-                                            </div>
-                                        </div>
+                                        <label for="">Тип строения</label>
+                                        <select id="type_building" name="type_building">
+                                            <option value="" selected="selected">-----</option>
+                                            {% for type_building in type_building_list %}
+                                                <option value="{{type_building}}">{{ type_building }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -277,30 +288,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="search-item">
-                                        <label for="">Тип строения</label>
-                                        <select id="type_building" name="type_building">
-                                            <option value="" selected="selected">-----</option>
-                                            {% for type_building in type_building_list %}
-                                                <option value="{{type_building}}">{{ type_building }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="search-item">
-                                        <label for="">Комментарий</label>
-                                        <input id="comments" name="comments" type="text" placeholder="-----">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="search-item">
                                                 <label for="price">
-                                                    VIP 
+                                                    VIP
                                                     <i class="fa fa-star"></i>
                                                 </label>
                                                 <input id="vip_status" name="vip_status" type="checkbox">
@@ -312,6 +304,14 @@
                                                 <input id="public_status" name="public_status" type="checkbox">
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="search-item">
+                                        <label for="">Комментарий</label>
+                                        <input id="comments" name="comments" type="text" placeholder="-----">
                                     </div>
                                 </div>
                             </div>
