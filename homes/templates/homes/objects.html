@@ -509,6 +509,7 @@
                         </ul>
                     </div>
                 </div>
+                {% spaceless %}
                 {% for object_data in contact_owner %}
                     {% if object_data.trash == 0 %}
                         {% if object_data.loyality.get.id == '' %}
@@ -521,10 +522,10 @@
                                     {% include 'homes/obj_facility.html' %}
                                 {% endif %}
                             {% endfor %}
-
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+                {% endspaceless %}
                 {% if  is_paginated %}
                     <div class="col-md-12 section-pagination">
                         <ul class="pagination">
@@ -656,16 +657,6 @@
                 }
                 $('.messageServer').text(data).fadeIn(1000).delay(2000).fadeOut(500);
             }
-
-            // $(document).on('mouseenter', '.object-comment',function() {
-            //     $(this).prev().css('display', 'block');
-            // });
-            // $(document).on('mouseleave', '.object-comment-long',function() {
-            //     $(this).css('display', 'none');
-            // });
-
         });
     </script>
 {% endblock extra_js %}
-
-

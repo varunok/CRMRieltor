@@ -118,7 +118,7 @@ class ObjectList(ListView):
     def get_context_data(self, **kwargs):
         self.context = super(ObjectList, self).get_context_data(**kwargs)
         self.context['time'] = timezone.now()
-        self.context['images'] = ImagesFacility.objects.all()
+        # self.context['images'] = ImagesFacility.objects.filter(album__in=self.object_list)
         # self.context['addres_facility_data_list'] = AddressFacilityData.objects.all()
         self.context['all_contact_owner_se'] = self.object_list.filter(list_operations__in=[1, 4])
         self.context['all_contact_owner_ad'] = self.object_list.filter(list_operations__in=[2, 3])

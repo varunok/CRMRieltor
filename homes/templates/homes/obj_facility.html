@@ -13,17 +13,18 @@
                                 <div class="row">
                                     <div class="row">
                                         <div class="col-md-3 object-img popup-gallery-{{ object_data.id }}">
-                                            {% for image in images %}
+                                            {% for image in object_data.photos.all %}
                                                 {% if object_data.id == image.album_id %}
                                                         <a href="{{ image.image.url }}">
                                                             {% if image.cover %}
-                                                                <img src="{{ image.image|thumbnail_url:'image_obj' }}" alt=""></a>
+                                                                <img src="{{ image.image|thumbnail_url:'image_obj' }}" alt="">
                                                             {% endif %}
-                                                    {% endif %}
-                                                <span class="label label-default img-count">{{ object_data.images_count }}</span>
+                                                        </a>
+                                                {% endif %}
                                             {% empty %}
                                                 NO PHOTO
                                             {% endfor %}
+                                            <span class="label label-default img-count">{{ object_data.images_count }}</span>
                                         </div>
                                     <script>
                                         $(document).ready(function() {
@@ -48,12 +49,8 @@
                                                 <div class="col-md-8">
                                                     <h2 class="object-id">
                                                         <a href="{% url "single_obj" object_data.id %}">ID {{ object_data.id }}</a> {# id object #}
-                                                        {% if object_data.public %} {# if object public show glob #}
-                                                            <i class="fa fa-globe"></i>
-                                                        {% endif %}
-                                                        {% if object_data.vip_owner %} {# if object vip show star#}
-                                                            <i class="fa fa-star"></i>
-                                                        {% endif %}
+                                                        {% if object_data.public %}<i class="fa fa-globe"></i>{% endif %}
+                                                        {% if object_data.vip_owner %}<i class="fa fa-star"></i>{% endif %}
                                                         {% if object_data.name_owner_ext or object_data.phone_owner_plus %}
                                                             <span>
                                                                 <p class="object-prop" style="margin-left: 140px;">
@@ -64,6 +61,7 @@
                                                                     {{ object_data.phone_owner_plus }}
                                                                 </p>
                                                             </span>
+                                                            {% else %}
                                                         {% endif %}
                                                         {% if object_data.name_owner_ext2 or object_data.phone_owner_plus2 %}
                                                             <span>
