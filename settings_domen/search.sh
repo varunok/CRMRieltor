@@ -13,16 +13,19 @@ echo $site
 echo $short_site
 cd /hsphere/local/home/image2007/$site/$short_site
 source ../data/bin/activate
-pip install django-watson
+
+echo which python
+
+pip install easy-thumbnails
 #python manage.py makemigrations watson
 
-python manage.py migrate watson
+python manage.py migrate easy_thumbnails
 
-python manage.py buildwatson
+#python manage.py buildwatson
 
-cd $short_site
+#cd $short_site
 
-ln -s /hsphere/local/home/image2007/crm_rieltor/crm/add_settings.py
+#ln -s /hsphere/local/home/image2007/crm_rieltor/crm/add_settings.py
 
 deactivate
 echo $site' done'

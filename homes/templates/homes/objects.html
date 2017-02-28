@@ -612,6 +612,15 @@
                 });
             });
 
+            $(document).on('click', '.pages-search', function (event) {
+                event.preventDefault();
+                var msg   = $('#search_form').serialize() + '&page=' + $(this).text();
+                $.get('search_obj', msg, function (data) {
+                    $('.search-object').html(data);
+                    $(this).unbind();
+                })
+            });
+
             $(".allownumericwithoutdecimal").on('keyup', function () {
              $(this).val($.trim($(this).val()));
              if ($.isNumeric($(this).val())){
@@ -629,7 +638,8 @@
                 $.get('', {'back_res':true}, function (data) {
                     $('.search-object').html(data).fadeIn()
                 })
-            })
+            });
+
             $('.object-edit').on('click', '.fa-times', function(event) {
                 event.preventDefault();
                 var idobj_trash = $(this).attr('id-obj');

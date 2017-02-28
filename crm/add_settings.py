@@ -1,3 +1,4 @@
 ADD_INSTALLED_APPS = [
-    'watson'
+    'watson',
+    'easy_thumbnails',
 ]
