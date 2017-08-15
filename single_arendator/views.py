@@ -91,9 +91,9 @@ def del_comment(request):
 # START BLOCK PICK UP AN OBJECT
 @login_required
 def get_object_arendator(request):
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_arenda=request.GET.get('id_arendator'))
     shows = TypeShows.objects.all()
-    id_show = ShowsArendator.objects.all()
+    id_show = ShowsArendator.objects.filter(array_arendator=request.GET.get('id_arendator'))
     single_obj_comments = SingleArendatorComments.objects.filter(obj_comments=request.GET.get('id_arendator')).order_by('-date_comment')
     return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                  'id_arendator': request.GET.get('id_arendator'),
@@ -107,9 +107,9 @@ def automat_tie_arendator(request):
     list_operations = TypeOperations.objects.filter(type_operations__in=['Аренда', 'Посуточна'])
     qeryset = ContactOwner.objects.all().filter(trash=False, list_operations__in=list_operations)
     search_automat(request.GET, qeryset)
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_arenda=request.GET.get('id_arendator'))
     shows = TypeShows.objects.all()
-    id_show = ShowsArendator.objects.all()
+    id_show = ShowsArendator.objects.filter(array_arendator=request.GET.get('id_arendator'))
     single_obj_comments = SingleArendatorComments.objects.filter(obj_comments=request.GET.get('id_arendator')).order_by('-date_comment')
     return render(request, 'single_arendator/get_objects.html', {'ties': ties,
                                                                  'id_arendator': request.GET.get('id_arendator'),

@@ -25,7 +25,7 @@
                 <h1 class="section-head">Водяной <span>знак</span></h1>
                     <div class="messageServer"></div>
                     <br>
-                    <a id="on_off_watermark" href="#" class="btn 
+                    <a id="on_off_watermark" href="#" class="btn
                     {% if wm.on_off %}
                         btn-green">Включено
                     {% else %}
@@ -60,7 +60,11 @@
                 <div class="col-md-5 col-md-offset-5">
                     <div class="row">
                     	<div class="col-md-6" style="">
-                    		<div class="refresh"><img src="{{ wm.watermark_img.url }}" alt=""> </div>
+                    		<div class="refresh">
+                                {% if wm.watermark_img %}
+                                    <img src="{{ wm.watermark_img.url }}" alt="">
+                                {% endif %}
+                            </div>
                     	</div>
                     </div>
                 </div>
@@ -86,7 +90,7 @@
         			.error(function(data) {
 
         			})
-        	});			
+        	});
             $('#on_off_watermark').on('click', function(event) {
                 event.preventDefault();
                 var valu = $('#valu').val();

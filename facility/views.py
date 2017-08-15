@@ -15,6 +15,7 @@ from facility.models import ContactOwner, PhoneOwner, DatabasePhoneOwner, Images
     AddressFacilityData, UserFullName
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,7 +52,7 @@ def add_facility(request):
 def save_edit_facility(request):
     if request.method == 'POST':
         facility = ContactOwner.objects.get(id=request.POST.get('edit'))
-        form = AddressFacilityForm(request.POST, instance=facility)
+        form = AddressFacilityForm(request.POST, request.FILES, instance=facility)
         if form.is_valid():
             form.save()
             phone_numb = ContactOwner.objects.get(id=request.POST.get('edit'))
@@ -123,10 +124,10 @@ def restore_obj(request):
 
 def handle_uploaded_file(f, dir_img):
     try:
-        os.mkdir('media/tmpimg/' + dir_img)
+        os.mkdir(settings.MEDIA_ROOT + 'tmpimg/' + dir_img)
     except:
         pass
-    path_to_file = ''.join(['media/tmpimg/', dir_img, '/'])
+    path_to_file = ''.join([settings.MEDIA_ROOT, 'tmpimg/', dir_img, '/'])
     # try:
     #     list_tmp_img = os.listdir('media/tmpimg/')
     #     for ele in list_tmp_img:
@@ -138,7 +139,7 @@ def handle_uploaded_file(f, dir_img):
         with open(path_to_file + f[ele].name, 'wb+') as destination:
             for chunk in f[ele].chunks():
                 destination.write(chunk)
-                list_img[ele] = ('/' + path_to_file + f[ele].name)
+                list_img[ele] = (settings.MEDIA_URL + 'tmpimg/' + dir_img + '/' + f[ele].name)
                 # AddWatermark(list_img[ele], list_img[ele])
     return list_img
 

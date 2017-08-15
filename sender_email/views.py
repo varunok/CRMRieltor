@@ -49,7 +49,6 @@ def send_email_so(request):
                                                                    'request': request_abs_url,
                                                                    'single_object': single_object,
                                                                    'subs': subs})
-
         sending = send_mail(temp_email.title, html_message, is_sender_address_valid(temp_email.sender_address),
                             [request.POST.get('email')], [request.POST.get('email')], html_message=html_message)
         if sending:
@@ -408,7 +407,7 @@ def list_phone_validate(list_phone):
 
 def link_to_single_obj(single_object, type_kontragent):
     templ_sms = get_object_or_404(TemplateSms, id=1)
-    address = single_object.street_obj
+    address = single_object.street_obj or ''
     if type_kontragent == 'arendator':
         try:
             nat_curr = NationalCarrency.objects.get(id=1)
@@ -418,7 +417,7 @@ def link_to_single_obj(single_object, type_kontragent):
     elif type_kontragent == 'buyer':
         price = str(single_object.price_bay)+'$'
     link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
-    landmark = single_object.landmark
+    landmark = single_object.landmark or ''
     if settings.ALLOWED_HOSTS[0] == 'dom6.xata-spb.ru':
         phone = single_object.phone_owner
     else:
@@ -432,7 +431,7 @@ def link_to_obj(objects, type_kontragent):
     templ_sms = get_object_or_404(TemplateSms, id=1)
     list_obj = []
     for single_object in objects:
-        address = single_object.street_obj
+        address = single_object.street_obj or ''
         if type_kontragent == 'arendator':
             try:
                 nat_curr = NationalCarrency.objects.get(id=1)
@@ -442,7 +441,7 @@ def link_to_obj(objects, type_kontragent):
         elif type_kontragent == 'buyer':
             price = str(single_object.price_bay)+'$'
         link = ''.join([ALLOWED_HOSTS, '/objects/data/', str(single_object.id)])
-        landmark = single_object.landmark
+        landmark = single_object.landmark or ''
         link = ', '.join([templ_sms.title, templ_sms.text, landmark, unicode(address),
                           price, link, templ_sms.signature])
         list_obj.append(link)

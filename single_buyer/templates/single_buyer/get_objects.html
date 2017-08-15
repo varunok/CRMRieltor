@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="table-responsive">
@@ -90,7 +90,7 @@
                                         <tbody>
                                         {% for tie in ties %}
                                             {% for buyer in tie.tie_buye.all %}
-                                                {% if id_buyer|floatformat == buyer|floatformat %}
+                                                {% if id_buyer|floatformat == buyer.id|floatformat %}
                                                     <tr class="color">
                                                     {% for show in shows %}
                                                         {% for sh in id_show.all %}
@@ -104,7 +104,7 @@
                                                                         <tr class="danger color">
                                                                     {% elif show.id|floatformat == '4' %}
                                                                         <tr class="success color">
-                                                                    {% endif %}    
+                                                                    {% endif %}
                                                                 {% endif %}
                                                             {% endif %}
                                                         {% endfor %}
@@ -122,7 +122,7 @@
                                                         </td>
                                                         <td class="f-clr-grey edit">
                                                             <input type="hidden" class="id_buyer" value="{{id_buyer}}">
-                                                            
+
                                                             <select name="" class="show_cont_owner" style="min-width: 100px; ">
                                                                 {% for show in shows %}
                                                                     <option
@@ -130,7 +130,7 @@
                                                                         {% if sh.array_cont_ower.id == tie.tie_cont_owner.id %}
                                                                             {{sh.type_shows_buyer}}
                                                                             {% if sh.type_shows_buyer.id == show.id %}
-                                                                                selected="selected"    
+                                                                                selected="selected"
                                                                             {% endif %}
                                                                         {% endif %}
                                                                     {% endfor %}

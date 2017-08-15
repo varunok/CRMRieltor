@@ -91,7 +91,7 @@ def del_comment(request):
 # START BLOCK PICK UP AN OBJECT
 @login_required
 def get_object_buyer(request):
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_buye=request.GET.get('id_buyer'))
     shows = TypeShows.objects.all()
     id_show = ShowsBuyer.objects.all()
     single_obj_comments = SingleBuyerComments.objects.filter(obj_comments=request.GET.get('id_buyer')).order_by('-date_comment')
@@ -107,7 +107,7 @@ def automat_tie_buyer(request):
     list_operations = TypeOperations.objects.filter(type_operations__in=['Обмен', 'Продажа'])
     qeryset = ContactOwner.objects.all().filter(trash=False, list_operations__in=list_operations)
     print(search_automat(request.GET, qeryset))
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_buye=request.GET.get('id_buyer'))
     shows = TypeShows.objects.all()
     id_show = ShowsBuyer.objects.all()
     single_obj_comments = SingleBuyerComments.objects.filter(obj_comments=request.GET.get('id_buyer')).order_by('-date_comment')
@@ -132,7 +132,7 @@ def add_id_cont_owner(request):
         tie.tie_buye.add(buyer)
     else:
         return HttpResponse(status=404, content=b'Обект уже в списке')
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_buye=request.GET.get('id_buyer'))
     shows = TypeShows.objects.all()
     id_show = ShowsBuyer.objects.all()
     single_obj_comments = SingleBuyerComments.objects.filter(obj_comments=request.GET.get('id_buyer')).order_by('-date_comment')

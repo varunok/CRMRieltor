@@ -2,8 +2,8 @@
                                         <tr id="show_tr-{{ buyer.id }}" class="show_tr color
                                                     {% for show in type_shows %}
                                                     {% for sh in shows_buyer %}
-                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
-                                                            {% if buyer.id|floatformat == sh.array_buyer|floatformat %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower.id|floatformat %}
+                                                            {% if buyer.id|floatformat == sh.array_buyer.id|floatformat %}
                                                                 {% if show == sh.type_shows_buyer %}
                                                                     {% if show.id|floatformat == '1' %}
                                                                         info
@@ -13,7 +13,7 @@
                                                                         danger
                                                                     {% elif show.id|floatformat == '4' %}
                                                                        success
-                                                                    {% endif %} 
+                                                                    {% endif %}
                                                                 {% endif %}
                                                             {% endif %}
                                                         {% endif %}
@@ -41,8 +41,8 @@
                                                     {% for show in type_shows %}
                                                         <option
                                                     {% for sh in shows_buyer %}
-                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
-                                                            {% if buyer.id|floatformat == sh.array_buyer|floatformat %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower.id|floatformat %}
+                                                            {% if buyer.id|floatformat == sh.array_buyer.id|floatformat %}
                                                                 {% if show == sh.type_shows_buyer %}
                                                                     selected="selected"
                                                                 {% endif %}

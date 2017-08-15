@@ -13,11 +13,11 @@ class TemplateSmsForm(ModelForm):
 
 
 class TemplateEmailForm(ModelForm):
-    image = forms.CharField(widget=ClearableFileInput())
-    image.widget.attrs['multiple'] = 'false'
-    image.widget.attrs['class'] = 'upload_file'
-    image.widget.attrs['accept'] = 'image/*'
-    image.required = False
+    logo = forms.CharField(widget=ClearableFileInput())
+    logo.widget.attrs['multiple'] = 'false'
+    logo.widget.attrs['class'] = 'upload_file'
+    logo.widget.attrs['accept'] = 'image/*'
+    logo.required = False
 
     class Meta(object):
         model = TemplateEmail

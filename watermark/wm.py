@@ -15,8 +15,8 @@ class CreateWatermark(object):
             self.arg = arg
         # try:
             url = "http://google.com.ua"
-            path_to_phantomjs = '/'.join([os.getcwd(), 'media', 'phantomjs'])
-            driver = webdriver.PhantomJS(path_to_phantomjs)
+            # path_to_phantomjs = '/'.join([os.getcwd(), 'media', 'phantomjs'])
+            driver = webdriver.PhantomJS()
             width_image = len(self.arg)*20+10
             driver.set_window_size(width_image, 50)
             driver.get(url)

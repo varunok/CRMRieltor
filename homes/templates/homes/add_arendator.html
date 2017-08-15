@@ -41,7 +41,7 @@
                         <h1 class="section-head">Информация <span>о Арендаторе</span></h1>
                         {% if edit %}
                             <input type="hidden" name="edit" id="edit" value="{{ id_arendator }}">
-                        {% endif %} 
+                        {% endif %}
                         <div class="section-sort">
                             <input name="add_arendator_obj" type="submit" class="btn btn-green" value=
                             {% if edit %}
@@ -318,7 +318,9 @@
             'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
             'Октябрь', 'Ноябрь', 'Декабрь'],
              dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+             dateFormat: "yy-mm-dd",
              firstDay: 1}).datepicker();
+
     });
     </script>
 {% endblock extra_js %}

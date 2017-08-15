@@ -214,7 +214,7 @@ class AutomatTie(ListView):
 
 @login_required
 def get_arendator(request):
-    ties = Tie.objects.all()
+    ties = Tie.objects.filter(tie_cont_owner=request.GET.get('id_so'))
     singl_obg = ContactOwner.objects.get(id=request.GET.get('id_so'))
     try:
         count_arendator = Tie.objects.get(tie_cont_owner=singl_obg).tie_arenda.all().count()
@@ -222,7 +222,7 @@ def get_arendator(request):
         count_arendator = 0
     type_shows = TypeShows.objects.all()
     nac_carrency = NationalCarrency.objects.get(id=1)
-    shows = ShowsArendator.objects.all()
+    shows = ShowsArendator.objects.filter(array_cont_ower=request.GET.get('id_so'))
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so']).order_by('-date_comment')
     return render(request, 'single_object/arendator.html', {"ties": ties,
                                                             "singl_obj": singl_obg,
@@ -341,7 +341,7 @@ class AutomatTieBuyer(ListView):
 
 @login_required
 def get_buyer(request):
-    ties = TieBuyer.objects.all()
+    ties = TieBuyer.objects.filter(tie_cont_owner=request.GET.get('id_so'))
     singl_obg = ContactOwner.objects.get(id=request.GET.get('id_so'))
     try:
         count_buyers = TieBuyer.objects.get(tie_cont_owner=singl_obg).tie_buye.all().count()
@@ -349,7 +349,7 @@ def get_buyer(request):
         count_buyers = 0
     type_shows = TypeShows.objects.all()
     nac_carrency = NationalCarrency.objects.get(id=1)
-    shows = ShowsBuyer.objects.all()
+    shows = ShowsBuyer.objects.filter(array_cont_ower=request.GET.get('id_so'))
     data_comment = SingleObjComments.objects.filter(obj_comments=request.GET['id_so']).order_by('-date_comment')
     return render(request, 'single_object/buyers.html', {"ties": ties,
                                                          "singl_obj": singl_obg,

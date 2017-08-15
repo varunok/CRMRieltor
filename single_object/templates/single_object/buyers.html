@@ -77,7 +77,7 @@
                                         <tbody id="add_tr">
                                             {% if ties %}
                                                 {% for tie in ties %}
-                                                    {% if tie.tie_cont_owner|floatformat == singl_obj.id|floatformat %}
+                                                    {% if tie.tie_cont_owner.id|floatformat == singl_obj.id|floatformat %}
                                                         {% for buyer in tie.tie_buye.all %}
                                                             {% include 'single_object/return_table/single_table_buyer.html' %}
                                                         {% endfor %}

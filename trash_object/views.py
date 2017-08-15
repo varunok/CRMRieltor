@@ -24,11 +24,15 @@ def list_trash(request):
 class ObjectListTrash(ObjectList):
     """docstring for ClassName"""
     template_name = 'trash_object/objects_trash.html'
-    qeryset = ContactOwner.objects.filter(trash=True)
+    # qeryset = ContactOwner.objects.filter(trash=True)
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(ObjectListTrash, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = ContactOwner.objects.all().filter(trash=True).order_by('-id')
+        return queryset
 
 
 class ArendatorListTrash(ArendatorsList):

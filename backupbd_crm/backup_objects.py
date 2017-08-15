@@ -66,7 +66,8 @@ title = ('ID',
          u'Допол. Телефон')
 
 
-class SaveConOwn(ContactOwner):
+# class SaveConOwn(ContactOwner):
+class SaveConOwn(object):
     class Meta:
         proxy = True
 

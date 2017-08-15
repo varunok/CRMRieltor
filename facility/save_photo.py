@@ -7,11 +7,12 @@ from facility.models import ImagesFacility, AddressFacilityData
 from watermark.wm import AddWatermark
 from watermark.models import Watermark
 from django.core.files import File
+from django.conf import settings
 
 
 def save_photo(request, last_id, dir_img):
     images = request.FILES.getlist('image', [])
-    dir_img = ''.join(['media/tmpimg/', dir_img, '/'])
+    dir_img = ''.join([settings.MEDIA_ROOT, 'tmpimg/', dir_img, '/'])
     try:
         list_tmp_img = os.listdir(dir_img)
     except:
@@ -33,6 +34,7 @@ def save_photo(request, last_id, dir_img):
         if str(image) in list_tmp_img:
             reopen = open(dir_img + image, 'rb')
             image_file = File(reopen)
+            image_file.name = image_file.name.split('/')[-1]
             if list_tmp_img.index(image):
                 if not ImagesFacility.objects.filter(album_id=last_id, cover=1).exists():
                     watermarks(image, dir_img)
@@ -64,6 +66,7 @@ def save_photo(request, last_id, dir_img):
 
 def watermarks(img, dir_img):
     img_from = ''.join([os.getcwd(), '/', dir_img])
+    # img_from = ''.join([dir_img])
     on_off, create = Watermark.objects.get_or_create(id=1)
     if on_off.on_off:
-        AddWatermark(img_from + str(img), img_from + str(img))
+        AddWatermark(dir_img + str(img), dir_img + str(img))

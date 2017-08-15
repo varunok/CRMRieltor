@@ -2,8 +2,8 @@
                                         <tr id="show_tr-{{ arendator.id }}" class="show_tr color
                                                     {% for show in type_shows %}
                                                     {% for sh in shows_arendator %}
-                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
-                                                            {% if arendator.id|floatformat == sh.array_arendator|floatformat %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower.id|floatformat %}
+                                                            {% if arendator.id|floatformat == sh.array_arendator.id|floatformat %}
                                                                 {% if show == sh.type_shows_arendator %}
                                                                     {% if show.id|floatformat == '1' %}
                                                                         info
@@ -13,7 +13,7 @@
                                                                         danger
                                                                     {% elif show.id|floatformat == '4' %}
                                                                        success
-                                                                    {% endif %} 
+                                                                    {% endif %}
                                                                 {% endif %}
                                                             {% endif %}
                                                         {% endif %}
@@ -43,8 +43,8 @@
                                                     {% for show in type_shows %}
                                                         <option
                                                     {% for sh in shows_arendator %}
-                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower|floatformat %}
-                                                            {% if arendator.id|floatformat == sh.array_arendator|floatformat %}
+                                                        {% if singl_obj.id|floatformat == sh.array_cont_ower.id|floatformat %}
+                                                            {% if arendator.id|floatformat == sh.array_arendator.id|floatformat %}
                                                                 {% if show == sh.type_shows_arendator %}
                                                                     selected="selected"
                                                                 {% endif %}

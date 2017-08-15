@@ -84,12 +84,12 @@ class Arendator(models.Model):
     rieltor = models.ManyToManyField(UserFullName,
                                      blank=True,
                                      verbose_name=u'Риелтор',
-                                     related_name='rielt')
+                                     related_name='arendator_rielt')
 
     loyality = models.ManyToManyField(UserFullName,
                                       blank=True,
                                       verbose_name=u'Лояльность',
-                                      related_name='loyal')
+                                      related_name='arendator_loyal')
 
     commission = models.CharField(max_length=10,
                                   verbose_name=u'Комиссия',

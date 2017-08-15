@@ -54,7 +54,8 @@ def email_template(request):
 def save_email_template_form(request):
     temp_email_form, create = TemplateEmail.objects.get_or_create(id=1)
     if request.method == 'POST':
-        form = TemplateEmailForm(request.POST, request.FILES, instance=temp_email_form)
+        form = TemplateEmailForm(request.POST, instance=temp_email_form)
+        print(form.errors)
         if form.is_valid():
             form.save()
             return setting_mail_delivery(request)

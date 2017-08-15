@@ -48,7 +48,7 @@ class Meeting(models.Model):
     access = models.ManyToManyField(UserFullName,
                                     blank=True,
                                     verbose_name=u'Доступ',
-                                    related_name='access')
+                                    related_name='meet_access')
 
     meet_status = models.ForeignKey(TypeStatus,
                                     verbose_name=u'Статус',

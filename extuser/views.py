@@ -36,14 +36,14 @@ def login_user(request):
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             if user is not None and user.is_active:
-                if not user.is_superuser:
-                    try:
-                        if not Active().franshises():
-                            franshise = Franshise.objects.get(id=1)
-                            franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
-                            return HttpResponseRedirect(franshise_site)
-                    except:
-                        return HttpResponse(content=b'ERROR. Обратитесь к администратору.')
+                # if not user.is_superuser:
+                #     try:
+                #         if not Active().franshises():
+                #             franshise = Franshise.objects.get(id=1)
+                #             franshise_site = ''.join(['http://', 'admin.', str(franshise.franshise), '/?page=franchise&franchise_action=list'])
+                #             return HttpResponseRedirect(franshise_site)
+                #     except:
+                #         return HttpResponse(content=b'ERROR. Обратитесь к администратору.')
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
@@ -162,7 +162,7 @@ def delete_user(request):
         result = results.get('id_user')
         inactive_user = User.objects.get(id=int(result))
         inactive_user.is_active = 0
-        inactive_user.save() 
+        inactive_user.save()
         exuser = User.objects.all().filter(is_active=1)
         json = JsonResponse({"del":True, "count_user":len(exuser)})
         return HttpResponse(json)
