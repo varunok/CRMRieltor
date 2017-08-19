@@ -23,7 +23,7 @@ $(document).ready(function() {
             for(var i in data){
                 // $('#include_parse_text').append("<div></div><a href='"+data[i].sity+"'>"+data[i].sity+"</a></div>");
                 if (i != 'id_page'){
-                    $('#include_parse_text').append("<tr><td>"+data[i].sity+"</td><td>"+data[i].title+"</td><td>"+data[i].phone+"</td><td>"+data[i].price+"</td><td><a class='btn btn-darkblue' target='_blank' href='"+data[i].link+"'>Перейти</a></td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
+                    $('#include_parse_text').append("<tr id='"+i+"'><td>"+data[i].sity+"</td><td>"+data[i].title+"</td><td>"+data[i].phone+"</td><td>"+data[i].price+"</td><td><a class='btn btn-darkblue' target='_blank' href='"+data[i].link+"'>Перейти</a></td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
                 }
             }
             $('#more_icon').html('<a href="#" class="btn btn-green"><i class="fa fa-plus fa-4x fa-fw"></i></a>');
@@ -45,7 +45,10 @@ $(document).ready(function() {
             for(var i in data){
                 // $('#include_parse_text').append("<div></div><a href='"+data[i].sity+"'>"+data[i].sity+"</a></div>");
                 if (i != 'id_page'){
-                    $('#include_parse_text').append("<tr><td>"+data[i].sity+"</td><td>"+data[i].title+"</td><td>"+data[i].phone+"</td><td>"+data[i].price+"</td><td><a class='btn btn-darkblue' target='_blank' href='"+data[i].link+"'>Перейти</a></td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
+                    var myEle = document.getElementById(i);
+                    if (!myEle) {
+                        $('#include_parse_text').append("<tr id='"+i+"'><td>" + data[i].sity + "</td><td>" + data[i].title + "</td><td>" + data[i].phone + "</td><td>" + data[i].price + "</td><td><a class='btn btn-darkblue' target='_blank' href='" + data[i].link + "'>Перейти</a></td><td><a class='btn btn-green done' href='#'>Отработано</a></td></tr>");
+                    }
                 }
             }
             $('#more_icon').html('<a href="#" class="btn btn-green"><i class="fa fa-plus fa-4x fa-fw"></i></a>');

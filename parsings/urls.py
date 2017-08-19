@@ -2,7 +2,8 @@
 
 
 from django.conf.urls import url
-from parsings.views import services, parser_olx, parse, parser_hi_dn_ua, parsehidnua, SettingOlxTemplateView, SettingOlx
+from parsings.views import services, parser_olx, parse, parser_hi_dn_ua, \
+    parsehidnua, SettingOlxTemplateView, SettingOlx
 
 urlpatterns = [
     url(r'services$', services, name='services'),
