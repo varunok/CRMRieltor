@@ -11,9 +11,15 @@ class Watermark(models.Model):
         verbose_name = u'Водяной знак'
         verbose_name_plural = u'Водяной знак'
 
-    text = models.CharField(verbose_name=u'Водяной знак', max_length=50, blank=True, null=True)
+    text = models.CharField(
+        verbose_name=u'Водяной знак',
+        max_length=50, blank=True, null=True
+    )
 
-    watermark_img = models.ImageField(verbose_name=u'Водяной знак', upload_to='watermark')
+    watermark_img = models.ImageField(
+        verbose_name=u'Водяной знак',
+        upload_to='watermark'
+    )
 
     on_off = models.BooleanField(default=True)
 

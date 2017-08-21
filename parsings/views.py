@@ -68,8 +68,7 @@ def parser_olx(request):
 
 @login_required
 def parse(request):
-    dict_article = ParserOlx(request=request)
-    result, status = dict_article.start_parse()
+    result, status = ParserOlx(request=request).start_parse()
     return HttpResponse(JsonResponse(result, safe=False), status=status)
 
 

@@ -67,11 +67,11 @@ class Requester(object):
 
 
 class ParserOlx(ConfigParserOlx):
-    dict_article = {}
     status = 200
 
     def __init__(self, request):
         self.request = request
+        self.dict_article = {}
 
     @property
     def result(self):
@@ -92,6 +92,9 @@ class ParserOlx(ConfigParserOlx):
             id_article = article.split('.')[-2].split('-')[-1]
 
             page_article = Requester(article)
+
+            if self._filter_daily(page_article):
+                continue
 
             datetime_article = self._get_date_article(page_article)
             if datetime_article > self.day_art:
@@ -139,6 +142,16 @@ class ParserOlx(ConfigParserOlx):
             'phone': phones,
             'price': price
         }
+
+    def _filter_daily(self, article):
+        links = article.gettext(
+            '//table[@class="details fixed '
+            'marginbott20 margintop5 full"]//@href'
+        )
+        for link in links:
+            if 'kvartiry-posutochno' in link:
+                return True
+        return False
 
     def _validate_request(self):
         if self.id_categories < 0 or not self.city:

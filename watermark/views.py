@@ -24,7 +24,8 @@ def setting_watermark(request):
 def create_watermark(request):
     if request.method == 'POST':
         if CreateWatermark(request.POST['wm']).isCreated:
-            wm, created = Watermark.objects.update_or_create(id=1, watermark_img='watermark/watermark.png')
+            wm, created = Watermark.objects.get_or_create(id=1)
+            wm.watermark_img = 'watermark/watermark.png'
             wm.text = request.POST['wm']
             wm.save()
             return HttpResponse(wm.watermark_img.url)
