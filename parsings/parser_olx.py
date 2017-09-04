@@ -25,17 +25,19 @@ class ConfigParserOlx(object):
     SELECTOR_DATE = '//div[@class="offer-titlebox__details"]//em/text()'
     '//div[@class="price-label"]//strong/text()'
     """
-
-    config_parser = ConfigParserOLXSolo.get_solo()
-    SITE_URL = config_parser.SITE_URL
-    AJAX_PHONE = config_parser.AJAX_PHONE
-    SELECTOR_GETLINK_CATEGORIES = config_parser.SELECTOR_GETLINK_CATEGORIES
-    SELECTOR_GETTEXT_CATEGORIES = config_parser.SELECTOR_GETTEXT_CATEGORIES
-    SELECTOR_GETLINK_ARTICLES = config_parser.SELECTOR_GETLINK_ARTICLES
-    SELECTOR_SITY = config_parser.SELECTOR_SITY
-    SELECTOR_TITLE = config_parser.SELECTOR_TITLE
-    SELECTOR_DATE = config_parser.SELECTOR_DATE
-    SELECTOR_PRICE = config_parser.SELECTOR_PRICE
+    try:
+        config_parser = ConfigParserOLXSolo.get_solo()
+        SITE_URL = config_parser.SITE_URL
+        AJAX_PHONE = config_parser.AJAX_PHONE
+        SELECTOR_GETLINK_CATEGORIES = config_parser.SELECTOR_GETLINK_CATEGORIES
+        SELECTOR_GETTEXT_CATEGORIES = config_parser.SELECTOR_GETTEXT_CATEGORIES
+        SELECTOR_GETLINK_ARTICLES = config_parser.SELECTOR_GETLINK_ARTICLES
+        SELECTOR_SITY = config_parser.SELECTOR_SITY
+        SELECTOR_TITLE = config_parser.SELECTOR_TITLE
+        SELECTOR_DATE = config_parser.SELECTOR_DATE
+        SELECTOR_PRICE = config_parser.SELECTOR_PRICE
+    except:
+        pass
 
 
 class Requester(object):
