@@ -4,7 +4,7 @@
 import os
 import shutil
 import uuid
-import MySQLdb
+# import MySQLdb
 import datetime
 from django.conf import settings
 from setting_globall.models import Franshise
@@ -291,28 +291,13 @@ class InsertData(ConnectDatabases):
         return operations
 
 
-class GetShows(ConnectDatabases):
+class GetShows():
     def __init__(self, data):
-            super(GetShows, self).__init__()
-            self.code = data
+        from sqlalchemy import create_engine
+        from sqlalchemy import Column, String
+        from sqlalchemy.ext.declarative import declarative_base
+        from sqlalchemy.orm import sessionmaker
 
-        # try:
-            db = MySQLdb.connect(user=self.textusername, passwd=self.textpassword, host=self.texthostname, db=self.database, autocommit=True)
-            c = db.cursor()
-            # query = '''SELECT views FROM Object_Live WHERE code= "%s"''' % 'O' + str(self.code)
-            c.execute("""SELECT views FROM Object_Live WHERE code=%s""", ('O' + unicode(self.code),))
-            self.data = c.fetchall()
-        # except:
-        #     pass
-        # finally:
-            c.close()
-            db.close()
-
-    def data_return(self):
-        if self.data:
-            return '%s' % self.data[0]
-        else:
-            return 0
 
 
 class SetShows(ConnectDatabases):

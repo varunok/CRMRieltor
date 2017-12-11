@@ -13,6 +13,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 
 from facility.models import ContactOwner, ImagesFacility, NationalCarrency, TypeActuality
+from posting.post import PublishObject
 from single_object.models import SingleObjComments, Tie, TypeShows, ShowsArendator, TieBuyer, ShowsBuyer
 from extuser.models import MyUser
 from arendator.models import Arendator
@@ -474,13 +475,15 @@ class TaskingSingleListArchive(TaskingSingleList):
 # START BLOCK PUBLICATIONS
 @login_required
 def get_publication(request):
-    from posting.work_table import GetShows
-    len_shows = GetShows(request.GET['id_so']).data_return()
-    franshise = Franshise.objects.values()[0]['franshise']
+    # from posting.work_table import GetShows
+    # len_shows = GetShows(request.GET['id_so']).data_return()
+    # franshise = Franshise.objects.values()[0]['franshise']
+    host = '.'.join(request.get_host().split('.')[1:])
     single_object = ContactOwner.objects.get(id=request.GET['id_so'])
-    return render(request, 'single_object/publication.html', {"franshise": franshise,
+    get_shows = PublishObject(single_object, host).get_show_posts()
+    return render(request, 'single_object/publication.html', {"franshise": host,
                                                               "status": single_object,
-                                                              "len_shows": len_shows})
+                                                              "len_shows": get_shows})
 
 # END BLOCK PUBLICATIONS
 
