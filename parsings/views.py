@@ -51,12 +51,13 @@ def services(request):
 @login_required
 def parser_olx(request):
     config_parser = ConfigParserOLXSolo.get_solo()
+    dict_categories_text = {}
     try:
         list_categories_text = Requester(config_parser.SITE_URL).gettext(config_parser.SELECTOR_GETTEXT_CATEGORIES)
         for cat in list_categories_text:
             dict_categories_text = dict(zip([list_categories_text.index(j) for j in list_categories_text], list_categories_text))
     except:
-        dict_categories_text = ''
+        pass
     try:
         sity = ConfigParserOLXSolo.objects.get()
     except:
