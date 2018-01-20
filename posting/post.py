@@ -124,7 +124,7 @@ class PublishObject(object):
 
     def __init__(self, single_object, host):
         self.single_object = single_object
-        self.admin = host.replace('.', '')
+        self.admin = host.replace('.', '').replace('-', '')
         self.db_post = host.replace('.', '')
         self.path_to_file_path = '/home/gek/{0}/site/media_path.json'
         self._create_session()
