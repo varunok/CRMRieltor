@@ -9,6 +9,8 @@ from sqlalchemy import Column, String, Integer, DateTime, Text, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship, aliased
 
+from django.conf import settings
+
 # films = session.query(RieltoeObject)
 # films = films.filter_by(title='sdfdsfw').all()
 # films = films.filter_by(id='sdfdsf').first()
@@ -185,7 +187,7 @@ class PublishObject(object):
                 panorama=self.single_object.panorama,
                 video=self.single_object.youtube,
                 views=0,
-                uuid=uuid.uuid4(),
+                uuid=str(uuid.uuid4()),
                 is_vip=self.single_object.vip_owner,
                 address=self.get_adress(),
                 price=self.get_price(),
@@ -204,7 +206,7 @@ class PublishObject(object):
                 updated=datetime.now(),
                 description=self.single_object.comment,
                 views=0,
-                uuid=uuid.uuid4(),
+                uuid=str(uuid.uuid4()),
                 address=self.get_adress(),
                 price=self.get_price(),
                 sleeping_places=self.single_object.sleeps,
@@ -213,7 +215,7 @@ class PublishObject(object):
                 panorama=self.single_object.panorama,
                 name_id=self.get_name(),
                 phone_id=self.get_phone(),
-                district_id=self.get_district(),
+                district_id=self.get_daily_district(),
                 image=self.get_image(),
                 custom_id=int(str(self.single_object.id) + '00001')
             )
@@ -250,6 +252,7 @@ class PublishObject(object):
         return cont_type.id
 
     def get_image(self):
+        print(settings.BASE_DIR)
         with open(self.path_to_file_path, 'r') as f:
             result = json.load(f, encoding='utf8')
             path = result.get('path')
@@ -296,7 +299,7 @@ class PublishObject(object):
 
         return name.id
 
-    def get_district(self):
+    def get_daily_district(self):
         district_name = str(self.single_object.district_obj)
         if not district_name:
             return None
@@ -304,6 +307,21 @@ class PublishObject(object):
             name=district_name).first()
         if not district:
             district = DailyDistrict(
+                name=district_name
+            )
+            self.session.add(district)
+            self.session.commit()
+
+        return district.id
+
+    def get_district(self):
+        district_name = str(self.single_object.district_obj)
+        if not district_name:
+            return None
+        district = self.session.query(District).filter_by(
+            name=district_name).first()
+        if not district:
+            district = District(
                 name=district_name
             )
             self.session.add(district)
