@@ -296,7 +296,6 @@ class PublishObject(object):
             )
             self.session.add(name)
             self.session.commit()
-            self.session.close()
 
         return name.id
 
