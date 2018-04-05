@@ -67,7 +67,7 @@
                         <li><a href="{% url "homes" %}">Главная</a></li>
                         <li><a href="{% url "objects" %}">Объекты</a></li>
                         {% if edit %}
-                            <li class="active">Редактирование ID {{id_obj}}</li>
+                            <li class="active">Редактирование <a href="{% url 'single_obj' id_obj %}"> ID {{id_obj}}</a></li>
                         {% else %}
                             <li class="active">Добавление</li>
                         {% endif %}

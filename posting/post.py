@@ -301,6 +301,7 @@ class PublishObject(object):
 
     def get_daily_district(self):
         district_name = str(self.single_object.district_obj)
+        district_name = district_name.strip(' ')
         if not district_name:
             return None
         district = self.session.query(DailyDistrict).filter_by(
@@ -318,6 +319,7 @@ class PublishObject(object):
         district_name = str(self.single_object.district_obj)
         if not district_name:
             return None
+        district_name = district_name.strip(' ')
         district = self.session.query(District).filter_by(
             name=district_name).first()
         if not district:
