@@ -49,7 +49,7 @@ def posting_false(request):
         # single_object.save()
         # SetShows(request.POST['id_so'], 'false')
         # NotPost(request.POST['id_so'])
-        delete_post = PublishObject(single_object, host).delete_public()
+        delete_post = PublishObject(single_object, host, {}).delete_public()
         return HttpResponse(JsonResponse({'data': 'false'}), status=200)
     else:
         return HttpResponse(status=500)
