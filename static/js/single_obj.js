@@ -575,8 +575,10 @@ $(document).ready(function() {
         event.preventDefault();
         var obj_status = $(this);
         var status = $(this).attr('status');
+        var post_name = $( "input[name='post_name']" ).val();
+        var post_phone = $( "input[name='post_phone']" ).val();
         var sisingle_obj_id = $('#sisingle_obj_id').attr('sisingle_obj_id');
-        $.post('post/'+status, {'id_so': sisingle_obj_id})
+        $.post('post/'+status, {'id_so': sisingle_obj_id, 'post_name': post_name, 'post_phone': post_phone})
             .success( function (data) {
                 var data = jQuery.parseJSON(data)
                 if (data.data === 'true') {

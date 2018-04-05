@@ -13,9 +13,13 @@ from .post import PublishObject
 def posting_true(request):
 
     if request.method == 'POST':
+        post_data = {
+            'post_name': request.POST.get('post_name', ''),
+            'post_phone': request.POST.get('post_phone', '')
+        }
         single_object = ContactOwner.objects.get(id=request.POST['id_so'])
         host = '.'.join(request.get_host().split('.')[1:])
-        obj = PublishObject(single_object, host)
+        obj = PublishObject(single_object, host, post_data)
         obj.publish()
         return HttpResponse(JsonResponse({'data': 'true'}), status=200)
 

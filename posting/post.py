@@ -124,8 +124,9 @@ class Photos(base):
 
 class PublishObject(object):
 
-    def __init__(self, single_object, host):
+    def __init__(self, single_object, host, post_data):
         self.single_object = single_object
+        self.post_data = post_data
         self.admin = host.replace('.', '').replace('-', '')
         self.db_post = host.replace('.', '').replace('-', '')
         self.path_to_file_path = '/home/gek/{0}/site/media_path.json'.format(host)
@@ -263,7 +264,7 @@ class PublishObject(object):
             return '/'.join(['photos', image.image.name.split('/')[-1]])
 
     def get_phone(self):
-        phone = str(self.single_object.phone_owner)
+        phone = self.post_data.get('post_phone')
         if not phone:
             return None
         sql = text(
@@ -284,7 +285,7 @@ class PublishObject(object):
             return result[0][0]
 
     def get_name(self):
-        name_owner = self.single_object.name_owner
+        name_owner = self.post_data.get('post_name')
         if not name_owner:
             return None
         name = self.session.query(Name)
