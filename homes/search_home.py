@@ -79,17 +79,17 @@ def searh(request):
         if list_req.get('comments') != '-----':
             contact_owner = contact_owner.filter(comment__icontains=list_req.get('comments'))
         if list_req.get('vip_status') == 'on':
-            contact_owner = contact_owner.filter(vip_owner=list_req.get('vip_status'))
+            contact_owner = contact_owner.filter(vip_owner=True)
         if list_req.get('public_status') == 'on':
-            contact_owner = contact_owner.filter(public=list_req.get('public_status'))
+            contact_owner = contact_owner.filter(public=True)
         if list_req.getlist('rieltor'):
             contact_owner = contact_owner.filter(rieltor__in=list_req.getlist('rieltor'))
         if list_req.getlist('list_subway'):
             contact_owner = contact_owner.filter(subway_obj__in=list_req.getlist('list_subway'))
         if list_req.get('first_floor') == 'on':
-            contact_owner = contact_owner.filter(first_floor=list_req.get('first_floor'))
+            contact_owner = contact_owner.filter(first_floor=True)
         if list_req.get('last_floor') == 'on':
-            contact_owner = contact_owner.filter(last_floor=list_req.get('last_floor'))
+            contact_owner = contact_owner.filter(last_floor=True)
         if list_req.getlist('number_of_persons'):
             contact_owner = contact_owner.filter(number_of_persons__in=list_req.getlist('number_of_persons'))
         if list_req.get('lot'):
