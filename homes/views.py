@@ -125,7 +125,7 @@ class ObjectList(ListView):
         self.context['all_contact_owner'] = self.object_list
         self.context['type_facility'] = TypeFacility.objects.all()
         self.context['list_carrency'] = NationalCarrency.objects.all()
-        self.context['nac_carrency'] = self.context['list_carrency'][1]
+        self.context['nac_carrency'] = self.context['list_carrency'][0]
         self.context['type_actuality'] = TypeActuality.objects.all()
         self.context['list_district'] = District.objects.all()
         self.context['list_street'] = Street.objects.all()
