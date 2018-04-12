@@ -215,7 +215,7 @@ class ParserOlx(ConfigParserOlx):
         if price_i:
             price_i = int(''.join(price_i))
             return price[0], price_i
-        return ''
+        return '', ''
 
     def _get_phone(self, page_article, id_article):
         phone_token = self._get_phone_token(page_article)

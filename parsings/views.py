@@ -52,19 +52,19 @@ def services(request):
 def parser_olx(request):
     config_parser = ConfigParserOLXSolo.get_solo()
     dict_categories_text = {}
+
     try:
-        list_categories_text = Requester(config_parser.SITE_URL).gettext(config_parser.SELECTOR_GETTEXT_CATEGORIES)
-        for cat in list_categories_text:
-            dict_categories_text = dict(zip([list_categories_text.index(j) for j in list_categories_text], list_categories_text))
+        list_categories_text = Requester(config_parser.SITE_URL).gettext(
+            config_parser.SELECTOR_GETTEXT_CATEGORIES)
+        for index, value in enumerate(list_categories_text):
+            dict_categories_text[index] = value
     except:
-        pass
-    try:
-        sity = ConfigParserOLXSolo.objects.get()
-    except:
-        sity = ''
+        print('EXCEPT IN REQUESTER')
+
+    city = ConfigParserOLXSolo.get_solo() or ''
     dict_categories_text = valid_categories_list(dict_categories_text)
-    return render(request, 'parsings/parser_olx.html', {"list_categories_text": dict_categories_text,
-                                                        "sity": sity})
+    return render(request, 'parsings/parser_olx.html',
+                  {"list_categories_text": dict_categories_text, "city": city})
 
 
 @login_required
