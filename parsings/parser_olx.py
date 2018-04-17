@@ -99,7 +99,8 @@ class ParserOlx(ConfigParserOlx):
                 continue
 
             datetime_article = self._get_date_article(page_article)
-            if datetime_article > self.day_art:
+            if isinstance(datetime_article, datetime.datetime) and \
+                    datetime_article > self.day_art:
 
                 price, price_i = self._get_price(page_article)
                 if isinstance(price_i, int):
@@ -186,23 +187,26 @@ class ParserOlx(ConfigParserOlx):
         return ''.join([parse_categories, self.city.lower(), '/'])
 
     def _get_date_article(self, page_article):
-        date_article = ' '.join(page_article.gettext(self.SELECTOR_DATE)) \
-            .encode('utf-8')
-        p = re.compile(ur'(?P<time_art>\d{2}[:]\d{2})')
-        time_art = re.search(p, date_article)
-        time_art = time_art.group().split(':')
-        p = re.compile(ur'(?P<date_art>\d{1,2}\s\W+\d{4})')
-        date_art = re.search(p, date_article)
-        date_art = date_art.group().split(' ')
-        date_art.reverse()
-        date_art[1] = mutable_month(date_art[1])
-        datetime_article = datetime.datetime(
-            int(date_art[0]),
-            int(date_art[1]),
-            int(date_art[2]),
-            hour=int(time_art[0]),
-            minute=int(time_art[1]))
-        return datetime_article
+        try:
+            date_article = ' '.join(page_article.gettext(self.SELECTOR_DATE)) \
+                .encode('utf-8')
+            p = re.compile(ur'(?P<time_art>\d{2}[:]\d{2})')
+            time_art = re.search(p, date_article)
+            time_art = time_art.group().split(':')
+            p = re.compile(ur'(?P<date_art>\d{1,2}\s\W+\d{4})')
+            date_art = re.search(p, date_article)
+            date_art = date_art.group().split(' ')
+            date_art.reverse()
+            date_art[1] = mutable_month(date_art[1])
+            datetime_article = datetime.datetime(
+                int(date_art[0]),
+                int(date_art[1]),
+                int(date_art[2]),
+                hour=int(time_art[0]),
+                minute=int(time_art[1]))
+            return datetime_article
+        except AttributeError:
+            return None
 
     @property
     def day_art(self):
