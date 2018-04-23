@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 import uuid
 from datetime import datetime
 from shutil import copyfile
@@ -39,7 +40,11 @@ class BuildingRieltorObject(base):
     image = Column(String, default='')
     is_short = Column(Boolean, default=False)
     is_vip = Column(Boolean, default=False)
+    rooms = Column(Integer, default=None)
+    footage = Column(Integer, default=None)
+    floor = Column(Integer, default=None)
     address = Column(String, default='')
+    layout = Column(String, default=None)
     appointment = Column(String, default='')
     type_deal = Column(String, default='')
     price = Column(Integer)
@@ -67,13 +72,14 @@ class DailyRieltorObject(base):
     price = Column(Integer)
     sleeping_places = Column(Integer, default=None)
     rooms = Column(Integer, default=None)
+    floor = Column(Integer, default=None)
     name_id = Column(Integer, ForeignKey('rieltor_object_name.id'))
     phone_id = Column(Integer, ForeignKey('rieltor_object_phone.id'))
     district_id = Column(Integer,
                          ForeignKey('rieltor_object_dailydistrict.id'))
 
-    def custom_id(self):
-        return 0000 + self.id
+    # def custom_id(self):
+    #     return 0000 + self.id
 
 
 class Name(base):
@@ -178,7 +184,9 @@ class PublishObject(object):
         self.save_images_to_photo_model(publish_object)
 
     def get_publish_obj(self):
+        print()
         type_operation = str(self.single_object.list_operations.all().first())
+        custom_id = int(str(self.single_object.id) + '00001')
         if type_operation in ['Аренда', 'Продажа']:
             return BuildingRieltorObject(
                 title=str(self.single_object.type_facilit),
@@ -198,7 +206,11 @@ class PublishObject(object):
                 phone_id=self.get_phone(),
                 district_id=self.get_district(),
                 image=self.get_image(),
-                custom_id=int(str(self.single_object.id) + '00001')
+                custom_id=custom_id,
+                rooms=self.single_object.rooms,
+                footage=self.single_object.total_area,
+                floor=self.single_object.floor,
+                layout=self.get_type_rooms()
             )
         elif type_operation == 'Посуточна':
             return DailyRieltorObject(
@@ -218,16 +230,33 @@ class PublishObject(object):
                 phone_id=self.get_phone(),
                 district_id=self.get_daily_district(),
                 image=self.get_image(),
-                custom_id=int(str(self.single_object.id) + '00001')
+                custom_id=custom_id,
+                floor=self.single_object.floor
             )
+
+    def get_type_rooms(self):
+        if not hasattr(self.single_object.room, 'type_rooms'):
+            return None
+
+        type_rooms = self.single_object.room.type_rooms.encode('utf8')
+
+        if type_rooms == 'Смежные':
+            return 'related'
+        elif type_rooms == 'Раздельные':
+            return 'separate'
+        elif type_rooms == 'Смежно-раздельные':
+            return 'related-separate'
 
     def save_images_to_photo_model(self, rieltor_object):
         content_type_id = self._get_content_object_id(rieltor_object)
         object_id = rieltor_object.id
 
-        with open(self.path_to_file_path, 'r') as f:
-            result = json.load(f, encoding='utf8')
-            path = result.get('path')
+        try:
+            with open(self.path_to_file_path, 'r') as f:
+                result = json.load(f, encoding='utf8')
+                path = result.get('path')
+        except IOError:
+            path = '/home/varunok/work/gek/media'
 
         album = self.single_object.photos.all()
         for image in album:
@@ -254,9 +283,13 @@ class PublishObject(object):
 
     def get_image(self):
         print(settings.BASE_DIR)
-        with open(self.path_to_file_path, 'r') as f:
-            result = json.load(f, encoding='utf8')
-            path = result.get('path')
+        try:
+            with open(self.path_to_file_path, 'r') as f:
+                result = json.load(f, encoding='utf8')
+                path = result.get('path')
+        except IOError:
+            path ='/home/varunok/work/gek/media'
+
         album = self.single_object.photos.all()
         for image in album:
             path = '/'.join([path, 'photos', image.image.name.split('/')[-1]])
