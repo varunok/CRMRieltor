@@ -64,8 +64,14 @@ class Requester(object):
 
     def _get_cookies(self, ssid):
         jar = requests.cookies.RequestsCookieJar()
-        jar.set('PHPSESSID', ssid, domain='.olx.ua', path='/')
+        jar.set('PHPSESSID', ssid, domain=self._get_cookies_domain(), path='/')
         return jar
+
+    @staticmethod
+    def _get_cookies_domain():
+        config = ConfigParserOlx()
+        domain = config.SITE_URL.strip('//')[-1]
+        return ''.join(('.', domain))
 
 
 class ParserOlx(ConfigParserOlx):
