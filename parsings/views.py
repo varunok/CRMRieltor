@@ -44,7 +44,7 @@ def services(request):
     if settings.ALLOWED_HOSTS[0] == 'dom6.usatba-krm.dn.ua':
         hi_dn_ua = True
     else:
-        hi_dn_ua = False
+        hi_dn_ua = True
     return render(request, 'parsings/services.html', {'hi_dn_ua': hi_dn_ua})
 
 
@@ -124,23 +124,27 @@ def parsehidnua(request):
     if request.method == 'POST':
         id_part = int(request.POST.get('id_part'))
         if id_part == 1:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=56'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=56'
         elif id_part == 2:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=9'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=9'
         elif id_part == 3:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=11'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=11'
         elif id_part == 4:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=12'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=12'
         elif id_part == 5:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=13'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=13'
         elif id_part == 6:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=19'
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=19'
         elif id_part == 7:
-            link = 'http://hi.dn.ua/index.php?option=com_sobi2&catid=55'
-        pages = Requester(link).getlink('//ul[@class="pagination"]/li/strong/a//@href')
-        site = Requester(link).gettext(selector='//td//text()')
+            link = 'https://hi.dn.ua/index.php?option=com_sobi2&catid=55'
+        pages = Requester(
+            link, verify=False).getlink(
+            '//ul[@class="pagination"]/li/strong/a//@href')
+        site = Requester(link, verify=False).gettext(selector='//td//text()')
         if int(request.POST['id_page']) > 1:
-            site = Requester(pages[int(request.POST['id_page']) - 2]).gettext(selector='//td//text()')
+            site = Requester(
+                pages[int(request.POST['id_page']) - 2], verify=False).gettext(
+                selector='//td//text()')
         dict_article = {}
         for articles in site:
             if u'Тел.:' in articles or u'Тел. :' in articles:

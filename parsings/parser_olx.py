@@ -42,11 +42,12 @@ class ConfigParserOlx(object):
 
 class Requester(object):
 
-    def __init__(self, link, ssid=None):
+    def __init__(self, link, ssid=None, verify=True):
         self.link = link
 
         self.response = requests.get(self.link,
-                                     cookies=self._get_cookies(ssid))
+                                     cookies=self._get_cookies(ssid),
+                                     verify=verify)
         try:
             self.PHPSESSID = self.response.cookies['PHPSESSID']
         except KeyError:
