@@ -136,27 +136,36 @@ class PublishObject(object):
         self.admin = host.replace('.', '').replace('-', '')
         self.db_post = host.replace('.', '').replace('-', '')
         self.path_to_file_path = '/home/gek/{0}/site/media_path.json'.format(host)
+        self.host = host
         self._create_session()
 
     def _create_session(self):
-        db_string = "postgres://{0}:{1}@localhost:5432".format(
-            self.admin, self.db_post)
+        db_string = "postgres://gekcom:gekcom@localhost:5432"
+        # db_string = "postgres://{0}:{1}@localhost:5432".format(
+        #     self.admin, self.db_post)
         self.db = create_engine(db_string)
 
         Session = sessionmaker(self.db)
         self.session = Session()
 
-    def get_show_posts(self):
+    def get_show_posts_and_link(self):
         type_operation = str(self.single_object.list_operations.all().first())
         custom_id = int(str(self.single_object.id) + '00001')
+        link = '{0}'.format(self.host)
+        query = None
+
         if type_operation in ['Аренда', 'Продажа']:
             query = self.session.query(BuildingRieltorObject)
+            link += '/objects/detail/buildings/'
         elif type_operation == 'Посуточна':
             query = self.session.query(DailyRieltorObject)
-        query = query.filter_by(custom_id=custom_id).first()
+            link += '/objects/detail/offices/'
 
-        if hasattr(query, 'views'):
-            return query.views
+        if query:
+            query = query.filter_by(custom_id=custom_id).first()
+
+            if hasattr(query, 'views'):
+                return query.views, link + str(query.id) + '/'
 
     def delete_public(self):
         type_operation = str(self.single_object.list_operations.all().first())

@@ -94,6 +94,14 @@
                                                         {% endif %}
                                                         <span>{{ object_data.contact_owner|default:'' }}</span>
                                                     </h2>
+                                                    <span>
+                                                        {% if object_data.condition %}<i style="font-size: 15px; font-weight: 500">Состояние: {{ object_data.condition }}</i>{% endif %}
+                                                        {% if object_data.landmark %}<br><i style="font-size: 15px; font-weight: 500">Ориентир: {{ object_data.landmark }}</i>{% endif %}
+                                                        {% if object_data.list_operations %}<br><i style="font-size: 15px; font-weight: 500">Тип операции: {% for operation in object_data.list_operations.all %}
+                                                        {{ operation }}/
+                                                        {% endfor %}
+                                                        </i>{% endif %}
+                                                    </p>
                                                     <p class="object-type">
                                                         {{ object_data.type_facilit }}
                                                         {% if object_data.room %}

@@ -76,6 +76,10 @@ class RegisterFormView(FormView):
 @login_required
 def register(request):
     type_user = UsersGroupExtUser.objects.all()
+    if request.user.myuser.type_user.type_user == u'Админ':
+        type_user = type_user.exclude(type_user=u'Суперадмин')
+    if request.user.myuser.type_user.type_user == u'Модератор':
+        type_user = None
     return render(request, 'extuser/register.html', {'type_user': type_user})
 
 
@@ -83,24 +87,23 @@ def register(request):
 def add_user(request):
     if request.method == 'POST':
         if request.POST.get('add_user') is not None:
-            if request.user.is_superuser or request.user.myuser.type_user.id == 1:
-                try:
-                    result = request.POST
-                    new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
-                    new_user.save()
-                    if not request.FILES.get('photo'):
-                        reopen = open('media/avatar/avatar_zaglushka.jpg', 'rb')
-                        image_file = File(reopen)
-                    else:
-                        image_file = request.FILES.get('photo')
-                    add_img = MyUser(id=new_user.id, image=image_file, user_id=new_user.id, type_user_id=result.get('type_user'))
-                    add_img.save()
-                    recovery = RecoveryPass(email=result.get('email'), password=result.get('password'))
-                    recovery.save()
-                except IntegrityError:
-                    type_user = UsersGroupExtUser.objects.all()
-                    return render(request, 'extuser/register.html', {'type_user': type_user,
-                                                                     'user_is': True})
+            try:
+                result = request.POST
+                new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
+                new_user.save()
+                if not request.FILES.get('photo'):
+                    reopen = open('media/avatar/avatar_zaglushka.jpg', 'rb')
+                    image_file = File(reopen)
+                else:
+                    image_file = request.FILES.get('photo')
+                add_img = MyUser(id=new_user.id, image=image_file, user_id=new_user.id, type_user_id=result.get('type_user'))
+                add_img.save()
+                recovery = RecoveryPass(email=result.get('email'), password=result.get('password'))
+                recovery.save()
+            except IntegrityError:
+                type_user = UsersGroupExtUser.objects.all()
+                return render(request, 'extuser/register.html', {'type_user': type_user,
+                                                                 'user_is': True})
             return user_list(request)
 
 

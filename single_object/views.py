@@ -480,8 +480,9 @@ def get_publication(request):
     # franshise = Franshise.objects.values()[0]['franshise']
     host = '.'.join(request.get_host().split('.')[1:])
     single_object = ContactOwner.objects.get(id=request.GET['id_so'])
-    get_shows = PublishObject(single_object, host, {}).get_show_posts()
-    return render(request, 'single_object/publication.html', {"franshise": host,
+    get_shows, link_obj = PublishObject(
+        single_object, host, {}).get_show_posts_and_link()
+    return render(request, 'single_object/publication.html', {"franshise": link_obj,
                                                               "status": single_object,
                                                               "len_shows": get_shows})
 

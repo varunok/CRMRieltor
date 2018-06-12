@@ -43,7 +43,7 @@ def searh(request):
         if list_req.get('id_obj'):
             contact_owner = contact_owner.filter(id=list_req.get('id_obj'))
         if list_req.get('phone_obj'):
-            search_phone = list_req.get('phone_obj')
+            search_phone = list_req.get('phone_obj').replace(' ', '').replace('(', '').replace(')', '').replace('-', '')
             contact_owner = contact_owner.filter(Q(phone_owner__icontains=search_phone) | Q(phone_owner_plus__icontains=search_phone))
         if list_req.get('peresmotr'):
             date_old = datetime.strptime(str(list_req.get('peresmotr')), "%m/%d/%Y")

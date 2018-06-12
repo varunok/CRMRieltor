@@ -29,7 +29,7 @@ from tasking.models import Tasking, UserFullName, TypeComplexity
 from meeting.models import Meeting, TypeStatus
 
 
-DAY_AGO = timezone.now() - datetime.timedelta(days=int(30))
+DAY_AGO = timezone.now() - datetime.timedelta(days=int(3000))
 
 
 # Create your views here.

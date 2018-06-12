@@ -18,7 +18,7 @@ class UsersGroupExtUser(models.Model):
                                  verbose_name=u'Тип пользователя')
 
     def __unicode__(self):
-        return '%s' % (self.type_user)
+        return '%s' % self.type_user
 
 
 class MyUser(models.Model):
