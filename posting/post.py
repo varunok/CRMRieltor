@@ -167,6 +167,8 @@ class PublishObject(object):
             if hasattr(query, 'views'):
                 return query.views, link + str(query.id) + '/'
 
+        return '', ''
+
     def delete_public(self):
         type_operation = str(self.single_object.list_operations.all().first())
         custom_id = int(str(self.single_object.id) + '00001')
