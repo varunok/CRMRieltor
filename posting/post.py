@@ -140,9 +140,9 @@ class PublishObject(object):
         self._create_session()
 
     def _create_session(self):
-        db_string = "postgres://gekcom:gekcom@localhost:5432"
-        # db_string = "postgres://{0}:{1}@localhost:5432".format(
-        #     self.admin, self.db_post)
+        # db_string = "postgres://gekcom:gekcom@localhost:5432"
+        db_string = "postgres://{0}:{1}@localhost:5432".format(
+            self.admin, self.db_post)
         self.db = create_engine(db_string)
 
         Session = sessionmaker(self.db)
