@@ -71,7 +71,7 @@ class Requester(object):
     @staticmethod
     def _get_cookies_domain():
         config = ConfigParserOlx()
-        domain = config.SITE_URL.strip('//')[-1]
+        domain = config.SITE_URL.encode('utf8').split('//')[-1]
         return ''.join(('.', domain))
 
 
@@ -257,17 +257,25 @@ class ParserOlx(ConfigParserOlx):
 
 
 def mutable_phone(phone):
-    p = re.compile(ur'\d{7,10}')
+
     phone = phone.replace('-', '')
     phone = phone.replace('(', '')
     phone = phone.replace(')', '')
     phone = phone.replace('+38', '')
     phone = phone.replace('+8', '')
+    phone = phone.replace('+', '')
     phone = phone.replace(' ', '')
     if len(phone) == 12:
         if phone[0:3] == '380':
             phone = phone[2:]
+
+    second_comp = ur'\d{7,10}'
+    if phone[0:2] in ['87', '77']:
+        second_comp = ur'\d{7,11}'
+
+    p = re.compile(second_comp)
     phone = re.findall(p, phone)
+    print(phone)
     return phone
 
 
