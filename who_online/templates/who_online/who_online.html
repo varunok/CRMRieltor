@@ -1,4 +1,5 @@
 {% load who_online_tag %}
+{% load static %}
 <div class="head-dropmessage">КТО ОНЛАЙН</div>
 {% for user in list_user  %}
     {% if user.user.is_active %}
@@ -44,7 +45,7 @@
     	$('#send_mes_ser').click(function(event) {
     		event.preventDefault();
     		var id_mes = $(this).attr('id-mes');
-    		var text_messege = $('textarea#text_messege_user').val()
+    		var text_messege = $('textarea#text_messege_user').val();
     		$.post('send_messege_user', {"id_user": id_mes, "text_messege": text_messege})
             .success( function (data) {
                 $('.messageServer').animate({'backgroundColor': '#5bc0de'}, 2000);

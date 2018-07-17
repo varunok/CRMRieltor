@@ -71,7 +71,7 @@ class Requester(object):
     @staticmethod
     def _get_cookies_domain():
         config = ConfigParserOlx()
-        domain = config.SITE_URL.strip('//')[-1]
+        domain = config.SITE_URL.encode('utf8').split('//')[-1]
         return ''.join(('.', domain))
 
 

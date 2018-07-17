@@ -108,40 +108,52 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block arendator">
-                        <i class="fa fa-user"></i> АРЕНДАТОРОВ
-                        <span id="arendators" class="activiti-count">{{arendators}}</span>
-                    </div>
+                    <a href="{% url "arendators" %}" style="text-decoration: none">
+                        <div class="activiti-block arendator">
+                            <i class="fa fa-user"></i> АРЕНДАТОРОВ
+                            <span id="arendators" class="activiti-count">{{arendators}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block object">
-                        <i class="fa fa-university"></i> ОБЪЕКТОВ
-                        <span id="facilitys" class="activiti-count">{{facilitys}}</span>
-                    </div>
+                    <a href="{% url "objects" %}" style="text-decoration: none">
+                        <div class="activiti-block object">
+                            <i class="fa fa-university"></i> ОБЪЕКТОВ
+                            <span id="facilitys" class="activiti-count">{{facilitys}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block task">
-                        <i class="fa fa-list-alt"></i> ЗАДАЧ
-                        <span id="taskings" class="activiti-count">{{taskings}}</span>
-                    </div>
+                    <a href="{% url "tasking" %}" style="text-decoration: none">
+                        <div class="activiti-block task">
+                            <i class="fa fa-list-alt"></i> ЗАДАЧ
+                            <span id="taskings" class="activiti-count">{{taskings}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block buyers">
-                        <i class="fa fa-male"></i> ПОКУПАТЕЛЕЙ
-                        <span id="buyers" class="activiti-count">{{buyers}}</span>
-                    </div>
+                    <a href="{% url "buyers" %}" style="text-decoration: none">
+                        <div class="activiti-block buyers">
+                            <i class="fa fa-male"></i> ПОКУПАТЕЛЕЙ
+                            <span id="buyers" class="activiti-count">{{buyers}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block makler">
-                        <i class="fa fa-briefcase"></i> МАКЛЕРОВ
-                        <span id="maklers" class="activiti-count">{{maklers}}</span>
-                    </div>
+                    <a href="{% url "maklers" %}" style="text-decoration: none">
+                        <div class="activiti-block makler">
+                            <i class="fa fa-briefcase"></i> МАКЛЕРОВ
+                            <span id="maklers" class="activiti-count">{{maklers}}</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="activiti-block meet">
-                        <i class="fa fa-coffee"></i> ВСТРЕЧ
-                        <span id="meetings" class="activiti-count">{{meetings}}</span>
-                    </div>
+                    <a href="{% url "meeting" %}" style="text-decoration: none">
+                        <div class="activiti-block meet">
+                            <i class="fa fa-coffee"></i> ВСТРЕЧ
+                            <span id="meetings" class="activiti-count">{{meetings}}</span>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="row">

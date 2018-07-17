@@ -266,7 +266,7 @@ class ArendatorsList(ListView):
     paginate_by = 10
     context_object_name = 'arendator_list'
     template_name = 'homes/arendators.html'
-    queryset = Arendator.objects.filter(trash=False).order_by('date_term')
+    queryset = Arendator.objects.filter(trash=False).order_by('-add_date')
 
     def get_context_data(self, **kwargs):
         self.context = super(ArendatorsList, self).get_context_data(**kwargs)
@@ -312,7 +312,7 @@ class BuyersList(ListView):
     paginate_by = 10
     context_object_name = 'buyer_list'
     template_name = 'homes/buyers.html'
-    queryset = Buyer.objects.filter(trash=False).order_by('date_term')
+    queryset = Buyer.objects.filter(trash=False).order_by('-add_date')
 
     def get_context_data(self, **kwargs):
         self.context = super(BuyersList, self).get_context_data(**kwargs)
