@@ -92,7 +92,7 @@ def add_user(request):
                 new_user = User.objects.create_user(last_login=timezone.now(), username=result.get('email'), first_name=result.get('first_name'), last_name=result.get('last_name'), email=result.get('email'), password=result.get('password'))
                 new_user.save()
                 if not request.FILES.get('photo'):
-                    reopen = open('media/avatar/avatar_zaglushka.jpg', 'rb')
+                    reopen = open('static/images/logo-user-message.jpg', 'rb')
                     image_file = File(reopen)
                 else:
                     image_file = request.FILES.get('photo')

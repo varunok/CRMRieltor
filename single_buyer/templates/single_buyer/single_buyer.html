@@ -41,12 +41,10 @@
                                                     {% if single_buyer.price_from or single_buyer.price_to %}
                                                         <span class="buyers-price-buy">
                                                             {% if single_buyer.price_from %}
-                                                                от {{ single_buyer.price_from }}
-                                                                {{ nac_carrency }}
+                                                                от {{ single_buyer.price_from }}$
                                                             {% endif %}
                                                             {% if single_buyer.price_to %}
-                                                                до {{ single_buyer.price_to }}
-                                                                {{ nac_carrency }}
+                                                                до {{ single_buyer.price_to }}$
                                                             {% endif %}
                                                          </span>
                                                     {% endif %}
