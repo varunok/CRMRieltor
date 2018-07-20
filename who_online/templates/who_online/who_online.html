@@ -4,7 +4,7 @@
     {% if user.user.is_active %}
         <li>
             <a href="#">
-                <img class="img-circle" src="{{ MEDIA_URL }}{{ user.image }}" alt="" height="40px;" width="40px;" style="padding-bottom: 0px; padding-right:0px;">
+                <img class="img-circle" src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'images/logo-user-message.jpg' %}{% endif %}" alt="" height="40px;" width="40px;" style="padding-bottom: 0px; padding-right:0px;">
                     <span style="margin-left:10px; padding-left:40px;" class="message-user-name">{{ user.user.first_name }} {{ user.user.last_name }}</span>
                     <span style="margin-left:10px" class="message-user-date">{{ user.user.last_login|last_login }}</span>
                     {% if user.user.last_login|last_login == 'online' %}
