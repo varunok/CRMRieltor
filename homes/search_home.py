@@ -56,8 +56,8 @@ def searh(request):
             contact_owner = contact_owner.filter(floors_up__gte=int(list_req.get('floor_to')))
         if list_req.get('list_rooms'):
             contact_owner = contact_owner.filter(room__in=list_req.get('list_rooms'))
-        if list_req.get('street_obj'):
-            contact_owner = contact_owner.filter(street_obj__exact=list_req.get('street_obj'))
+        if list_req.getlist('street_obj'):
+            contact_owner = contact_owner.filter(street_obj__in=list_req.getlist('street_obj'))
         if list_req.get('floor_ot'):
             contact_owner = contact_owner.filter(floor__gte=int(list_req.get('floor_ot')))
         if list_req.get('floor_do'):

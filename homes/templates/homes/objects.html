@@ -227,8 +227,13 @@
                                 <div class="col-md-4">
                                     <div class="search-item">
                                         <label for="street">Улица</label>
-                                        <select id="street_obj" name="street_obj" class="js-example-basic-single tarea-multiple">
-                                            <option value="" selected="selected">-----</option>
+{#                                        <select id="street_obj" name="street_obj" class="js-example-basic-single tarea-multiple">#}
+{#                                            <option value="" selected="selected">-----</option>#}
+{#                                            {% for street in list_street %}#}
+{#                                                <option value="{{ street }}">{{ street }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+                                        <select class="tarea-multiple" multiple="multiple" placeholder="-----" id="street_obj" name="street_obj">
                                             {% for street in list_street %}
                                                 <option value="{{ street }}">{{ street }}</option>
                                             {% endfor %}

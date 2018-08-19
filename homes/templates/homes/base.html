@@ -120,7 +120,7 @@
 <div id="search_results">
 {% block content %}{% endblock content %}
 </div>
-    <section class="footer">
+    <section class="footer" style="height: 200px">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -128,40 +128,40 @@
                         <a href="#"><span>{% franshise_first %}</span>.{% franshise_second %}</a>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="callback-message">
-                                <span>Написать сообщение</span>
-                                <textarea name="" id="write_email" cols="30" rows="10"></textarea>
-                                <a href="#" id="send_email" class="btn btn-green">Отправить</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="admin-photo">
-                                <img src="{{ MEDIA_URL }}{% photo_futer %}" alt="">
-                            </div>
-                            <div class="admin-name">
-                                Вячеслав Рекечинский
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="admin-contact">
-                                <span>Всегда на связи</span>
-                                <ul>
-                                    <li><i class="fa fa-mobile"></i> {% all_to_call 'phone' %}</li>
-                                    <li><i class="fa fa-envelope-o"></i> {% all_to_call 'email' %}</li>
-                                    <li><i class="fa fa-skype"></i> {% all_to_call 'skype' %}</li>
-                                    <li><i class="fa fa-vk"></i> {% all_to_call 'group_vk' %}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{#                <div class="col-md-7">#}
+{#                    <div class="row">#}
+{#                        <div class="col-md-5">#}
+{#                            <div class="callback-message">#}
+{#                                <span>Написать сообщение</span>#}
+{#                                <textarea name="" id="write_email" cols="30" rows="10"></textarea>#}
+{#                                <a href="#" id="send_email" class="btn btn-green">Отправить</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-2">#}
+{#                            <div class="admin-photo">#}
+{#                                <img src="{{ MEDIA_URL }}{% photo_futer %}" alt="">#}
+{#                            </div>#}
+{#                            <div class="admin-name">#}
+{#                                Вячеслав Рекечинский#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-5">#}
+{#                            <div class="admin-contact">#}
+{#                                <span>Всегда на связи</span>#}
+{#                                <ul>#}
+{#                                    <li><i class="fa fa-mobile"></i> {% all_to_call 'phone' %}</li>#}
+{#                                    <li><i class="fa fa-envelope-o"></i> {% all_to_call 'email' %}</li>#}
+{#                                    <li><i class="fa fa-skype"></i> {% all_to_call 'skype' %}</li>#}
+{#                                    <li><i class="fa fa-vk"></i> {% all_to_call 'group_vk' %}</li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <span class="copyright">© RIELTORY.BIZ CRM {% now 'Y' %}</span>
+{#                    <span class="copyright">© RIELTORY.BIZ CRM {% now 'Y' %}</span>#}
                 </div>
             </div>
         </div>
