@@ -39,6 +39,9 @@ class ConfigParserOlx(object):
     except:
         pass
 
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 class Requester(object):
 
@@ -47,7 +50,7 @@ class Requester(object):
 
         self.response = requests.get(self.link,
                                      cookies=self._get_cookies(ssid),
-                                     verify=verify)
+                                     verify=False)
         try:
             self.PHPSESSID = self.response.cookies['PHPSESSID']
         except KeyError:
